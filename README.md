@@ -1,5 +1,7 @@
 # Homesteading Server Rails
 
+[![Code Climate](https://codeclimate.com/github/homesteading/homesteading-server-rails/badges/gpa.svg)](https://codeclimate.com/github/homesteading/homesteading-server-rails)
+
 A Rails app to power an #indieweb personal publishing platform.
 
 ## Authors
