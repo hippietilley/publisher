@@ -3,6 +3,11 @@ class ApplicationController < ActionController::Base
 
 
   private
+  
+  def allow_signup?
+    User.count.zero?
+  end
+  helper_method :allow_signup?
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]

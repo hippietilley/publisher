@@ -5,6 +5,11 @@ class UsersController < ApplicationController
 
   # /signup
   def new
+    unless allow_signup?
+      flash.alert = "Contact the owner of this website to request an account."
+      return redirect_to root_url
+    end
+
     if current_user
       return redirect_to root_url
     else
