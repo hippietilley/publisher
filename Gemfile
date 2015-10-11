@@ -11,6 +11,7 @@ gem 'puma'
 
 group :development, :test do
   gem 'byebug'
+  gem 'rspec'
 end
 
 group :development do
