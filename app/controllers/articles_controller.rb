@@ -1,9 +1,14 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_filter :authorize, except: [:show, :index]
 
   # GET /articles
   def index
-    @articles = Article.all
+    if signed_in?
+      @articles = Article.all
+    else
+      @articles = Article.where(private: false)
+    end
   end
 
   # GET /articles/1
@@ -49,6 +54,9 @@ class ArticlesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_article
       @article = Article.find(params[:id])
+      if @article.private? && !signed_in?
+        return redirect_to(root_path)
+      end
     end
 
     # Only allow a trusted parameter "white list" through.
