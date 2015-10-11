@@ -1,0 +1,30 @@
+<footer>
+  <p>
+    <%# on one line to avoid link extending into space after name %>
+    <a href="mailto:<%= "TODO: AUTHOR_EMAIL" %>"><span class="p-author as-actor"><%= "TODO: AUTHOR_NAME" %></span></a>
+
+    <span class="as-verb">published</span>
+    <%= preposition("this") %>
+    <span class="as-object"><%= link_to thing.class.to_s.downcase, "/#{thing.class.to_s.downcase.pluralize}" %></span>
+    <%= preposition("on") %>
+
+    <time datetime="<%= thing.published_at.strftime("%Y-%m-%dT%H:%m") %>" class="dt-published dt-updated">
+      <%= link_to_thing(
+            thing,
+            thing.published_at.strftime("%B %d, %Y") + space + preposition("at") + space + thing.published_at.strftime("%I:%M:%S")
+          ) %>
+    </time>
+  </p>
+
+  <% unless thing.tags.split.blank? %>
+    <p class="tags">
+      <b>Tags</b>
+      <%= tags_for(thing) %>
+    </p> <!-- .tags -->
+  <% end %>
+
+
+  <div class="syndication">
+    <%#= link_to_syndication(thing).html_safe %>
+  </div> <!-- .syndication -->
+</footer>

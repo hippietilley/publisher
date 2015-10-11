@@ -4,7 +4,11 @@ class NotesController < ApplicationController
 
   # GET /notes
   def index
-    @notes = Note.all
+    if signed_in?
+      @notes = Note.all
+    else
+      @notes = Note.where(private: false)
+    end
   end
 
   # GET /notes/1
@@ -49,7 +53,14 @@ class NotesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_note
-      @note = Note.find(params[:id])
+      if signed_in?
+        @note = Note.find(params[:id])
+      else
+        @note = Note.find(params[:id])
+        if @note.private?
+          return redirect_to(root_path)
+        end
+      end
     end
 
     # Only allow a trusted parameter "white list" through.
