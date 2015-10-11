@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'about/index'
-
   root to: "about#index"
 
   # auth

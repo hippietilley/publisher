@@ -1,11 +1,15 @@
 class UsersController < ApplicationController
-  before_action :set_user,      only: [:show, :update, :destroy]
-  before_filter :authorize,     only: [:edit, :update, :destroy]
+  before_action :set_user,  only: [:show, :update, :destroy]
+  before_filter :authorize, only: [:edit, :update, :destroy]
 
 
   # /signup
   def new
-    @user = User.new
+    if current_user
+      return redirect_to root_url
+    else
+      @user = User.new
+    end
   end
 
   # /signup

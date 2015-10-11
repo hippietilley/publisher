@@ -7,8 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+  <% if flash[:notice] %><div><%= flash[:notice] %></div><% end %>
+  <% if flash[:alert]  %><div><%= flash[:alert]  %></div><% end %>
+
   <nav>
     <% if current_user %>
+      <%= current_user.email %>
       <%= link_to "Settings", settings_path %>
       <%= link_to "Sign Out", signout_path %>
     <% else %>
