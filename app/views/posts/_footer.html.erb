@@ -1,30 +1,38 @@
 <footer>
   <p>
-    <%# on one line to avoid link extending into space after name %>
-    <a href="mailto:<%= "TODO: AUTHOR_EMAIL" %>"><span class="p-author as-actor"><%= "TODO: AUTHOR_NAME" %></span></a>
+    <%= link_to "Published", post.path, class: "u-url u-uid p-as-verb" %>
 
-    <span class="as-verb">published</span>
-    <%= preposition("this") %>
-    <span class="as-object"><%= link_to thing.class.to_s.downcase, "/#{thing.class.to_s.downcase.pluralize}" %></span>
-    <%= preposition("on") %>
+    <span class="screen-reader-only">
+      this
+      <span class="p-as-object"><%= link_to post.class.to_s.downcase, "/#{post.class.to_s.downcase.pluralize}" %></span>
+    </span>
 
-    <time datetime="<%= thing.published_at.strftime("%Y-%m-%dT%H:%m") %>" class="dt-published dt-updated">
-      <%= link_to_thing(
-            thing,
-            thing.published_at.strftime("%B %d, %Y") + space + preposition("at") + space + thing.published_at.strftime("%I:%M:%S")
-          ) %>
-    </time>
+    <%= time_tag post.published_at, class: "dt-published" do %>
+      <%= small_word_tag "on" %>
+      <%= human_readable_date post.published_at %>
+
+      <%= small_word_tag "at" %>
+      <%= human_readable_time post.published_at %>
+    <% end %>
+
+    <%= small_word_tag "by" %>
+
+    <span class="p-author p-as-actor h-card">
+      <a href="<%= "TODO: AUTHOR_URL" %>" rel="me" class="u-url p-name">
+        <%= "TODO: AUTHOR_NAME" %>
+      </a>
+    </span>
   </p>
 
-  <% unless thing.tags.split.blank? %>
+  <% unless post.tags.split.blank? %>
     <p class="tags">
       <b>Tags</b>
-      <%= tags_for(thing) %>
+      <%= tags_for(post) %>
     </p> <!-- .tags -->
   <% end %>
 
 
   <div class="syndication">
-    <%#= link_to_syndication(thing).html_safe %>
+    <%#= link_to_syndication(post).html_safe %>
   </div> <!-- .syndication -->
 </footer>

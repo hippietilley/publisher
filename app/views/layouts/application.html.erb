@@ -26,6 +26,8 @@
     <div>
       <%= link_to "Notes", notes_path %>
       <% if signed_in? %>(<%= link_to "new", new_note_path %>)<% end %>
+      <%= link_to "Articles", articles_path %>
+      <% if signed_in? %>(<%= link_to "new", new_article_path %>)<% end %>
     </div>
   </nav>
 

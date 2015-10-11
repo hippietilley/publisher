@@ -33,6 +33,10 @@ module ApplicationHelper
     end
   end
 
+  def small_word_tag(word)
+    content_tag(:i, word, class: "small-word small-word-#{word}")
+  end
+
   def preposition(text)
     content_tag(:span, text, class: "preposition")
   end
@@ -63,5 +67,13 @@ module ApplicationHelper
       html << link_to(tag.to_s.strip, "/tags/#{tag.to_s.gsub(/ /, "+")}", class: "p-category", rel: "tag")
     end
     html.join(", ").html_safe
+  end
+
+  def human_readable_date(datetime)
+    datetime.strftime("%F")
+  end
+
+  def human_readable_time(datetime)
+    datetime.strftime("%l:%M%p").downcase
   end
 end

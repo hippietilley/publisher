@@ -16,8 +16,8 @@
         </h1>
       </header>
 
-      <%= render partial: "posts/footer", locals: { thing: note } %>
-      <% if signed_in? %>(<%= link_to "edit", edit_note_path(note) %>)<% end %>
+      <%= render partial: "posts/footer", locals: { post: note } %>
+      <%= link_to "Edit", edit_note_path(note), class: "edit" if signed_in? %>
     </article>
   
     <hr>
