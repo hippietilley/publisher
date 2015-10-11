@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user,  only: [:show, :update, :destroy]
+  before_action :set_user,  only: [:show, :edit, :update, :destroy]
   before_filter :authorize, only: [:edit, :update, :destroy]
 
 
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       return redirect_to root_url
     end
 
-    if current_user
+    if signed_in?
       return redirect_to root_url
     else
       @user = User.new
@@ -33,7 +33,11 @@ class UsersController < ApplicationController
   # GET /users
   # TODO: ADMIN ONLY
   def index
-    @users = User.all
+    if signed_in?
+      @users = User.all
+    else
+      return redirect_to(root_url)
+    end
   end
 
   # GET /users/1
@@ -43,12 +47,10 @@ class UsersController < ApplicationController
 
   # /settings
   def edit
-    @user  = current_user
   end
 
   # /settings
   def update
-    @user = current_user
     if current_user.update(user_params)
       redirect_to root_url, notice: "Your settings were successfully updated."
     else
@@ -64,7 +66,7 @@ class UsersController < ApplicationController
 
   private
     def set_user
-      @user = User.find(params[:id])
+      @user = current_user
     end
 
     def user_params
