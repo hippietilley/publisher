@@ -8,6 +8,23 @@ A Rails app to power an #indieweb personal publishing platform.
 * Bookis Smuin / [@bookis](https://github.com/bookis)
 
 
+## Setup
+
+1. Install all the required gems.
+
+    ```bash
+    bundle
+    ```
+
+2. Set up your database.
+
+    ```bash
+    rake db:create
+    rake db:migrate
+    rake db:seed
+    ```
+
+
 ## Contributing
 
 1. Fork it
