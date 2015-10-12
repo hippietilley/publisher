@@ -1,6 +1,16 @@
 class Note < ActiveRecord::Base
   before_create :set_slug
   before_update :set_slug
+  validates :content, presence: true
+
+  def name
+    pieces = content[0..50].split
+    if pieces.length == 1
+      pieces
+    else
+      pieces[0..-1].join(" ")
+    end
+  end
 
   def path
     [nil,
