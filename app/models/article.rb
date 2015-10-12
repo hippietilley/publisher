@@ -1,6 +1,17 @@
 class Article < ActiveRecord::Base
   before_create :set_slug
   before_update :set_slug
+  validates :content, presence: true
+
+  def name
+    if title && subtitle
+      "#{title} : #{subtitle}"
+    elsif title
+      title
+    else
+      content[0..50].split[0..-2].join(" ")
+    end
+  end
   
   def path
     [nil,
