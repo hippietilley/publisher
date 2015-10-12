@@ -57,7 +57,7 @@
   </div>
   <div class="field">
     <%= f.label :taken_at %><br>
-    <%= f.datetime_select :taken_at %>
+    <%= f.datetime_select :taken_at, include_blank: true %>
   </div>
   <div class="actions">
     <%= f.submit %>
