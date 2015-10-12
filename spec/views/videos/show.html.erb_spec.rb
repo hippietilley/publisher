@@ -14,7 +14,7 @@ RSpec.describe "videos/show", type: :view do
       :width => 1,
       :height => 2,
       :duration => 3,
-      :video_url => "MyText"
+      :enclosure_url => "MyText"
     ))
   end
 

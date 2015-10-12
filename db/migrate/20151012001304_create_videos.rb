@@ -15,7 +15,7 @@ class CreateVideos < ActiveRecord::Migration
       t.datetime :taken_at
       t.integer :duration
       t.datetime :taken_at
-      t.text :video_url
+      t.text :enclosure_url
 
       t.timestamps null: false
     end

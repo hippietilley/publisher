@@ -14,7 +14,7 @@ RSpec.describe "videos/new", type: :view do
       :width => 1,
       :height => 1,
       :duration => 1,
-      :video_url => "MyText"
+      :enclosure_url => "MyText"
     ))
   end
 
@@ -45,7 +45,7 @@ RSpec.describe "videos/new", type: :view do
 
       assert_select "input#video_duration[name=?]", "video[duration]"
 
-      assert_select "textarea#video_video_url[name=?]", "video[video_url]"
+      assert_select "textarea#video_enclosure_url[name=?]", "video[enclosure_url]"
     end
   end
 end

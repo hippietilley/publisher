@@ -22,11 +22,11 @@
 
       <div class="e-content">
         <video controls width="<%= video.width %>" height="<%= video.height %>" poster="<%= video.image_url %>" class="u-photo">
-          <source src="<%= video.video_url %>" class="u-video" />
+          <source src="<%= video.enclosure_url %>" class="u-video" />
         </video>
 
         <p class="download">
-          <%= link_to "Download video", video.video_url, class: "u-x-enclosure" %>
+          <%= link_to "Download video", video.enclosure_url, class: "u-x-enclosure" %>
         </p>
 
         <div class="p-summary">
