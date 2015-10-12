@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   get "settings", to: "users#edit",       as: "settings"
   
   # post types
-  resources :articles, :notes, :photos, :sounds, :videos
+  resources :articles, :bookmarks, :notes, :photos, :sounds, :videos
 end

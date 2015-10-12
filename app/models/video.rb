@@ -9,7 +9,7 @@ class Video < ActiveRecord::Base
     elsif title
       title
     else
-      image_url.split("/").last.split(".").first
+      bookmark_url.split("/").last.split(".").first
     end
   end
 

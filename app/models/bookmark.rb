@@ -1,7 +1,7 @@
-class Sound < ActiveRecord::Base
+class Bookmark < ActiveRecord::Base
   before_create :set_slug
   before_update :set_slug
-  validates :enclosure_url, presence: true
+  validates :bookmark_url, presence: true
 
   def name
     if title && subtitle
@@ -33,7 +33,7 @@ class Sound < ActiveRecord::Base
     blank       = ""
     separator   = "-"
     if self.slug.blank?
-      self.slug = name.present? ? name : enclosure_url
+      self.slug = name.present? ? name : bookmark_url
     end
     self.slug   = slug.downcase.
       gsub(/\(|\)|\[|\]\./, blank).
