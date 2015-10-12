@@ -11,7 +11,7 @@ class CreateSounds < ActiveRecord::Migration
       t.boolean :private
       t.text :image_url
       t.integer :duration
-      t.datetime :recorded_at
+      t.datetime :captured_at
       t.text :enclosure_url
 
       t.timestamps null: false

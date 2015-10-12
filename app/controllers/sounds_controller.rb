@@ -53,6 +53,6 @@ class SoundsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def sound_params
-      params.require(:sound).permit(:title, :subtitle, :content, :slug, :in_reply_to, :tags, :published_at, :private, :image_url, :duration, :recorded_at, :enclosure_url)
+      params.require(:sound).permit(:title, :subtitle, :content, :slug, :in_reply_to, :tags, :published_at, :private, :image_url, :duration, :captured_at, :enclosure_url)
     end
 end

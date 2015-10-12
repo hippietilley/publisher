@@ -12,7 +12,7 @@ class CreatePhotos < ActiveRecord::Migration
       t.text :image_url
       t.integer :width
       t.integer :height
-      t.datetime :taken_at
+      t.datetime :captured_at
 
       t.timestamps null: false
     end

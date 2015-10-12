@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151012013135) do
+ActiveRecord::Schema.define(version: 20151012144434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20151012013135) do
     t.text     "image_url"
     t.integer  "width"
     t.integer  "height"
-    t.datetime "taken_at"
+    t.datetime "captured_at"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 20151012013135) do
     t.boolean  "private"
     t.text     "image_url"
     t.integer  "duration"
-    t.datetime "recorded_at"
+    t.datetime "captured_at"
     t.text     "enclosure_url"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 20151012013135) do
     t.text     "image_url"
     t.integer  "width"
     t.integer  "height"
-    t.datetime "taken_at"
+    t.datetime "captured_at"
     t.integer  "duration"
     t.text     "enclosure_url"
     t.datetime "created_at",    null: false

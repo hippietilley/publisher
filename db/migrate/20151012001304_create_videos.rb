@@ -12,9 +12,8 @@ class CreateVideos < ActiveRecord::Migration
       t.text :image_url
       t.integer :width
       t.integer :height
-      t.datetime :taken_at
       t.integer :duration
-      t.datetime :taken_at
+      t.datetime :captured_at
       t.text :enclosure_url
 
       t.timestamps null: false
