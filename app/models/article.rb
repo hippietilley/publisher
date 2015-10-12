@@ -30,8 +30,19 @@ class Article < ActiveRecord::Base
   private
   
   def set_slug
+    blank       = ""
+    separator   = "-"
     if self.slug.blank?
-      self.slug = self.title.gsub(/\'|\"/, "").parameterize
+      self.slug = name.present? ? name : content
     end
+    self.slug   = slug.downcase.
+      gsub(/\(|\)|\[|\]\./, blank).
+      gsub(/&amp;/,         blank).
+      gsub(/\W+/,           separator).
+      gsub(/_+/,            separator).
+      gsub(/ +/,            separator).
+      gsub(/-+/,            separator).
+      gsub(/^-+/,           blank).
+      gsub(/-+$/,           blank)
   end
 end
