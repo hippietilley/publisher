@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :articles
-  resources :notes
   root to: "about#index"
 
   # auth
@@ -12,4 +10,7 @@ Rails.application.routes.draw do
 
   # users
   get "settings", to: "users#edit", as: "settings"
+  
+  # post types
+  resources :articles, :notes, :photos
 end
