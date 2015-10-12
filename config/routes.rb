@@ -1,16 +1,13 @@
 Rails.application.routes.draw do
   root to: "about#index"
 
-  # auth
-  resources :users
-  resources :sessions
-  get "signup",  to: "users#new",        as: "signup"
-  get "signin",  to: "sessions#new",     as: "signin"
-  get "signout", to: "sessions#destroy", as: "signout"
-
-  # users
-  get "settings", to: "users#edit", as: "settings"
+  # users + auth
+  resources :users, :sessions
+  get "signup",   to: "users#new",        as: "signup"
+  get "signin",   to: "sessions#new",     as: "signin"
+  get "signout",  to: "sessions#destroy", as: "signout"
+  get "settings", to: "users#edit",       as: "settings"
   
   # post types
-  resources :articles, :notes, :photos
+  resources :articles, :notes, :photos, :videos
 end

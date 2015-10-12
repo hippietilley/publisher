@@ -24,12 +24,15 @@
     </div>
     
     <div>
+      <%= link_to "Home", root_path %>
       <%= link_to "Notes", notes_path %>
       <% if signed_in? %>(<%= link_to "new", new_note_path %>)<% end %>
       <%= link_to "Articles", articles_path %>
       <% if signed_in? %>(<%= link_to "new", new_article_path %>)<% end %>
       <%= link_to "Photos", photos_path %>
       <% if signed_in? %>(<%= link_to "new", new_photo_path %>)<% end %>
+      <%= link_to "Videos", videos_path %>
+      <% if signed_in? %>(<%= link_to "new", new_video_path %>)<% end %>
     </div>
   </nav>
 

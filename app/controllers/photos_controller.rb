@@ -8,8 +8,7 @@ class PhotosController < ApplicationController
       @photos = Photo.all
     else
       @photos = Photo.where(private: false)
-    end
-    
+    end    
   end
 
   # GET /photos/1
