@@ -13,6 +13,7 @@ gem 'puma'
 group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
+  gem "codeclimate-test-reporter", require: false
 end
 
 group :development do
