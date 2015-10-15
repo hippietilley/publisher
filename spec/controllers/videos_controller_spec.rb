@@ -47,7 +47,7 @@ RSpec.describe VideosController, type: :controller do
   describe "GET #show" do
     it "assigns the requested video as @video" do
       video = Video.create! valid_attributes
-      get :show, {:id => video.to_param}, valid_session
+      get :show, {id: video.to_param}, valid_session
       expect(assigns(:video)).to eq(video)
     end
   end
@@ -62,7 +62,7 @@ RSpec.describe VideosController, type: :controller do
   describe "GET #edit" do
     it "assigns the requested video as @video" do
       video = Video.create! valid_attributes
-      get :edit, {:id => video.to_param}, valid_session
+      get :edit, {id: video.to_param}, valid_session
       expect(assigns(:video)).to eq(video)
     end
   end
@@ -71,30 +71,30 @@ RSpec.describe VideosController, type: :controller do
     context "with valid params" do
       it "creates a new Video" do
         expect {
-          post :create, {:video => valid_attributes}, valid_session
+          post :create, {video: valid_attributes}, valid_session
         }.to change(Video, :count).by(1)
       end
 
       it "assigns a newly created video as @video" do
-        post :create, {:video => valid_attributes}, valid_session
+        post :create, {video: valid_attributes}, valid_session
         expect(assigns(:video)).to be_a(Video)
         expect(assigns(:video)).to be_persisted
       end
 
       it "redirects to the created video" do
-        post :create, {:video => valid_attributes}, valid_session
+        post :create, {video: valid_attributes}, valid_session
         expect(response).to redirect_to(Video.last)
       end
     end
 
     context "with invalid params" do
       it "assigns a newly created but unsaved video as @video" do
-        post :create, {:video => invalid_attributes}, valid_session
+        post :create, {video: invalid_attributes}, valid_session
         expect(assigns(:video)).to be_a_new(Video)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:video => invalid_attributes}, valid_session
+        post :create, {video: invalid_attributes}, valid_session
         expect(response).to render_template("new")
       end
     end
@@ -108,20 +108,20 @@ RSpec.describe VideosController, type: :controller do
 
       it "updates the requested video" do
         video = Video.create! valid_attributes
-        put :update, {:id => video.to_param, :video => new_attributes}, valid_session
+        put :update, {id: video.to_param, video: new_attributes}, valid_session
         video.reload
         skip("Add assertions for updated state")
       end
 
       it "assigns the requested video as @video" do
         video = Video.create! valid_attributes
-        put :update, {:id => video.to_param, :video => valid_attributes}, valid_session
+        put :update, {id: video.to_param, video: valid_attributes}, valid_session
         expect(assigns(:video)).to eq(video)
       end
 
       it "redirects to the video" do
         video = Video.create! valid_attributes
-        put :update, {:id => video.to_param, :video => valid_attributes}, valid_session
+        put :update, {id: video.to_param, video: valid_attributes}, valid_session
         expect(response).to redirect_to(video)
       end
     end
@@ -129,13 +129,13 @@ RSpec.describe VideosController, type: :controller do
     context "with invalid params" do
       it "assigns the video as @video" do
         video = Video.create! valid_attributes
-        put :update, {:id => video.to_param, :video => invalid_attributes}, valid_session
+        put :update, {id: video.to_param, video: invalid_attributes}, valid_session
         expect(assigns(:video)).to eq(video)
       end
 
       it "re-renders the 'edit' template" do
         video = Video.create! valid_attributes
-        put :update, {:id => video.to_param, :video => invalid_attributes}, valid_session
+        put :update, {id: video.to_param, video: invalid_attributes}, valid_session
         expect(response).to render_template("edit")
       end
     end
@@ -145,13 +145,13 @@ RSpec.describe VideosController, type: :controller do
     it "destroys the requested video" do
       video = Video.create! valid_attributes
       expect {
-        delete :destroy, {:id => video.to_param}, valid_session
+        delete :destroy, {id: video.to_param}, valid_session
       }.to change(Video, :count).by(-1)
     end
 
     it "redirects to the videos list" do
       video = Video.create! valid_attributes
-      delete :destroy, {:id => video.to_param}, valid_session
+      delete :destroy, {id: video.to_param}, valid_session
       expect(response).to redirect_to(videos_url)
     end
   end

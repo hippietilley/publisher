@@ -3,16 +3,16 @@ require 'rails_helper'
 RSpec.describe "bookmarks/new", type: :view do
   before(:each) do
     assign(:bookmark, Bookmark.new(
-      :title => "MyText",
-      :subtitle => "MyText",
-      :content => "MyText",
-      :bookmark_author => "MyText",
-      :bookmark_excerpt => "MyText",
-      :bookmark_url => "MyText",
-      :slug => "MyText",
-      :in_reply_to => "MyText",
-      :tags => "MyText",
-      :private => false
+      title: "MyText",
+      subtitle: "MyText",
+      content: "MyText",
+      bookmark_author: "MyText",
+      bookmark_excerpt: "MyText",
+      bookmark_url: "MyText",
+      slug: "MyText",
+      in_reply_to: "MyText",
+      tags: "MyText",
+      private: false
     ))
   end
 

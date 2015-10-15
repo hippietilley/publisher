@@ -3,11 +3,11 @@ require 'rails_helper'
 RSpec.describe "notes/new", type: :view do
   before(:each) do
     assign(:note, Note.new(
-      :content => "MyText",
-      :slug => "MyText",
-      :in_reply_to => "MyText",
-      :tags => "MyText",
-      :private => false
+      content: "MyText",
+      slug: "MyText",
+      in_reply_to: "MyText",
+      tags: "MyText",
+      private: false
     ))
   end
 

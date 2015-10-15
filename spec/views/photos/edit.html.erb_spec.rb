@@ -3,16 +3,16 @@ require 'rails_helper'
 RSpec.describe "photos/edit", type: :view do
   before(:each) do
     @photo = assign(:photo, Photo.create!(
-      :title => "MyText",
-      :subtitle => "MyText",
-      :content => "MyText",
-      :slug => "MyText",
-      :in_reply_to => "MyText",
-      :tags => "MyText",
-      :private => false,
-      :image_url => "MyText",
-      :width => 1,
-      :height => 1
+      title: "MyText",
+      subtitle: "MyText",
+      content: "MyText",
+      slug: "MyText",
+      in_reply_to: "MyText",
+      tags: "MyText",
+      private: false,
+      image_url: "MyText",
+      width: 1,
+      height: 1
     ))
   end
 

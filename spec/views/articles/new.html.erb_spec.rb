@@ -3,13 +3,13 @@ require 'rails_helper'
 RSpec.describe "articles/new", type: :view do
   before(:each) do
     assign(:article, Article.new(
-      :title => "MyText",
-      :subtitle => "MyText",
-      :content => "MyText",
-      :slug => "MyText",
-      :in_reply_to => "MyText",
-      :tags => "MyText",
-      :private => false
+      title: "MyText",
+      subtitle: "MyText",
+      content: "MyText",
+      slug: "MyText",
+      in_reply_to: "MyText",
+      tags: "MyText",
+      private: false
     ))
   end
 

@@ -3,18 +3,18 @@ require 'rails_helper'
 RSpec.describe "videos/show", type: :view do
   before(:each) do
     @video = assign(:video, Video.create!(
-      :title => "MyText",
-      :subtitle => "MyText",
-      :content => "MyText",
-      :slug => "MyText",
-      :in_reply_to => "MyText",
-      :tags => "MyText",
-      :private => false,
-      :image_url => "MyText",
-      :width => 1,
-      :height => 2,
-      :duration => 3,
-      :enclosure_url => "MyText"
+      title: "MyText",
+      subtitle: "MyText",
+      content: "MyText",
+      slug: "MyText",
+      in_reply_to: "MyText",
+      tags: "MyText",
+      private: false,
+      image_url: "MyText",
+      width: 1,
+      height: 2,
+      duration: 3,
+      enclosure_url: "MyText"
     ))
   end
 

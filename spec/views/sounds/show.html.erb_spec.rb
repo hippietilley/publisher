@@ -3,16 +3,16 @@ require 'rails_helper'
 RSpec.describe "sounds/show", type: :view do
   before(:each) do
     @sound = assign(:sound, Sound.create!(
-      :title => "MyText",
-      :subtitle => "MyText",
-      :content => "MyText",
-      :slug => "MyText",
-      :in_reply_to => "MyText",
-      :tags => "MyText",
-      :private => false,
-      :image_url => "MyText",
-      :duration => 1,
-      :enclosure_url => "MyText"
+      title: "MyText",
+      subtitle: "MyText",
+      content: "MyText",
+      slug: "MyText",
+      in_reply_to: "MyText",
+      tags: "MyText",
+      private: false,
+      image_url: "MyText",
+      duration: 1,
+      enclosure_url: "MyText"
     ))
   end
 

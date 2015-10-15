@@ -3,13 +3,13 @@ require 'rails_helper'
 RSpec.describe "articles/edit", type: :view do
   before(:each) do
     @article = assign(:article, Article.create!(
-      :title => "MyText",
-      :subtitle => "MyText",
-      :content => "MyText",
-      :slug => "MyText",
-      :in_reply_to => "MyText",
-      :tags => "MyText",
-      :private => false
+      title: "MyText",
+      subtitle: "MyText",
+      content: "MyText",
+      slug: "MyText",
+      in_reply_to: "MyText",
+      tags: "MyText",
+      private: false
     ))
   end
 

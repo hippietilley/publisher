@@ -47,7 +47,7 @@ RSpec.describe SoundsController, type: :controller do
   describe "GET #show" do
     it "assigns the requested sound as @sound" do
       sound = Sound.create! valid_attributes
-      get :show, {:id => sound.to_param}, valid_session
+      get :show, {id: sound.to_param}, valid_session
       expect(assigns(:sound)).to eq(sound)
     end
   end
@@ -62,7 +62,7 @@ RSpec.describe SoundsController, type: :controller do
   describe "GET #edit" do
     it "assigns the requested sound as @sound" do
       sound = Sound.create! valid_attributes
-      get :edit, {:id => sound.to_param}, valid_session
+      get :edit, {id: sound.to_param}, valid_session
       expect(assigns(:sound)).to eq(sound)
     end
   end
@@ -71,30 +71,30 @@ RSpec.describe SoundsController, type: :controller do
     context "with valid params" do
       it "creates a new Sound" do
         expect {
-          post :create, {:sound => valid_attributes}, valid_session
+          post :create, {sound: valid_attributes}, valid_session
         }.to change(Sound, :count).by(1)
       end
 
       it "assigns a newly created sound as @sound" do
-        post :create, {:sound => valid_attributes}, valid_session
+        post :create, {sound: valid_attributes}, valid_session
         expect(assigns(:sound)).to be_a(Sound)
         expect(assigns(:sound)).to be_persisted
       end
 
       it "redirects to the created sound" do
-        post :create, {:sound => valid_attributes}, valid_session
+        post :create, {sound: valid_attributes}, valid_session
         expect(response).to redirect_to(Sound.last)
       end
     end
 
     context "with invalid params" do
       it "assigns a newly created but unsaved sound as @sound" do
-        post :create, {:sound => invalid_attributes}, valid_session
+        post :create, {sound: invalid_attributes}, valid_session
         expect(assigns(:sound)).to be_a_new(Sound)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:sound => invalid_attributes}, valid_session
+        post :create, {sound: invalid_attributes}, valid_session
         expect(response).to render_template("new")
       end
     end
@@ -108,20 +108,20 @@ RSpec.describe SoundsController, type: :controller do
 
       it "updates the requested sound" do
         sound = Sound.create! valid_attributes
-        put :update, {:id => sound.to_param, :sound => new_attributes}, valid_session
+        put :update, {id: sound.to_param, sound: new_attributes}, valid_session
         sound.reload
         skip("Add assertions for updated state")
       end
 
       it "assigns the requested sound as @sound" do
         sound = Sound.create! valid_attributes
-        put :update, {:id => sound.to_param, :sound => valid_attributes}, valid_session
+        put :update, {id: sound.to_param, sound: valid_attributes}, valid_session
         expect(assigns(:sound)).to eq(sound)
       end
 
       it "redirects to the sound" do
         sound = Sound.create! valid_attributes
-        put :update, {:id => sound.to_param, :sound => valid_attributes}, valid_session
+        put :update, {id: sound.to_param, sound: valid_attributes}, valid_session
         expect(response).to redirect_to(sound)
       end
     end
@@ -129,13 +129,13 @@ RSpec.describe SoundsController, type: :controller do
     context "with invalid params" do
       it "assigns the sound as @sound" do
         sound = Sound.create! valid_attributes
-        put :update, {:id => sound.to_param, :sound => invalid_attributes}, valid_session
+        put :update, {id: sound.to_param, sound: invalid_attributes}, valid_session
         expect(assigns(:sound)).to eq(sound)
       end
 
       it "re-renders the 'edit' template" do
         sound = Sound.create! valid_attributes
-        put :update, {:id => sound.to_param, :sound => invalid_attributes}, valid_session
+        put :update, {id: sound.to_param, sound: invalid_attributes}, valid_session
         expect(response).to render_template("edit")
       end
     end
@@ -145,13 +145,13 @@ RSpec.describe SoundsController, type: :controller do
     it "destroys the requested sound" do
       sound = Sound.create! valid_attributes
       expect {
-        delete :destroy, {:id => sound.to_param}, valid_session
+        delete :destroy, {id: sound.to_param}, valid_session
       }.to change(Sound, :count).by(-1)
     end
 
     it "redirects to the sounds list" do
       sound = Sound.create! valid_attributes
-      delete :destroy, {:id => sound.to_param}, valid_session
+      delete :destroy, {id: sound.to_param}, valid_session
       expect(response).to redirect_to(sounds_url)
     end
   end
