@@ -64,7 +64,7 @@ module ApplicationHelper
     datetime.strftime("%l:%M%p").downcase
   end
 
-  def license(format=:text)
+  def license(format = nil)
     output = []
     output << license_name_and_url(format)
     output << license_years_range
@@ -72,7 +72,7 @@ module ApplicationHelper
     output.join(format == :html ? " " : "\n").html_safe
   end
 
-  def license_name_and_url(format=nil)
+  def license_name_and_url(format = nil)
     output  = []
     license = License.find(setting(:license))
 
@@ -109,7 +109,7 @@ module ApplicationHelper
     output << years_range
   end
 
-  def authors_name_and_url(format=nil)
+  def authors_name_and_url(format = nil)
     # TODO: use name after /profile is expanded
     # TODO: use current_user.url (? about page) after /profile is expanded
     if format == :html
@@ -121,5 +121,22 @@ module ApplicationHelper
 
   def setting(key)
     Setting.where(key: key).first.content
+  end
+
+  def site_title
+    title = ""
+
+    # TODO
+    # if setting(:site_title).blank?
+    #   title << post_type.capitalize.pluralize
+    # else
+      title << setting(:site_title)
+    # end
+
+    if @page_title
+      title << " - #{@page_title}"
+    end
+
+    title.html_safe
   end
 end
