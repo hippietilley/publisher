@@ -63,4 +63,63 @@ module ApplicationHelper
   def human_readable_time(datetime)
     datetime.strftime("%l:%M%p").downcase
   end
+
+  def license(format=:text)
+    output = []
+    output << license_name_and_url(format)
+    output << license_years_range
+    output << authors_name_and_url(format)
+    output.join(format == :html ? " " : "\n").html_safe
+  end
+
+  def license_name_and_url(format=nil)
+    output  = []
+    license = License.find(setting(:license))
+
+    if license.name == "All Rights Reserved"
+      # Default
+      output << "#{license.name} #{license.short_code}"
+    else
+      # Creative Commons and Public Domain (CC0)
+      if format == :html
+        output << link_to("#{license.name} (#{license.short_code})", license.url, rel: "license")
+      else
+        output << "#{license.name} (#{license.short_code})"
+        output << license.url
+      end
+    end
+
+    output
+  end
+
+  def license_years_range
+    output  = []
+    years_range = Time.now.year
+
+    # first_post      = Post.first
+    # first_post_year = first_post.nil? ? years_range : first_post.published_at.year
+
+    # if first_post_year == years_range
+    #   output << years_range
+    # else
+    #   output << "#{first_post_year}&ndash;#{years_range}"
+    # end
+
+    # remove this line after the above is TODO(ne)
+    output << years_range
+  end
+
+  def authors_name_and_url(format=nil)
+    # TODO: use name after /profile is expanded
+    # TODO: use current_user.url (? about page) after /profile is expanded
+    if format == :html
+      link_to(current_user.email , root_url, class: "p-author h-card")
+    else
+      current_user.email
+    end
+  end
+
+  def setting(key)
+    Setting.where(key: key).first.content
+  end
 end
