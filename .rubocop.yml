@@ -608,12 +608,6 @@ Style/SingleLineBlockParams:
 Style/SingleLineMethods:
   AllowIfMethodIsEmpty: true
 
-Style/StabbyLambdaParentheses:
-  EnforcedStyle: require_parentheses
-  SupportedStyles:
-    - require_parentheses
-    - require_no_parentheses
-
 Style/StringLiterals:
   Enabled: false
 
@@ -781,7 +775,7 @@ Metrics/CyclomaticComplexity:
   Max: 6
 
 Metrics/LineLength:
-  Max: 80
+  Max: 180
   # To make it possible to copy or click on URIs in the code, we allow lines
   # contaning a URI to be longer than Max.
   AllowURI: true
@@ -829,10 +823,6 @@ Lint/DefEndAlignment:
     - start_of_line
     - def
   AutoCorrect: false
-
-# Checks for unused method arguments.
-Lint/UnusedMethodArgument:
-  AllowUnusedKeywordArguments: false
 
 ##################### Rails ##################################
 
