@@ -2,20 +2,16 @@
 
 <%= form_for(@setting) do |f| %>
   <% if @setting.errors.any? %>
-    <div class="alert alert-danger">
-      <ul>
-        <% @setting.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
+    <% @setting.errors.full_messages.each do |msg| %>
+      <div><%= msg %></div>
+    <% end %>
   <% end %>
 
   <dl>
     <dt>Editing <%= f.label :content, @setting.name %></dt>
     <dd>
       <% if @setting.key == "license" %>
-        <%= f.select :content, License.options_for_select %>
+        <%= f.select :content, License.options_for_select.map{|l| [l.first.html_safe, l.last]} %>
       <% else %>
         <%= f.text_field :content, autofocus: true %>
       <% end %>

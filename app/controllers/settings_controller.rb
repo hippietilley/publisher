@@ -19,13 +19,13 @@ class SettingsController < ApplicationController
   def update
     @setting = Setting.find(params[:id])
 
-    # content = (
-    #   @setting.name.downcase == "license" ?
-    #   License.find(setting_params[:content]).short_code :
-    #   @setting.content
-    # )
+    content = (
+      @setting.name.downcase == "license" ?
+      License.find(setting_params[:content]).short_code :
+      setting_params[:content]
+    )
 
-    notice  = "Setting: was successfully updated. #{@setting.name} : #{params[:setting][:content]}"
+    notice  = "Setting: was successfully updated. #{@setting.name} : #{content}"
 
     if @setting.update(setting_params)
       redirect_to settings_path, notice: notice
@@ -44,6 +44,6 @@ class SettingsController < ApplicationController
   end
 
   def all_settings
-    @settings = Setting.editable.all#.sort_by{ |s| s.name }
+    @settings = Setting.editable.all
   end
 end
