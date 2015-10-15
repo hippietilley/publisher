@@ -1,0 +1,13 @@
+<dl>
+  <% @settings.each do |setting| %>
+    <dt><%= link_to setting.name, edit_setting_path(setting) %></dt>
+
+    <dd>
+      <% if setting.key == "license" %>
+        <%= License.find(setting.content).short_code.html_safe %>
+      <% else %>
+        <%= setting.content %>
+      <% end %>
+    </dd>
+  <% end %>
+</dl>

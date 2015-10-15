@@ -1,0 +1,31 @@
+<h1><%= link_to "Settings", settings_path %></h1>
+
+<%= form_for(@setting) do |f| %>
+  <% if @setting.errors.any? %>
+    <div class="alert alert-danger">
+      <ul>
+        <% @setting.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <dl>
+    <dt>Editing <%= f.label :content, @setting.name %></dt>
+    <dd>
+      <% if @setting.key == "license" %>
+        <%= f.select :content, License.options_for_select %>
+      <% else %>
+        <%= f.text_field :content, autofocus: true %>
+      <% end %>
+    </dd>
+
+    <dd class="actions">
+      <%= link_to  "Cancel", settings_url, class: "action"      %>
+      <%= f.button "Save",                 class: "action-save" %>
+    </dd>
+  </dl>
+<% end %>
+
+<%= render "settings" %>

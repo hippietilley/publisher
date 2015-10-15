@@ -8,13 +8,11 @@
 </head>
 <body>
 
-  <% if flash[:notice] %><div><%= flash[:notice] %></div><% end %>
-  <% if flash[:alert]  %><div><%= flash[:alert]  %></div><% end %>
-
   <nav>
     <div>
       <% if signed_in? %>
         <%= current_user.email %>
+        <%= link_to "Profile", profile_path %>
         <%= link_to "Settings", settings_path %>
         <%= link_to "Sign Out", signout_path %>
       <% else %>
@@ -22,7 +20,7 @@
         <%= link_to "Sign In", signin_path %>
       <% end %>
     </div>
-    
+
     <div>
       <%= link_to "Home", root_path %>
       <%= link_to "Articles", articles_path %>
@@ -39,6 +37,9 @@
       <% if signed_in? %>(<%= link_to "new", new_video_path %>)<% end %>
     </div>
   </nav>
+
+  <% if flash[:notice] %><div><%= flash[:notice] %></div><% end %>
+  <% if flash[:alert]  %><div><%= flash[:alert]  %></div><% end %>
 
   <%= yield %>
 

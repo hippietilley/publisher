@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
   before_action :set_note,  only: [:show, :edit, :update, :destroy]
-  before_filter :authorize, except: [:show, :index]
+  before_action :authorize, except: [:show, :index]
 
   # GET /notes
   def index

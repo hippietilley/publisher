@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  before_filter :authorize, except: [:show, :index]
+  before_action :authorize, except: [:show, :index]
 
   # GET /articles
   def index

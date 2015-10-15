@@ -1,6 +1,6 @@
 class VideosController < ApplicationController
   before_action :set_video, only: [:show, :edit, :update, :destroy]
-  before_filter :authorize, except: [:show, :index]
+  before_action :authorize, except: [:show, :index]
 
   # GET /videos
   def index
