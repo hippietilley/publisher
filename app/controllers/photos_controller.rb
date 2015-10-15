@@ -8,7 +8,7 @@ class PhotosController < ApplicationController
       @photos = Photo.all
     else
       @photos = Photo.where(private: false)
-    end    
+    end
   end
 
   # GET /photos/1
@@ -51,16 +51,15 @@ class PhotosController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_photo
-      @photo = Photo.find(params[:id])
-      if @photo.private? && !signed_in?
-        return redirect_to(root_path)
-      end
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def photo_params
-      params.require(:photo).permit(:title, :subtitle, :content, :slug, :in_reply_to, :tags, :published_at, :private, :image_url, :width, :height, :captured_at)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_photo
+    @photo = Photo.find(params[:id])
+    return redirect_to(root_path) if @photo.private? && !signed_in?
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def photo_params
+    params.require(:photo).permit(:title, :subtitle, :content, :slug, :in_reply_to, :tags, :published_at, :private, :image_url, :width, :height, :captured_at)
+  end
 end

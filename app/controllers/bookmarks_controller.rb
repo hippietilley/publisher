@@ -46,13 +46,14 @@ class BookmarksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_bookmark
-      @bookmark = Bookmark.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def bookmark_params
-      params.require(:bookmark).permit(:title, :subtitle, :content, :bookmark_author, :bookmark_excerpt, :bookmark_url, :slug, :in_reply_to, :tags, :published_at, :private)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_bookmark
+    @bookmark = Bookmark.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def bookmark_params
+    params.require(:bookmark).permit(:title, :subtitle, :content, :bookmark_author, :bookmark_excerpt, :bookmark_url, :slug, :in_reply_to, :tags, :published_at, :private)
+  end
 end

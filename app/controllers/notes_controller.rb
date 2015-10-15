@@ -51,16 +51,15 @@ class NotesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_note
-      @note = Note.find(params[:id])
-      if @note.private? && !signed_in?
-        return redirect_to(root_path)
-      end
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def note_params
-      params.require(:note).permit(:content, :slug, :in_reply_to, :tags, :published_at, :private)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_note
+    @note = Note.find(params[:id])
+    return redirect_to(root_path) if @note.private? && !signed_in?
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def note_params
+    params.require(:note).permit(:content, :slug, :in_reply_to, :tags, :published_at, :private)
+  end
 end

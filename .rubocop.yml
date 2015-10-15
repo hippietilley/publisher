@@ -11,6 +11,9 @@ AllCops:
     - '**/Guardfile'
   Exclude:
     - 'vendor/**/*'
+    - 'db/schema.rb'
+    - 'db/migrate/*.rb'
+    - 'bin/*'
   # By default, the rails cops are not run. Override in project or home
   # directory .rubocop.yml files, or by giving the -R/--rails option.
   RunRailsCops: true
@@ -44,6 +47,9 @@ AllCops:
   # which is "/tmp" on Unix-like systems, but could be something else on other
   # systems.
   CacheRootDirectory: /tmp
+
+Style/Documentation:
+  Enabled: false
 
 # Indent private/protected/public as deep as method definitions
 Style/AccessModifierIndentation:
@@ -130,7 +136,7 @@ Style/AlignParameters:
   #
   #     method_call(a,
   #       b)
-  EnforcedStyle: with_first_parameter
+  EnforcedStyle: with_fixed_indentation
   SupportedStyles:
     - with_first_parameter
     - with_fixed_indentation
@@ -152,7 +158,7 @@ Style/BarePercentLiterals:
     - bare_percent
 
 Style/BlockDelimiters:
-  EnforcedStyle: line_count_based
+  Enabled: false
   SupportedStyles:
     # The `line_count_based` style enforces braces around single line blocks and
     # do..end around multi-line blocks.
@@ -351,16 +357,10 @@ Style/EmptyLineBetweenDefs:
   AllowAdjacentOneLineDefs: false
 
 Style/EmptyLinesAroundBlockBody:
-  EnforcedStyle: no_empty_lines
-  SupportedStyles:
-    - empty_lines
-    - no_empty_lines
+  Enabled: false
 
 Style/EmptyLinesAroundClassBody:
-  EnforcedStyle: no_empty_lines
-  SupportedStyles:
-    - empty_lines
-    - no_empty_lines
+  Enabled: false
 
 Style/EmptyLinesAroundModuleBody:
   EnforcedStyle: no_empty_lines
@@ -390,7 +390,7 @@ Style/FileName:
   Exclude: []
 
 Style/FirstParameterIndentation:
-  EnforcedStyle: special_for_inner_method_call_in_parentheses
+  EnforcedStyle: consistent
   SupportedStyles:
     # The first parameter should always be indented one step more than the
     # preceding line.
@@ -510,7 +510,7 @@ Style/MethodName:
     - camelCase
 
 Style/MultilineOperationIndentation:
-  EnforcedStyle: aligned
+  EnforcedStyle: indented
   SupportedStyles:
     - aligned
     - indented
@@ -615,10 +615,7 @@ Style/StabbyLambdaParentheses:
     - require_no_parentheses
 
 Style/StringLiterals:
-  EnforcedStyle: single_quotes
-  SupportedStyles:
-    - single_quotes
-    - double_quotes
+  Enabled: false
 
 Style/StringLiteralsInInterpolation:
   EnforcedStyle: single_quotes
@@ -670,7 +667,7 @@ Style/SpaceInsideBlockBraces:
   SpaceBeforeBlockParameters: true
 
 Style/SpaceInsideHashLiteralBraces:
-  EnforcedStyle: space
+  EnforcedStyle: no_space
   EnforcedStyleForEmptyBraces: no_space
   SupportedStyles:
     - space
@@ -766,7 +763,7 @@ Style/WordArray:
 Metrics/AbcSize:
   # The ABC size is a calculated magnitude, so this number can be a Fixnum or
   # a Float.
-  Max: 15
+  Max: 17
 
 Metrics/BlockNesting:
   Max: 3
@@ -900,3 +897,6 @@ Rails/TimeZone:
 Rails/Validation:
   Include:
     - app/models/**/*.rb
+
+Performance/StringReplacement:
+  Enabled: false

@@ -8,7 +8,7 @@ class VideosController < ApplicationController
       @videos = Video.all
     else
       @videos = Video.where(private: false)
-    end    
+    end
   end
 
   # GET /videos/1
@@ -51,16 +51,29 @@ class VideosController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_video
-      @video = Video.find(params[:id])
-      if @video.private? && !signed_in?
-        return redirect_to(root_path)
-      end
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def video_params
-      params.require(:video).permit(:title, :subtitle, :content, :slug, :in_reply_to, :tags, :published_at, :private, :image_url, :width, :height, :duration, :captured_at, :enclosure_url)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_video
+    @video = Video.find(params[:id])
+    return redirect_to(root_path) if @video.private? && !signed_in?
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def video_params
+    params.require(:video).permit(
+      :title,
+      :subtitle,
+      :content,
+      :slug,
+      :in_reply_to,
+      :tags,
+      :published_at,
+      :private,
+      :image_url,
+      :width,
+      :height,
+      :duration,
+      :captured_at,
+      :enclosure_url)
+  end
 end

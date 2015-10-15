@@ -15,15 +15,15 @@ class Note < ActiveRecord::Base
   def path
     [nil,
      self.class.to_s.downcase.pluralize,
-     self.published_at.year,
-     self.published_at.month,
-     self.published_at.day,
-     self.slug
+     published_at.year,
+     published_at.month,
+     published_at.day,
+     slug
     ].join("/")
   end
 
   def public?
-    !self.private?
+    !private?
   end
 
   def title
@@ -32,20 +32,19 @@ class Note < ActiveRecord::Base
 
   private
 
+  def clean_slug!
+    blank     = ""
+    separator = "-"
+    self.slug = slug.downcase
+      .gsub(/\(|\)|\[|\]\./, blank)
+      .gsub(/&amp;/,         blank)
+      .gsub(/\W|_|\s|-+/,    separator)
+      .gsub(/^-+/,           blank)
+      .gsub(/-+$/,           blank)
+  end
+
   def set_slug
-    blank       = ""
-    separator   = "-"
-    if self.slug.blank?
-      self.slug = name.present? ? name : content
-    end
-    self.slug   = slug.downcase.
-      gsub(/\(|\)|\[|\]\./, blank).
-      gsub(/&amp;/,         blank).
-      gsub(/\W+/,           separator).
-      gsub(/_+/,            separator).
-      gsub(/ +/,            separator).
-      gsub(/-+/,            separator).
-      gsub(/^-+/,           blank).
-      gsub(/-+$/,           blank)
+    self.slug = name.present? ? name : content if slug.blank?
+    clean_slug!
   end
 end

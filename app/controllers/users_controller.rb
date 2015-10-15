@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   before_action :set_user,  only: [:show, :edit, :update, :destroy]
   before_action :authorize, only: [:edit, :update, :destroy]
 
-
   # /signup
   def new
     unless allow_signup?
@@ -28,7 +27,6 @@ class UsersController < ApplicationController
       render "new"
     end
   end
-
 
   # GET /users
   # TODO: ADMIN ONLY
@@ -65,13 +63,14 @@ class UsersController < ApplicationController
   end
 
   private
-    def set_user
-      @user = current_user
-    end
 
-    def user_params
-      params.require(:user).permit(:email,
-                                   :password,
-                                   :password_confirmation)
-    end
+  def set_user
+    @user = current_user
+  end
+
+  def user_params
+    params.require(:user).permit(:email,
+      :password,
+      :password_confirmation)
+  end
 end

@@ -102,9 +102,9 @@ RSpec.describe VideosController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
+      let(:new_attributes) do
         skip("Add a hash of attributes valid for your model")
-      }
+      end
 
       it "updates the requested video" do
         video = Video.create! valid_attributes
@@ -144,9 +144,9 @@ RSpec.describe VideosController, type: :controller do
   describe "DELETE #destroy" do
     it "destroys the requested video" do
       video = Video.create! valid_attributes
-      expect {
+      expect do
         delete :destroy, {id: video.to_param}, valid_session
-      }.to change(Video, :count).by(-1)
+      end.to change(Video, :count).by(-1)
     end
 
     it "redirects to the videos list" do

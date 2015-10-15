@@ -7,10 +7,9 @@ Rails.application.routes.draw do
   get "signin",   to: "sessions#new",     as: "signin"
   get "signout",  to: "sessions#destroy", as: "signout"
   get "profile", to: "users#edit",       as: "profile"
-  
   # post types
   resources :articles, :bookmarks, :notes, :photos, :sounds, :videos
-  
+
   # settings
   resources :settings
 end

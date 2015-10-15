@@ -1,10 +1,8 @@
 class SessionsController < ApplicationController
   # /signin
   def new
-    # TODO why doesn't this prevent a signed in user going to /signin
-    if signed_in?
-      return redirect_to(root_url)
-    end
+    # TODO: why doesn't this prevent a signed in user going to /signin
+    return redirect_to(root_url) if signed_in?
   end
 
   # /signin

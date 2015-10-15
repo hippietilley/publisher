@@ -16,9 +16,9 @@ module ApplicationHelper
 
     unless post.in_reply_to.blank?
       rel = on_permalink? ? "in-reply-to external" : "external"
-
+      url_regex = %r{/https*:\/\//}
       post.in_reply_to.split.each do |url|
-        links << link_to(url.sub(/https*:\/\//, ""), url, class: "u-in-reply-to h-cite", rel: rel)
+        links << link_to(url.sub(url_regex, ""), url, class: "u-in-reply-to h-cite", rel: rel)
       end
     end
 
@@ -51,7 +51,7 @@ module ApplicationHelper
     separator = post.tags.match(",") ? "," : " "
 
     post.tags.split(separator).each do |tag|
-      html << link_to(tag.to_s.strip, "/tags/#{tag.to_s.gsub(/ /, "+")}", class: "p-category", rel: "tag")
+      html << link_to(tag.to_s.strip, "/tags/#{tag.to_s.gsub(/\s/, '+')}", class: "p-category", rel: "tag")
     end
     html.join(", ").html_safe
   end

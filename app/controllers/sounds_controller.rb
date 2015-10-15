@@ -46,13 +46,14 @@ class SoundsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_sound
-      @sound = Sound.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def sound_params
-      params.require(:sound).permit(:title, :subtitle, :content, :slug, :in_reply_to, :tags, :published_at, :private, :image_url, :duration, :captured_at, :enclosure_url)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_sound
+    @sound = Sound.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def sound_params
+    params.require(:sound).permit(:title, :subtitle, :content, :slug, :in_reply_to, :tags, :published_at, :private, :image_url, :duration, :captured_at, :enclosure_url)
+  end
 end
