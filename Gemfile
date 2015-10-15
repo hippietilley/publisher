@@ -11,12 +11,12 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'puma'
 
 group :development, :test do
-  gem 'byebug'
   gem 'rspec-rails'
   gem "codeclimate-test-reporter", require: false
 end
 
 group :development do
+  gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem "rubocop", require: false
 end
