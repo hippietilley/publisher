@@ -110,7 +110,7 @@ module ApplicationHelper
   end
 
   def authors_name_and_url(format = nil)
-    # TODO: use name after /profile is expanded
+    # TODO: use current_user.name after /profile is expanded
     # TODO: use current_user.url (? about page) after /profile is expanded
     if format == :html
       link_to(current_user.email , root_url, class: "p-author h-card")
@@ -138,5 +138,45 @@ module ApplicationHelper
     end
 
     title.html_safe
+  end
+
+  def page_description(post=nil)
+    if index_action?
+      # TODO: use current_user.name after /profile is expanded
+      # TODO: implement #post_type: notes, articles, photes, etc
+      page_description = "#{"post_type.pluralize.capitalize"} by #{current_user.email}"
+    elsif show_action?
+      page_description = post.content
+    else
+      page_description = setting(:site_description)
+    end
+
+    page_description
+  end
+
+  def index_action?
+    action_name == "index"
+  end
+
+  def show_action?
+    action_name == "show"
+  end
+
+  def write_action?
+    unless controller_name == "settings"
+      action_name =~ /new|edit/
+    end
+  end
+
+  def editing?
+    action_name == "edit"
+  end
+
+  def canonical_url(post=nil)
+    if post.nil?
+      "http://#{setting :long_domain}"
+    else
+      "http://#{setting :long_domain}/#{post.path}"
+    end
   end
 end
