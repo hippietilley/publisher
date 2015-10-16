@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe "settings/edit", type: :view do
   before(:each) do
     @setting = assign(:setting, Setting.create!(
-      :name => "MyString",
-      :key => "MyString",
-      :content => "MyText",
-      :editable => false
+      name: "MyString",
+      key: "MyString",
+      content: "MyText",
+      editable: false
     ))
   end
 
