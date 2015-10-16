@@ -94,7 +94,7 @@ module ApplicationHelper
 
   def license_years_range
     output = []
-    years_range = Time.now.year
+    years_range = Time.now.in_time_zone.year
 
     # first_post      = Post.first
     # first_post_year = first_post.nil? ? years_range : first_post.published_at.year
@@ -113,7 +113,7 @@ module ApplicationHelper
     # TODO: use current_user.name after /profile is expanded
     # TODO: use current_user.url (? about page) after /profile is expanded
     if format == :html
-      link_to(current_user.email , root_url, class: "p-author h-card")
+      link_to(current_user.email, root_url, class: "p-author h-card")
     else
       current_user.email
     end
@@ -161,9 +161,7 @@ module ApplicationHelper
   end
 
   def write_action?
-    unless controller_name == "settings"
-      action_name =~ /new|edit/
-    end
+    action_name =~ /new|edit/
   end
 
   def editing?
