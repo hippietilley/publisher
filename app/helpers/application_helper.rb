@@ -93,7 +93,7 @@ module ApplicationHelper
   end
 
   def license_years_range
-    output  = []
+    output = []
     years_range = Time.now.year
 
     # first_post      = Post.first
@@ -130,21 +130,19 @@ module ApplicationHelper
     # if setting(:site_title).blank?
     #   title << post_type.capitalize.pluralize
     # else
-      title << setting(:site_title)
+    title << setting(:site_title)
     # end
 
-    if @page_title
-      title << " - #{@page_title}"
-    end
+    title << " - #{@page_title}" if @page_title
 
     title.html_safe
   end
 
-  def page_description(post=nil)
+  def page_description(post = nil)
     if index_action?
       # TODO: use current_user.name after /profile is expanded
       # TODO: implement #post_type: notes, articles, photes, etc
-      page_description = "#{"post_type.pluralize.capitalize"} by #{current_user.email}"
+      page_description = "TODO: post_type.pluralize.capitalize by #{current_user.email}"
     elsif show_action?
       page_description = post.content
     else
@@ -172,7 +170,7 @@ module ApplicationHelper
     action_name == "edit"
   end
 
-  def canonical_url(post=nil)
+  def canonical_url(post = nil)
     if post.nil?
       "http://#{setting :long_domain}"
     else
@@ -185,7 +183,6 @@ module ApplicationHelper
 
     sizes = [180, 152, 144, 120, 114, 72, 76, 60, 57]
     sizes.each do |size|
-      dimensions = size.to_s + "x" + size.to_s
       dimensions = "#{size}x#{size}"
       href       = "/apple-touch-icon-#{dimensions}.png"
       output << tag(:link, rel: "apple-touch-icon", sizes: dimensions, href: href)

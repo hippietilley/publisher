@@ -2,14 +2,14 @@
 # the site owner will need to populate those with real values
 puts "Creating default settings..."
 [
-  ["Site Title",                   "",                                   true  ],
-  ["Site Description",             "",                                   true  ],
-  ["Long Domain",                  "",                                   true  ],
-  ["Short Domain",                 "",                                   true  ],
-  ["Micropub Endpoint",            "/micropub",                          false ],
-  ["Rel Authorization Endpoint",   "https://indieauth.com/auth",         true  ],
-  ["Rel Token Endpoint",           "https://tokens.indieauth.com/token", true  ],
-  ["Rel Me",                       "",                                   true  ]
+  ["Site Title",                   "",                                   true],
+  ["Site Description",             "",                                   true],
+  ["Long Domain",                  "",                                   true],
+  ["Short Domain",                 "",                                   true],
+  ["Micropub Endpoint",            "/micropub",                          false],
+  ["Rel Authorization Endpoint",   "https://indieauth.com/auth",         true],
+  ["Rel Token Endpoint",           "https://tokens.indieauth.com/token", true],
+  ["Rel Me",                       "",                                   true]
 ].each do |setting|
   s          = Setting.new
   s.name     = setting[0]
@@ -19,13 +19,15 @@ puts "Creating default settings..."
 end
 puts "...done."
 
-
 puts "Populating licenses table..."
 [
   [
     "Public Domain",
     "CC0",
-    "The person who associated a work with this deed has dedicated the work to the public domain by waiving all of his or her rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission.",
+    "The person who associated a work with this deed has dedicated the work to the public domain
+    by waiving all of his or her rights to the work worldwide under copyright law, including all
+    related and neighboring rights, to the extent allowed by law. You can copy, modify, distribute
+    and perform the work, even for commercial purposes, all without asking permission.",
     "http://creativecommons.org/publicdomain/zero/1.0/"
   ],
   [
@@ -69,7 +71,7 @@ puts "Populating licenses table..."
     "&copy;",
     "Copyright",
     "http://en.wikipedia.org/wiki/Copyright"
-  ],
+  ]
 ].each do |license|
   l             = License.new
   l.name        = license.first
@@ -79,7 +81,6 @@ puts "Populating licenses table..."
   l.save!
 end
 puts "...done."
-
 
 puts "Settting copyright (All Rights Reserved) as default license..."
 license          = Setting.new

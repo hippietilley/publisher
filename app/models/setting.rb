@@ -2,8 +2,8 @@ class Setting < ActiveRecord::Base
   validates :name,    presence: true
   validates :content, presence: true
 
-  default_scope               { order(:name) }
-  scope         :editable, -> { where(editable: true) }
+  default_scope { order(:name) }
+  scope :editable, -> { where(editable: true) }
 
   before_create :set_key
   before_update :set_key

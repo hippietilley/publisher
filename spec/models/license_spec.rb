@@ -4,7 +4,6 @@ RSpec.describe License, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end
 
-
 # TODO: this is from HS:Helpers. Which is syntax is the preferred?
 # describe License do
 #   let(:license) { create(:license) }
