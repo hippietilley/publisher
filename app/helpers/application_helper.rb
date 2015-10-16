@@ -179,4 +179,18 @@ module ApplicationHelper
       "http://#{setting :long_domain}/#{post.path}"
     end
   end
+
+  def apple_touch_icon_link_tags
+    output = []
+
+    sizes = [180, 152, 144, 120, 114, 72, 76, 60, 57]
+    sizes.each do |size|
+      dimensions = size.to_s + "x" + size.to_s
+      dimensions = "#{size}x#{size}"
+      href       = "/apple-touch-icon-#{dimensions}.png"
+      output << tag(:link, rel: "apple-touch-icon", sizes: dimensions, href: href)
+    end
+
+    output.join("\n").html_safe
+  end
 end
