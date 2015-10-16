@@ -36,6 +36,9 @@
   <meta property="og:description"  content="<%= page_description %>" />
   <meta property="fb:app_id"       content="<%= "TODO" %>" />
 
+  <!-- Backward compatibility: RSS/Atom -->
+  <%= auto_discovery_link_tag(:atom, feed_path, title: setting(:site_title)) %>
+
   <!-- fav and touch icons -->
   <link rel="shortcut icon" href="/favicon.ico" />
   <%= apple_touch_icon_link_tags %>

@@ -27,7 +27,7 @@
   <% unless post.tags.split.blank? %>
     <p class="tags">
       <b>Tags</b>
-      <%= tags_for(post) %>
+      <%= link_to_tags_for(post) %>
     </p> <!-- .tags -->
   <% end %>
 

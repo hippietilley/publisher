@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: "about#index"
+  root to: "posts#index"
 
   # users + auth
   resources :users, :sessions
@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 
   # post types
   resources :articles, :bookmarks, :notes, :photos, :sounds, :videos
+
+  # atom feed
+  get "/feed", to: "posts#index", defaults: {format: "atom"}, as: :feed
 
   # settings
   resources :settings

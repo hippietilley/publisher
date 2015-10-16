@@ -3,6 +3,10 @@ class Article < ActiveRecord::Base
   before_update :set_slug
   validates :content, presence: true
 
+  default_scope { order("published_at DESC") }
+  scope :invisible, -> { where(private: true) }
+  scope :visible, -> { where(private: false) }
+
   def name
     if title && subtitle
       "#{title} : #{subtitle}"

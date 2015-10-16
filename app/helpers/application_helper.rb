@@ -46,11 +46,14 @@ module ApplicationHelper
   end
 
   def tags_for(post)
+    separator = post.tags.match(",") ? "," : " "
+    post.tags.split(separator).map(&:strip)
+  end
+
+  def link_to_tags_for(post)
     html = []
 
-    separator = post.tags.match(",") ? "," : " "
-
-    post.tags.split(separator).each do |tag|
+    tags_for(post).each do |tag|
       html << link_to(tag.to_s.strip, "/tags/#{tag.to_s.gsub(/\s/, '+')}", class: "p-category", rel: "tag")
     end
     html.join(", ").html_safe
@@ -113,9 +116,9 @@ module ApplicationHelper
     # TODO: use current_user.name after /profile is expanded
     # TODO: use current_user.url (? about page) after /profile is expanded
     if format == :html
-      link_to(current_user.email, root_url, class: "p-author h-card")
+      link_to(current_user.try(:email), root_url, class: "p-author h-card")
     else
-      current_user.email
+      current_user.try(:email)
     end
   end
 
@@ -142,7 +145,7 @@ module ApplicationHelper
     if index_action?
       # TODO: use current_user.name after /profile is expanded
       # TODO: implement #post_type: notes, articles, photes, etc
-      page_description = "TODO: post_type.pluralize.capitalize by #{current_user.email}"
+      page_description = "TODO: post_type.pluralize.capitalize by #{current_user.try(:email)}"
     elsif show_action?
       page_description = post.content
     else
@@ -170,9 +173,9 @@ module ApplicationHelper
 
   def canonical_url(post = nil)
     if post.nil?
-      "http://#{setting :long_domain}"
+      "http://#{setting :domain}"
     else
-      "http://#{setting :long_domain}/#{post.path}"
+      "http://#{setting :domain}/TODO"
     end
   end
 
@@ -187,5 +190,9 @@ module ApplicationHelper
     end
 
     output.join("\n").html_safe
+  end
+
+  def site_url
+    "http://#{setting :domain}"
   end
 end

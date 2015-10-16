@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
     if signed_in?
       @articles = Article.all
     else
-      @articles = Article.where(private: false)
+      @articles = Article.visible.all
     end
   end
 

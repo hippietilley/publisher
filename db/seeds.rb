@@ -4,14 +4,14 @@
 # the site owner will need to populate those with real values
 Rails.logger.info "Creating default settings..."
 [
-  ["Site Title",                   "",                                   true],
-  ["Site Description",             "",                                   true],
-  ["Long Domain",                  "",                                   true],
-  ["Short Domain",                 "",                                   true],
-  ["Micropub Endpoint",            "/micropub",                          false],
-  ["Rel Authorization Endpoint",   "https://indieauth.com/auth",         true],
-  ["Rel Token Endpoint",           "https://tokens.indieauth.com/token", true],
-  ["Rel Me",                       "",                                   true]
+  ["Site Title",                 "",                                   true],
+  ["Site Description",           "",                                   true],
+  ["Domain",                     "",                                   true],
+  ["Short Domain",               "",                                   true],
+  ["Micropub Endpoint",          "/micropub",                          false],
+  ["Rel Authorization Endpoint", "https://indieauth.com/auth",         true],
+  ["Rel Token Endpoint",         "https://tokens.indieauth.com/token", true],
+  ["Rel Me",                     "",                                   true]
 ].each do |setting|
   s          = Setting.new
   s.name     = setting[0]
