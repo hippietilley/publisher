@@ -43,7 +43,10 @@ class SettingsController < ApplicationController
   end
 
   def setting_params
-    params.require(:setting).permit(:name, :key, :content)
+    params.require(:setting).permit(
+      :name,
+      :key,
+      :content)
   end
 
   def all_settings

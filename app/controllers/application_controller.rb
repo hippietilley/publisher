@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :set_slug
 
   private
-  
+
   def set_slug
     if @slug.blank?
       @slug = controller_name
