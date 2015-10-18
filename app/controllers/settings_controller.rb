@@ -21,16 +21,8 @@ class SettingsController < ApplicationController
   def update
     @setting = Setting.find(params[:id])
 
-    if @setting.name.downcase == "license"
-      content = License.find(setting_params[:content]).short_code
-    else
-      content = setting_params[:content]
-    end
-
-    notice = "Setting: was successfully updated. #{@setting.name} : #{content}"
-
     if @setting.update(setting_params)
-      redirect_to settings_path, notice: notice
+      redirect_to settings_path, notice: "Setting: was successfully updated."
     else
       render action: "edit"
     end
