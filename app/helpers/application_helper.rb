@@ -1,4 +1,12 @@
 module ApplicationHelper
+  def writing?
+    action_name =~ /new|edit/
+  end
+
+  def editing?
+    action_name == "edit"
+  end
+
   def in_a_list?
     action_name == "index"
   end
@@ -9,59 +17,6 @@ module ApplicationHelper
 
   def a_reply?(post)
     post.in_reply_to?
-  end
-
-  def rel_in_reply_to
-    on_permalink? ? "in-reply-to external" : "external"
-  end
-
-  def link_to_in_reply_to_urls(post)
-    links = []
-    protocol_regex = %r{/https*:\/\//}
-
-    unless post.in_reply_to.blank?
-      post.in_reply_to.split.each do |url|
-        links << link_to(url.sub(protocol_regex, space), url, class: "u-in-reply-to h-cite", rel: rel_in_reply_to)
-      end
-    end
-
-    content_tag :ul do
-      links.map { |link| concat(content_tag(:li, link)) }
-    end
-  end
-
-  def small_word_tag(word)
-    content_tag(:i, word, class: "small-word small-word-#{word}")
-  end
-
-  def preposition(text)
-    content_tag(:span, text, class: "preposition")
-  end
-
-  def space
-    " "
-  end
-
-  def tags_for(post)
-    separator = post.tags.match(",") ? "," : " "
-    post.tags.split(separator).map(&:strip)
-  end
-
-  def link_to_tags_for(post)
-    html = []
-
-    tags_for(post).each do |tag|
-      html << link_to(tag.to_s.strip, "/tags/#{tag.to_s.gsub(/\s/, '+')}", class: "p-category", rel: "tag")
-    end
-    html.join(", ").html_safe
-  end
-
-  def human_readable_date(datetime)
-    datetime.strftime("%F")
-  end
-
-  def human_readable_time(datetime)
-    datetime.strftime("%l:%M%p").downcase
   end
 
   def license(format = nil)
@@ -104,20 +59,6 @@ module ApplicationHelper
     output << years_range
   end
 
-  def authors_name_and_url(format = nil)
-    # TODO: use current_user.name after /profile is expanded
-    # TODO: use current_user.url (? about page) after /profile is expanded
-    if format == :html
-      link_to(current_user.try(:email), root_url, class: "p-author h-card")
-    else
-      current_user.try(:email)
-    end
-  end
-
-  def setting(key)
-    Setting.where(key: key).first.content
-  end
-
   def site_title
     title = ""
 
@@ -147,32 +88,6 @@ module ApplicationHelper
     page_description
   end
 
-  def writing?
-    action_name =~ /new|edit/
-  end
-
-  def editing?
-    action_name == "edit"
-  end
-
-  def canonical_url(post = nil)
-    output = [setting(:protocol), setting(:domain)]
-
-    if post
-      output << post.path
-    elsif @slug == "home"
-      output << "/"
-    elsif @slug
-      output << "/" + @slug
-    end
-
-    output.join
-  end
-
-  def rel_canonical_link_tag(post = nil)
-    tag(:link, id: "canonical", rel: "canonical", type: "text/html", href: canonical_url(post))
-  end
-
   def apple_touch_icon_link_tags
     output = []
 
@@ -188,6 +103,6 @@ module ApplicationHelper
   end
 
   def site_url
-    "http://#{setting :domain}"
+    setting(:protocol) + setting(:domain)
   end
 end

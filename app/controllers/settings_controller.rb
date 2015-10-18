@@ -22,7 +22,7 @@ class SettingsController < ApplicationController
     @setting = Setting.find(params[:id])
 
     if @setting.update(setting_params)
-      redirect_to settings_path, notice: "Setting: was successfully updated."
+      redirect_to settings_path, notice: "Setting was successfully updated."
     else
       render action: "edit"
     end
