@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html dir="ltr"
       lang="en-US"
-      prefix="og: http://ogp.me/ns#">
+      prefix="og: http://ogp.me/ns#"
+      id="<%= @slug %>"
 
 <head>
   <%= rel_canonical_link_tag @post %>
@@ -53,7 +54,7 @@
   <%= csrf_meta_tags %>
 </head>
 
-<body id="<%= @slug %>">
+<body>
 
   <nav>
     <div>
