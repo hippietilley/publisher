@@ -11,7 +11,7 @@
         <% end %>
 
         <h1 class="p-name">
-          <%= link_to article, class: "u-url u-uid" do %>
+          <%= link_to article.path, class: "u-url u-uid" do %>
             <% unless article.title.blank? %>   <span class="p-hs-title">   <%= article.title %>   </span><% end %>
             <% unless article.subtitle.blank? %><span class="p-hs-subtitle"><%= article.subtitle %></span><% end %>
           <% end %>

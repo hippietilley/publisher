@@ -15,8 +15,6 @@
             <% unless video.title.blank? %>   <span class="p-hs-title">   <%= video.title %>   </span><% end %>
             <% unless video.subtitle.blank? %><span class="p-hs-subtitle"><%= video.subtitle %></span><% end %>
           <% end %>
-
-          <%= link_to "Edit", edit_video_url(video), class: "edit" if signed_in? %>
         </h1>
       </header>
 

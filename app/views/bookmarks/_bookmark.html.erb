@@ -11,7 +11,7 @@
         <% end %>
 
         <h1 class="p-name">
-          <%= link_to bookmark, class: "u-url u-uid" do %>
+          <%= link_to bookmark.path, class: "u-url u-uid" do %>
             <% unless bookmark.title.blank? %>   <span class="p-hs-title">   <%= bookmark.title %>   </span><% end %>
             <% unless bookmark.subtitle.blank? %><span class="p-hs-subtitle"><%= bookmark.subtitle %></span><% end %>
           <% end %>

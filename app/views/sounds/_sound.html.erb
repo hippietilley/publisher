@@ -15,8 +15,6 @@
             <% unless sound.title.blank? %>   <span class="p-hs-title">   <%= sound.title %>   </span><% end %>
             <% unless sound.subtitle.blank? %><span class="p-hs-subtitle"><%= sound.subtitle %></span><% end %>
           <% end %>
-
-          <%= link_to "Edit", edit_sound_url(sound), class: "edit" if signed_in? %>
         </h1>
       </header>
 

@@ -11,7 +11,7 @@
         <% end %>
 
         <h1 class="p-name">
-          <%= link_to photo, class: "u-url u-uid" do %>
+          <%= link_to photo.path, class: "u-url u-uid" do %>
             <% unless photo.title.blank? %>   <span class="p-hs-title">   <%= photo.title %>   </span><% end %>
             <% unless photo.subtitle.blank? %><span class="p-hs-subtitle"><%= photo.subtitle %></span><% end %>
           <% end %>
