@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "sounds/show", type: :view do
   before(:each) do
-    @sound = assign(:sound, Sound.create!(
+    @post = assign(:sound, Sound.create!(
       title: "MyText",
       subtitle: "MyText",
       content: "MyText",

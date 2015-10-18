@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "notes/edit", type: :view do
   before(:each) do
-    @note = assign(:note, Note.create!(
+    @post = assign(:note, Note.create!(
       content: "MyText",
       slug: "MyText",
       in_reply_to: "MyText",
@@ -14,7 +14,7 @@ RSpec.describe "notes/edit", type: :view do
   it "renders the edit note form" do
     render
 
-    assert_select "form[action=?][method=?]", note_path(@note), "post" do
+    assert_select "form[action=?][method=?]", note_path(@post), "post" do
 
       assert_select "textarea#note_content[name=?]", "note[content]"
 

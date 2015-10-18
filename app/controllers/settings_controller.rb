@@ -4,6 +4,7 @@ class SettingsController < ApplicationController
   before_action :authorize
 
   def index
+    @slug = "settings"
     @page_title = "Settings"
   end
 
@@ -12,6 +13,7 @@ class SettingsController < ApplicationController
   end
 
   def edit
+    @slug = "settings"
     @setting    = Setting.find(params[:id])
     @page_title = "Editing Setting : #{@setting.name}"
   end

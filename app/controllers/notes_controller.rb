@@ -5,12 +5,12 @@ class NotesController < ApplicationController
   # GET /notes
   def index
     if signed_in?
-      @notes = Note.all
+      @posts = Note.all
     else
-      @notes = Note.visible.all
+      @posts = Note.visible.all
     end
 
-    @posts = @notes.sort_by(&:published_at).reverse
+    @posts = @posts.sort_by(&:published_at).reverse
   end
 
   # GET /notes/1
@@ -19,7 +19,7 @@ class NotesController < ApplicationController
 
   # GET /notes/new
   def new
-    @note = Note.new
+    @post = Note.new
   end
 
   # GET /notes/1/edit
@@ -28,10 +28,10 @@ class NotesController < ApplicationController
 
   # POST /notes
   def create
-    @note = Note.new(note_params)
+    @post = Note.new(note_params)
 
-    if @note.save
-      redirect_to @note, notice: 'Note was successfully created.'
+    if @post.save
+      redirect_to @post, notice: 'Note was successfully created.'
     else
       render :new
     end
@@ -39,8 +39,8 @@ class NotesController < ApplicationController
 
   # PATCH/PUT /notes/1
   def update
-    if @note.update(note_params)
-      redirect_to @note, notice: 'Note was successfully updated.'
+    if @post.update(note_params)
+      redirect_to @post, notice: 'Note was successfully updated.'
     else
       render :edit
     end
@@ -48,7 +48,7 @@ class NotesController < ApplicationController
 
   # DELETE /notes/1
   def destroy
-    @note.destroy
+    @post.destroy
     redirect_to notes_url, notice: 'Note was successfully destroyed.'
   end
 
@@ -56,8 +56,8 @@ class NotesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_note
-    @note = Note.find(params[:id])
-    return redirect_to(root_path) if @note.private? && !signed_in?
+    @post = Note.find(params[:id])
+    return redirect_to(root_path) if @post.private? && !signed_in?
   end
 
   # Only allow a trusted parameter "white list" through.

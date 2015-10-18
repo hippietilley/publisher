@@ -37,33 +37,33 @@ RSpec.describe BookmarksController, type: :controller do
   let(:valid_session) { {} }
 
   describe "GET #index" do
-    it "assigns all bookmarks as @bookmarks" do
-      bookmark = Bookmark.create! valid_attributes
+    it "assigns all bookmarks as @posts" do
+      post = Bookmark.create! valid_attributes
       get :index, {}, valid_session
-      expect(assigns(:bookmarks)).to eq([bookmark])
+      expect(assigns(:posts)).to eq([post])
     end
   end
 
   describe "GET #show" do
     it "assigns the requested bookmark as @bookmark" do
-      bookmark = Bookmark.create! valid_attributes
-      get :show, {id: bookmark.to_param}, valid_session
-      expect(assigns(:bookmark)).to eq(bookmark)
+      post = Bookmark.create! valid_attributes
+      get :show, {id: post.to_param}, valid_session
+      expect(assigns(:post)).to eq(post)
     end
   end
 
   describe "GET #new" do
     it "assigns a new bookmark as @bookmark" do
       get :new, {}, valid_session
-      expect(assigns(:bookmark)).to be_a_new(Bookmark)
+      expect(assigns(:post)).to be_a_new(Bookmark)
     end
   end
 
   describe "GET #edit" do
     it "assigns the requested bookmark as @bookmark" do
-      bookmark = Bookmark.create! valid_attributes
-      get :edit, {id: bookmark.to_param}, valid_session
-      expect(assigns(:bookmark)).to eq(bookmark)
+      post = Bookmark.create! valid_attributes
+      get :edit, {id: post.to_param}, valid_session
+      expect(assigns(:post)).to eq(post)
     end
   end
 
@@ -77,8 +77,8 @@ RSpec.describe BookmarksController, type: :controller do
 
       it "assigns a newly created bookmark as @bookmark" do
         post :create, {bookmark: valid_attributes}, valid_session
-        expect(assigns(:bookmark)).to be_a(Bookmark)
-        expect(assigns(:bookmark)).to be_persisted
+        expect(assigns(:post)).to be_a(Bookmark)
+        expect(assigns(:post)).to be_persisted
       end
 
       it "redirects to the created bookmark" do
@@ -90,7 +90,7 @@ RSpec.describe BookmarksController, type: :controller do
     context "with invalid params" do
       it "assigns a newly created but unsaved bookmark as @bookmark" do
         post :create, {bookmark: invalid_attributes}, valid_session
-        expect(assigns(:bookmark)).to be_a_new(Bookmark)
+        expect(assigns(:post)).to be_a_new(Bookmark)
       end
 
       it "re-renders the 'new' template" do
@@ -107,35 +107,35 @@ RSpec.describe BookmarksController, type: :controller do
       }
 
       it "updates the requested bookmark" do
-        bookmark = Bookmark.create! valid_attributes
-        put :update, {id: bookmark.to_param, bookmark: new_attributes}, valid_session
-        bookmark.reload
+        post = Bookmark.create! valid_attributes
+        put :update, {id: post.to_param, bookmark: new_attributes}, valid_session
+        reload
         skip("Add assertions for updated state")
       end
 
       it "assigns the requested bookmark as @bookmark" do
-        bookmark = Bookmark.create! valid_attributes
-        put :update, {id: bookmark.to_param, bookmark: valid_attributes}, valid_session
-        expect(assigns(:bookmark)).to eq(bookmark)
+        post = Bookmark.create! valid_attributes
+        put :update, {id: post.to_param, bookmark: valid_attributes}, valid_session
+        expect(assigns(:post)).to eq(post)
       end
 
       it "redirects to the bookmark" do
-        bookmark = Bookmark.create! valid_attributes
-        put :update, {id: bookmark.to_param, bookmark: valid_attributes}, valid_session
+        post = Bookmark.create! valid_attributes
+        put :update, {id: post.to_param, bookmark: valid_attributes}, valid_session
         expect(response).to redirect_to(bookmark)
       end
     end
 
     context "with invalid params" do
       it "assigns the bookmark as @bookmark" do
-        bookmark = Bookmark.create! valid_attributes
-        put :update, {id: bookmark.to_param, bookmark: invalid_attributes}, valid_session
-        expect(assigns(:bookmark)).to eq(bookmark)
+        post = Bookmark.create! valid_attributes
+        put :update, {id: post.to_param, bookmark: invalid_attributes}, valid_session
+        expect(assigns(:post)).to eq(post)
       end
 
       it "re-renders the 'edit' template" do
-        bookmark = Bookmark.create! valid_attributes
-        put :update, {id: bookmark.to_param, bookmark: invalid_attributes}, valid_session
+        post = Bookmark.create! valid_attributes
+        put :update, {id: post.to_param, bookmark: invalid_attributes}, valid_session
         expect(response).to render_template("edit")
       end
     end
@@ -143,15 +143,15 @@ RSpec.describe BookmarksController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested bookmark" do
-      bookmark = Bookmark.create! valid_attributes
+      post = Bookmark.create! valid_attributes
       expect {
-        delete :destroy, {id: bookmark.to_param}, valid_session
+        delete :destroy, {id: post.to_param}, valid_session
       }.to change(Bookmark, :count).by(-1)
     end
 
     it "redirects to the bookmarks list" do
-      bookmark = Bookmark.create! valid_attributes
-      delete :destroy, {id: bookmark.to_param}, valid_session
+      post = Bookmark.create! valid_attributes
+      delete :destroy, {id: post.to_param}, valid_session
       expect(response).to redirect_to(bookmarks_url)
     end
   end

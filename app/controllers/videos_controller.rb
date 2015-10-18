@@ -5,12 +5,12 @@ class VideosController < ApplicationController
   # GET /videos
   def index
     if signed_in?
-      @videos = Video.all
+      @posts = Video.all
     else
-      @videos = Video.where(private: false)
+      @posts = Video.where(private: false)
     end
 
-    @posts = @videos.sort_by(&:published_at).reverse
+    @posts = @posts.sort_by(&:published_at).reverse
   end
 
   # GET /videos/1
@@ -19,7 +19,7 @@ class VideosController < ApplicationController
 
   # GET /videos/new
   def new
-    @video = Video.new
+    @post = Video.new
   end
 
   # GET /videos/1/edit
@@ -28,10 +28,10 @@ class VideosController < ApplicationController
 
   # POST /videos
   def create
-    @video = Video.new(video_params)
+    @post = Video.new(video_params)
 
-    if @video.save
-      redirect_to @video, notice: 'Video was successfully created.'
+    if @post.save
+      redirect_to @post, notice: 'Video was successfully created.'
     else
       render :new
     end
@@ -39,8 +39,8 @@ class VideosController < ApplicationController
 
   # PATCH/PUT /videos/1
   def update
-    if @video.update(video_params)
-      redirect_to @video, notice: 'Video was successfully updated.'
+    if @post.update(video_params)
+      redirect_to @post, notice: 'Video was successfully updated.'
     else
       render :edit
     end
@@ -48,7 +48,7 @@ class VideosController < ApplicationController
 
   # DELETE /videos/1
   def destroy
-    @video.destroy
+    @post.destroy
     redirect_to videos_url, notice: 'Video was successfully destroyed.'
   end
 
@@ -56,8 +56,8 @@ class VideosController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_video
-    @video = Video.find(params[:id])
-    return redirect_to(root_path) if @video.private? && !signed_in?
+    @post = Video.find(params[:id])
+    return redirect_to(root_path) if @post.private? && !signed_in?
   end
 
   # Only allow a trusted parameter "white list" through.

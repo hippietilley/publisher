@@ -5,12 +5,12 @@ class SoundsController < ApplicationController
   # GET /sounds
   def index
     if signed_in?
-      @sounds = Sound.all
+      @posts = Sound.all
     else
-      @sounds = Sound.visible.all
+      @posts = Sound.visible.all
     end
 
-    @posts = @sounds.sort_by(&:published_at).reverse
+    @posts = @posts.sort_by(&:published_at).reverse
   end
 
   # GET /sounds/1
@@ -19,7 +19,7 @@ class SoundsController < ApplicationController
 
   # GET /sounds/new
   def new
-    @sound = Sound.new
+    @post = Sound.new
   end
 
   # GET /sounds/1/edit
@@ -28,10 +28,10 @@ class SoundsController < ApplicationController
 
   # POST /sounds
   def create
-    @sound = Sound.new(sound_params)
+    @post = Sound.new(sound_params)
 
-    if @sound.save
-      redirect_to @sound, notice: 'Sound was successfully created.'
+    if @post.save
+      redirect_to @post, notice: 'Sound was successfully created.'
     else
       render :new
     end
@@ -39,8 +39,8 @@ class SoundsController < ApplicationController
 
   # PATCH/PUT /sounds/1
   def update
-    if @sound.update(sound_params)
-      redirect_to @sound, notice: 'Sound was successfully updated.'
+    if @post.update(sound_params)
+      redirect_to @post, notice: 'Sound was successfully updated.'
     else
       render :edit
     end
@@ -48,7 +48,7 @@ class SoundsController < ApplicationController
 
   # DELETE /sounds/1
   def destroy
-    @sound.destroy
+    @post.destroy
     redirect_to sounds_url, notice: 'Sound was successfully destroyed.'
   end
 
@@ -56,8 +56,8 @@ class SoundsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_sound
-    @sound = Sound.find(params[:id])
-    return redirect_to(root_path) if @sound.private? && !signed_in?
+    @post = Sound.find(params[:id])
+    return redirect_to(root_path) if @post.private? && !signed_in?
   end
 
   # Only allow a trusted parameter "white list" through.

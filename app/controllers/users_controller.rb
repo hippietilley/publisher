@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   # /signup
   def new
+    @slug = "signup"
     unless allow_signup?
       flash.alert = "Contact the owner of this website to request an account."
       return redirect_to root_url
@@ -45,6 +46,7 @@ class UsersController < ApplicationController
 
   # /settings
   def edit
+    @slug = "profile"
   end
 
   # /settings

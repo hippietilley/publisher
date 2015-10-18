@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "sounds/edit", type: :view do
   before(:each) do
-    @sound = assign(:sound, Sound.create!(
+    @post = assign(:sound, Sound.create!(
       title: "MyText",
       subtitle: "MyText",
       content: "MyText",
@@ -19,7 +19,7 @@ RSpec.describe "sounds/edit", type: :view do
   it "renders the edit sound form" do
     render
 
-    assert_select "form[action=?][method=?]", sound_path(@sound), "post" do
+    assert_select "form[action=?][method=?]", sound_path(@post), "post" do
 
       assert_select "textarea#sound_title[name=?]", "sound[title]"
 

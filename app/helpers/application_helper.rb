@@ -72,27 +72,22 @@ module ApplicationHelper
     output << license_name_and_url(format)
     output << license_years_range
     output << authors_name_and_url(format)
-    output.join(format == :html ? " " : "\n").html_safe
+    output.flatten.join(format == :html ? " " : "\n").html_safe
   end
 
   def license_name_and_url(format = nil)
-    output  = []
     license = License.find(setting(:license))
 
     if license.name == "All Rights Reserved"
       # Default
-      output << "#{license.name} #{license.short_code}"
+      "#{license.name} #{license.short_code}"
+    elsif format == :html
+      # Creative Commons and Public Domain (CC0) as HTML
+      link_to("#{license.name} (#{license.short_code})", license.url, rel: "license")
     else
-      # Creative Commons and Public Domain (CC0)
-      if format == :html
-        output << link_to("#{license.name} (#{license.short_code})", license.url, rel: "license")
-      else
-        output << "#{license.name} (#{license.short_code})"
-        output << license.url
-      end
+      # Creative Commons and Public Domain (CC0) as plain text
+      ["#{license.name} (#{license.short_code})", license.url]
     end
-
-    output
   end
 
   def license_years_range
@@ -141,13 +136,13 @@ module ApplicationHelper
     title.html_safe
   end
 
-  def page_description(post = nil)
-    if index_action?
+  def page_description
+    if in_a_list?
       # TODO: use current_user.name after /profile is expanded
       # TODO: implement #post_type: notes, articles, photes, etc
       page_description = "TODO: post_type.pluralize.capitalize by #{current_user.try(:email)}"
-    elsif show_action?
-      page_description = post.content
+    elsif on_permalink?
+      page_description = @post.content
     else
       page_description = setting(:site_description)
     end
@@ -155,15 +150,7 @@ module ApplicationHelper
     page_description
   end
 
-  def index_action?
-    action_name == "index"
-  end
-
-  def show_action?
-    action_name == "show"
-  end
-
-  def write_action?
+  def writing?
     action_name =~ /new|edit/
   end
 
@@ -172,16 +159,27 @@ module ApplicationHelper
   end
 
   def canonical_url(post = nil)
-    if post.nil?
-      "http://#{setting :domain}"
-    else
-      "http://#{setting :domain}/TODO"
+    output = [setting(:protocol), setting(:domain)]
+
+    if post
+      output << post.path
+    elsif @slug == "home"
+      output << "/"
+    elsif @slug
+      output << "/" + @slug
     end
+
+    output.join
+  end
+
+  def rel_canonical_link_tag(post = nil)
+    tag(:link, id: "canonical", rel: "canonical", type: "text/html", href: canonical_url(post))
   end
 
   def apple_touch_icon_link_tags
     output = []
 
+    # square pixel sizes
     sizes = [180, 152, 144, 120, 114, 72, 76, 60, 57]
     sizes.each do |size|
       dimensions = "#{size}x#{size}"

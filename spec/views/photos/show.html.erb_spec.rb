@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "photos/show", type: :view do
   before(:each) do
-    @photo = assign(:photo, Photo.create!(
+    @post = assign(:photo, Photo.create!(
       title: "MyText",
       subtitle: "MyText",
       content: "MyText",

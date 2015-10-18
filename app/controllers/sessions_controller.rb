@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   # /signin
   def new
+    @slug = "signin"
     # TODO: why doesn't this prevent a signed in user going to /signin
     return redirect_to(root_url) if signed_in?
   end

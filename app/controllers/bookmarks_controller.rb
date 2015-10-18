@@ -5,12 +5,12 @@ class BookmarksController < ApplicationController
   # GET /bookmarks
   def index
     if signed_in?
-      @bookmarks = Bookmark.all
+      @posts = Bookmark.all
     else
-      @bookmarks = Bookmark.visible.all
+      @posts = Bookmark.visible.all
     end
 
-    @posts = @bookmarks.sort_by(&:published_at).reverse
+    @posts = @posts.sort_by(&:published_at).reverse
   end
 
   # GET /bookmarks/1
@@ -19,7 +19,7 @@ class BookmarksController < ApplicationController
 
   # GET /bookmarks/new
   def new
-    @bookmark = Bookmark.new
+    @post = Bookmark.new
   end
 
   # GET /bookmarks/1/edit
@@ -28,10 +28,10 @@ class BookmarksController < ApplicationController
 
   # POST /bookmarks
   def create
-    @bookmark = Bookmark.new(bookmark_params)
+    @post = Bookmark.new(bookmark_params)
 
-    if @bookmark.save
-      redirect_to @bookmark, notice: 'Bookmark was successfully created.'
+    if @post.save
+      redirect_to @post, notice: 'Bookmark was successfully created.'
     else
       render :new
     end
@@ -39,8 +39,8 @@ class BookmarksController < ApplicationController
 
   # PATCH/PUT /bookmarks/1
   def update
-    if @bookmark.update(bookmark_params)
-      redirect_to @bookmark, notice: 'Bookmark was successfully updated.'
+    if @post.update(bookmark_params)
+      redirect_to @post, notice: 'Bookmark was successfully updated.'
     else
       render :edit
     end
@@ -48,7 +48,7 @@ class BookmarksController < ApplicationController
 
   # DELETE /bookmarks/1
   def destroy
-    @bookmark.destroy
+    @post.destroy
     redirect_to bookmarks_url, notice: 'Bookmark was successfully destroyed.'
   end
 
@@ -56,8 +56,8 @@ class BookmarksController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_bookmark
-    @bookmark = Bookmark.find(params[:id])
-    return redirect_to(root_path) if @bookmark.private? && !signed_in?
+    @post = Bookmark.find(params[:id])
+    return redirect_to(root_path) if @post.private? && !signed_in?
   end
 
   # Only allow a trusted parameter "white list" through.

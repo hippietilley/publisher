@@ -5,12 +5,12 @@ class PhotosController < ApplicationController
   # GET /photos
   def index
     if signed_in?
-      @photos = Photo.all
+      @posts = Photo.all
     else
-      @photos = Photo.visible.all
+      @posts = Photo.visible.all
     end
 
-    @posts = @photos.sort_by(&:published_at).reverse
+    @posts = @posts.sort_by(&:published_at).reverse
   end
 
   # GET /photos/1
@@ -19,7 +19,7 @@ class PhotosController < ApplicationController
 
   # GET /photos/new
   def new
-    @photo = Photo.new
+    @post = Photo.new
   end
 
   # GET /photos/1/edit
@@ -28,10 +28,10 @@ class PhotosController < ApplicationController
 
   # POST /photos
   def create
-    @photo = Photo.new(photo_params)
+    @post = Photo.new(photo_params)
 
-    if @photo.save
-      redirect_to @photo, notice: 'Photo was successfully created.'
+    if @post.save
+      redirect_to @post, notice: 'Photo was successfully created.'
     else
       render :new
     end
@@ -39,8 +39,8 @@ class PhotosController < ApplicationController
 
   # PATCH/PUT /photos/1
   def update
-    if @photo.update(photo_params)
-      redirect_to @photo, notice: 'Photo was successfully updated.'
+    if @post.update(photo_params)
+      redirect_to @post, notice: 'Photo was successfully updated.'
     else
       render :edit
     end
@@ -48,7 +48,7 @@ class PhotosController < ApplicationController
 
   # DELETE /photos/1
   def destroy
-    @photo.destroy
+    @post.destroy
     redirect_to photos_url, notice: 'Photo was successfully destroyed.'
   end
 
@@ -56,8 +56,8 @@ class PhotosController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_photo
-    @photo = Photo.find(params[:id])
-    return redirect_to(root_path) if @photo.private? && !signed_in?
+    @post = Photo.find(params[:id])
+    return redirect_to(root_path) if @post.private? && !signed_in?
   end
 
   # Only allow a trusted parameter "white list" through.

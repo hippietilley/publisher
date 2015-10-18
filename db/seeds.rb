@@ -8,6 +8,7 @@ Rails.logger.info "Creating default settings..."
   ["Site Description",           "",                                   true],
   ["Domain",                     "",                                   true],
   ["Short Domain",               "",                                   true],
+  ["Protocol",                   "http://",                            true],
   ["Micropub Endpoint",          "/micropub",                          false],
   ["Rel Authorization Endpoint", "https://indieauth.com/auth",         true],
   ["Rel Token Endpoint",         "https://tokens.indieauth.com/token", true],

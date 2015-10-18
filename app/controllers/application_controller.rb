@@ -1,7 +1,16 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_action :set_slug
 
   private
+  
+  def set_slug
+    if @slug.blank?
+      @slug = controller_name
+    else
+      @slug
+    end
+  end
 
   def allow_signup?
     User.count.zero?

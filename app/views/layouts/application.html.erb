@@ -4,6 +4,7 @@
       prefix="og: http://ogp.me/ns#">
 
 <head>
+  <%= rel_canonical_link_tag @post %>
   <!--
   <%= license %>
   -->
@@ -39,15 +40,20 @@
   <!-- Backward compatibility: RSS/Atom -->
   <%= auto_discovery_link_tag(:atom, feed_path, title: setting(:site_title)) %>
 
+  <!-- Canonical URLs -->
+  <%= rel_canonical_link_tag @post %>
+  <%#= shorturl_link_tag      @post %>
+
   <!-- fav and touch icons -->
   <link rel="shortcut icon" href="/favicon.ico" />
   <%= apple_touch_icon_link_tags %>
 
   <%= stylesheet_link_tag    "application", media: "all" %>
-  <%= javascript_include_tag "application" %>
+  <%#= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+
+<body id="<%= @slug %>">
 
   <nav>
     <div>

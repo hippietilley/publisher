@@ -5,12 +5,12 @@ class ArticlesController < ApplicationController
   # GET /articles
   def index
     if signed_in?
-      @articles = Article.all
+      @posts = Article.all
     else
-      @articles = Article.visible.all
+      @posts = Article.visible.all
     end
 
-    @posts = @articles.sort_by(&:published_at).reverse
+    @posts = @posts.sort_by(&:published_at).reverse
   end
 
   # GET /articles/1
@@ -19,7 +19,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/new
   def new
-    @article = Article.new
+    @post = Article.new
   end
 
   # GET /articles/1/edit
@@ -28,10 +28,10 @@ class ArticlesController < ApplicationController
 
   # POST /articles
   def create
-    @article = Article.new(article_params)
+    @post = Article.new(article_params)
 
-    if @article.save
-      redirect_to @article, notice: 'Article was successfully created.'
+    if @post.save
+      redirect_to @post, notice: 'Article was successfully created.'
     else
       render :new
     end
@@ -39,8 +39,8 @@ class ArticlesController < ApplicationController
 
   # PATCH/PUT /articles/1
   def update
-    if @article.update(article_params)
-      redirect_to @article, notice: 'Article was successfully updated.'
+    if @post.update(article_params)
+      redirect_to @post, notice: 'Article was successfully updated.'
     else
       render :edit
     end
@@ -48,7 +48,7 @@ class ArticlesController < ApplicationController
 
   # DELETE /articles/1
   def destroy
-    @article.destroy
+    @post.destroy
     redirect_to articles_url, notice: 'Article was successfully destroyed.'
   end
 
@@ -56,8 +56,8 @@ class ArticlesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_article
-    @article = Article.find(params[:id])
-    return redirect_to(root_path) if @article.private? && !signed_in?
+    @post = Article.find(params[:id])
+    return redirect_to(root_path) if @post.private? && !signed_in?
   end
 
   # Only allow a trusted parameter "white list" through.

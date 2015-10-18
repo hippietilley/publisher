@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "videos/show", type: :view do
   before(:each) do
-    @video = assign(:video, Video.create!(
+    @post = assign(:video, Video.create!(
       title: "MyText",
       subtitle: "MyText",
       content: "MyText",

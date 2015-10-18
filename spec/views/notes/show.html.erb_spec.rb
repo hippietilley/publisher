@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "notes/show", type: :view do
   before(:each) do
-    @note = assign(:note, Note.create!(
+    @post = assign(:note, Note.create!(
       content: "MyText",
       slug: "MyText",
       in_reply_to: "MyText",
