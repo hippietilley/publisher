@@ -12,7 +12,8 @@ Rails.logger.info "Creating default settings..."
   ["Micropub Endpoint",          "/micropub",                          false],
   ["Rel Authorization Endpoint", "https://indieauth.com/auth",         true],
   ["Rel Token Endpoint",         "https://tokens.indieauth.com/token", true],
-  ["Rel Me",                     "",                                   true]
+  ["Rel Me",                     "",                                   true],
+  ["Custom CSS",                 "",                                   true]
 ].each do |setting|
   s          = Setting.new
   s.name     = setting[0]

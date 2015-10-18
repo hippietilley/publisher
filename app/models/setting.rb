@@ -1,6 +1,6 @@
 class Setting < ActiveRecord::Base
   validates :name,    presence: true
-  validates :content, presence: true
+  validates :content, presence: true, unless: proc { |s| s.name == "Custom CSS" }
 
   default_scope { order(:name) }
   scope :editable, -> { where(editable: true) }
