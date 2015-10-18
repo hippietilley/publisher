@@ -7,8 +7,10 @@ class NotesController < ApplicationController
     if signed_in?
       @notes = Note.all
     else
-      @notes = Note.where(private: false)
+      @notes = Note.visible.all
     end
+
+    @posts = @notes.sort_by(&:published_at).reverse
   end
 
   # GET /notes/1

@@ -9,6 +9,8 @@ class ArticlesController < ApplicationController
     else
       @articles = Article.visible.all
     end
+
+    @posts = @articles.sort_by(&:published_at).reverse
   end
 
   # GET /articles/1

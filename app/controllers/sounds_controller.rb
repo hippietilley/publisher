@@ -1,9 +1,16 @@
 class SoundsController < ApplicationController
   before_action :set_sound, only: [:show, :edit, :update, :destroy]
+  before_action :authorize, except: [:show, :index]
 
   # GET /sounds
   def index
-    @sounds = Sound.all
+    if signed_in?
+      @sounds = Sound.all
+    else
+      @sounds = Sound.visible.all
+    end
+
+    @posts = @sounds.sort_by(&:published_at).reverse
   end
 
   # GET /sounds/1
@@ -50,6 +57,7 @@ class SoundsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_sound
     @sound = Sound.find(params[:id])
+    return redirect_to(root_path) if @sound.private? && !signed_in?
   end
 
   # Only allow a trusted parameter "white list" through.

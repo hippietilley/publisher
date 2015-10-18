@@ -1,9 +1,16 @@
 class BookmarksController < ApplicationController
   before_action :set_bookmark, only: [:show, :edit, :update, :destroy]
+  before_action :authorize, except: [:show, :index]
 
   # GET /bookmarks
   def index
-    @bookmarks = Bookmark.all
+    if signed_in?
+      @bookmarks = Bookmark.all
+    else
+      @bookmarks = Bookmark.visible.all
+    end
+
+    @posts = @bookmarks.sort_by(&:published_at).reverse
   end
 
   # GET /bookmarks/1
@@ -50,6 +57,7 @@ class BookmarksController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_bookmark
     @bookmark = Bookmark.find(params[:id])
+    return redirect_to(root_path) if @bookmark.private? && !signed_in?
   end
 
   # Only allow a trusted parameter "white list" through.

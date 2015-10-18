@@ -3,6 +3,10 @@ class Note < ActiveRecord::Base
   before_update :set_slug
   validates :content, presence: true
 
+  default_scope { order("published_at DESC") }
+  scope :invisible, -> { where(private: true) }
+  scope :visible, -> { where(private: false) }
+
   def name
     pieces = content[0..50].split
     if pieces.length == 1

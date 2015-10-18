@@ -7,8 +7,10 @@ class PhotosController < ApplicationController
     if signed_in?
       @photos = Photo.all
     else
-      @photos = Photo.where(private: false)
+      @photos = Photo.visible.all
     end
+
+    @posts = @photos.sort_by(&:published_at).reverse
   end
 
   # GET /photos/1

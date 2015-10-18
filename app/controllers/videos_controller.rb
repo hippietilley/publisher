@@ -9,6 +9,8 @@ class VideosController < ApplicationController
     else
       @videos = Video.where(private: false)
     end
+
+    @posts = @videos.sort_by(&:published_at).reverse
   end
 
   # GET /videos/1
@@ -60,20 +62,6 @@ class VideosController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def video_params
-    params.require(:video).permit(
-      :title,
-      :subtitle,
-      :content,
-      :slug,
-      :in_reply_to,
-      :tags,
-      :published_at,
-      :private,
-      :image_url,
-      :width,
-      :height,
-      :duration,
-      :captured_at,
-      :enclosure_url)
+    params.require(:video).permit(:title, :subtitle, :content, :slug, :in_reply_to, :tags, :published_at, :private, :image_url, :width, :height, :duration, :captured_at, :enclosure_url)
   end
 end
