@@ -62,6 +62,11 @@ class NotesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def note_params
-    params.require(:note).permit(:content, :slug, :in_reply_to, :tags, :published_at, :private)
+    params.require(:note).permit(:content,
+      :slug,
+      :in_reply_to,
+      :tags,
+      :published_at,
+      :private)
   end
 end
