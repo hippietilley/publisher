@@ -11,25 +11,22 @@ module ApplicationHelper
     post.in_reply_to?
   end
 
+  def rel_in_reply_to
+    on_permalink? ? "in-reply-to external" : "external"
+  end
+
   def link_to_in_reply_to_urls(post)
     links = []
+    protocol_regex = %r{/https*:\/\//}
 
     unless post.in_reply_to.blank?
-      rel = on_permalink? ? "in-reply-to external" : "external"
-      url_regex = %r{/https*:\/\//}
       post.in_reply_to.split.each do |url|
-        links << link_to(url.sub(url_regex, ""), url, class: "u-in-reply-to h-cite", rel: rel)
+        links << link_to(url.sub(protocol_regex, space), url, class: "u-in-reply-to h-cite", rel: rel_in_reply_to)
       end
     end
 
-    if links.length == 1
-      links.first
-    else
-      list_items = []
-      links.each do |link|
-        list_items << content_tag(:li, link)
-      end
-      content_tag :ul, list_items.join.html_safe
+    content_tag :ul do
+      links.map { |link| concat(content_tag(:li, link)) }
     end
   end
 
