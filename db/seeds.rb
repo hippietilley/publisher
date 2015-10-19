@@ -13,7 +13,8 @@ Rails.logger.info "Creating default settings..."
   ["Rel Authorization Endpoint", "https://indieauth.com/auth",         true],
   ["Rel Token Endpoint",         "https://tokens.indieauth.com/token", true],
   ["Rel Me",                     "",                                   true],
-  ["Custom CSS",                 "",                                   true]
+  ["Custom CSS",                 "",                                   true],
+  ["Text Direction",             "ltr",                                true]
 ].each do |setting|
   s          = Setting.new
   s.name     = setting[0]

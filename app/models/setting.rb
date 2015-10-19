@@ -1,6 +1,6 @@
 class Setting < ActiveRecord::Base
-  validates :name,    presence: true
-  validates :content, presence: true, unless: proc { |s| s.name == "Custom CSS" }
+  validates :name, presence: true
+  validate :special_settings
 
   default_scope { order(:name) }
   scope :editable, -> { where(editable: true) }
@@ -12,5 +12,19 @@ class Setting < ActiveRecord::Base
 
   def set_key
     self.key = name.downcase.gsub(/\W/, "_").gsub(/__/, "_").gsub(/(^_|_$)/, "")
+  end
+
+  def special_settings
+    # allow blank
+    if name =~ /Custom CSS|Rel Me/
+      return true
+    # only one of three values
+    elsif name == "Text Direction"
+      unless content =~ /ltr|rtl|auto/i
+        errors.add(:content, "must be 'ltr' (left to right) or 'rtl' (right to left) or 'auto'")
+      end
+    elsif content.blank?
+      errors.add(:content, "can not be blank")
+    end
   end
 end
