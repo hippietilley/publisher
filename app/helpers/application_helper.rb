@@ -24,7 +24,7 @@ module ApplicationHelper
     output << license_name_and_url(format)
     output << license_years_range
     output << authors_name_and_url(format)
-    output.flatten.join(format == :html ? " " : "\n").html_safe
+    output.flatten.join(format == :html ? " " : "\n\t").html_safe
   end
 
   def license_name_and_url(format = nil)
