@@ -2,10 +2,9 @@
 <html dir="<%= setting(:text_direction).downcase %>"
       lang="en-US"
       prefix="og: http://ogp.me/ns#"
-      id="<%= @slug %>"
+      id="<%= @slug %>">
 
 <head>
-  <%= rel_canonical_link_tag @post %>
   <%= render "/shared/license" %>
 
   <meta charset="utf-8">
@@ -30,7 +29,7 @@
 
   <!-- Backward compatibility: Facebook (Open Graph) -->
   <meta property="og:type"         content="blog" />
-  <meta property="og:url"          content="<%= canonical_url %>" />
+  <meta property="og:url"          content="<%= canonical_url @post %>" />
   <meta property="og:image"        content="<%= "TODO" %>" />
   <meta property="og:title"        content="<%= site_title %>" />
   <meta property="og:description"  content="<%= page_description %>" />

@@ -51,17 +51,20 @@ module PostsHelper
   end
 
   def canonical_url(post = nil)
-    output = [setting(:protocol), setting(:domain)]
-
-    if post
-      output << post.path
+    path =
+    if action_name == "new"
+      "/#{controller_name}/new"
+    elsif action_name == "edit"
+      "#{post.path}/edit"
+    elsif post
+      post.path
     elsif @slug == "home"
-      output << "/"
+      "/"
     elsif @slug
-      output << "/" + @slug
+      "/#{@slug}"
     end
 
-    output.join
+    site_url + path
   end
 
   def rel_canonical_link_tag(post = nil)
