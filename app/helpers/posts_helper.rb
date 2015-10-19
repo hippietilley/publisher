@@ -54,7 +54,7 @@ module PostsHelper
     path =
     if action_name == "new"
       "/#{controller_name}/new"
-    elsif action_name == "edit"
+    elsif @slug != "settings" && action_name == "edit"
       "#{post.path}/edit"
     elsif post
       post.path
