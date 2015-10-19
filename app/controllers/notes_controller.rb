@@ -1,15 +1,12 @@
 class NotesController < ApplicationController
   before_action :set_note,  only: [:show, :edit, :update, :destroy]
   before_action :authorize, except: [:show, :index]
-
   def index
     if signed_in?
       @posts = Note.all
     else
       @posts = Note.visible.all
     end
-
-    @posts = @posts.sort_by(&:published_at).reverse
   end
 
   def show
@@ -34,7 +31,7 @@ class NotesController < ApplicationController
 
   def update
     if @post.update(note_params)
-      redirect_to @post.path, notice: 'Note was successfully updated.'
+      redirect_to @post.path, notice: "Note was successfully updated."
     else
       render :edit
     end

@@ -23,7 +23,7 @@
       </div>
 
       <%= render partial: "posts/footer", locals: { post: article } %>
-      <%= link_to "Edit", edit_article_path(article), class: "edit" if signed_in? %>
+      <%= link_to "Edit", edit_article_path(article.params), class: "edit" if signed_in? %>
     </article>
     
     <hr>

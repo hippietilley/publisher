@@ -33,7 +33,7 @@
       </div>
 
       <%= render partial: "posts/footer", locals: { post: sound } %>
-      <%= link_to "Edit", edit_sound_path(sound), class: "edit" if signed_in? %>
+      <%= link_to "Edit", edit_sound_path(sound.params), class: "edit" if signed_in? %>
     </article>
     
     <hr>

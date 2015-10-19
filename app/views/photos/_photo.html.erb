@@ -33,7 +33,7 @@
       </div>
 
       <%= render partial: "posts/footer", locals: { post: photo } %>
-      <%= link_to "Edit", edit_photo_path(photo), class: "edit" if signed_in? %>
+      <%= link_to "Edit", edit_photo_path(photo.params), class: "edit" if signed_in? %>
     </article>
     
     <hr>

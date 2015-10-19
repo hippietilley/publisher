@@ -2,7 +2,6 @@ class SettingsController < ApplicationController
   before_action :set_setting, only: [:edit, :update]
   before_action :all_settings
   before_action :authorize
-
   def index
     @slug = "settings"
     @page_title = "Settings"

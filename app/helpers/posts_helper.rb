@@ -51,8 +51,11 @@ module PostsHelper
   end
 
   def canonical_url(post = nil)
+    # TODO refactor out complexity
     path =
-    if action_name == "new"
+    if @slug == "profile"
+      "profile"
+    elsif action_name == "new"
       "/#{controller_name}/new"
     elsif @slug != "settings" && action_name == "edit"
       "#{post.path}/edit"

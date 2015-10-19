@@ -2,6 +2,7 @@ class Photo < ActiveRecord::Base
   before_create :set_slug
   before_update :set_slug
   validates :image_url, presence: true
+  validates :slug, uniqueness: true
 
   default_scope { order("published_at DESC") }
   scope :invisible, -> { where(private: true) }
@@ -25,6 +26,10 @@ class Photo < ActiveRecord::Base
      published_at.day,
      slug
     ].join("/")
+  end
+
+  def params
+    {year: published_at.year, month: published_at.month, day: published_at.day, slug: slug}
   end
 
   def public?

@@ -1,73 +1,71 @@
-<%= form_for @post do |f| %>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this video from being saved:</h2>
+<% if @post.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@post.errors.count, "error") %> prohibited this video from being saved:</h2>
 
-      <ul>
-      <% @post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_area :title %>
-  </div>
-  <div class="field">
-    <%= f.label :subtitle %><br>
-    <%= f.text_area :subtitle %>
-  </div>
-  <div class="field">
-    <%= f.label :content %><br>
-    <%= f.text_area :content %>
-  </div>
-  <div class="field">
-    <%= f.label :slug %><br>
-    <%= f.text_area :slug %>
-  </div>
-  <div class="field">
-    <%= f.label :in_reply_to %><br>
-    <%= f.text_area :in_reply_to %>
-  </div>
-  <div class="field">
-    <%= f.label :tags %><br>
-    <%= f.text_area :tags %>
-  </div>
-  <div class="field">
-    <%= f.label :published_at %><br>
-    <%= f.datetime_select :published_at %>
-  </div>
-  <div class="field">
-    <%= f.label :private %><br>
-    <%= f.check_box :private %>
-  </div>
-  <div class="field">
-    <%= f.label :image_url %><br>
-    <%= f.text_area :image_url %>
-  </div>
-  <div class="field">
-    <%= f.label :width %><br>
-    <%= f.number_field :width %>
-  </div>
-  <div class="field">
-    <%= f.label :height %><br>
-    <%= f.number_field :height %>
-  </div>
-  <div class="field">
-    <%= f.label :duration %><br>
-    <%= f.number_field :duration %>
-  </div>
-  <div class="field">
-    <%= f.label :captured_at %><br>
-    <%= f.datetime_select :captured_at, include_blank: true %>
-  </div>
-  <div class="field">
-    <%= f.label :enclosure_url %><br>
-    <%= f.text_area :enclosure_url %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+    <ul>
+    <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
   </div>
 <% end %>
+
+<div class="field">
+  <%= f.label :title %><br>
+  <%= f.text_area :title %>
+</div>
+<div class="field">
+  <%= f.label :subtitle %><br>
+  <%= f.text_area :subtitle %>
+</div>
+<div class="field">
+  <%= f.label :content %><br>
+  <%= f.text_area :content %>
+</div>
+<div class="field">
+  <%= f.label :slug %><br>
+  <%= f.text_area :slug %>
+</div>
+<div class="field">
+  <%= f.label :in_reply_to %><br>
+  <%= f.text_area :in_reply_to %>
+</div>
+<div class="field">
+  <%= f.label :tags %><br>
+  <%= f.text_area :tags %>
+</div>
+<div class="field">
+  <%= f.label :published_at %><br>
+  <%= f.datetime_select :published_at %>
+</div>
+<div class="field">
+  <%= f.label :private %><br>
+  <%= f.check_box :private %>
+</div>
+<div class="field">
+  <%= f.label :image_url %><br>
+  <%= f.text_area :image_url %>
+</div>
+<div class="field">
+  <%= f.label :width %><br>
+  <%= f.number_field :width %>
+</div>
+<div class="field">
+  <%= f.label :height %><br>
+  <%= f.number_field :height %>
+</div>
+<div class="field">
+  <%= f.label :duration %><br>
+  <%= f.number_field :duration %>
+</div>
+<div class="field">
+  <%= f.label :captured_at %><br>
+  <%= f.datetime_select :captured_at, include_blank: true %>
+</div>
+<div class="field">
+  <%= f.label :enclosure_url %><br>
+  <%= f.text_area :enclosure_url %>
+</div>
+<div class="actions">
+  <%= f.submit %>
+</div>

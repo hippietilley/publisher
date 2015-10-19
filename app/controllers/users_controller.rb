@@ -29,8 +29,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users
-  # TODO: ADMIN ONLY
   def index
     if signed_in?
       @users = User.all
@@ -39,17 +37,16 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/1
   # TODO: hide id in URL, use @username
   def show
   end
 
-  # /settings
+  # /profile
   def edit
     @slug = "profile"
   end
 
-  # /settings
+  # /profile
   def update
     if current_user.update(user_params)
       redirect_to root_url, notice: "Your settings were successfully updated."
@@ -58,7 +55,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
   def destroy
     @user.destroy
     redirect_to root_url, notice: "User was successfully destroyed."

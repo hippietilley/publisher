@@ -33,7 +33,7 @@
       </div>
 
       <%= render partial: "posts/footer", locals: { post: video } %>
-      <%= link_to "Edit", edit_video_path(video), class: "edit" if signed_in? %>
+      <%= link_to "Edit", edit_video_path(video.params), class: "edit" if signed_in? %>
     </article>
     
     <hr>
