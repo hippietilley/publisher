@@ -21,5 +21,5 @@ Rails.application.routes.draw do
   resources :articles, :bookmarks, :notes, :photos, :sounds, :videos
 
   # settings
-  resources :settings
+  resources :settings, only: [:index, :edit, :update]
 end
