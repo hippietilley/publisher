@@ -92,10 +92,10 @@ module ApplicationHelper
     output = []
 
     # square pixel sizes
-    sizes = [180, 152, 144, 120, 114, 72, 76, 60, 57]
+    sizes = [57, 60, 72, 76, 114, 120, 144, 152, 180]
     sizes.each do |size|
       dimensions = "#{size}x#{size}"
-      href       = "/apple-touch-icon-#{dimensions}.png"
+      href = setting("touch_icon_url_#{dimensions}")
       output << tag(:link, rel: "apple-touch-icon", sizes: dimensions, href: href)
     end
 

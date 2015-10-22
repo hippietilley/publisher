@@ -51,7 +51,7 @@ module PostsHelper
   end
 
   def canonical_url(post = nil)
-    # TODO refactor out complexity
+    # TODO: refactor out complexity
     path =
     if @slug == "profile"
       "profile"
