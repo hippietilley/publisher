@@ -1,5 +1,5 @@
 class Note < PostType
-  set_fallback_attr :content
+  fallback_attr :content
 
   def name
     pieces = content[0..50].split

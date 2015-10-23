@@ -1,3 +1,3 @@
 class Bookmark < PostType
-  set_fallback_attr :content
+  fallback_attr :content
 end

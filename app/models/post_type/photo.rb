@@ -1,3 +1,3 @@
 class Photo < PostType
-  set_fallback_attr :image_url
+  fallback_attr :image_url
 end

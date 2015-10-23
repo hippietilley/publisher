@@ -1,6 +1,10 @@
 class PostType < ActiveRecord::Base
   self.abstract_class = true
 
+  class << self
+    attr_reader :fallback_attribute
+  end
+
   before_create :set_slug
   before_update :set_slug
   validates :slug, uniqueness: true
@@ -15,13 +19,9 @@ class PostType < ActiveRecord::Base
     super
   end
 
-  def self.set_fallback_attr(attr)
-    @fallback_attr = attr
-    validates @fallback_attr, presence: true
-  end
-
-  def self.fallback_attr
-    @fallback_attr
+  def self.fallback_attr(attr)
+    @fallback_attribute = attr
+    validates @fallback_attribute, presence: true
   end
 
   def name
@@ -57,7 +57,7 @@ class PostType < ActiveRecord::Base
   end
 
   def fallback_attribute
-    self.send(self.class.fallback_attr)
+    send(self.class.fallback_attribute)
   end
 
   private
