@@ -1,20 +1,41 @@
-class Note < ActiveRecord::Base
+class PostType < ActiveRecord::Base
+  self.abstract_class = true
+
+  class << self
+    attr_reader :fallback_attribute
+  end
+
   before_create :set_slug
   before_update :set_slug
-  validates :content, presence: true
   validates :slug, uniqueness: true
 
   default_scope { order("published_at DESC") }
-  scope :invisible, -> { where(private: true) }
-  scope :visible, -> { where(private: false) }
+
+  def self.inherited(child)
+    child.class_eval do
+      scope :invisible, -> { where(private: true) }
+      scope :visible, -> { where(private: false) }
+    end
+    super
+  end
+
+  def self.fallback_attr(attr)
+    @fallback_attribute = attr
+    validates @fallback_attribute, presence: true
+  end
 
   def name
-    pieces = content[0..50].split
-    if pieces.length == 1
-      pieces
+    if title && subtitle
+      "#{title} : #{subtitle}"
+    elsif title
+      title
     else
-      pieces[0..-1].join(" ")
+      fallback_name
     end
+  end
+
+  def fallback_name
+    fallback_attribute.split("/").last.split(".").first
   end
 
   def path
@@ -35,8 +56,8 @@ class Note < ActiveRecord::Base
     !private?
   end
 
-  def title
-    content
+  def fallback_attribute
+    send(self.class.fallback_attribute)
   end
 
   private
@@ -53,7 +74,8 @@ class Note < ActiveRecord::Base
   end
 
   def set_slug
-    self.slug = name.present? ? name : content if slug.blank?
+    self.slug = name.present? ? name : fallback_attribute if slug.blank?
     clean_slug!
   end
+
 end
