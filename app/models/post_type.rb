@@ -11,6 +11,8 @@ class PostType < ActiveRecord::Base
 
   default_scope { order("published_at DESC") }
 
+  belongs_to :user
+
   def self.inherited(child)
     child.class_eval do
       scope :invisible, -> { where(private: true) }
@@ -22,6 +24,10 @@ class PostType < ActiveRecord::Base
   def self.fallback_attr(attr)
     @fallback_attribute = attr
     validates @fallback_attribute, presence: true
+  end
+
+  def user
+    User.first
   end
 
   def name
