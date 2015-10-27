@@ -4,7 +4,7 @@
 
     <span class="screen-reader-only">
       this
-      <span class="p-as-object"><%= link_to post.class.to_s.downcase, "/#{post.class.to_s.downcase.pluralize}" %></span>
+      <%= link_to post.class.to_s.downcase, "/#{post.class.to_s.downcase.pluralize}", class: "p-post-type p-as-object" %>
     </span>
 
     <%= time_tag post.published_at, class: "dt-published" do %>
