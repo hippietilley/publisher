@@ -27,6 +27,6 @@
     "heroku-postgresql:hobby-dev",
     "papertrail",
     "pgbackups"
-  ]
+  ],
   "image": "heroku/cedar"
 }
