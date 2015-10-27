@@ -1,6 +1,7 @@
 class NotesController < ApplicationController
   before_action :set_note,  only: [:show, :edit, :update, :destroy]
   before_action :authorize, except: [:show, :index]
+
   def index
     if signed_in?
       @posts = Note.all

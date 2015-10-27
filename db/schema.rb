@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151015214313) do
+ActiveRecord::Schema.define(version: 20151027155924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,36 @@ ActiveRecord::Schema.define(version: 20151015214313) do
     t.boolean  "private"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.text     "title"
+    t.text     "subtitle"
+    t.text     "content"
+    t.text     "slug"
+    t.text     "in_reply_to"
+    t.text     "tags"
+    t.datetime "published_at"
+    t.boolean  "private"
+    t.text     "summary"
+    t.text     "url"
+    t.text     "organizer_name"
+    t.text     "organizer_url"
+    t.text     "location_name"
+    t.text     "location_url"
+    t.text     "location_street_address"
+    t.text     "location_extended_street_address"
+    t.text     "location_locality"
+    t.text     "location_region"
+    t.text     "location_country"
+    t.text     "location_postal_code"
+    t.text     "location_latitude"
+    t.text     "location_longitude"
+    t.text     "location_altitude"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   create_table "licenses", force: :cascade do |t|

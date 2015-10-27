@@ -80,6 +80,8 @@
       <% if signed_in? %>(<%= link_to "new", new_article_path %>)<% end %>
       <%= link_to "Bookmarks", bookmarks_path %>
       <% if signed_in? %>(<%= link_to "new", new_bookmark_path %>)<% end %>
+      <%= link_to "Events", events_path %>
+      <% if signed_in? %>(<%= link_to "new", new_event_path %>)<% end %>
       <%= link_to "Notes", notes_path %>
       <% if signed_in? %>(<%= link_to "new", new_note_path %>)<% end %>
       <%= link_to "Photos", photos_path %>

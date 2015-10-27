@@ -1,0 +1,65 @@
+<% if event.public? || signed_in? %>
+  <%= raw "<li>" if in_a_list? %>
+    <article id="event-<%= event.id %>" class="h-entry h-as-event">
+
+      <header>
+        <% if a_reply?(event) %>
+          <div class="reply-context">
+            <b>In Reply To</b>
+            <%= link_to_in_reply_to_urls event %>
+          </div>
+        <% end %>
+
+        <h1 class="p-name">
+          <%= link_to event.path, class: "u-url u-uid" do %>
+            <% unless event.title.blank? %>   <span class="p-hs-title">   <%= event.title %>   </span><% end %>
+            <% unless event.subtitle.blank? %><span class="p-hs-subtitle"><%= event.subtitle %></span><% end %>
+          <% end %>
+        </h1>
+
+        <h2>
+          <% if event.starts_at.present? %>
+            <%= time_tag event.starts_at, class: "dt-starts" do %>
+              <%= human_readable_date event.starts_at %>
+              <%= human_readable_time event.starts_at %>
+            <% end %>
+          <% end %>
+
+          <% if event.ends_at.present? %>
+            &ndash;
+
+            <%= time_tag event.ends_at, class: "dt-ends" do %>
+              <%= human_readable_date event.ends_at %>
+              <%= human_readable_time event.ends_at %>
+            <% end %>
+          <% end %>
+        </h2>
+
+        <h3 class="p-location h-card">
+          <%= link_to event.location_url, class: "u-url" do %><span class="p-name"><%= event.location_name %></span><% end %>
+
+          <%= link_to_location event %>
+        </h3>
+      </header>
+
+      <div class="e-content">
+        <div class="p-summary">
+          <%= simple_format  event.summary %>
+        </div>
+
+        <% if event.organizer_name.present? %>
+          <p>Organized by <a class="p-organizer h-card" href="<%= event.organizer_url %>"><%= event.organizer_name %></a></p>
+        <% end %>
+
+        <div class="e-content">
+          <%= simple_format event.content %>
+        </div>
+      </div>
+
+      <%= render partial: "posts/footer", locals: { post: event } %>
+      <%= link_to "Edit", edit_event_path(event.params), class: "edit" if signed_in? %>
+    </article>
+
+    <hr>
+  <%= raw "</li>" if in_a_list? %>
+<% end %>

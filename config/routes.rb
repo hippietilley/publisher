@@ -47,6 +47,21 @@ Rails.application.routes.draw do
   get "/bookmarks/page/:page",                to: "bookmarks#index", constraints: {page: /\d+/}
   get "(/bookmarks)(/:year)(/:month)(/:day)", to: "bookmarks#index", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
 
+  # Events CRUD
+  get "/events/new", to: "events#new", as: "new_event"
+  post "/events", to: "events#create", as: "events"
+  post "/events/:year/:month/:day", to: "events#create", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
+  get "/events/:year/:month/:day/:slug", to: "events#show", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}, as: "event"
+  get "/events/:year/:month/:day/:slug/edit", to: "events#edit", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}, as: "edit_event"
+  patch "/events/:year/:month/:day/:slug", to: "events#update", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
+  delete "/events/:year/:month/:day/:slug", to: "events#destroy", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
+
+  # Events Pagination
+  get "/events/page/1",                    to: redirect("/events")
+  get "/events/page",                      to: redirect("/events")
+  get "/events/page/:page",                to: "events#index", constraints: {page: /\d+/}
+  get "(/events)(/:year)(/:month)(/:day)", to: "events#index", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
+
   # Notes CRUD
   get "/notes/new", to: "notes#new", as: "new_note"
   post "/notes", to: "notes#create", as: "notes"

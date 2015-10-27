@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   def index
     @slug = "home"
     @posts = [Article.all,
+              Event.all,
               Note.all,
               Photo.all,
               Bookmark.all,
