@@ -1,14 +1,16 @@
 # Homesteading Server Rails
 
-Deploy to Heroku
+Rails app to power an #indieweb personal publishing platform.
+
+## Deploy to Heroku
 
 Click this button to easily deploy to Heroku. You must already have a Heroku account.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-[![Code Climate](https://codeclimate.com/github/homesteading/homesteading-server-rails/badges/gpa.svg)](https://codeclimate.com/github/homesteading/homesteading-server-rails)
+## Code Status
 
-A Rails app to power an #indieweb personal publishing platform.
+[![Code Climate](https://codeclimate.com/github/homesteading/homesteading-server-rails/badges/gpa.svg)](https://codeclimate.com/github/homesteading/homesteading-server-rails)
 
 ## Authors
 
