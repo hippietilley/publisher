@@ -25,7 +25,8 @@ Rails.logger.info "Creating default settings..."
   ["Touch Icon URL (144x144)",     "/apple-touch-icon-144x144-precomposed.png", true],
   ["Touch Icon URL (152x152)",     "/apple-touch-icon-152x152-precomposed.png", true],
   ["Touch Icon URL (180x180)",     "/apple-touch-icon-180x180-precomposed.png", true],
-  ["Touch Icon URL (192x192)",     "/touch-icon-192x192.png",                   true]
+  ["Touch Icon URL (192x192)",     "/touch-icon-192x192.png",                   true],
+  ["Public Key",                   "",                                          true]
 ].each do |setting|
   s          = Setting.new
   s.name     = setting[0]

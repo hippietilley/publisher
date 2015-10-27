@@ -127,8 +127,8 @@ ActiveRecord::Schema.define(version: 20151015214313) do
     t.text     "image_url"
     t.integer  "width"
     t.integer  "height"
-    t.integer  "duration"
     t.datetime "captured_at"
+    t.integer  "duration"
     t.text     "enclosure_url"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false

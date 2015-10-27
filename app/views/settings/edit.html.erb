@@ -13,7 +13,7 @@
       <% if @setting.key == "license" %>
         <%= f.select :content, License.options_for_select.map{|l| [l.first.html_safe, l.last]} %>
       <% else %>
-        <%= f.text_field :content, autofocus: true %>
+        <%= f.text_area :content, autofocus: true %>
       <% end %>
     </dd>
 

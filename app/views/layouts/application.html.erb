@@ -19,7 +19,7 @@
   <meta name="application-name"    content="<%= site_title %>" />
   <meta name="generator"           content="homesteading.io" />
   <meta name="description"         content="<%= page_description %>" />
-  <meta name="viewport"            content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Micropub -->
   <link rel="me"                     href="<%= setting :rel_me %>" />
@@ -55,6 +55,8 @@
   <!-- JS -->
   <%#= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+  <link rel="pgpkey" href="/pgp.pub" />
 </head>
 
 <body>
