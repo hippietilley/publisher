@@ -4,9 +4,9 @@ class NotesController < ApplicationController
 
   def index
     if signed_in?
-      @posts = Note.all
+      @posts = Note.paginate(page: params[:page]).all
     else
-      @posts = Note.visible.all
+      @posts = Note.visible.paginate(page: params[:page]).all
     end
   end
 

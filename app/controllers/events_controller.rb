@@ -4,9 +4,9 @@ class EventsController < ApplicationController
 
   def index
     if signed_in?
-      @posts = Event.all
+      @posts = Event.paginate(page: params[:page]).all
     else
-      @posts = Event.visible.all
+      @posts = Event.visible.paginate(page: params[:page]).all
     end
   end
 

@@ -4,9 +4,9 @@ class BookmarksController < ApplicationController
 
   def index
     if signed_in?
-      @posts = Bookmark.all
+      @posts = Bookmark.paginate(page: params[:page]).all
     else
-      @posts = Bookmark.visible.all
+      @posts = Bookmark.visible.paginate(page: params[:page]).all
     end
   end
 

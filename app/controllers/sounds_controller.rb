@@ -4,9 +4,9 @@ class SoundsController < ApplicationController
 
   def index
     if signed_in?
-      @posts = Sound.all
+      @posts = Sound.paginate(page: params[:page]).all
     else
-      @posts = Sound.visible.all
+      @posts = Sound.visible.paginate(page: params[:page]).all
     end
   end
 
