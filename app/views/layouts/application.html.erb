@@ -62,8 +62,11 @@
 <body>
 
   <header role="banner">
-    <!-- Google Site Search -->
-    <%= render "/shared/google_site_search" %>
+    <%= render "/shared/google_site_search" unless setting(:header_show_site_search).blank? %>
+    <%= render "/shared/site_owner_photo" unless setting(:header_show_avatar).blank? %>
+
+    <h1><%= setting :site_title unless setting(:header_show_site_title).blank? %></h1>
+    <h2><%= setting :site_description unless setting(:header_show_site_description).blank? %></h2>
   </header>
 
   <nav role="navigation">
@@ -106,25 +109,28 @@
   </main>
 
   <footer role="contentinfo">
-    <!-- Google Site Search -->
-    <%= render "/shared/google_site_search" %>
+    <%= render "/shared/google_site_search" unless setting(:footer_show_site_search).blank? %>
 
     <div class="h-card">
-      <% unless @owner.avatar.blank? %>
-        <%= image_tag @owner.avatar, class: "u-photo" %>
-      <% end %>
+      <%= render "/shared/site_owner_photo" unless setting(:footer_show_avatar).blank? %>
 
       <p>
-        <strong>Contact:</strong>
-        <% unless @owner.name.blank? %>
+        <% unless setting(:footer_show_name).blank? &&
+             setting(:footer_show_email).blank? &&
+             setting(:footer_show_email).blank? %>
+          <strong>Contact:</strong>
+        <% end %>
+
+        <% unless @owner.name.blank? || setting(:footer_show_name).blank? %>
           <%= link_to @owner.name, root_url, class: "u-url p-name" %>
         <% end %>
-        <% unless @owner.email.blank? %>
+
+        <% unless @owner.email.blank? || setting(:footer_show_email).blank? %>
           (<%= mail_to @owner.email, @owner.email, class: "u-email" %>)
         <% end %>
       </p>
 
-      <% unless @owner.links.blank? %>
+      <% unless @owner.links.blank? || setting(:footer_show_links).blank? %>
         <p>
           <strong>Links:</strong>
           <% @owner.links.each do |link| %>
@@ -134,7 +140,9 @@
       <% end %>
     </div>
 
-    <p><%= license :html %>.</p>
+    <% unless setting(:footer_show_license).blank? %>
+      <p><%= license :html %>.</p>
+    <% end %>
   </footer>
 
 </body>
