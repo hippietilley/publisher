@@ -8,6 +8,7 @@ Click this button to easily deploy to Heroku. You must already have a Heroku acc
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
+
 ## Code Status
 
 [![Code Climate](https://codeclimate.com/github/homesteading/homesteading-server-rails/badges/gpa.svg)](https://codeclimate.com/github/homesteading/homesteading-server-rails)
