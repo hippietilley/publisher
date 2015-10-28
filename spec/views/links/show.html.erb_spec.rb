@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe "links/show", type: :view do
   before(:each) do
     @link = assign(:link, Link.create!(
-      :url => "MyText",
-      :name => "Name",
-      :user_id => 1
+      url: "MyText",
+      name: "Name",
+      user_id: 1
     ))
   end
 

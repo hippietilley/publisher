@@ -47,7 +47,7 @@ RSpec.describe LinksController, type: :controller do
   describe "GET #show" do
     it "assigns the requested link as @link" do
       link = Link.create! valid_attributes
-      get :show, {:id => link.to_param}, valid_session
+      get :show, {id: link.to_param}, valid_session
       expect(assigns(:link)).to eq(link)
     end
   end
@@ -62,7 +62,7 @@ RSpec.describe LinksController, type: :controller do
   describe "GET #edit" do
     it "assigns the requested link as @link" do
       link = Link.create! valid_attributes
-      get :edit, {:id => link.to_param}, valid_session
+      get :edit, {id: link.to_param}, valid_session
       expect(assigns(:link)).to eq(link)
     end
   end
@@ -71,30 +71,30 @@ RSpec.describe LinksController, type: :controller do
     context "with valid params" do
       it "creates a new Link" do
         expect {
-          post :create, {:link => valid_attributes}, valid_session
+          post :create, {link: valid_attributes}, valid_session
         }.to change(Link, :count).by(1)
       end
 
       it "assigns a newly created link as @link" do
-        post :create, {:link => valid_attributes}, valid_session
+        post :create, {link: valid_attributes}, valid_session
         expect(assigns(:link)).to be_a(Link)
         expect(assigns(:link)).to be_persisted
       end
 
       it "redirects to the created link" do
-        post :create, {:link => valid_attributes}, valid_session
+        post :create, {link: valid_attributes}, valid_session
         expect(response).to redirect_to(Link.last)
       end
     end
 
     context "with invalid params" do
       it "assigns a newly created but unsaved link as @link" do
-        post :create, {:link => invalid_attributes}, valid_session
+        post :create, {link: invalid_attributes}, valid_session
         expect(assigns(:link)).to be_a_new(Link)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:link => invalid_attributes}, valid_session
+        post :create, {link: invalid_attributes}, valid_session
         expect(response).to render_template("new")
       end
     end
@@ -108,20 +108,20 @@ RSpec.describe LinksController, type: :controller do
 
       it "updates the requested link" do
         link = Link.create! valid_attributes
-        put :update, {:id => link.to_param, :link => new_attributes}, valid_session
+        put :update, {id: link.to_param, link: new_attributes}, valid_session
         link.reload
         skip("Add assertions for updated state")
       end
 
       it "assigns the requested link as @link" do
         link = Link.create! valid_attributes
-        put :update, {:id => link.to_param, :link => valid_attributes}, valid_session
+        put :update, {id: link.to_param, link: valid_attributes}, valid_session
         expect(assigns(:link)).to eq(link)
       end
 
       it "redirects to the link" do
         link = Link.create! valid_attributes
-        put :update, {:id => link.to_param, :link => valid_attributes}, valid_session
+        put :update, {id: link.to_param, link: valid_attributes}, valid_session
         expect(response).to redirect_to(link)
       end
     end
@@ -129,13 +129,13 @@ RSpec.describe LinksController, type: :controller do
     context "with invalid params" do
       it "assigns the link as @link" do
         link = Link.create! valid_attributes
-        put :update, {:id => link.to_param, :link => invalid_attributes}, valid_session
+        put :update, {id: link.to_param, link: invalid_attributes}, valid_session
         expect(assigns(:link)).to eq(link)
       end
 
       it "re-renders the 'edit' template" do
         link = Link.create! valid_attributes
-        put :update, {:id => link.to_param, :link => invalid_attributes}, valid_session
+        put :update, {id: link.to_param, link: invalid_attributes}, valid_session
         expect(response).to render_template("edit")
       end
     end
@@ -145,13 +145,13 @@ RSpec.describe LinksController, type: :controller do
     it "destroys the requested link" do
       link = Link.create! valid_attributes
       expect {
-        delete :destroy, {:id => link.to_param}, valid_session
+        delete :destroy, {id: link.to_param}, valid_session
       }.to change(Link, :count).by(-1)
     end
 
     it "redirects to the links list" do
       link = Link.create! valid_attributes
-      delete :destroy, {:id => link.to_param}, valid_session
+      delete :destroy, {id: link.to_param}, valid_session
       expect(response).to redirect_to(links_url)
     end
   end
