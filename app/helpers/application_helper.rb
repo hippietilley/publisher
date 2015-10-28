@@ -76,9 +76,8 @@ module ApplicationHelper
 
   def page_description
     if in_a_list?
-      # TODO: use current_user.name after /profile is expanded
       # TODO: implement #post_type: notes, articles, photes, etc
-      page_description = "TODO: post_type.pluralize.capitalize by #{current_user.try(:email)}"
+      page_description = "Posts by #{@owner.name}"
     elsif on_permalink?
       page_description = @post.content
     else

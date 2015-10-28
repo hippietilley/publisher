@@ -101,6 +101,27 @@
   </main>
 
   <footer role="contentinfo">
+    <div class="h-card">
+      <p>
+        <strong>Contact:</strong>
+        <% unless @owner.name.blank? %>
+          <%= link_to @owner.name, root_url, class: "u-url p-name" %>
+        <% end %>
+        <% unless @owner.email.blank? %>
+          (<%= mail_to @owner.email, @owner.email, class: "u-email" %>)
+        <% end %>
+      </p>
+
+      <% unless @owner.links.blank? %>
+        <p>
+          <strong>Links:</strong>
+          <% @owner.links.each do |link| %>
+            <%= link_to link.name, link.url, rel: "me", class: "u-url" %>
+          <% end %>
+        </p>
+      <% end %>
+    </div>
+
     <p><%= license :html %>.</p>
   </footer>
 

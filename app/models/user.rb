@@ -4,4 +4,5 @@ class User < ActiveRecord::Base
   validates :email,    presence: :true, uniqueness: true, on: [:create, :update]
 
   has_many :post_types
+  has_many :links
 end

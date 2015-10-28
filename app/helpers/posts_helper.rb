@@ -41,12 +41,11 @@ module PostsHelper
   end
 
   def authors_name_and_url(format = nil)
-    # TODO: use current_user.name after /profile is expanded
     # TODO: use current_user.url (? about page) after /profile is expanded
     if format == :html
-      link_to(current_user.try(:email), root_url, class: "p-author h-card")
+      link_to(@owner.name, root_url, class: "p-author h-card")
     else
-      current_user.try(:email)
+      @owner.name
     end
   end
 
@@ -57,7 +56,7 @@ module PostsHelper
       "profile"
     elsif action_name == "new"
       "/#{controller_name}/new"
-    elsif @slug != "settings" && action_name == "edit"
+    elsif @slug != "settings" && @slug != "links" && action_name == "edit"
       "#{post.path}/edit"
     elsif post
       post.path

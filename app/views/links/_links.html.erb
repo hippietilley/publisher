@@ -1,0 +1,10 @@
+<dl>
+  <% @links.each do |link| %>
+    <dt><%= link_to link.name, edit_link_path(link) %></dt>
+
+    <dd>
+      <%= link.url %>
+    </dd>
+  <% end %>
+</dl>
+

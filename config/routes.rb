@@ -125,4 +125,7 @@ Rails.application.routes.draw do
   # settings
   resources :settings, only: [:index, :edit, :update]
   get "key.pub", to: "about#public_key", as: "public_key"
+
+  # rel-me links
+  resources :links
 end

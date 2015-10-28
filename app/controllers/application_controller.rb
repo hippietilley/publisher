@@ -1,8 +1,13 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :set_slug
+  before_action :set_owner
 
   private
+
+  def set_owner
+    @owner = User.first
+  end
 
   def set_slug
     if @slug.blank?
