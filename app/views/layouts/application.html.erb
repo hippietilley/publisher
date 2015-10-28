@@ -61,7 +61,12 @@
 
 <body>
 
-  <nav>
+  <header role="banner">
+    <!-- Google Site Search -->
+    <%= render "/shared/google_site_search" %>
+  </header>
+
+  <nav role="navigation">
     <div>
       <% if signed_in? %>
         <%= current_user.email %>
@@ -101,6 +106,9 @@
   </main>
 
   <footer role="contentinfo">
+    <!-- Google Site Search -->
+    <%= render "/shared/google_site_search" %>
+
     <div class="h-card">
       <% unless @owner.avatar.blank? %>
         <%= image_tag @owner.avatar, class: "u-photo" %>
