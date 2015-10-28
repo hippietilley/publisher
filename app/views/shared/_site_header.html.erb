@@ -1,0 +1,7 @@
+<header role="banner">
+  <%= render "/shared/google_site_search" unless setting(:header_show_site_search).blank? %>
+  <%= render "/shared/site_owner_photo" unless setting(:header_show_avatar).blank? %>
+
+  <h1><%= setting :site_title unless setting(:header_show_site_title).blank? %></h1>
+  <h2><%= setting :site_description unless setting(:header_show_site_description).blank? %></h2>
+</header>
