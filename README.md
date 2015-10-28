@@ -2,6 +2,7 @@
 
 Rails app to power an #indieweb personal publishing platform.
 
+
 ## Deploy to Heroku
 
 Click this button to easily deploy to Heroku. You must already have a Heroku account.
