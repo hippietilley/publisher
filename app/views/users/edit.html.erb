@@ -24,6 +24,10 @@
     <%= f.text_field :email %>
   </div>
   <div class="field">
+    <%= f.label :avatar, "Profile Picture URL" %><br>
+    <%= f.url_field :avatar %>
+  </div>
+  <div class="field">
     <%= f.label :password %><br>
     <%= f.password_field :password %>
   </div>

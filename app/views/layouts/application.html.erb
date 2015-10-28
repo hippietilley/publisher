@@ -102,6 +102,10 @@
 
   <footer role="contentinfo">
     <div class="h-card">
+      <% unless @owner.avatar.blank? %>
+        <%= image_tag @owner.avatar, class: "u-photo" %>
+      <% end %>
+
       <p>
         <strong>Contact:</strong>
         <% unless @owner.name.blank? %>
