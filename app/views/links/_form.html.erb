@@ -16,5 +16,7 @@
   <div class="actions">
     <%= link_to "Cancel", links_url %>
     <%= f.submit %>
+    <hr>
+  <%= link_to "Delete", @link, method: :delete, data: { confirm: "Are you sure you're sure? There is NO UNDO." } %>
   </div>
 <% end %>

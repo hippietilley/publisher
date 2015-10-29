@@ -67,6 +67,8 @@
   <%= f.text_area :enclosure_url %>
 </div>
 <div class="actions">
-  <%= link_to "Cancel", root_path %>
+  <%= link_to "Cancel", videos_url %>
   <%= f.submit %>
+  <hr>
+  <%= link_to "Delete", @post.path, method: :delete, data: { confirm: "Are you sure you're sure? There is NO UNDO." } %>
 </div>

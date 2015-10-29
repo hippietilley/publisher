@@ -54,6 +54,9 @@
   <%= f.label :private %><br>
   <%= f.check_box :private %>
 </div>
-<%= f.submit %>ookmarks_url %>
+<div class="actions">
+  <%= link_to "Cancel", bookmarks_url %>
   <%= f.submit %>
+  <hr>
+  <%= link_to "Delete", @post.path, method: :delete, data: { confirm: "Are you sure you're sure? There is NO UNDO." } %>
 </div>
