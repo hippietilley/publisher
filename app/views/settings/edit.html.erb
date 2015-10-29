@@ -16,12 +16,12 @@
         <%= f.text_area :content, autofocus: true %>
       <% end %>
     </dd>
-
-    <dd class="actions">
-      <%= link_to  "Cancel", settings_url, class: "action"      %>
-      <%= f.button "Save",                 class: "action-save" %>
-    </dd>
   </dl>
+
+  <div class="actions">
+    <%= link_to "Cancel", settings_url %>
+    <%= f.submit %>
+  </div>
 <% end %>
 
 <%= render "settings" %>
