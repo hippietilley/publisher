@@ -35,7 +35,7 @@
       <%= render partial: "posts/footer", locals: { post: sound } %>
       <%= link_to "Edit", edit_sound_path(sound.params), class: "edit" if signed_in? %>
     </article>
-    
+
     <hr>
   <%= raw "</li>" if in_a_list? %>
 <% end %>

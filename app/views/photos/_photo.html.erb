@@ -35,7 +35,7 @@
       <%= render partial: "posts/footer", locals: { post: photo } %>
       <%= link_to "Edit", edit_photo_path(photo.params), class: "edit" if signed_in? %>
     </article>
-    
+
     <hr>
   <%= raw "</li>" if in_a_list? %>
 <% end %>
