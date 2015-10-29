@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-  before_action :set_link, only: [:edit, :update]
+  before_action :set_link, only: [:edit, :update, :destroy]
   before_action :authorize
   before_action :all_links
 
