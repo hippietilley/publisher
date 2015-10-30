@@ -19,4 +19,13 @@ class Note < PostType
     content
   end
 
+  def tags
+    output = []
+    
+    Tagging.where(post_type: "note", post_id: id).all.each do |tagging|
+      output << Tag.find(tagging.tag_id)
+    end
+
+    output
+  end
 end

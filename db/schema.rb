@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151029231934) do
+ActiveRecord::Schema.define(version: 20151030055712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 20151029231934) do
     t.text     "content"
     t.text     "slug"
     t.text     "in_reply_to"
-    t.text     "tags"
     t.datetime "published_at"
     t.boolean  "private"
     t.datetime "created_at",   null: false
@@ -38,7 +37,6 @@ ActiveRecord::Schema.define(version: 20151029231934) do
     t.text     "bookmark_url"
     t.text     "slug"
     t.text     "in_reply_to"
-    t.text     "tags"
     t.datetime "published_at"
     t.boolean  "private"
     t.datetime "created_at",       null: false
@@ -51,7 +49,6 @@ ActiveRecord::Schema.define(version: 20151029231934) do
     t.text     "content"
     t.text     "slug"
     t.text     "in_reply_to"
-    t.text     "tags"
     t.datetime "published_at"
     t.boolean  "private"
     t.text     "summary"
@@ -96,7 +93,6 @@ ActiveRecord::Schema.define(version: 20151029231934) do
     t.text     "content"
     t.text     "slug"
     t.text     "in_reply_to"
-    t.text     "tags"
     t.datetime "published_at"
     t.boolean  "private"
     t.datetime "created_at",   null: false
@@ -108,7 +104,6 @@ ActiveRecord::Schema.define(version: 20151029231934) do
     t.text     "subtitle"
     t.text     "content"
     t.text     "slug"
-    t.text     "tags"
     t.boolean  "show_in_nav"
     t.datetime "published_at"
     t.boolean  "private"
@@ -122,7 +117,6 @@ ActiveRecord::Schema.define(version: 20151029231934) do
     t.text     "content"
     t.text     "slug"
     t.text     "in_reply_to"
-    t.text     "tags"
     t.datetime "published_at"
     t.boolean  "private"
     t.text     "image_url"
@@ -148,7 +142,6 @@ ActiveRecord::Schema.define(version: 20151029231934) do
     t.text     "content"
     t.text     "slug"
     t.text     "in_reply_to"
-    t.text     "tags"
     t.datetime "published_at"
     t.boolean  "private"
     t.text     "image_url"
@@ -157,6 +150,21 @@ ActiveRecord::Schema.define(version: 20151029231934) do
     t.text     "enclosure_url"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "tag_id"
+    t.integer  "post_id"
+    t.string   "post_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -175,7 +183,6 @@ ActiveRecord::Schema.define(version: 20151029231934) do
     t.text     "content"
     t.text     "slug"
     t.text     "in_reply_to"
-    t.text     "tags"
     t.datetime "published_at"
     t.boolean  "private"
     t.text     "image_url"
