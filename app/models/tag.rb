@@ -10,6 +10,7 @@ class Tag < ActiveRecord::Base
 
   private
 
+  # TODO: DRY refactor this method copied from PostType into a lib?
   def clean_slug!
     blank     = ""
     separator = "-"
