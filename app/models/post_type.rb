@@ -77,6 +77,7 @@ class PostType < ActiveRecord::Base
       .gsub(/\W|_|\s|-+/,    separator)
       .gsub(/^-+/,           blank)
       .gsub(/-+$/,           blank)
+      .gsub(/--*/,           separator)
   end
 
   def set_slug

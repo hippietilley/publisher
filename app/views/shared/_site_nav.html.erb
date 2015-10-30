@@ -27,5 +27,7 @@
     <% if signed_in? %>(<%= link_to "new", new_sound_path %>)<% end %>
     <%= link_to "Videos", videos_path %>
     <% if signed_in? %>(<%= link_to "new", new_video_path %>)<% end %>
+    <%= link_to "Pages", pages_path %>
+    <% if signed_in? %>(<%= link_to "new", new_page_path %>)<% end %>
   </div>
 </nav>

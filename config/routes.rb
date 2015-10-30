@@ -128,4 +128,8 @@ Rails.application.routes.draw do
 
   # rel-me links
   resources :links
+
+  # Page lookup as a fallback to all routes
+  resources :pages, except: [:show]
+  get ":slug", to: "pages#show", as: "slugged_page"
 end
