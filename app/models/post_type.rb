@@ -66,6 +66,14 @@ class PostType < ActiveRecord::Base
     send(self.class.fallback_attribute)
   end
 
+  def tags
+    output = []
+    Tagging.where(post_type: self.class.to_s.downcase, post_id: id).all.each do |tagging|
+      output << Tag.find(tagging.tag_id)
+    end
+    output
+  end
+
   private
 
   def clean_slug!
