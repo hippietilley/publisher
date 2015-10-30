@@ -3,7 +3,7 @@
 
     <header>
       <h1 class="p-name">
-        <%= link_to page.path, class: "u-url u-uid" do %>
+        <%= link_to page.slug, class: "u-url u-uid" do %>
           <% unless page.title.blank? %>   <span class="p-hs-title">   <%= page.title %>   </span><% end %><br>
           <% unless page.subtitle.blank? %><span class="p-hs-subtitle"><%= page.subtitle %></span><% end %>
         <% end %>
