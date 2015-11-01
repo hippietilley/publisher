@@ -24,6 +24,7 @@ class NotesController < ApplicationController
     @post = Note.new(note_params)
 
     if @post.save
+      save_tags
       redirect_to @post.path, notice: "Note was successfully created."
     else
       render :new
@@ -32,6 +33,7 @@ class NotesController < ApplicationController
 
   def update
     if @post.update(note_params)
+      save_tags
       redirect_to @post.path, notice: "Note was successfully updated."
     else
       render :edit
@@ -39,6 +41,7 @@ class NotesController < ApplicationController
   end
 
   def destroy
+    delete_tags
     @post.destroy
     redirect_to notes_url, notice: "Note was successfully destroyed."
   end
@@ -47,7 +50,6 @@ class NotesController < ApplicationController
 
   def set_note
     @post = Note.where(slug: params[:slug]).first
-
     return redirect_to(root_path) if @post.private? && !signed_in?
   end
 
@@ -58,5 +60,25 @@ class NotesController < ApplicationController
       :tags,
       :published_at,
       :private)
+  end
+
+  def add_private_tag
+    params[:tags] += ", .private, " unless note_params[:private].to_i.zero?
+  end
+
+  def delete_tags
+    Tagging.where(post_id: @post.id, post_type: @post.class.to_s.downcase).destroy_all
+  end
+
+  def save_tags
+    delete_tags
+    add_private_tag
+
+    split_tags(params[:tags]).each do |name|
+      next if name.blank?
+      tag = Tag.find_or_initialize_by(name: name)
+      tag.save! if tag.new_record?
+      Tagging.create!(post_id: @post.id, post_type: @post.class.to_s.downcase, tag_id: tag.id)
+    end
   end
 end

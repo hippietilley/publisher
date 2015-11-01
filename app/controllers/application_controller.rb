@@ -5,6 +5,15 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def split_tags(tags)
+    output = []
+    tags.split(",").each do |tag|
+      output << tag.strip
+    end
+    output.uniq
+  end
+  helper_method :split_tags
+
   def set_owner
     @owner = User.first
   end

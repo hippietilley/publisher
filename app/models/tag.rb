@@ -4,7 +4,7 @@ class Tag < ActiveRecord::Base
   before_create :set_slug
   before_update :set_slug
 
-  # TODO: create slug before validation to prevent case sensitivity 
+  # TODO: create slug before validation to prevent case sensitivity
   validates :slug, uniqueness: true
   validates :name, presence: true, uniqueness: true
 
