@@ -8,9 +8,7 @@ module TagsHelper
 
     post.tags.each do |tag|
       if private_tag?(tag)
-        if signed_in?
-          html << link_to_tag(tag)
-        end
+        html << link_to_tag(tag) if signed_in?
       else
         html << link_to_tag(tag)
       end
