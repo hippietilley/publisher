@@ -132,4 +132,8 @@ Rails.application.routes.draw do
   # Page lookup as a fallback to all routes
   resources :pages, except: [:show]
   get ":slug", to: "pages#show", as: "slugged_page"
+
+  # tags
+  get "tags", to: "tags#index", as: "tags"
+  get "tags/:slug", to: "tags#show", as: "tag"
 end
