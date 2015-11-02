@@ -3,12 +3,12 @@ require 'rails_helper'
 RSpec.describe "pages/new", type: :view do
   before(:each) do
     assign(:page, Page.new(
-      :title => "MyText",
-      :subtitle => "MyText",
-      :content => "MyText",
-      :slug => "MyText",
-      :tags => "MyText",
-      :private => false
+      title: "MyText",
+      subtitle: "MyText",
+      content: "MyText",
+      slug: "MyText",
+      tags: "MyText",
+      private: false
     ))
   end
 

@@ -18,14 +18,6 @@ module PostsHelper
     end
   end
 
-  def link_to_tags_for(post)
-    html = []
-    post.tags.each do |tag|
-      html << link_to(tag.name.strip, "/tags/#{tag.slug}", class: "p-category", rel: "tag")
-    end
-    html.join(", ").html_safe
-  end
-
   def human_readable_date(datetime)
     datetime.strftime("%F")
   end
