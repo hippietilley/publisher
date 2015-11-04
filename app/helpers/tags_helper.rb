@@ -1,13 +1,9 @@
 module TagsHelper
-  def private_tag?(tag)
-    tag.name.match(/^\./)
-  end
-
   def link_to_tags_for(post)
     html = []
 
     post.tags.each do |tag|
-      if private_tag?(tag)
+      if tag.private_tag?
         html << link_to_tag(tag) if signed_in?
       else
         html << link_to_tag(tag)

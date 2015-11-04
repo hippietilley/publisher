@@ -8,6 +8,10 @@ class Tag < ActiveRecord::Base
   validates :slug, uniqueness: true
   validates :name, presence: true, uniqueness: true
 
+  def private_tag?
+    name.match(/^\./)
+  end
+
   private
 
   # TODO: DRY refactor this method copied from PostType into a lib?
