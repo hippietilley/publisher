@@ -78,7 +78,7 @@ module ApplicationHelper
     if in_a_list?
       # TODO: implement #post_type: notes, articles, photes, etc
       page_description = "Posts by #{@owner.name}"
-    elsif on_permalink?
+    elsif on_permalink? && @post
       page_description = @post.content
     else
       page_description = setting(:site_description)

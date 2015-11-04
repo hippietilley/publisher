@@ -14,6 +14,6 @@ module TagsHelper
   end
 
   def link_to_tag(tag)
-    link_to(tag.name, tag_path(tag.slug), class: "p-category", rel: "tag")
+    link_to_unless_current(tag.name, tag_path(tag.slug), class: "p-category", rel: "tag")
   end
 end
