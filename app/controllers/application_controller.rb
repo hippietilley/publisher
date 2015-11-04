@@ -7,9 +7,14 @@ class ApplicationController < ActionController::Base
 
   def split_tags(tags)
     output = []
-    tags.split(",").each do |tag|
-      output << tag.strip
+    tags = tags.gsub(/"|'/, ",")
+    separator = tags.match(/,/) ? "," : " "
+
+    tags.split(separator).each do |tag|
+      t = tag.strip.gsub(/"|'/, "")
+      output << t unless t.blank?
     end
+
     output.uniq
   end
   helper_method :split_tags
