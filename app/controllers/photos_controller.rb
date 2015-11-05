@@ -24,6 +24,7 @@ class PhotosController < ApplicationController
     @post = Photo.new(photo_params)
 
     if @post.save
+      save_tags(@post, photo_params)
       redirect_to @post.path, notice: "Photo was successfully created."
     else
       render :new
@@ -32,6 +33,7 @@ class PhotosController < ApplicationController
 
   def update
     if @post.update(photo_params)
+      save_tags(@post, photo_params)
       redirect_to @post.path, notice: "Photo was successfully updated."
     else
       render :edit
@@ -39,6 +41,7 @@ class PhotosController < ApplicationController
   end
 
   def destroy
+    delete_tags(@post)
     @post.destroy
     redirect_to photos_url, notice: "Photo was successfully destroyed."
   end

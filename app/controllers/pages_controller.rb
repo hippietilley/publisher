@@ -5,7 +5,11 @@ class PagesController < ApplicationController
   # Everything is called @post instead of @page so that other things Just Work
 
   def index
-    @posts = Page.all
+    if signed_in?
+      @posts = Page.all
+    else
+      @posts = Page.visible.all
+    end
   end
 
   def show
@@ -23,6 +27,7 @@ class PagesController < ApplicationController
     @post = Page.new(page_params)
 
     if @post.save
+      save_tags(@post, page_params)
       redirect_to slugged_page_path(@post.slug), notice: "Page was successfully created."
     else
       render :new
@@ -31,6 +36,7 @@ class PagesController < ApplicationController
 
   def update
     if @post.update(page_params)
+      save_tags(@post, page_params)
       redirect_to slugged_page_path(@post.slug), notice: "Page was successfully updated."
     else
       render :edit
@@ -38,6 +44,7 @@ class PagesController < ApplicationController
   end
 
   def destroy
+    delete_tags(@post)
     @post.destroy
     redirect_to pages_url, notice: "Page was successfully destroyed."
   end

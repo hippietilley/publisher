@@ -25,6 +25,7 @@ class BookmarksController < ApplicationController
 
     if @post.save
       redirect_to @post.path, notice: "Bookmark was successfully created."
+      save_tags(@post, bookmark_params)
     else
       render :new
     end
@@ -32,6 +33,7 @@ class BookmarksController < ApplicationController
 
   def update
     if @post.update(bookmark_params)
+      save_tags(@post, bookmark_params)
       redirect_to @post.path, notice: "Bookmark was successfully updated."
     else
       render :edit
@@ -39,6 +41,7 @@ class BookmarksController < ApplicationController
   end
 
   def destroy
+    delete_tags(@post)
     @post.destroy
     redirect_to bookmarks_url, notice: "Bookmark was successfully destroyed."
   end

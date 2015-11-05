@@ -24,6 +24,7 @@ class ArticlesController < ApplicationController
     @post = Article.new(article_params)
 
     if @post.save
+      save_tags(@post, article_params)
       redirect_to @post.path, notice: "Article was successfully created."
     else
       render :new
@@ -32,6 +33,7 @@ class ArticlesController < ApplicationController
 
   def update
     if @post.update(article_params)
+      save_tags(@post, article_params)
       redirect_to @post.path, notice: "Article was successfully updated."
     else
       render :edit
@@ -39,6 +41,7 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
+    delete_tags(@post)
     @post.destroy
     redirect_to articles_url, notice: "Article was successfully destroyed."
   end

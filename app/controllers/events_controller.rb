@@ -24,6 +24,7 @@ class EventsController < ApplicationController
     @post = Event.new(event_params)
 
     if @post.save
+      save_tags(@post, event_params)
       redirect_to @post.path, notice: "Event was successfully created."
     else
       render :new
@@ -32,6 +33,7 @@ class EventsController < ApplicationController
 
   def update
     if @post.update(event_params)
+      save_tags(@post, event_params)
       redirect_to @post.path, notice: "Event was successfully updated."
     else
       render :edit
@@ -39,6 +41,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    delete_tags(@post)
     @post.destroy
     redirect_to events_url, notice: 'Event was successfully destroyed.'
   end

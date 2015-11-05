@@ -49,4 +49,25 @@ class ApplicationController < ActionController::Base
   def authorize
     redirect_to signin_url, alert: "Not authorized" unless signed_in?
   end
+
+
+  def add_private_tag(post_params, tag_params)
+    tag_params += ", .private, " unless post_params["private"].to_i.zero?
+  end
+
+  def delete_tags(post)
+    Tagging.where(post_id: post.id, post_type: post.class.to_s.downcase).destroy_all
+  end
+
+  def save_tags(post, post_params)
+    delete_tags(post)
+    add_private_tag(params[:tags], post_params)
+
+    split_tags(params[:tags]).each do |name|
+      next if name.blank?
+      tag = Tag.find_or_initialize_by(name: name)
+      tag.save! if tag.new_record?
+      Tagging.create!(post_id: post.id, post_type: post.class.to_s.downcase, tag_id: tag.id)
+    end
+  end
 end

@@ -24,6 +24,7 @@ class VideosController < ApplicationController
     @post = Video.new(video_params)
 
     if @post.save
+      save_tags(@post, video_params)
       redirect_to @post.path, notice: "Video was successfully created."
     else
       render :new
@@ -32,6 +33,7 @@ class VideosController < ApplicationController
 
   def update
     if @post.update(video_params)
+      save_tags(@post, video_params)
       redirect_to @post.path, notice: "Video was successfully updated."
     else
       render :edit
@@ -39,6 +41,7 @@ class VideosController < ApplicationController
   end
 
   def destroy
+    delete_tags(@post)
     @post.destroy
     redirect_to videos_url, notice: "Video was successfully destroyed."
   end
