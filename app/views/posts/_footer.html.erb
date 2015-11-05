@@ -24,13 +24,12 @@
     </span>
   </p>
 
-  <% unless post.tags.split.blank? %>
+  <% unless post.tags.blank? %>
     <p class="tags">
       <b>Tags</b>
       <%= link_to_tags_for(post) %>
     </p> <!-- .tags -->
   <% end %>
-
 
   <div class="syndication">
     <%#= link_to_syndication(post).html_safe %>

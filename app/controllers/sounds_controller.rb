@@ -24,6 +24,7 @@ class SoundsController < ApplicationController
     @post = Sound.new(sound_params)
 
     if @post.save
+      save_tags(@post, sound_params)
       redirect_to @post.path, notice: "Sound was successfully created."
     else
       render :new
@@ -32,6 +33,7 @@ class SoundsController < ApplicationController
 
   def update
     if @post.update(sound_params)
+      save_tags(@post, sound_params)
       redirect_to @post.path, notice: "Sound was successfully updated."
     else
       render :edit
@@ -39,6 +41,7 @@ class SoundsController < ApplicationController
   end
 
   def destroy
+    delete_tags(@post)
     @post.destroy
     redirect_to sounds_url, notice: "Sound was successfully destroyed."
   end

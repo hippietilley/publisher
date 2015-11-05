@@ -7,6 +7,9 @@ class PostType < ActiveRecord::Base
 
   before_create :set_slug
   before_update :set_slug
+  before_create :set_published_at
+  before_update :set_published_at
+
   validates :slug, uniqueness: true
 
   default_scope { order("published_at DESC") }
@@ -66,6 +69,14 @@ class PostType < ActiveRecord::Base
     send(self.class.fallback_attribute)
   end
 
+  def tags
+    output = []
+    Tagging.where(post_type: self.class.to_s.downcase, post_id: id).all.find_each do |tagging|
+      output << Tag.find(tagging.tag_id)
+    end
+    output
+  end
+
   private
 
   def clean_slug!
@@ -83,6 +94,10 @@ class PostType < ActiveRecord::Base
   def set_slug
     self.slug = name.present? ? name : fallback_attribute if slug.blank?
     clean_slug!
+  end
+
+  def set_published_at
+    self.published_at = Time.now.getlocal if published_at.blank?
   end
 
 end

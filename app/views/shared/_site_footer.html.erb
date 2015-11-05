@@ -11,16 +11,16 @@
         <strong>Contact:</strong>
       <% end %>
 
-      <% unless @owner.name.blank? || setting(:footer_show_name).blank? %>
+      <% unless @owner.nil? || @owner.name.blank? || setting(:footer_show_name).blank? %>
         <%= link_to @owner.name, root_url, class: "u-url p-name" %>
       <% end %>
 
-      <% unless @owner.email.blank? || setting(:footer_show_email).blank? %>
+      <% unless @owner.nil? ||  @owner.email.blank? || setting(:footer_show_email).blank? %>
         (<%= mail_to @owner.email, @owner.email, class: "u-email" %>)
       <% end %>
     </p>
 
-    <% unless @owner.links.blank? || setting(:footer_show_links).blank? %>
+    <% unless @owner.nil? || @owner.links.blank? || setting(:footer_show_links).blank? %>
       <p>
         <strong>Links:</strong>
         <% @owner.links.each do |link| %>

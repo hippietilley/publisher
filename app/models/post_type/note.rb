@@ -18,5 +18,4 @@ class Note < PostType
   def title
     content
   end
-
 end

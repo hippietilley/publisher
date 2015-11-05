@@ -18,20 +18,6 @@ module PostsHelper
     end
   end
 
-  def tags_for(post)
-    separator = post.tags.match(",") ? "," : " "
-    post.tags.split(separator).map(&:strip)
-  end
-
-  def link_to_tags_for(post)
-    html = []
-
-    tags_for(post).each do |tag|
-      html << link_to(tag.to_s.strip, "/tags/#{tag.to_s.gsub(/\s/, '+')}", class: "p-category", rel: "tag")
-    end
-    html.join(", ").html_safe
-  end
-
   def human_readable_date(datetime)
     datetime.strftime("%F")
   end
@@ -43,9 +29,9 @@ module PostsHelper
   def authors_name_and_url(format = nil)
     # TODO: use current_user.url (? about page) after /profile is expanded
     if format == :html
-      link_to(@owner.name, root_url, class: "p-author h-card")
+      link_to(@owner.try(:name), root_url, class: "p-author h-card")
     else
-      @owner.name
+      @owner.try(:name)
     end
   end
 
