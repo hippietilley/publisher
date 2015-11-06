@@ -1,6 +1,6 @@
 <% if event.public? || signed_in? %>
   <%= raw "<li>" if in_a_list? %>
-    <article id="event-<%= event.id %>" class="h-entry h-as-event">
+    <article id="event-<%= event.id %>" class="h-event as-event">
 
       <header>
         <% if a_reply?(event) %>
@@ -12,8 +12,8 @@
 
         <h1 class="p-name">
           <%= link_to event.path, class: "u-url u-uid" do %>
-            <% unless event.title.blank? %>   <span class="p-hs-title">   <%= event.title %>   </span><% end %>
-            <% unless event.subtitle.blank? %><span class="p-hs-subtitle"><%= event.subtitle %></span><% end %>
+            <% unless event.title.blank? %>   <span class="p-x-title">   <%= event.title %>   </span><% end %>
+            <% unless event.subtitle.blank? %><span class="p-x-subtitle"><%= event.subtitle %></span><% end %>
           <% end %>
         </h1>
 

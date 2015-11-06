@@ -1,6 +1,6 @@
 <% if note.public? || signed_in? %>
   <%= raw "<li>" if in_a_list? %>
-    <article id="note-<%= note.id %>" class="h-entry h-as-note">
+    <article id="note-<%= note.id %>" class="h-entry as-note">
 
       <header>
         <% if a_reply?(note) %>
