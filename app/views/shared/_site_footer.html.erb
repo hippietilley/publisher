@@ -5,22 +5,20 @@
     <%= render "/shared/site_owner_photo" if show?(:footer_show_avatar) %>
 
     <p>
-      <% if show?(:footer_show_name) &&
-           setting(:footer_show_email).blank? &&
-           setting(:footer_show_email).blank? %>
+      <% if @owner.try(:name) && show?(:footer_show_name) && show?(:footer_show_email) %>
         <strong>Contact:</strong>
       <% end %>
 
-      <% unless @owner.nil? || @owner.name.blank? || setting(:footer_show_name).blank? %>
+      <% unless @owner.nil? || @owner.name.blank? || hide?(:footer_show_name) %>
         <%= link_to @owner.name, root_url, class: "u-url p-name" %>
       <% end %>
 
-      <% unless @owner.nil? ||  @owner.email.blank? || setting(:footer_show_email).blank? %>
+      <% unless @owner.nil? ||  @owner.email.blank? || hide?(:footer_show_email) %>
         (<%= mail_to @owner.email, @owner.email, class: "u-email" %>)
       <% end %>
     </p>
 
-    <% unless @owner.nil? || @owner.links.blank? || setting(:footer_show_links).blank? %>
+    <% unless @owner.nil? || @owner.links.blank? || hide?(:footer_show_links) %>
       <p>
         <strong>Links:</strong>
         <% @owner.links.each do |link| %>
