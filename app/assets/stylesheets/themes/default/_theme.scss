@@ -1,3 +1,7 @@
+// This file gets required by application.css
+// It can contain require to other .css/.scss files,
+// SCSS/CSS directly, or both.
+
 //= require themes/default/base
 //= require themes/default/nav
 //= require themes/default/read-write
@@ -5,3 +9,4 @@
 //= require themes/default/settings
 //= require themes/default/alerts
 //= require themes/default/pagination
+//= require themes/default/admin-footer

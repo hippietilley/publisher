@@ -1,33 +1,17 @@
 <nav role="navigation">
-  <div>
-    <% if signed_in? %>
-      <%= current_user.email %>
-      <%= link_to "Profile", profile_path %>
-      <%= link_to "Settings", settings_path %>
-      <%= link_to "Sign Out", signout_path %>
-    <% else %>
-      <% if allow_signup? %><%= link_to "Sign Up", signup_path %><% end %>
-      <%= link_to "Sign In", signin_path %>
-    <% end %>
-  </div>
-
-  <div>
-    <%= link_to "Home", root_path %>
-    <%= link_to "Articles", articles_path %>
-    <% if signed_in? %>(<%= link_to "new", new_article_path %>)<% end %>
-    <%= link_to "Bookmarks", bookmarks_path %>
-    <% if signed_in? %>(<%= link_to "new", new_bookmark_path %>)<% end %>
-    <%= link_to "Events", events_path %>
-    <% if signed_in? %>(<%= link_to "new", new_event_path %>)<% end %>
-    <%= link_to "Notes", notes_path %>
-    <% if signed_in? %>(<%= link_to "new", new_note_path %>)<% end %>
-    <%= link_to "Photos", photos_path %>
-    <% if signed_in? %>(<%= link_to "new", new_photo_path %>)<% end %>
-    <%= link_to "Sounds", sounds_path %>
-    <% if signed_in? %>(<%= link_to "new", new_sound_path %>)<% end %>
-    <%= link_to "Videos", videos_path %>
-    <% if signed_in? %>(<%= link_to "new", new_video_path %>)<% end %>
-    <%= link_to "Pages", pages_path %>
-    <% if signed_in? %>(<%= link_to "new", new_page_path %>)<% end %>
-  </div>
+  <% if allow_signup? %><%= link_to "Sign Up", signup_path %><% end %>
+  
+  <% unless allow_signup? %>
+    <ul>
+      <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to "Articles", articles_path %></li>
+      <li><%= link_to "Bookmarks", bookmarks_path %></li>
+      <li><%= link_to "Events", events_path %></li>
+      <li><%= link_to "Notes", notes_path %></li>
+      <li><%= link_to "Pages", pages_path %></li>
+      <li><%= link_to "Photos", photos_path %></li>
+      <li><%= link_to "Sounds", sounds_path %></li>
+      <li><%= link_to "Videos", videos_path %></li>
+    </ul>
+  <% end %>
 </nav>
