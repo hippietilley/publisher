@@ -36,8 +36,7 @@
 
       <%= render partial: "posts/footer", locals: { post: bookmark } %>
       <%= link_to "Edit", edit_bookmark_path(bookmark.params), class: "edit" if signed_in? %>
-    </article>
-
-    <hr>
+        </article>
   <%= raw "</li>" if in_a_list? %>
+
 <% end %>

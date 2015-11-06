@@ -34,8 +34,7 @@
 
       <%= render partial: "posts/footer", locals: { post: video } %>
       <%= link_to "Edit", edit_video_path(video.params), class: "edit" if signed_in? %>
-    </article>
-
-    <hr>
+        </article>
   <%= raw "</li>" if in_a_list? %>
+
 <% end %>

@@ -58,8 +58,7 @@
 
       <%= render partial: "posts/footer", locals: { post: event } %>
       <%= link_to "Edit", edit_event_path(event.params), class: "edit" if signed_in? %>
-    </article>
-
-    <hr>
+        </article>
   <%= raw "</li>" if in_a_list? %>
+
 <% end %>

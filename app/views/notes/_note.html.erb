@@ -19,8 +19,5 @@
       <%= render partial: "posts/footer", locals: { post: note } %>
       <%= link_to "Edit", edit_note_path(note.params), class: "edit" if signed_in? %>
     </article>
-
-  
-    <hr>
   <%= raw "</li>" if in_a_list? %>
 <% end %>
