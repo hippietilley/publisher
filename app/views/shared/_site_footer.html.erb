@@ -1,11 +1,11 @@
 <footer role="contentinfo">
-  <%= render "/shared/google_site_search" unless setting(:footer_show_site_search).blank? %>
+  <%= render "/shared/google_site_search" if show?(:footer_show_site_search) %>
 
   <div class="h-card">
-    <%= render "/shared/site_owner_photo" unless setting(:footer_show_avatar).blank? %>
+    <%= render "/shared/site_owner_photo" if show?(:footer_show_avatar) %>
 
     <p>
-      <% unless setting(:footer_show_name).blank? &&
+      <% if show?(:footer_show_name) &&
            setting(:footer_show_email).blank? &&
            setting(:footer_show_email).blank? %>
         <strong>Contact:</strong>
@@ -30,7 +30,7 @@
     <% end %>
   </div>
 
-  <% unless setting(:footer_show_license).blank? %>
+  <% if show?(:footer_show_license) %>
     <p><%= license :html %>.</p>
   <% end %>
 </footer>

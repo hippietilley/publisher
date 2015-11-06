@@ -17,7 +17,7 @@ class Setting < ActiveRecord::Base
   def special_settings
     # allow blank
     # TODO: this is a mess
-    blankable_settings = /Custom CSS|Footer Show|Header Show|Rel Me|Short Title|Site Description|Public Key/
+    blankable_settings = /Custom CSS|Footer Show|Header Show|Rel Me|Site Title|Site Description|Public Key/
 
     if name =~ blankable_settings
       return true

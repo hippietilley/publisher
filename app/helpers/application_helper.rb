@@ -1,4 +1,28 @@
 module ApplicationHelper
+  def hide?(name)
+    !show?(name)
+  end
+
+  def show?(name)
+    if setting(name).blank?
+      false
+    else
+      true
+    end
+  end
+
+  def show_nav_to?(page)
+    case page
+    when :home
+      if (hide?(:header_show_avatar) && hide?(:header_show_site_title)) ||
+         (setting(:site_title).blank? && @owner && @owner.avatar.blank?)
+        true
+      end
+    else
+      true
+    end
+  end
+
   def writing?
     action_name =~ /new|edit/
   end

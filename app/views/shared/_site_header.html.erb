@@ -1,7 +1,6 @@
-<header role="banner">
-  <%= render "/shared/google_site_search" unless setting(:header_show_site_search).blank? %>
-  <%= render "/shared/site_owner_photo" unless setting(:header_show_avatar).blank? %>
+<header role="banner" class="h-card">
+  <%= render "/shared/site_owner_photo" if show?(:header_show_avatar) %>
 
-  <h1><%= setting :site_title unless setting(:header_show_site_title).blank? %></h1>
-  <h2><%= setting :site_description unless setting(:header_show_site_description).blank? %></h2>
+  <h1><%= link_to setting(:site_title), root_url, class: "u-url", rel: "home" if show?(:header_show_site_title) %></h1>
+  <h2><%= raw setting(:site_description) if show?(:header_show_site_description) %></h2>
 </header>
