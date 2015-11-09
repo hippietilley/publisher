@@ -15,7 +15,6 @@ class Note < PostType
     pieces[0..-1].join(" ")
   end
 
-  def title
-    content
-  end
+  def title; nil; end
+  def subtitle; nil; end
 end

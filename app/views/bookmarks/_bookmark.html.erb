@@ -1,26 +1,11 @@
-<% if bookmark.public? || signed_in? %>
-  <%= content_tag (in_a_list? ? :li : :div) do %>
-    <%= content_tag :article, post_id_and_classes(bookmark) do %>
+<%= render "/posts/content", post: post %>
 
-      <%= render "/posts/header", post: bookmark %>
+<blockquote cite="<%= post.bookmark_url %>">
+  <%= raw post.bookmark_excerpt %>
+</blockquote>
 
-      <div>
-        <blockquote cite="<%= bookmark.bookmark_url %>">
-          <%= raw bookmark.bookmark_excerpt %>
-        </blockquote>
-
-        <% if bookmark.bookmark_author.present? %>
-          <cite>
-            <p>( <a class="h-card" href="<%= bookmark.bookmark_url %>"><%= bookmark.bookmark_author %></a> )</p>
-          </cite>
-        <% end %>
-
-        <%= render "/posts/content", post: bookmark %>
-      </div>
-
-      <%= render "/posts/footer",  post: bookmark %>
-      <%= link_to "Edit", edit_bookmark_path(bookmark.params), class: "edit" if signed_in? %>
-
-    <% end %>
-  <% end %>
+<% if post.bookmark_author.present? %>
+  <cite>
+    <p>( <a class="h-card" href="<%= post.bookmark_url %>"><%= post.bookmark_author %></a> )</p>
+  </cite>
 <% end %>

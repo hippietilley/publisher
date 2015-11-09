@@ -1,26 +1,13 @@
-<% if video.public? || signed_in? %>
-  <%= content_tag (in_a_list? ? :li : :div) do %>
-    <%= content_tag :article, post_id_and_classes(video) do %>
+<div class="e-content">
+  <video controls width="<%= video.width %>" height="<%= video.height %>" poster="<%= video.image_url %>" class="u-photo">
+    <source src="<%= video.enclosure_url %>" class="u-video" />
+  </video>
 
-      <%= render "/posts/header", post: video %>
+  <p class="download">
+    <%= link_to "Download video", video.enclosure_url, class: "u-x-enclosure" %>
+  </p>
 
-      <div class="e-content">
-        <video controls width="<%= video.width %>" height="<%= video.height %>" poster="<%= video.image_url %>" class="u-photo">
-          <source src="<%= video.enclosure_url %>" class="u-video" />
-        </video>
-
-        <p class="download">
-          <%= link_to "Download video", video.enclosure_url, class: "u-x-enclosure" %>
-        </p>
-
-        <div class="p-summary">
-          <%= raw video.content %>
-        </div>
-      </div>
-
-      <%= render "/posts/footer", post: video %>
-      <%= link_to "Edit", edit_video_path(video.params), class: "edit" if signed_in? %>
-
-    <% end %>
-  <% end %>
-<% end %>
+  <div class="p-summary">
+    <%= raw video.content %>
+  </div>
+</div>

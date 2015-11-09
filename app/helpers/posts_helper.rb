@@ -1,4 +1,12 @@
 module PostsHelper
+  def edit_post_path(post)
+    if post.is_a?(Page)
+      [ "pages", post.id, "edit" ]
+    else
+      [ post.params[:slug], "edit" ]
+    end.join("/")
+  end
+
   def post_id_and_classes(post, html_class: "h-entry")
     {
       id: "#{post.class.to_s.downcase}-#{post.id}",

@@ -1,24 +1,5 @@
-<% if note.public? || signed_in? %>
-  <%= content_tag (in_a_list? ? :li : :div) do %>
-    <%= content_tag :article, post_id_and_classes(note) do %>
+<div class="p-name e-content">
+  <%# TODO: linked_content: URLs, @usernames, #hashtags, embeds %>
+  <%= simple_format post.content %>
+</div>
 
-      <header>
-        <% if a_reply?(note) %>
-          <div class="reply-context">
-            <b>In Reply To</b>
-            <%= link_to_in_reply_to_urls note %>
-          </div>
-        <% end %>
-
-        <div class="p-name e-content">
-          <%# TODO: linked_content: URLs, @usernames, #hashtags, embeds %>
-          <%= simple_format note.content %>
-        </div>
-      </header>
-
-      <%= render "/posts/footer", post: note %>
-      <%= link_to "Edit", edit_note_path(note.params), class: "edit" if signed_in? %>
-
-    <% end %>
-  <% end %>
-<% end %>

@@ -1,26 +1,13 @@
-<% if sound.public? || signed_in? %>
-  <%= content_tag (in_a_list? ? :li : :div) do %>
-    <%= content_tag :article, post_id_and_classes(sound) do %>
+<div class="e-content">
+  <audio controls>
+    <source src="<%= post.enclosure_url %>" class="u-audio" />
+  </audio>
 
-      <%= render "/posts/header", post: sound %>
+  <p class="download">
+    <%= link_to "Download sound", post.enclosure_url, class: "u-x-enclosure" %>
+  </p>
 
-      <div class="e-content">
-        <audio controls>
-          <source src="<%= sound.enclosure_url %>" class="u-audio" />
-        </audio>
-
-        <p class="download">
-          <%= link_to "Download sound", sound.enclosure_url, class: "u-x-enclosure" %>
-        </p>
-
-        <div class="p-summary">
-          <%= raw sound.content %>
-        </div>
-      </div>
-
-      <%= render "/posts/footer", post: sound %>
-      <%= link_to "Edit", edit_sound_path(sound.params), class: "edit" if signed_in? %>
-
-    <% end %>
-  <% end %>
-<% end %>
+  <div class="p-summary">
+    <%= raw post.content %>
+  </div>
+</div>

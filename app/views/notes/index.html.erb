@@ -1,5 +1,5 @@
 <ol class="h-feed">
-  <%= render @posts %>
+  <%= render partial: "/posts/post", collection: @posts, as: :post %>
 </ol>
 
 <%= will_paginate @posts %>
