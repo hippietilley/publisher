@@ -1,22 +1,8 @@
 <% if video.public? || signed_in? %>
-  <%= raw "<li>" if in_a_list? %>
-    <article id="video-<%= video.id %>" class="h-entry">
+  <%= content_tag (in_a_list? ? :li : :div) do %>
+    <%= content_tag :article, post_id_and_classes(video) do %>
 
-      <header>
-        <% if a_reply?(video) %>
-          <div class="reply-context">
-            <b>In Reply To</b>
-            <%= link_to_in_reply_to_urls video %>
-          </div>
-        <% end %>
-
-        <h1 class="p-name">
-          <%= link_to video.path, class: "u-url u-uid" do %>
-            <% unless video.title.blank? %>   <span class="p-hs-title">   <%= video.title %>   </span><% end %>
-            <% unless video.subtitle.blank? %><span class="p-hs-subtitle"><%= video.subtitle %></span><% end %>
-          <% end %>
-        </h1>
-      </header>
+      <%= render "/posts/header", post: video %>
 
       <div class="e-content">
         <video controls width="<%= video.width %>" height="<%= video.height %>" poster="<%= video.image_url %>" class="u-photo">
@@ -32,9 +18,9 @@
         </div>
       </div>
 
-      <%= render partial: "posts/footer", locals: { post: video } %>
+      <%= render "/posts/footer", post: video %>
       <%= link_to "Edit", edit_video_path(video.params), class: "edit" if signed_in? %>
-        </article>
-  <%= raw "</li>" if in_a_list? %>
 
+    <% end %>
+  <% end %>
 <% end %>

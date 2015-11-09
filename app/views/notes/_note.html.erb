@@ -1,6 +1,6 @@
 <% if note.public? || signed_in? %>
-  <%= raw "<li>" if in_a_list? %>
-    <article id="note-<%= note.id %>" class="h-entry">
+  <%= content_tag (in_a_list? ? :li : :div) do %>
+    <%= content_tag :article, post_id_and_classes(note) do %>
 
       <header>
         <% if a_reply?(note) %>
@@ -16,8 +16,9 @@
         </div>
       </header>
 
-      <%= render partial: "posts/footer", locals: { post: note } %>
+      <%= render "/posts/footer", post: note %>
       <%= link_to "Edit", edit_note_path(note.params), class: "edit" if signed_in? %>
-    </article>
-  <%= raw "</li>" if in_a_list? %>
+
+    <% end %>
+  <% end %>
 <% end %>

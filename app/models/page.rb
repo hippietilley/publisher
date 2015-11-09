@@ -5,4 +5,7 @@ class Page < PostType
     content[0..50].split[0..-2].join(" ")
   end
 
+  def in_reply_to?
+    false
+  end
 end
