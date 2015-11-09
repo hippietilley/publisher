@@ -1,21 +1,12 @@
 <% if page.public? || signed_in? %>
-  <article id="page-<%= page.id %>" class="h-entry as-page">
+  <%= content_tag :article, post_id_and_classes(page) do %>
 
-    <header>
-      <h1 class="p-name">
-        <%= link_to page.slug, class: "u-url u-uid" do %>
-          <% unless page.title.blank? %>   <span class="p-x-title">   <%= page.title %>   </span><% end %><br>
-          <% unless page.subtitle.blank? %><span class="p-x-subtitle"><%= page.subtitle %></span><% end %>
-        <% end %>
-      </h1>
-    </header>
-    
-    <div class="e-content">
-      <%= raw page.content %>
-    </div>
+    <%= render "/posts/header",  post: page %>
+    <%= render "/posts/content", post: page %>
+    <%= render "/posts/footer",  post: page %>
 
-    <%= render partial: "posts/footer", locals: { post: page } %>
     <%= link_to "Edit", edit_page_path(page), class: "edit" if signed_in? %>
-  </article>
+
+  <% end %>
 <% end %>
 

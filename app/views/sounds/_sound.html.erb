@@ -1,22 +1,8 @@
 <% if sound.public? || signed_in? %>
-  <%= raw "<li>" if in_a_list? %>
-    <article id="sound-<%= sound.id %>" class="h-entry as-sound">
+  <%= content_tag (in_a_list? ? :li : :div) do %>
+    <%= content_tag :article, post_id_and_classes(sound) do %>
 
-      <header>
-        <% if a_reply?(sound) %>
-          <div class="reply-context">
-            <b>In Reply To</b>
-            <%= link_to_in_reply_to_urls sound %>
-          </div>
-        <% end %>
-
-        <h1 class="p-name">
-          <%= link_to sound.path, class: "u-url u-uid" do %>
-            <% unless sound.title.blank? %>   <span class="p-x-title">   <%= sound.title %>   </span><% end %>
-            <% unless sound.subtitle.blank? %><span class="p-x-subtitle"><%= sound.subtitle %></span><% end %>
-          <% end %>
-        </h1>
-      </header>
+      <%= render "/posts/header", post: sound %>
 
       <div class="e-content">
         <audio controls>
@@ -32,10 +18,9 @@
         </div>
       </div>
 
-      <%= render partial: "posts/footer", locals: { post: sound } %>
+      <%= render "/posts/footer", post: sound %>
       <%= link_to "Edit", edit_sound_path(sound.params), class: "edit" if signed_in? %>
-    </article>
 
-    <hr>
-  <%= raw "</li>" if in_a_list? %>
+    <% end %>
+  <% end %>
 <% end %>

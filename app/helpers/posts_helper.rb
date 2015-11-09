@@ -1,4 +1,11 @@
 module PostsHelper
+  def post_id_and_classes(post, html_class: "h-entry")
+    {
+      id: "#{post.class.to_s.downcase}-#{post.id}",
+      class: html_class
+    }
+  end
+
   def rel_in_reply_to
     on_permalink? ? "in-reply-to external" : "external"
   end

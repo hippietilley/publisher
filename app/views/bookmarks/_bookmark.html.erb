@@ -1,23 +1,9 @@
 <% if bookmark.public? || signed_in? %>
-  <%= raw "<li>" if in_a_list? %>
-    <article id="bookmark-<%= bookmark.id %>" class="h-entry as-bookmark">
+  <%= content_tag (in_a_list? ? :li : :div) do %>
+    <%= content_tag :article, post_id_and_classes(bookmark) do %>
 
-      <header>
-        <% if a_reply?(bookmark) %>
-          <div class="reply-context">
-            <b>In Reply To</b>
-            <%= link_to_in_reply_to_urls bookmark %>
-          </div>
-        <% end %>
+      <%= render "/posts/header", post: bookmark %>
 
-        <h1 class="p-name">
-          <%= link_to bookmark.path, class: "u-url u-uid" do %>
-            <% unless bookmark.title.blank? %>   <span class="p-x-title">   <%= bookmark.title %>   </span><% end %>
-            <% unless bookmark.subtitle.blank? %><span class="p-x-subtitle"><%= bookmark.subtitle %></span><% end %>
-          <% end %>
-        </h1>
-      </header>
-      
       <div>
         <blockquote cite="<%= bookmark.bookmark_url %>">
           <%= raw bookmark.bookmark_excerpt %>
@@ -29,15 +15,12 @@
           </cite>
         <% end %>
 
-        <div class="e-content">
-          <%= raw bookmark.content %>
-        </div>
+        <%= render "/posts/content", post: bookmark %>
       </div>
 
-      <%= render partial: "posts/footer", locals: { post: bookmark } %>
+      <%= render "/posts/footer",  post: bookmark %>
       <%= link_to "Edit", edit_bookmark_path(bookmark.params), class: "edit" if signed_in? %>
-    </article>
 
-    <hr>
-  <%= raw "</li>" if in_a_list? %>
+    <% end %>
+  <% end %>
 <% end %>

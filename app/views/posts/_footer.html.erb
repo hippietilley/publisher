@@ -1,10 +1,10 @@
 <footer>
   <p>
-    <%= link_to "Published", post.path, class: "u-url u-uid p-as-verb" %>
+    <%= link_to "Published", post.path, class: "u-url u-uid" %>
 
     <span class="screen-reader-only">
       this
-      <%= link_to post.class.to_s.downcase, "/#{post.class.to_s.downcase.pluralize}", class: "p-post-type p-as-object" %>
+      <%= link_to post.class.to_s.downcase, "/#{post.class.to_s.downcase.pluralize}", class: "p-x-post-type" %>
     </span>
 
     <%= time_tag post.published_at, class: "dt-published" do %>
@@ -17,7 +17,7 @@
 
     <%= small_word_tag "by" %>
 
-    <span class="p-author p-as-actor h-card">
+    <span class="p-author h-card">
       <a href="<%= root_url %>" rel="me" class="u-url p-name">
         <%= post.user.name %>
       </a>
