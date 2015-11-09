@@ -1,6 +1,6 @@
 <% if article.public? || signed_in? %>
   <%= raw "<li>" if in_a_list? %>
-    <article id="article-<%= article.id %>" class="h-entry as-article">
+    <article id="article-<%= article.id %>" class="h-entry">
 
       <header>
         <% if a_reply?(article) %>
@@ -12,8 +12,8 @@
 
         <h1 class="p-name">
           <%= link_to article.path, class: "u-url u-uid" do %>
-            <% unless article.title.blank? %>   <span class="p-x-title">   <%= article.title %>   </span><% end %>
-            <% unless article.subtitle.blank? %><span class="p-x-subtitle"><%= article.subtitle %></span><% end %>
+            <% unless article.title.blank? %>   <span class="p-hs-title">   <%= article.title %>   </span><% end %>
+            <% unless article.subtitle.blank? %><span class="p-hs-subtitle"><%= article.subtitle %></span><% end %>
           <% end %>
         </h1>
       </header>

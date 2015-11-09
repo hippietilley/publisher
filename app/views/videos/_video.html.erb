@@ -1,6 +1,6 @@
 <% if video.public? || signed_in? %>
   <%= raw "<li>" if in_a_list? %>
-    <article id="video-<%= video.id %>" class="h-entry as-video">
+    <article id="video-<%= video.id %>" class="h-entry">
 
       <header>
         <% if a_reply?(video) %>
@@ -12,8 +12,8 @@
 
         <h1 class="p-name">
           <%= link_to video.path, class: "u-url u-uid" do %>
-            <% unless video.title.blank? %>   <span class="p-x-title">   <%= video.title %>   </span><% end %>
-            <% unless video.subtitle.blank? %><span class="p-x-subtitle"><%= video.subtitle %></span><% end %>
+            <% unless video.title.blank? %>   <span class="p-hs-title">   <%= video.title %>   </span><% end %>
+            <% unless video.subtitle.blank? %><span class="p-hs-subtitle"><%= video.subtitle %></span><% end %>
           <% end %>
         </h1>
       </header>

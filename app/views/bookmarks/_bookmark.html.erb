@@ -1,6 +1,6 @@
 <% if bookmark.public? || signed_in? %>
   <%= raw "<li>" if in_a_list? %>
-    <article id="bookmark-<%= bookmark.id %>" class="h-entry as-bookmark">
+    <article id="bookmark-<%= bookmark.id %>" class="h-entry">
 
       <header>
         <% if a_reply?(bookmark) %>
@@ -12,8 +12,8 @@
 
         <h1 class="p-name">
           <%= link_to bookmark.path, class: "u-url u-uid" do %>
-            <% unless bookmark.title.blank? %>   <span class="p-x-title">   <%= bookmark.title %>   </span><% end %>
-            <% unless bookmark.subtitle.blank? %><span class="p-x-subtitle"><%= bookmark.subtitle %></span><% end %>
+            <% unless bookmark.title.blank? %>   <span class="p-hs-title">   <%= bookmark.title %>   </span><% end %>
+            <% unless bookmark.subtitle.blank? %><span class="p-hs-subtitle"><%= bookmark.subtitle %></span><% end %>
           <% end %>
         </h1>
       </header>

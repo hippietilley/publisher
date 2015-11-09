@@ -1,6 +1,6 @@
 <% if photo.public? || signed_in? %>
   <%= raw "<li>" if in_a_list? %>
-    <article id="photo-<%= photo.id %>" class="h-entry as-photo">
+    <article id="photo-<%= photo.id %>" class="h-entry">
 
       <header>
         <% if a_reply?(photo) %>
@@ -12,8 +12,8 @@
 
         <h1 class="p-name">
           <%= link_to photo.path, class: "u-url u-uid" do %>
-            <% unless photo.title.blank? %>   <span class="p-x-title">   <%= photo.title %>   </span><% end %>
-            <% unless photo.subtitle.blank? %><span class="p-x-subtitle"><%= photo.subtitle %></span><% end %>
+            <% unless photo.title.blank? %>   <span class="p-hs-title">   <%= photo.title %>   </span><% end %>
+            <% unless photo.subtitle.blank? %><span class="p-hs-subtitle"><%= photo.subtitle %></span><% end %>
           <% end %>
         </h1>
       </header>
