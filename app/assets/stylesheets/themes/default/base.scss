@@ -1,3 +1,35 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.screen-reader-only {
+  display: none !important;
+}
+
+body,
+fieldset,
+input[type=text],
+input[type=url],
+input[type=email],
+input[type=number],
+input[type=datetime],
+textarea,
+button {
+  font-family: "helvetica neue", helvetica, arial, sans-serif;
+}
+
+body,
+fieldset,
+input[type=text],
+input[type=url],
+input[type=email],
+input[type=number],
+input[type=datetime],
+textarea {
+  width: 100%;
+}
+
 a {
   color: #444;
 }

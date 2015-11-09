@@ -1,9 +1,11 @@
 button,
 input[type=submit] {
   display: inline-block;
-  padding: .5rem .5rem .25rem .5rem;
+  padding: .5rem;
   color: white;
   background: #666;
+  border: none;
+  outline: none;
 }
 
 textarea {
@@ -50,10 +52,16 @@ textarea {
 .action-delete { padding: .4em 0;     }
 .action-save   { padding: .4em .66em; }
 
-.actions .dt-updated {
-  color: #ccc;
-  display: block;
-  text-align: right;
-  clear: both;
-  font-size: .8em;
+:focus {
+  outline: none;
+}
+
+input {
+  display: inline-block;
+}
+
+input,
+textarea,
+fieldset {
+  padding: 0;
 }
