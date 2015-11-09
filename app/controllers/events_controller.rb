@@ -8,9 +8,12 @@ class EventsController < ApplicationController
     else
       @posts = Event.visible.paginate(page: params[:page]).all
     end
+
+    render "/posts/index"
   end
 
   def show
+    render "/posts/show"
   end
 
   def new

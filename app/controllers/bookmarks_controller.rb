@@ -8,9 +8,12 @@ class BookmarksController < ApplicationController
     else
       @posts = Bookmark.visible.paginate(page: params[:page]).all
     end
+
+    render "/posts/index"
   end
 
   def show
+    render "/posts/show"
   end
 
   def new

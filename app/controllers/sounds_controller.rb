@@ -8,9 +8,12 @@ class SoundsController < ApplicationController
     else
       @posts = Sound.visible.paginate(page: params[:page]).all
     end
+
+    render "/posts/index"
   end
 
   def show
+    render "/posts/show"
   end
 
   def new

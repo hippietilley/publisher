@@ -1,8 +1,7 @@
+# Everything is called @post instead of @page so that other things Just Work
 class PagesController < ApplicationController
   before_action :set_page, only: [:edit, :update, :destroy]
   before_action :authorize, except: [:show, :index]
-
-  # Everything is called @post instead of @page so that other things Just Work
 
   def index
     if signed_in?
@@ -11,9 +10,10 @@ class PagesController < ApplicationController
       @posts = Page.visible.all
     end
   end
-
+  
   def show
     @post = Page.find_by(slug: params[:slug])
+    render "/posts/show"
   end
 
   def new

@@ -8,9 +8,12 @@ class VideosController < ApplicationController
     else
       @posts = Video.visible.paginate(page: params[:page]).all
     end
+
+    render "/posts/index"
   end
 
   def show
+    render "/posts/show"
   end
 
   def new

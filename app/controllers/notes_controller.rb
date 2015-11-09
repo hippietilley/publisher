@@ -8,9 +8,12 @@ class NotesController < ApplicationController
     else
       @posts = Note.visible.paginate(page: params[:page]).all
     end
+
+    render "/posts/index"
   end
 
   def show
+    render "/posts/show"
   end
 
   def new
