@@ -10,10 +10,10 @@
           </div>
         <% end %>
 
-        <h1 class="p-name e-content">
+        <div class="p-name e-content">
           <%# TODO: linked_content: URLs, @usernames, #hashtags, embeds %>
-          <%= note.content %>
-        </h1>
+          <%= simple_format note.content %>
+        </div>
       </header>
 
       <%= render partial: "posts/footer", locals: { post: note } %>
