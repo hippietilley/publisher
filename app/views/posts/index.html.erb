@@ -2,4 +2,4 @@
   <%= render partial: "/posts/post", collection: @posts, as: :post %>
 </ol>
 
-<%#= will_paginate @posts %>
+<%= will_paginate @posts unless @posts.is_a?(Array) %>
