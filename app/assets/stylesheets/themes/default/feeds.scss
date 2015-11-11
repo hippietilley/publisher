@@ -57,10 +57,10 @@
   p { margin-bottom: 1em; }
 
   /* entry header and footer... */
-  header { margin: 0 0 2rem 0; }
-  footer { margin: 2rem 0 0 0; }
+  header .reply-context { margin: 0 0 2rem 0; }
+  footer                { margin: 2rem 0 0 0; }
 
-  header,
+  header .reply-context,
   footer {
     color: #ccc;
     opacity: .75;
@@ -78,22 +78,15 @@
 
     &:hover a:hover { color: #666; }
 
-    .reply-context,
-    .syndication {
-      font-size: 12px;
-      font-weight: normal;
+    p,
+    ul,
+    li {
       display: inline;
-
-      p,
-      ul,
-      li {
-        display: inline;
-        margin: 0;
-        padding: 0;
-      }
-
-      li { margin-left: .25em; }
+      margin: 0;
+      padding: 0;
     }
+
+    li { margin-left: .25em; }
   }
   /* ...entry footer */
 }
