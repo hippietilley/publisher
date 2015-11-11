@@ -7,7 +7,7 @@
 .h-event,
 .h-entry {
   margin: 2rem 0 4rem 0;
-  
+
   .p-name .p-hs-title,
   .p-name .p-hs-subtitle {
     display: block;
@@ -23,10 +23,6 @@
     font-size: 1.5em;
     display: block;
     font-weight: normal;
-  }
-
-  header  .post-meta {
-    margin-bottom: 1em;
   }
 
   .p-name {
@@ -46,7 +42,7 @@
 
   .e-content {
     font-family: georgia, times, serif;
-    font-size: 1em;
+    font-size: 1.25em;
 
     h1, h2, h3, h4, h5, h6 {
       font-family: "helvetica neue", helvetica, arial, sans-serif;
@@ -60,13 +56,44 @@
 
   p { margin-bottom: 1em; }
 
-  footer {
-    margin: 2rem 0 0 0;
-    opacity: .75;
-    color: #999;
+  /* entry header and footer... */
+  header { margin: 0 0 2rem 0; }
+  footer { margin: 2rem 0 0 0; }
 
-    a { color: #999; }
+  header,
+  footer {
+    color: #ccc;
+    opacity: .75;
+    font-size: 12px;
+    font-weight: normal;
 
     p { margin: 0; }
+    a { color: #ccc; }
+
+    &:hover,
+    &:hover input,
+    &:hover a {
+      color: #999;
+    }
+
+    &:hover a:hover { color: #666; }
+
+    .reply-context,
+    .syndication {
+      font-size: 12px;
+      font-weight: normal;
+      display: inline;
+
+      p,
+      ul,
+      li {
+        display: inline;
+        margin: 0;
+        padding: 0;
+      }
+
+      li { margin-left: .25em; }
+    }
   }
+  /* ...entry footer */
 }
