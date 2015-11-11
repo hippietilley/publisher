@@ -10,7 +10,7 @@ class PagesController < ApplicationController
       @posts = Page.visible.all
     end
   end
-  
+
   def show
     @post = Page.find_by(slug: params[:slug])
     render "/posts/show"

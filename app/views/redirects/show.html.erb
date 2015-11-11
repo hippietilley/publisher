@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Source path:</strong>
+  <%= @redirect.source_path %>
+</p>
+
+<p>
+  <strong>Target path:</strong>
+  <%= @redirect.target_path %>
+</p>
+
+<%= link_to 'Edit', edit_redirect_path(@redirect) %> |
+<%= link_to 'Back', redirects_path %>

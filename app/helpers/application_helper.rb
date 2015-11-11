@@ -15,7 +15,7 @@ module ApplicationHelper
     case page
     when :home
       if (hide?(:header_show_avatar) && hide?(:header_show_site_title)) ||
-         (setting(:site_title).blank? && @owner && @owner.avatar.blank?)
+          (setting(:site_title).blank? && @owner && @owner.avatar.blank?)
         true
       end
     else

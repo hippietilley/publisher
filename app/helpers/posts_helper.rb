@@ -1,9 +1,9 @@
 module PostsHelper
   def edit_post_path(post)
     if post.is_a?(Page)
-      [ "pages", post.id, "edit" ]
+      ["pages", post.id, "edit"]
     else
-      [ post.params[:slug], "edit" ]
+      [post.params[:slug], "edit"]
     end.join("/")
   end
 
@@ -20,7 +20,7 @@ module PostsHelper
 
   def link_to_in_reply_to_urls(post)
     links = []
-    protocol_regex = %r{/https*:\/\//}
+    protocol_regex = %r{https*:\/\/}
 
     unless post.in_reply_to.blank?
       post.in_reply_to.split.each do |url|
@@ -57,7 +57,7 @@ module PostsHelper
       "profile"
     elsif action_name == "new"
       "/#{controller_name}/new"
-    elsif @slug != "settings" && @slug != "links" && action_name == "edit"
+    elsif @slug != "settings" && @slug != "links" && @slug != "redirects" && action_name == "edit"
       "#{post.path}/edit"
     elsif post
       post.path

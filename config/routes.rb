@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :redirects
   root to: "posts#index"
 
   # users + auth
