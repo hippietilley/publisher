@@ -1,29 +1,4 @@
 <footer>
-  <p>
-    <%= link_to "Published", post.path, class: "u-url u-uid" %>
-
-    <span class="screen-reader-only">
-      this
-      <%= link_to post.class.to_s.downcase, "/#{post.class.to_s.downcase.pluralize}", class: "p-x-post-type" %>
-    </span>
-
-    <%= time_tag post.published_at, class: "dt-published" do %>
-      <%= small_word_tag "on" %>
-      <%= human_readable_date post.published_at %>
-
-      <%= small_word_tag "at" %>
-      <%= human_readable_time post.published_at %>
-    <% end %>
-
-    <%= small_word_tag "by" %>
-
-    <span class="p-author h-card">
-      <a href="<%= root_url %>" rel="me" class="u-url p-name">
-        <%= post.user.name %>
-      </a>
-    </span>
-  </p>
-
   <% unless post.tags.blank? %>
     <p class="tags">
       <b>Tags</b>
@@ -34,4 +9,24 @@
   <div class="syndication">
     <%#= link_to_syndication(post).html_safe %>
   </div> <!-- .syndication -->
+
+  <p class="hs-activity-sentence">
+    <b><%= link_to post.class.to_s.capitalize, "/#{post.class.to_s.downcase.pluralize}", class: "p-x-post-type" %></b>
+
+    <%= small_word_tag "by" %>
+
+    <span class="p-author h-card">
+      <%= link_to post.user.name, root_url, rel: "me", class: "u-url p-name" %>
+    </span>
+
+    <%= small_word_tag "on" %>
+
+    <%= link_to post.path, class: "u-url u-uid" do %>
+      <%= time_tag post.published_at, class: "dt-published" do %>
+        <%= human_readable_date post.published_at %>
+        <%= small_word_tag "at" %>
+        <%= human_readable_time post.published_at %>
+      <% end %>
+    <% end %>
+  </p>
 </footer>
