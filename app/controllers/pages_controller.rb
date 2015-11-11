@@ -12,8 +12,17 @@ class PagesController < ApplicationController
   end
 
   def show
-    @post = Page.find_by(slug: params[:slug])
-    render "/posts/show"
+    # find old path and redirect to new one
+    redirect = Redirect.find_by(source_path: params[:path])
+    return redirect_to("/" + redirect.target_path) unless redirect.nil?
+
+    # if no redirect is found, look page or redirect to home
+    @post = Page.find_by(slug: params[:path])
+    if @post.nil?
+      return redirect_to root_path
+    else
+      return render "/posts/show"
+    end
   end
 
   def new

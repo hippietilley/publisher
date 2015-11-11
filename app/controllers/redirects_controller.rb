@@ -1,5 +1,5 @@
 class RedirectsController < ApplicationController
-  before_action :set_redirect, only: [:show, :edit, :update, :destroy]
+  before_action :set_redirect, only: [:edit, :update, :destroy]
   before_action :authorize
 
   def index
@@ -9,7 +9,6 @@ class RedirectsController < ApplicationController
   end
 
   def show
-    redirect_to redirects_path
   end
 
   def new

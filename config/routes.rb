@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-  resources :redirects
   root to: "posts#index"
 
-  # users + auth
+  # Users + auth
   resources :users, :sessions
   get "signup", to: "users#new", as: "signup"
   get "signin", to: "sessions#new", as: "signin"
@@ -123,18 +122,21 @@ Rails.application.routes.draw do
   get "/videos/page/:page",                to: "videos#index", constraints: {page: /\d+/}
   get "(/videos)(/:year)(/:month)(/:day)", to: "videos#index", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
 
-  # settings
+  # Settings
   resources :settings, only: [:index, :edit, :update]
   get "key.pub", to: "about#public_key", as: "public_key"
 
   # rel-me links
   resources :links
 
-  # tags
+  # Tags
   get "tags", to: "tags#index", as: "tags"
   get "tags/:slug", to: "tags#show", as: "tag"
 
-  # Page lookup as a fallback to all routes
+  # Redirects Manager
+  resources :redirects, except: :show
+
+  # Redirection and Page lookup as a fallback to all routes
   resources :pages, except: [:show]
-  get ":slug", to: "pages#show", as: "slugged_page"
+  get ":path", to: "pages#show", as: "slugged_page"
 end

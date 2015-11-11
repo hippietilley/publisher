@@ -12,7 +12,6 @@ class Redirect < ActiveRecord::Base
     remove_leading_slash!
     remove_protocol!
     remove_domain!
-    add_leading_slash!
     remove_trailing_slash!
     strip_whitespace!
   end
