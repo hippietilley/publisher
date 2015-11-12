@@ -14,16 +14,16 @@ class PhotosController < ApplicationController
   end
 
   def new
-    @post = Photo.new
+    @post = PostForm.new(Photo)
   end
 
   def edit
   end
 
   def create
-    @post = Photo.new(photo_params)
+    @post = PostForm.new(Photo)
 
-    if @post.save
+    if @post.submit(params[:photo])
       redirect_to @post.path, notice: "Photo was successfully created."
     else
       render :new
@@ -46,7 +46,7 @@ class PhotosController < ApplicationController
   private
 
   def set_photo
-    @post = Photo.where(slug: params[:slug]).first
+    @post = Post.where(slug: params[:slug]).first
     return redirect_to(root_path) if @post.private? && !signed_in?
   end
 

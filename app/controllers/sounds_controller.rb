@@ -14,17 +14,17 @@ class SoundsController < ApplicationController
   end
 
   def new
-    @post = Sound.new
+    @post = PostForm.new(Sound)
   end
 
   def edit
   end
 
   def create
-    @post = Sound.new(sound_params)
+    @post = PostForm.new(Sound)
 
-    if @post.save
-      redirect_to @post.path, notice: "Sound was successfully created."
+    if @post.submit(params[:sound])
+      redirect_to @post.post.path, notice: "Sound was successfully created."
     else
       render :new
     end
@@ -46,7 +46,7 @@ class SoundsController < ApplicationController
   private
 
   def set_sound
-    @post = Sound.where(slug: params[:slug]).first
+    @post = Post.where(slug: params[:slug]).first
     return redirect_to(root_path) if @post.private? && !signed_in?
   end
 

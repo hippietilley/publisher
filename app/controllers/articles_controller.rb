@@ -13,17 +13,17 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @post = Article.new
+    @post = PostForm.new(Article)
   end
 
   def edit
   end
 
   def create
-    @post = Article.new(article_params)
+    @post = PostForm.new(Article)
 
-    if @post.save
-      redirect_to @post.path, notice: "Article was successfully created."
+    if @post.submit(params[:article])
+      redirect_to @post.post.path, notice: "Article was successfully created."
     else
       render :new
     end
@@ -45,7 +45,7 @@ class ArticlesController < ApplicationController
   private
 
   def set_article
-    @post = Article.where(slug: params[:slug]).first
+    @post = Post.find_by(slug: params[:slug])
     return redirect_to(root_path) if @post.private? && !signed_in?
   end
 

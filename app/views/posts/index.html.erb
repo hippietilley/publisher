@@ -1,3 +1,5 @@
 <ol class="h-feed">
-  <%= render @posts %>
+  <% @posts.each do |post| %>
+    <%= render post.post_type %>
+  <% end %>
 </ol>

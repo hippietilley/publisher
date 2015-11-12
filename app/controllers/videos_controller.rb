@@ -14,16 +14,17 @@ class VideosController < ApplicationController
   end
 
   def new
-    @post = Video.new
+    @post = PostForm.new(Video)
   end
 
   def edit
+    @post = PostForm.new(Video, @post)
   end
 
   def create
-    @post = Video.new(video_params)
+    @post = PostForm.new(Video)
 
-    if @post.save
+    if @post.submit(params[:video])
       redirect_to @post.path, notice: "Video was successfully created."
     else
       render :new
@@ -46,7 +47,7 @@ class VideosController < ApplicationController
   private
 
   def set_video
-    @post = Video.where(slug: params[:slug]).first
+    @post = Post.where(slug: params[:slug]).first
     return redirect_to(root_path) if @post.private? && !signed_in?
   end
 

@@ -11,36 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151015214313) do
+ActiveRecord::Schema.define(version: 20151029234152) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "articles", force: :cascade do |t|
-    t.text     "title"
-    t.text     "subtitle"
-    t.text     "content"
-    t.text     "slug"
-    t.text     "in_reply_to"
     t.text     "tags"
-    t.datetime "published_at"
-    t.boolean  "private"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "bookmarks", force: :cascade do |t|
-    t.text     "title"
-    t.text     "subtitle"
-    t.text     "content"
     t.text     "bookmark_author"
     t.text     "bookmark_excerpt"
     t.text     "bookmark_url"
-    t.text     "slug"
-    t.text     "in_reply_to"
     t.text     "tags"
-    t.datetime "published_at"
-    t.boolean  "private"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
@@ -55,31 +41,33 @@ ActiveRecord::Schema.define(version: 20151015214313) do
   end
 
   create_table "notes", force: :cascade do |t|
-    t.text     "content"
-    t.text     "slug"
-    t.text     "in_reply_to"
     t.text     "tags"
-    t.datetime "published_at"
-    t.boolean  "private"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "photos", force: :cascade do |t|
+    t.text     "tags"
+    t.text     "image_url"
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "captured_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
     t.text     "title"
     t.text     "subtitle"
     t.text     "content"
     t.text     "slug"
     t.text     "in_reply_to"
-    t.text     "tags"
-    t.datetime "published_at"
     t.boolean  "private"
-    t.text     "image_url"
-    t.integer  "width"
-    t.integer  "height"
-    t.datetime "captured_at"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "published_at"
+    t.integer  "post_type_id"
+    t.string   "post_type_type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "settings", force: :cascade do |t|
@@ -92,14 +80,7 @@ ActiveRecord::Schema.define(version: 20151015214313) do
   end
 
   create_table "sounds", force: :cascade do |t|
-    t.text     "title"
-    t.text     "subtitle"
-    t.text     "content"
-    t.text     "slug"
-    t.text     "in_reply_to"
     t.text     "tags"
-    t.datetime "published_at"
-    t.boolean  "private"
     t.text     "image_url"
     t.integer  "duration"
     t.datetime "captured_at"
@@ -116,14 +97,7 @@ ActiveRecord::Schema.define(version: 20151015214313) do
   end
 
   create_table "videos", force: :cascade do |t|
-    t.text     "title"
-    t.text     "subtitle"
-    t.text     "content"
-    t.text     "slug"
-    t.text     "in_reply_to"
     t.text     "tags"
-    t.datetime "published_at"
-    t.boolean  "private"
     t.text     "image_url"
     t.integer  "width"
     t.integer  "height"

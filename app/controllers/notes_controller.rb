@@ -13,16 +13,16 @@ class NotesController < ApplicationController
   end
 
   def new
-    @post = Note.new
+    @post = PostForm.new(Note)
   end
 
   def edit
   end
 
   def create
-    @post = Note.new(note_params)
+    @post = PostForm.new(Note)
 
-    if @post.save
+    if @post.submit(params[:note])
       redirect_to @post.path, notice: "Note was successfully created."
     else
       render :new
@@ -45,7 +45,7 @@ class NotesController < ApplicationController
   private
 
   def set_note
-    @post = Note.where(slug: params[:slug]).first
+    @post = Post.where(slug: params[:slug]).first
 
     return redirect_to(root_path) if @post.private? && !signed_in?
   end

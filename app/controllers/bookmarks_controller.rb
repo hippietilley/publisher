@@ -14,17 +14,18 @@ class BookmarksController < ApplicationController
   end
 
   def new
-    @post = Bookmark.new
+    @post = PostForm.new(Bookmark)
   end
 
   def edit
+    @post = PostForm.new(Bookmark, @post)
   end
 
   def create
-    @post = Bookmark.new(bookmark_params)
+    @post = PostForm.new(Bookmark)
 
-    if @post.save
-      redirect_to @post.path, notice: "Bookmark was successfully created."
+    if @post.submit(params[:bookmark])
+      redirect_to @post.post_type.path, notice: "Bookmark was successfully created."
     else
       render :new
     end
@@ -46,7 +47,7 @@ class BookmarksController < ApplicationController
   private
 
   def set_bookmark
-    @post = Bookmark.where(slug: params[:slug]).first
+    @post = Post.where(slug: params[:slug]).first
     return redirect_to(root_path) if @post.private? && !signed_in?
   end
 
