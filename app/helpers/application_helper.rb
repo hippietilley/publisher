@@ -6,16 +6,8 @@ module ApplicationHelper
   def show_site_nav?
     # hide site if there are no user or no posts
     # TODO: change to Post.count.zero? when Post is implemented
-    !(
-      Article.count +
-      Event.count +
-      Note.count +
-      Photo.count +
-      Bookmark.count +
-      Sound.count +
-      Video.count
-    ).zero? ||
-    User.count.zero?
+    !(Article.count + Event.count + Note.count + Photo.count + Bookmark.count + Sound.count + Video.count).zero? ||
+      User.count.zero?
   end
 
   def show?(name)
