@@ -21,7 +21,9 @@
     "COOKIE_SECRET": {
       "description": "This gets generated",
       "generator":   "secret"
-    }
+    },
+    "MIN_THREADS": "1",
+    "MAX_THREADS": "1"
   },
   "addons": [
     "heroku-postgresql:hobby-dev",
