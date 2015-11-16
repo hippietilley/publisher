@@ -24,11 +24,11 @@ class PostForm
                 allow_nil: true
 
 
-  def initialize(klass, post)
+  def initialize(klass, post=nil)
     @klass     = klass
     @columns   = klass.columns.map(&:name)
     @post      = post || Post.new
-    @post_type = post.post_type || klass.new
+    @post_type = self.post.post_type || klass.new
     define_attr_accessor(@columns)
   end
 
