@@ -18,6 +18,7 @@ class SoundsController < ApplicationController
   end
 
   def edit
+    @post = PostForm.new(Sound, @post)
   end
 
   def create
@@ -31,6 +32,7 @@ class SoundsController < ApplicationController
   end
 
   def update
+    @post = PostForm.new(Sound, @post)
     if @post.update(sound_params)
       redirect_to @post.path, notice: "Sound was successfully updated."
     else

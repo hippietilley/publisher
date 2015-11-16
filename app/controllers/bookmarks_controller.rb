@@ -32,6 +32,7 @@ class BookmarksController < ApplicationController
   end
 
   def update
+    @post = PostForm.new(Bookmark, @post)
     if @post.update(bookmark_params)
       redirect_to @post.path, notice: "Bookmark was successfully updated."
     else

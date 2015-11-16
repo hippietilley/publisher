@@ -32,6 +32,7 @@ class VideosController < ApplicationController
   end
 
   def update
+    @post = PostForm.new(Video, @post)
     if @post.update(video_params)
       redirect_to @post.path, notice: "Video was successfully updated."
     else

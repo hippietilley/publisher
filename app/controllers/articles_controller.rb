@@ -17,6 +17,7 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+    @post = PostForm.new(Article, @post)
   end
 
   def create
@@ -30,6 +31,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
+    @post = PostForm.new(Article, @post)
     if @post.update(article_params)
       redirect_to @post.path, notice: "Article was successfully updated."
     else

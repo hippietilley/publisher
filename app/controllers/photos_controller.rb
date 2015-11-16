@@ -18,6 +18,7 @@ class PhotosController < ApplicationController
   end
 
   def edit
+    @post = PostForm.new(Photo, @post)
   end
 
   def create
@@ -31,6 +32,7 @@ class PhotosController < ApplicationController
   end
 
   def update
+    @post = PostForm.new(Photo, @post)
     if @post.update(photo_params)
       redirect_to @post.path, notice: "Photo was successfully updated."
     else

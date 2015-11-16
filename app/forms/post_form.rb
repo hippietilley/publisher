@@ -30,6 +30,9 @@ class PostForm
     @post      = post || Post.new
     @post_type = self.post.post_type || klass.new
     define_attr_accessor(@columns)
+    @columns.each do |col|
+      self.send("#{col}=", @post_type.send(col))
+    end
   end
 
   def model_name
@@ -47,6 +50,14 @@ class PostForm
     @post.post_type = @post_type
     if @post.valid? && @post_type.valid?
       @post.save! && @post_type.save!
+    end
+  end
+
+  def update(params)
+    post.attributes = params.permit(self.class::POST_COLUMNS)
+    post.post_type.attributes = params.permit(@columns)
+    if post.valid? && post.post_type.valid?
+      post.save! && post.post_type.save!
     end
   end
 

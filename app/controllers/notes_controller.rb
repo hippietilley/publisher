@@ -17,6 +17,7 @@ class NotesController < ApplicationController
   end
 
   def edit
+    @post = PostForm.new(Note, @post)
   end
 
   def create
@@ -30,6 +31,7 @@ class NotesController < ApplicationController
   end
 
   def update
+    @post = PostForm.new(Note, @post)
     if @post.update(note_params)
       redirect_to @post.path, notice: "Note was successfully updated."
     else
