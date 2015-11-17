@@ -1,9 +1,10 @@
 class PostType < ActiveRecord::Base
   has_one :post, as: :post_type
   delegate :path,
-           :name,
            :private,
            :private?,
+           :public,
+           :public?,
            :in_reply_to,
            :in_reply_to?,
            :published_at,
@@ -11,6 +12,7 @@ class PostType < ActiveRecord::Base
            :title,
            :subtitle,
            :content,
+           :tags,
            to: :post,
            allow_nil: true
 
@@ -20,7 +22,25 @@ class PostType < ActiveRecord::Base
     attr_reader :fallback_attribute
   end
 
-  # default_scope { order("published_at DESC") }
+  belongs_to :user
+
+  def user
+    User.first
+  end
+
+  def post_type
+    self
+  end
+
+  def name
+    if title && subtitle
+      "#{title} : #{subtitle}"
+    elsif title
+      title
+    else
+      fallback_name
+    end
+  end
 
   def self.inherited(child)
     child.class_eval do
@@ -32,7 +52,7 @@ class PostType < ActiveRecord::Base
 
   def self.fallback_attr(attr)
     @fallback_attribute = attr
-    validates @fallback_attribute, presence: true
+    # validates @fallback_attribute, presence: true
   end
 
   def fallback_name
@@ -43,12 +63,29 @@ class PostType < ActiveRecord::Base
     {year: published_at.year, month: published_at.month, day: published_at.day, slug: slug}
   end
 
-  def public?
-    !private?
+  def fallback_column
+    self.class.fallback_attribute
   end
 
   def fallback_attribute
-    send(self.class.fallback_attribute)
+    send(fallback_column)
   end
+
+  def clean_slug!(slug)
+    blank     = ""
+    separator = "-"
+    slug = slug.downcase
+      .gsub(/\(|\)|\[|\]\./, blank)
+      .gsub(/&amp;/,         blank)
+      .gsub(/\W|_|\s|-+/,    separator)
+      .gsub(/^-+/,           blank)
+      .gsub(/-+$/,           blank)
+  end
+
+  def generate_slug
+    slug = name.present? ? name : fallback_attribute if slug.blank?
+    clean_slug!(slug)
+  end
+
 
 end

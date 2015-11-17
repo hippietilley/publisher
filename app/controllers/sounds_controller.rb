@@ -4,13 +4,16 @@ class SoundsController < ApplicationController
 
   def index
     if signed_in?
-      @posts = Sound.all
+      @posts = Sound.paginate(page: params[:page]).all
     else
-      @posts = Sound.visible.all
+      @posts = Sound.visible.paginate(page: params[:page]).all
     end
+
+    render "/posts/index"
   end
 
   def show
+    render "/posts/show"
   end
 
   def new
@@ -23,9 +26,9 @@ class SoundsController < ApplicationController
 
   def create
     @post = PostForm.new(Sound)
-
     if @post.submit(params[:sound])
-      redirect_to @post.post.path, notice: "Sound was successfully created."
+      save_tags(@post, sound_params)
+      redirect_to @post.path, notice: "Sound was successfully created."
     else
       render :new
     end
@@ -34,6 +37,7 @@ class SoundsController < ApplicationController
   def update
     @post = PostForm.new(Sound, @post)
     if @post.update(sound_params)
+      save_tags(@post, sound_params)
       redirect_to @post.path, notice: "Sound was successfully updated."
     else
       render :edit
@@ -41,6 +45,7 @@ class SoundsController < ApplicationController
   end
 
   def destroy
+    delete_tags(@post)
     @post.destroy
     redirect_to sounds_url, notice: "Sound was successfully destroyed."
   end

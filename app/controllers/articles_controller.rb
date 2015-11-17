@@ -1,15 +1,19 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :authorize, except: [:show, :index]
+
   def index
     if signed_in?
-      @posts = Article.all
+      @posts = Article.paginate(page: params[:page]).all
     else
-      @posts = Article.visible.all
+      @posts = Article.visible.paginate(page: params[:page]).all
     end
+
+    render "/posts/index"
   end
 
   def show
+    render "/posts/show"
   end
 
   def new
@@ -22,8 +26,8 @@ class ArticlesController < ApplicationController
 
   def create
     @post = PostForm.new(Article)
-
     if @post.submit(params[:article])
+      save_tags(@post, article_params)
       redirect_to @post.post.path, notice: "Article was successfully created."
     else
       render :new
@@ -33,6 +37,7 @@ class ArticlesController < ApplicationController
   def update
     @post = PostForm.new(Article, @post)
     if @post.update(article_params)
+      save_tags(@post, article_params)
       redirect_to @post.path, notice: "Article was successfully updated."
     else
       render :edit
@@ -40,6 +45,7 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
+    delete_tags(@post)
     @post.destroy
     redirect_to articles_url, notice: "Article was successfully destroyed."
   end

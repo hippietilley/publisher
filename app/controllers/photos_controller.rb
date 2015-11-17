@@ -4,13 +4,16 @@ class PhotosController < ApplicationController
 
   def index
     if signed_in?
-      @posts = Photo.all
+      @posts = Photo.paginate(page: params[:page]).all
     else
-      @posts = Photo.visible.all
+      @posts = Photo.visible.paginate(page: params[:page]).all
     end
+
+    render "/posts/index"
   end
 
   def show
+    render "/posts/show"
   end
 
   def new
@@ -23,8 +26,8 @@ class PhotosController < ApplicationController
 
   def create
     @post = PostForm.new(Photo)
-
     if @post.submit(params[:photo])
+      save_tags(@post, photo_params)
       redirect_to @post.path, notice: "Photo was successfully created."
     else
       render :new
@@ -34,6 +37,7 @@ class PhotosController < ApplicationController
   def update
     @post = PostForm.new(Photo, @post)
     if @post.update(photo_params)
+      save_tags(@post, photo_params)
       redirect_to @post.path, notice: "Photo was successfully updated."
     else
       render :edit
@@ -41,6 +45,7 @@ class PhotosController < ApplicationController
   end
 
   def destroy
+    delete_tags(@post)
     @post.destroy
     redirect_to photos_url, notice: "Photo was successfully destroyed."
   end

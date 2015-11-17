@@ -4,13 +4,16 @@ class VideosController < ApplicationController
 
   def index
     if signed_in?
-      @posts = Video.all
+      @posts = Video.paginate(page: params[:page]).all
     else
-      @posts = Video.visible.all
+      @posts = Video.visible.paginate(page: params[:page]).all
     end
+
+    render "/posts/index"
   end
 
   def show
+    render "/posts/show"
   end
 
   def new
@@ -23,8 +26,8 @@ class VideosController < ApplicationController
 
   def create
     @post = PostForm.new(Video)
-
     if @post.submit(params[:video])
+      save_tags(@post, video_params)
       redirect_to @post.path, notice: "Video was successfully created."
     else
       render :new
@@ -34,6 +37,7 @@ class VideosController < ApplicationController
   def update
     @post = PostForm.new(Video, @post)
     if @post.update(video_params)
+      save_tags(@post, video_params)
       redirect_to @post.path, notice: "Video was successfully updated."
     else
       render :edit
@@ -41,6 +45,7 @@ class VideosController < ApplicationController
   end
 
   def destroy
+    delete_tags(@post)
     @post.destroy
     redirect_to videos_url, notice: "Video was successfully destroyed."
   end
