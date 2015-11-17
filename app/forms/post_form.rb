@@ -54,7 +54,7 @@ class PostForm
     @post_type = @klass.new(params.permit(@columns))
     @post_type.post = @post
     @post.post_type = @post_type
-    @post.slug = @post_type.generate_slug
+    @post.slug = @post_type.generate_slug unless @post.slug.present?
     if @post.valid? && @post_type.valid?
       @post.save! && @post_type.save!
     end
