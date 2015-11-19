@@ -1,13 +1,13 @@
 <div class="e-content">
-  <video controls width="<%= video.width %>" height="<%= video.height %>" poster="<%= video.image_url %>" class="u-photo">
-    <source src="<%= video.enclosure_url %>" class="u-video" />
+  <video controls width="<%= post.width %>" height="<%= post.height %>" poster="<%= post.image_url %>" class="u-photo">
+    <source src="<%= post.enclosure_url %>" class="u-video" />
   </video>
 
   <p class="download">
-    <%= link_to "Download video", video.enclosure_url, class: "u-x-enclosure" %>
+    <%= link_to "Download video", post.enclosure_url, class: "u-x-enclosure" %>
   </p>
 
   <div class="p-summary">
-    <%= raw video.content %>
+    <%= raw post.content %>
   </div>
 </div>
