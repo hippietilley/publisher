@@ -26,27 +26,28 @@ class PagesController < ApplicationController
   end
 
   def new
-    @post = Page.new
+    @post = PostForm.new(Page)
   end
 
   def edit
+    @post = PostForm.new(Page, @post)
   end
 
   def create
-    @post = Page.new(page_params)
-
-    if @post.save
+    @post = PostForm.new(Page)
+    if @post.submit(params[:page])
       save_tags(@post, page_params)
-      redirect_to slugged_page_path(@post.slug), notice: "Page was successfully created."
+      redirect_to slugged_page_path(@post.post_type.slug), notice: "Page was successfully created."
     else
       render :new
     end
   end
 
   def update
+    @post = PostForm.new(Page, @post)
     if @post.update(page_params)
       save_tags(@post, page_params)
-      redirect_to slugged_page_path(@post.slug), notice: "Page was successfully updated."
+      redirect_to slugged_page_path(@post.post_type.slug), notice: "Page was successfully updated."
     else
       render :edit
     end
@@ -61,7 +62,8 @@ class PagesController < ApplicationController
   private
 
   def set_page
-    @post = Page.find(params[:id])
+    @post = Post.find_by(slug: params[:slug])
+    return redirect_to(root_path) if @post.private? && !signed_in?
   end
 
   def page_params

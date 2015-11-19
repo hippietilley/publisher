@@ -8,4 +8,8 @@ class Page < PostType
   def in_reply_to?
     false
   end
+
+  def path
+    self.slug
+  end
 end
