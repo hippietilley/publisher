@@ -54,7 +54,7 @@ class EventsController < ApplicationController
   private
 
   def set_event
-    @post = Event.where(slug: params[:slug]).first
+    @post = Post.where(slug: params[:slug]).first
     return redirect_to(root_path) if @post.private? && !signed_in?
   end
 
