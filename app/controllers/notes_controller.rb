@@ -30,7 +30,6 @@ class NotesController < ApplicationController
       save_tags(@post, note_params)
       redirect_to @post.path, notice: "Note was successfully created."
     else
-      raise
       render :new
     end
   end

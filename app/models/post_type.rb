@@ -74,7 +74,7 @@ class PostType < ActiveRecord::Base
   def clean_slug!(slug)
     blank     = ""
     separator = "-"
-    slug = slug.downcase
+    slug = slug.to_s.downcase
       .gsub(/\(|\)|\[|\]\./, blank)
       .gsub(/&amp;/,         blank)
       .gsub(/\W|_|\s|-+/,    separator)
@@ -86,6 +86,4 @@ class PostType < ActiveRecord::Base
     slug = name.present? ? name : fallback_attribute if slug.blank?
     clean_slug!(slug)
   end
-
-
 end

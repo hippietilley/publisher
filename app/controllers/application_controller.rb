@@ -66,7 +66,8 @@ class ApplicationController < ActionController::Base
     split_tags(params[:tags]).each do |name|
       tag = Tag.find_or_initialize_by(name: name)
       tag.save!
-      Tagging.create!(post_id: post.id, post_type: post.class.to_s.downcase, tag_id: tag.id)
+      
+      Tagging.create!(post_id: post.post_type_id, post_type: post.post_type_type.downcase, tag_id: tag.id)
     end
   end
 end
