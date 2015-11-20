@@ -24,6 +24,11 @@ class PostType < ActiveRecord::Base
 
   belongs_to :user
 
+  def to_partial_path
+    # "#{self.class.to_s.downcase.pluralize}/#{self.class.to_s.downcase}"
+    "posts/post"
+  end
+
   def user
     User.first
   end

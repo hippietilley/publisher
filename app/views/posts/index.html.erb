@@ -1,9 +1,6 @@
 <ol class="h-feed">
   <% @posts.each do |post| %>
     <%= render post.post_type, post: post.post_type %>
-    
-    <%#= render "#{post.post_type_type.downcase.pluralize}/#{post.post_type_type.downcase}",
-               post: post.post_type%>
   <% end %>
 </ol>
 

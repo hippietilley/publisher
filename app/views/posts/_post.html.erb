@@ -3,7 +3,11 @@
     <%= content_tag :article, post_id_and_classes(post) do %>
 
       <%= render "/posts/header", post: post %>
-      <%= render post %>
+      <%#= render post.post_type, post: post.post_type %>
+
+      <%= render "#{post.class.to_s.downcase.pluralize}/#{post.class.to_s.downcase}",
+                 post: post.post_type %>
+
       <%= render "/posts/footer", post: post %>
 
       <%= link_to "Edit", edit_post_path(post), class: "edit" if signed_in? %>
