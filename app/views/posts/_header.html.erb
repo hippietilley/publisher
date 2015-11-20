@@ -9,12 +9,13 @@
   <% unless post.title.blank? %>
     <h1 class="p-name">
       <%= link_to post.path, class: "u-url u-uid" do %>
-        <% unless post.title.blank? %>   <span class="p-hs-title">   <%= post.title %>   </span><% end %>
-        <% unless post.subtitle.blank? %><span class="p-hs-subtitle"><%= post.subtitle %></span><% end %>
+        <%= render "posts/title",    post: post %>
+        <%= render "posts/subtitle", post: post %>
       <% end %>
     </h1>
   <% end %>
 
-  <%# TODO: Only render this partial if it exists to remove blank post type partials %>
-  <%#= render "/#{post.class.to_s.downcase.pluralize}/header", post: post %>
+  <% if lookup_context.template_exists?("header", post.post_type_type.downcase.pluralize, true) %>
+    <%= render "/#{post.post_type_type.downcase.pluralize}/header", post: post.post_type %>
+  <% end %>
 </header>
