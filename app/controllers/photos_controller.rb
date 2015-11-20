@@ -4,9 +4,9 @@ class PhotosController < ApplicationController
 
   def index
     if signed_in?
-      @posts = Photo.paginate(page: params[:page]).all
+      @posts = Post.where(post_type_type: "Photo").paginate(page: params[:page]).all
     else
-      @posts = Photo.visible.paginate(page: params[:page]).all
+      @posts = Post.where(post_type_type: "Photo").where(private: false).paginate(page: params[:page]).all
     end
 
     render "/posts/index"

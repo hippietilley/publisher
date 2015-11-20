@@ -1,7 +1,5 @@
 <ol class="h-feed">
-  <% @posts.each do |post| %>
-    <%= render post.post_type, post: post.post_type %>
-  <% end %>
+  <%= render @posts %>
 </ol>
 
 <%= will_paginate @posts %>

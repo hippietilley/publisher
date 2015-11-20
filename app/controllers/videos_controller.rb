@@ -4,9 +4,9 @@ class VideosController < ApplicationController
 
   def index
     if signed_in?
-      @posts = Video.paginate(page: params[:page]).all
+      @posts = Post.where(post_type_type: "Video").paginate(page: params[:page]).all
     else
-      @posts = Video.visible.paginate(page: params[:page]).all
+      @posts = Post.where(post_type_type: "Video").where(private: false).paginate(page: params[:page]).all
     end
 
     render "/posts/index"

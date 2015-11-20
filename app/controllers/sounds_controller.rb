@@ -4,9 +4,9 @@ class SoundsController < ApplicationController
 
   def index
     if signed_in?
-      @posts = Sound.paginate(page: params[:page]).all
+      @posts = Post.where(post_type_type: "Sound").paginate(page: params[:page]).all
     else
-      @posts = Sound.visible.paginate(page: params[:page]).all
+      @posts = Post.where(post_type_type: "Sound").where(private: false).paginate(page: params[:page]).all
     end
 
     render "/posts/index"

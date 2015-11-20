@@ -7,6 +7,7 @@ class Post < ActiveRecord::Base
   def user
     User.first
   end
+
   def path
     [nil,
      self.post_type_type.downcase.pluralize,

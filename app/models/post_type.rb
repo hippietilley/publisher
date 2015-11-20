@@ -25,8 +25,7 @@ class PostType < ActiveRecord::Base
   belongs_to :user
 
   def to_partial_path
-    # "#{self.class.to_s.downcase.pluralize}/#{self.class.to_s.downcase}"
-    "posts/post"
+    "#{self.class.to_s.downcase.pluralize}/#{self.class.to_s.downcase}"
   end
 
   def user
@@ -52,6 +51,7 @@ class PostType < ActiveRecord::Base
       scope :invisible, -> { includes(:post).where(posts: {private: true}) }
       scope :visible, -> { includes(:post).where(posts: {private: false}) }
     end
+
     super
   end
 
