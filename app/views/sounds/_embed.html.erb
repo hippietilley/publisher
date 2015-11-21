@@ -1,0 +1,5 @@
+<div><%= image_tag post.image_url, alt: post.name, class: "u-photo" if post.image_url? %></div>
+
+<audio controls>
+  <source src="<%= post.enclosure_url %>" class="u-audio" />
+</audio>

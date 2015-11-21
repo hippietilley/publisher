@@ -1,13 +1,1 @@
-<div class="e-content">
-  <audio controls>
-    <source src="<%= post.enclosure_url %>" class="u-audio" />
-  </audio>
-
-  <p class="download">
-    <%= link_to "Download sound", post.enclosure_url, class: "u-x-enclosure" %>
-  </p>
-
-  <div class="p-summary">
-    <%= simple_format post.content %>
-  </div>
-</div>
+<%= render "media/media", post: post %>

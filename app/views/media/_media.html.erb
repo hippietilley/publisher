@@ -1,0 +1,11 @@
+<div class="e-content">
+  <%= render "#{post.namespace}/embed", post: post %>
+  
+  <div class="p-summary">
+    <%= simple_format post.content %>
+  </div>
+
+  <p class="download">
+    <%= link_to "Download #{post.type}", post.post_type.enclosure_url, class: "u-x-enclosure" %>
+  </p>
+</div>

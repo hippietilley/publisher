@@ -1,6 +1,7 @@
 class PostType < ActiveRecord::Base
   has_one :post, as: :post_type
   delegate :path,
+           :namespace,
            :private,
            :private?,
            :public,
@@ -13,6 +14,7 @@ class PostType < ActiveRecord::Base
            :subtitle,
            :content,
            :tags,
+           :type,
            to: :post,
            allow_nil: true
 

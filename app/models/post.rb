@@ -8,9 +8,18 @@ class Post < ActiveRecord::Base
     User.first
   end
 
+  def type
+    self.post_type_type.downcase
+  end
+
+  def namespace
+    type.pluralize
+  end
+
   def path
+    # starts with nil to ensure a leading slash
     [nil,
-     self.post_type_type.downcase.pluralize,
+     namespace,
      published_at.year,
      published_at.month,
      published_at.day,
