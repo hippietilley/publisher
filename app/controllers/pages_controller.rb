@@ -17,7 +17,7 @@ class PagesController < ApplicationController
     return redirect_to("/" + redirect.target_path) unless redirect.nil?
 
     # if no redirect is found, look page or redirect to home
-    @post = Page.find_by(slug: params[:path])
+    @post = Post.find_by(slug: params[:path])
     if @post.nil?
       return redirect_to root_path
     else
