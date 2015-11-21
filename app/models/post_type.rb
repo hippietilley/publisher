@@ -87,10 +87,16 @@ class PostType < ActiveRecord::Base
       .gsub(/\W|_|\s|-+/,    separator)
       .gsub(/^-+/,           blank)
       .gsub(/-+$/,           blank)
+      .gsub(/-+/,            separator)
   end
 
   def generate_slug
-    slug = name.present? ? name : fallback_attribute if slug.blank?
+    if self.type == "page"
+      slug = (title || fallback_attribute) if slug.blank?
+    else
+      slug = name.present? ? name : fallback_attribute if slug.blank?
+    end
+
     clean_slug!(slug)
   end
 end
