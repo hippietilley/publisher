@@ -18,7 +18,7 @@
   },
   "env": {
     "RAILS_ENV": "production",
-    "COOKIE_SECRET": {
+    "SECRET_KEY_BASE": {
       "description": "This gets generated",
       "generator":   "secret"
     },
