@@ -1,10 +1,6 @@
 module PostsHelper
   def edit_post_path(post)
-    if post.is_a?(Page)
-      ["pages", post.id, "edit"]
-    else
-      [post.slug, "edit"]
-    end.join("/")
+    [post.path, "edit"].join("/")
   end
 
   def post_id_and_classes(post, html_class: "h-entry")

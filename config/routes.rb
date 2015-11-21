@@ -122,6 +122,15 @@ Rails.application.routes.draw do
   get "/videos/page/:page",                to: "videos#index", constraints: {page: /\d+/}
   get "(/videos)(/:year)(/:month)(/:day)", to: "videos#index", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
 
+  # Pages CRUD
+  get "/pages/new", to: "articles#new", as: "new_page"
+  post "/pages", to: "articles#create", as: "pages"
+  get "/pages", to: "articles#index"
+  post "/:slug", to: "articles#create", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
+  get "/:slug/edit", to: "articles#edit", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}, as: "edit_page"
+  patch "/:slug", to: "articles#update", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
+  delete "/:slug", to: "articles#destroy", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
+
   # Settings
   resources :settings, only: [:index, :edit, :update]
   get "key.pub", to: "about#public_key", as: "public_key"
@@ -137,6 +146,5 @@ Rails.application.routes.draw do
   resources :redirects, except: :show
 
   # Redirection and Page lookup as a fallback to all routes
-  resources :pages, except: [:show]
-  get ":path", to: "pages#show", as: "slugged_page"
+  get ":path", to: "pages#show", as: "page"
 end

@@ -18,13 +18,17 @@ class Post < ActiveRecord::Base
 
   def path
     # starts with nil to ensure a leading slash
-    [nil,
-     namespace,
-     published_at.year,
-     published_at.month,
-     published_at.day,
-     slug
-    ].join("/")
+    if type == "page"
+      [nil, slug]
+    else
+      [nil,
+       namespace,
+       published_at.year,
+       published_at.month,
+       published_at.day,
+       slug
+      ]
+    end.join("/")
   end
 
   def public?

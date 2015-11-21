@@ -4,12 +4,16 @@ class ArticlesController < ApplicationController
 
   def index
     if signed_in?
-      @posts = Post.where(post_type_type: "Article").paginate(page: params[:page]).all
+      @posts = Post.where(post_type_type: post_type_type).paginate(page: params[:page]).all
     else
-      @posts = Post.where(post_type_type: "Article").where(private: false).paginate(page: params[:page]).all
+      @posts = Post.where(post_type_type: post_type_type).where(private: false).paginate(page: params[:page]).all
     end
 
-    render "/posts/index"
+    if on_page?
+      render "/pages/index"
+    else
+      render "/posts/index"
+    end
   end
 
   def show
@@ -17,28 +21,28 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @post = PostForm.new(Article)
+    @post = PostForm.new(post_class)
   end
 
   def edit
-    @post = PostForm.new(Article, @post)
+    @post = PostForm.new(post_class, @post)
   end
 
   def create
-    @post = PostForm.new(Article)
+    @post = PostForm.new(post_class)
     if @post.submit(params[:article])
       save_tags(@post, article_params)
-      redirect_to @post.post.path, notice: "Article was successfully created."
+      redirect_to @post.post.path, notice: "#{post_type_type} was successfully created."
     else
       render :new
     end
   end
 
   def update
-    @post = PostForm.new(Article, @post)
+    @post = PostForm.new(post_class, @post)
     if @post.update(article_params)
       save_tags(@post, article_params)
-      redirect_to @post.path, notice: "Article was successfully updated."
+      redirect_to @post.path, notice: "#{post_type_type} was successfully updated."
     else
       render :edit
     end
@@ -47,10 +51,22 @@ class ArticlesController < ApplicationController
   def destroy
     delete_tags(@post)
     @post.destroy
-    redirect_to articles_url, notice: "Article was successfully destroyed."
+    redirect_to articles_url, notice: "#{post_type_type} was successfully destroyed."
   end
 
   private
+
+  def on_page?
+    request.path.split("/")[1] == "articles" ? false : true
+  end
+
+  def post_type_type
+    on_page? ? "Page" : "Article"
+  end
+
+  def post_class
+    on_page? ? Page : Article
+  end
 
   def set_article
     @post = Post.find_by(slug: params[:slug])
