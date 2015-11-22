@@ -115,21 +115,30 @@ license.editable = true
 license.save(validate: false)
 puts "...done."
 
+
+threads  = []
+
 puts "Trying dev seeds for each post-type..."
-# articles bookmarks events photos sounds videos notes
-%w(dev.seeds notes).each do |posttype|
-  filepath = File.expand_path("../seeds/#{posttype}.rb", __FILE__)
+# articles bookmarks events photos sounds videos notes pages
+%w(dev.seeds articles bookmarks events photos sounds videos notes pages).each do |posttype|
+  threads << Thread.new do
+    filepath = File.expand_path("../seeds/#{posttype}.rb", __FILE__)
   
-  puts "  Trying: #{posttype}"
-  puts
-  if File.exist?(filepath)
-    puts "  Found: #{posttype}"
-    eval(File.open(filepath).read)
+    puts "  Trying: #{posttype}"
     puts
-    puts "...done"
-    puts
+    if File.exist?(filepath)
+      puts "  Found: #{posttype}"
+      eval(File.open(filepath).read)
+      puts
+      puts "...done"
+      puts
+    end
   end
 end
+
+# sync up threads before proceeding
+threads.each { |t| t.join }
+
 puts "...done"
 puts
 puts "All done!"
