@@ -13,3 +13,4 @@
 /tmp
 .DS_Store
 db/dev.seeds.rb
+production.seeds.rb
