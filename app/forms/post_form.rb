@@ -52,9 +52,12 @@ class PostForm
     params.delete(:slug) if params[:slug].blank?
     @post = Post.new(params.permit(self.class::POST_COLUMNS))
     @post_type = @klass.new(params.permit(@columns))
+
     @post_type.post = @post
     @post.post_type = @post_type
     @post.slug = @post_type.generate_slug unless @post.slug.present?
+    @post.published_at = Time.now.get_local unless @post.published_at.present?
+
     if @post.valid? && @post_type.valid?
       @post.save! && @post_type.save!
     end
