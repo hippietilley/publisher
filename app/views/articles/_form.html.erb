@@ -42,6 +42,14 @@
   <%= f.label :private %>
   <%= f.check_box :private %>
 </div>
+
+<% if on_page? %>
+  <div class="field">
+    <%= f.label :show_in_nav %>
+    <%= f.check_box :show_in_nav %>
+  </div>
+<% end %>
+
 <div class="actions">
   <%= link_to "Cancel", articles_url %>
   <%= f.submit %>

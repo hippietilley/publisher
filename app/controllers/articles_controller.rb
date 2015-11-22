@@ -57,8 +57,15 @@ class ArticlesController < ApplicationController
   private
 
   def on_page?
-    request.path.split("/")[1] == "articles" ? false : true
+    if (@post && @post.post_type_type == "Page") ||
+       (@posts && @posts.first.post.type == "Page") ||
+       request.path.split("/")[1] == "articles"
+      true
+    else
+      false
+    end
   end
+  helper_method :on_page?
 
   def post_type_type
     on_page? ? "Page" : "Article"
@@ -78,6 +85,7 @@ class ArticlesController < ApplicationController
       :subtitle,
       :content,
       :slug,
+      :show_in_nav,
       :in_reply_to,
       :tags,
       :published_at,
