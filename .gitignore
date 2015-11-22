@@ -12,5 +12,5 @@
 !/log/.keep
 /tmp
 .DS_Store
-db/dev.seeds.rb
+db/seeds
 production.seeds.rb
