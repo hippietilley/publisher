@@ -84,6 +84,7 @@ class PostType < ActiveRecord::Base
     slug = slug.to_s.downcase
       .gsub(/\(|\)|\[|\]\./, blank)
       .gsub(/&amp;/,         blank)
+      .gsub(/'|"/,           blank)
       .gsub(/\W|_|\s|-+/,    separator)
       .gsub(/^-+/,           blank)
       .gsub(/-+$/,           blank)

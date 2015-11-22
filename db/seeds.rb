@@ -116,7 +116,8 @@ license.save(validate: false)
 puts "...done."
 
 puts "Trying dev seeds for each post-type..."
-%w(dev.seeds articles bookmarks events photos sounds videos notes).each do |posttype|
+# articles bookmarks events photos sounds videos notes
+%w(dev.seeds notes).each do |posttype|
   filepath = File.expand_path("../seeds/#{posttype}.rb", __FILE__)
   
   puts "  Trying: #{posttype}"
