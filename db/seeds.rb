@@ -114,3 +114,20 @@ license.content  = License.find_by(name: "All Rights Reserved").id
 license.editable = true
 license.save(validate: false)
 puts "...done."
+
+puts "Trying dev seeds for each post-type..."
+%w(dev.seeds articles bookmarks events notes photos sounds videos).each do |posttype|
+  filepath = File.expand_path("../seeds/#{posttype}.rb", __FILE__)
+  
+  puts "  Trying: #{posttype}"
+  puts
+  if File.exist?(filepath)
+    puts "  Found: #{posttype}"
+    eval(File.open(filepath).read)
+    puts
+    puts "...done"
+    puts
+  end
+end
+puts "...done"
+puts
