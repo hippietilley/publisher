@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
     if signed_in?
       @posts = Post.where(post_type_type: post_type_type).paginate(page: params[:page]).all
     else
-      @posts = Post.where(post_type_type: post_type_type).where(private: false).paginate(page: params[:page]).all
+      @posts = Post.where(post_type_type: post_type_type).where.not(private: true).paginate(page: params[:page]).all
     end
 
     if on_page?

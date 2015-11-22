@@ -6,7 +6,7 @@ class NotesController < ApplicationController
     if signed_in?
       @posts = Post.where(post_type_type: "Note").paginate(page: params[:page]).all
     else
-      @posts = Post.where(post_type_type: "Note").where(private: false).paginate(page: params[:page]).all
+      @posts = Post.where(post_type_type: "Note").where.not(private: true).paginate(page: params[:page]).all
     end
 
     render "/posts/index"

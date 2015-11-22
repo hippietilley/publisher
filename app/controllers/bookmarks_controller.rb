@@ -6,7 +6,7 @@ class BookmarksController < ApplicationController
     if signed_in?
       @posts = Post.where(post_type_type: "Bookmark").paginate(page: params[:page]).all
     else
-      @posts = Post.where(post_type_type: "Bookmark").where(private: false).paginate(page: params[:page]).all
+      @posts = Post.where(post_type_type: "Bookmark").where.not(private: true).paginate(page: params[:page]).all
     end
 
     render "/posts/index"

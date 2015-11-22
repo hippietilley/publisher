@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
   belongs_to :post_type, polymorphic: true
+  default_scope { order("published_at DESC") }
 
   validates :slug, uniqueness: true
   delegate :name, to: :post_type
