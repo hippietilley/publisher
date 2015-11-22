@@ -12,6 +12,10 @@ class Post < ActiveRecord::Base
     self.post_type_type.downcase
   end
 
+  def microformat
+    type == "event" ? "h-event" : "h-entry"
+  end
+
   def namespace
     type.pluralize
   end

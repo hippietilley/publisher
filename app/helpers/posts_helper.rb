@@ -3,9 +3,9 @@ module PostsHelper
     [post.path, "edit"].join("/")
   end
 
-  def post_id_and_classes(post, html_class: "h-entry")
+  def post_id_and_classes(post, html_class: post.microformat)
     {
-      id: "#{post.class.to_s.downcase}-#{post.id}",
+      id: "#{post.type}-#{post.id}",
       class: html_class
     }
   end

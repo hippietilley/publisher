@@ -1,7 +1,7 @@
 class PostType < ActiveRecord::Base
   has_one :post, as: :post_type
-  delegate :path,
-           :namespace,
+  delegate :namespace,
+           :path,
            :private,
            :private?,
            :public,
@@ -27,7 +27,7 @@ class PostType < ActiveRecord::Base
   belongs_to :user
 
   def to_partial_path
-    "#{self.class.to_s.downcase.pluralize}/#{self.class.to_s.downcase}"
+    "#{self.namespace}/#{self.type}"
   end
 
   def user
