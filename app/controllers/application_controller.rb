@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :set_slug
   before_action :set_owner
+  before_action :set_page_links
 
   private
 
@@ -28,6 +29,19 @@ class ApplicationController < ActionController::Base
       @slug = controller_name
     else
       @slug
+    end
+  end
+
+  def set_page_links
+    if signed_in?
+      all_page_links = Post.where(post_type_type: "Page").all
+    else
+      all_page_links = Post.where(post_type_type: "Page").where.not(private: true).all
+    end
+
+    @page_links = []
+    all_page_links.each do |page|
+      @page_links << page if page.post_type.show_in_nav?
     end
   end
 
@@ -66,7 +80,7 @@ class ApplicationController < ActionController::Base
     split_tags(params[:tags]).each do |name|
       tag = Tag.find_or_initialize_by(name: name)
       tag.save!
-      
+
       Tagging.create!(post_id: post.post_type_id, post_type: post.post_type_type.downcase, tag_id: tag.id)
     end
   end

@@ -57,12 +57,10 @@ class ArticlesController < ApplicationController
   private
 
   def on_page?
-    if (@post && @post.post_type_type == "Page") ||
-       (@posts && @posts.first.post.type == "Page") ||
+    unless (@post.present? && @post.post_type_type == "Article") ||
+       (@posts.present? && @posts.first.post_type_type == "Article") ||
        request.path.split("/")[1] == "articles"
       true
-    else
-      false
     end
   end
   helper_method :on_page?

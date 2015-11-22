@@ -14,6 +14,10 @@
         <% if show_nav_to?(:videos) %><li><%= link_to "Videos", videos_path %></li><% end %>
         <% if show_nav_to?(:pages) %><li><%= link_to "Pages", pages_path %></li><% end %>
       <% end %>
+
+      <% @page_links.each do |page| %>
+        <li><%= link_to page.title, page.path %></li>
+      <% end %>
     </ul>
   <% end %>
 </nav>
