@@ -1,8 +1,6 @@
-# TODO: make the logger print to STDOUT
-
 # creates the default settings with empty values
 # the site owner will need to populate those with real values
-Rails.logger.info "Creating default settings..."
+puts "Creating default settings..."
 [
   ["Site Title",                   "",                                          true],
   ["Site Description",             "",                                          true],
@@ -44,9 +42,9 @@ Rails.logger.info "Creating default settings..."
   s.editable = setting[2]
   s.save(validate: false)
 end
-Rails.logger.info "...done."
+puts "...done."
 
-Rails.logger.info "Populating licenses table..."
+puts "Populating licenses table..."
 [
   [
     "Public Domain",
@@ -107,12 +105,12 @@ Rails.logger.info "Populating licenses table..."
   l.url         = license.last
   l.save!
 end
-Rails.logger.info "...done."
+puts "...done."
 
-Rails.logger.info "Settting copyright (All Rights Reserved) as default license..."
+puts "Settting copyright (All Rights Reserved) as default license..."
 license          = Setting.new
 license.name     = "License"
 license.content  = License.find_by(name: "All Rights Reserved").id
 license.editable = true
 license.save(validate: false)
-Rails.logger.info "...done."
+puts "...done."
