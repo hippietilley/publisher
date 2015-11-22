@@ -131,3 +131,5 @@ puts "Trying dev seeds for each post-type..."
 end
 puts "...done"
 puts
+puts "All done!"
+puts
