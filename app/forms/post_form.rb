@@ -56,7 +56,7 @@ class PostForm
     @post_type.post = @post
     @post.post_type = @post_type
     @post.slug = @post_type.generate_slug unless @post.slug.present?
-    @post.published_at = Time.now.get_local unless @post.published_at.present?
+    @post.published_at = Time.now unless @post.published_at.present?
 
     if @post.valid? && @post_type.valid?
       @post.save! && @post_type.save!
