@@ -3,7 +3,8 @@ class Note < PostType
 
   def name
     pieces = content[0..50].split
-    if pieces.length == 1
+
+    if (pieces.length == 1) || (pieces.join(" ").length <= 50)
       pieces
     else
       pieces[0..-2].join(" ")
@@ -12,7 +13,12 @@ class Note < PostType
 
   def fallback_name
     pieces = content[0..50].split
-    pieces[0..-2].join(" ")
+
+    if (pieces.length == 1) || (pieces.join(" ").length <= 50)
+      pieces
+    else
+      pieces[0..-2].join(" ")
+    end
   end
 
   def title

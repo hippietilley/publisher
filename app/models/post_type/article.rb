@@ -2,6 +2,10 @@ class Article < PostType
   fallback_attr :content
 
   def fallback_name
-    content[0..50].split[0..-2].join(" ")
+    if (pieces.length == 1) || (pieces.join(" ").length <= 50)
+      pieces
+    else
+      pieces[0..-2].join(" ")
+    end
   end
 end

@@ -2,7 +2,13 @@ class Page < PostType
   fallback_attr :content
 
   def fallback_name
-    content[0..50].split[0..-2].join(" ")
+    pieces = content[0..50].split
+
+    if (pieces.length == 1) || (pieces.join(" ").length <= 50)
+      pieces
+    else
+      pieces[0..-2].join(" ")
+    end
   end
 
   def in_reply_to?

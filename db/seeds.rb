@@ -120,7 +120,7 @@ threads  = []
 
 puts "Trying dev seeds for each post-type..."
 %w(dev.seeds articles bookmarks events photos sounds videos notes pages links).each do |posttype|
-  threads << Thread.new do
+  # threads << Thread.new do
     filepath = File.expand_path("../seeds/#{posttype}.rb", __FILE__)
 
     puts "  Trying: #{posttype}"
@@ -132,7 +132,7 @@ puts "Trying dev seeds for each post-type..."
       puts "...done"
       puts
     end
-  end
+  # end
 end
 
 # sync up threads before proceeding
