@@ -25,10 +25,10 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @post = PostForm.new(Article)
-    if @post.submit(params[:article])
+    @post = Post.new(article_params)
+    if @post.save
       save_tags(@post, article_params)
-      redirect_to @post.post.path, notice: "Article was successfully created."
+      redirect_to @post.path, notice: "Article was successfully created."
     else
       render :new
     end
