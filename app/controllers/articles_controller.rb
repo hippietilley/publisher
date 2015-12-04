@@ -25,8 +25,8 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @post = Post.new(article_params)
-    if @post.save
+    @post = PostForm.new(Article, @post)
+    if @post.submit(params.require(:article))
       save_tags(@post, article_params)
       redirect_to @post.path, notice: "Article was successfully created."
     else

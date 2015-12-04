@@ -80,7 +80,7 @@ class Post < ActiveRecord::Base
   def clean_slug!(slug)
     blank     = ""
     separator = "-"
-    slug = slug.downcase
+    self.slug = slug.downcase
       .gsub(/\(|\)|\[|\]\./, blank)
       .gsub(/&amp;/,         blank)
       .gsub(/\W|_|\s|-+/,    separator)
@@ -89,8 +89,8 @@ class Post < ActiveRecord::Base
   end
 
   def generate_slug
-    slug = title.present? ? name : post_type_type if slug.blank?
-    clean_slug!(slug)
+    self.slug = title.present? ? name : post_type_type if self.slug.blank?
+    clean_slug!(self.slug)
   end
 
 
