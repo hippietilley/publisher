@@ -1,14 +1,6 @@
 class CreateEvents < ActiveRecord::Migration
   def change
     create_table :events do |t|
-      t.text :title
-      t.text :subtitle
-      t.text :content
-      t.text :slug
-      t.text :in_reply_to
-      t.text :tags
-      t.datetime :published_at
-      t.boolean :private
       t.text :summary
       t.text :url
       t.text :organizer_name

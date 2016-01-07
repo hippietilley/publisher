@@ -4,9 +4,9 @@ class EventsController < ApplicationController
 
   def index
     if signed_in?
-      @posts = Post.where(post_type_type: "Event").paginate(page: params[:page]).all
+      @posts = Post.of(:event).paginate(page: params[:page]).all
     else
-      @posts = Post.where(post_type_type: "Event").where.not(private: true).paginate(page: params[:page]).all
+      @posts = Post.of(:event).visible.paginate(page: params[:page]).all
     end
 
     render "/posts/index"
@@ -54,7 +54,7 @@ class EventsController < ApplicationController
   private
 
   def set_event
-    @post = Post.where(slug: params[:slug]).first
+    @post = Post.of(:event).where(slug: params[:slug]).first
     return redirect_to(root_path) if @post.private? && !signed_in?
   end
 

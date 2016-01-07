@@ -21,6 +21,8 @@ class PostForm
                 :published_at,
                 :post_type_id,
                 :post_type_type,
+                :tags,
+                :path,
                 to: :post,
                 allow_nil: true
 
@@ -44,35 +46,19 @@ class PostForm
     @post.persisted?
   end
 
-  def tags
-    post.tags
-  end
-
   def submit(params)
     params.delete(:slug) if params[:slug].blank?
-    @post = Post.new(params.permit(self.class::POST_COLUMNS))
     @post_type = @klass.new(params.permit(@columns))
-
-    @post_type.post = @post
-    @post.post_type = @post_type
-    @post.slug = @post_type.generate_slug unless @post.slug.present?
-    @post.published_at = Time.now unless @post.published_at.present?
-
-    if @post.valid? && @post_type.valid?
-      @post.save! && @post_type.save!
-    end
+    @post      = @post_type.build_post(params.permit(self.class::POST_COLUMNS))
+    @post_type.save
   end
 
   def update(params)
-    post.attributes = params.permit(self.class::POST_COLUMNS)
+    post.attributes           = params.permit(self.class::POST_COLUMNS)
     post.post_type.attributes = params.permit(@columns)
     if post.valid? && post.post_type.valid?
       post.save! && post.post_type.save!
     end
-  end
-
-  def path
-    @post.path
   end
 
   private

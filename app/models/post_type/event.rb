@@ -1,6 +1,4 @@
 class Event < PostType
-  fallback_attr :title
-
   def location
     [
       location_street_address,

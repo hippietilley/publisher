@@ -4,9 +4,9 @@ class ArticlesController < ApplicationController
 
   def index
     if signed_in?
-      @posts = Post.where(post_type_type: post_type_type).paginate(page: params[:page]).all
+      @posts = Post.of(:article).paginate(page: params[:page]).all
     else
-      @posts = Post.where(post_type_type: post_type_type).where.not(private: true).paginate(page: params[:page]).all
+      @posts = Post.of(:article).visible.paginate(page: params[:page]).all
     end
 
     if on_page?
@@ -29,10 +29,10 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @post = PostForm.new(post_class)
-    if @post.submit(params[:article])
+    @post = PostForm.new(Article, @post)
+    if @post.submit(params.require(:article))
       save_tags(@post, article_params)
-      redirect_to @post.post.path, notice: "#{post_type_type} was successfully created."
+      redirect_to @post.path, notice: "Article was successfully created."
     else
       render :new
     end
@@ -74,7 +74,7 @@ class ArticlesController < ApplicationController
   end
 
   def set_article
-    @post = Post.find_by(slug: params[:slug])
+    @post = Post.of(:article).find_by(slug: params[:slug])
     return redirect_to(root_path) if @post.private? && !signed_in?
   end
 

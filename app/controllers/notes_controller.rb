@@ -4,9 +4,9 @@ class NotesController < ApplicationController
 
   def index
     if signed_in?
-      @posts = Post.where(post_type_type: "Note").paginate(page: params[:page]).all
+      @posts = Post.of(:note).paginate(page: params[:page]).all
     else
-      @posts = Post.where(post_type_type: "Note").where.not(private: true).paginate(page: params[:page]).all
+      @posts = Post.of(:note).visible.paginate(page: params[:page]).all
     end
 
     render "/posts/index"
@@ -53,7 +53,7 @@ class NotesController < ApplicationController
   private
 
   def set_note
-    @post = Post.where(slug: params[:slug]).first
+    @post = Post.of(:note).where(slug: params[:slug]).first
     return redirect_to(root_path) if @post.private? && !signed_in?
   end
 

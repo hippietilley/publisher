@@ -30,13 +30,6 @@ ActiveRecord::Schema.define(version: 20151110194105) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.text     "title"
-    t.text     "subtitle"
-    t.text     "content"
-    t.text     "slug"
-    t.text     "in_reply_to"
-    t.datetime "published_at"
-    t.boolean  "private"
     t.text     "summary"
     t.text     "url"
     t.text     "organizer_name"
@@ -81,15 +74,9 @@ ActiveRecord::Schema.define(version: 20151110194105) do
   end
 
   create_table "pages", force: :cascade do |t|
-    t.text     "title"
-    t.text     "subtitle"
-    t.text     "content"
-    t.text     "slug"
     t.boolean  "show_in_nav"
-    t.datetime "published_at"
-    t.boolean  "private"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "photos", force: :cascade do |t|

@@ -4,9 +4,9 @@ class BookmarksController < ApplicationController
 
   def index
     if signed_in?
-      @posts = Post.where(post_type_type: "Bookmark").paginate(page: params[:page]).all
+      @posts = Post.of(:bookmark).paginate(page: params[:page]).all
     else
-      @posts = Post.where(post_type_type: "Bookmark").where.not(private: true).paginate(page: params[:page]).all
+      @posts = Post.of(:bookmark).paginate(page: params[:page]).all
     end
 
     render "/posts/index"
