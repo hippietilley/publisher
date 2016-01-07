@@ -124,6 +124,7 @@ class Post < ActiveRecord::Base
       .gsub(/\W|_|\s|-+/,    separator)
       .gsub(/^-+/,           blank)
       .gsub(/-+$/,           blank)
+      .gsub(/-+/,            separator)
   end
 
   def generate_slug
