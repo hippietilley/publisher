@@ -5,9 +5,9 @@ class PagesController < ApplicationController
 
   def index
     if signed_in?
-      @posts = Page.all
+      @posts = Post.of(:page).all
     else
-      @posts = Page.visible.all
+      @posts = Post.of(:page).visible.all
     end
   end
 
@@ -17,7 +17,7 @@ class PagesController < ApplicationController
     return redirect_to("/" + redirect.target_path) unless redirect.nil?
 
     # if no redirect is found, look page or redirect to home
-    @post = Page.find_by(slug: params[:path])
+    @post = Post.of(:page).find_by(slug: params[:path])
     if @post.nil?
       return redirect_to root_path
     else
@@ -26,16 +26,16 @@ class PagesController < ApplicationController
   end
 
   def new
-    @post = Page.new
+    @post = PostForm.new(Page)
   end
 
   def edit
   end
 
   def create
-    @post = Page.new(page_params)
+    @post = PostForm.new(Page, @post)
 
-    if @post.save
+    if @post.submit(params.require(:page))
       save_tags(@post, page_params)
       redirect_to slugged_page_path(@post.slug), notice: "Page was successfully created."
     else
@@ -44,6 +44,7 @@ class PagesController < ApplicationController
   end
 
   def update
+    @post = PostForm.new(Page, @post)
     if @post.update(page_params)
       save_tags(@post, page_params)
       redirect_to slugged_page_path(@post.slug), notice: "Page was successfully updated."
@@ -61,7 +62,7 @@ class PagesController < ApplicationController
   private
 
   def set_page
-    @post = Page.find(params[:id])
+    @post = Post.of(:page).find(params[:id])
   end
 
   def page_params

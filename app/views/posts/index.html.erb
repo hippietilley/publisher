@@ -1,7 +1,5 @@
 <ol class="h-feed">
-  <% @posts.each do |post| %>
-    <%= render post, post: post %>
-  <% end %>
+  <%= render partial: "posts/post", collection: @posts %>
 </ol>
 
 <%= will_paginate @posts unless @posts.is_a?(Array) %>

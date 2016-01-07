@@ -1,7 +1,6 @@
 class CreateSounds < ActiveRecord::Migration
   def change
     create_table :sounds do |t|
-      t.text :tags
       t.text :image_url
       t.integer :duration
       t.datetime :captured_at

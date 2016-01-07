@@ -1,7 +1,16 @@
+class SlugValidator < ActiveModel::Validator
+  def validate(record)
+    if record.slug_exists?
+      record.errors[:slug] << 'needs to be unique on the published date'
+    end
+  end
+end
+
 class Post < ActiveRecord::Base
   belongs_to :post_type, polymorphic: true
   before_validation :generate_slug, on: :create
-  validates :slug, uniqueness: true
+  validates_with SlugValidator
+
   delegate :name,
            :bookmark_author,
            :bookmark_excerpt,
@@ -28,11 +37,14 @@ class Post < ActiveRecord::Base
            :duration,
            :captured_at,
            :enclosure_url,
+           :summary,
+           :show_in_nav,
            to: :post_type
 
   scope :invisible, -> { where(private: true)  }
   scope :visible,   -> { where(private: false) }
-  scope :of,    lambda { |klass| where(post_type_type: klass.to_scamelcase) }
+  scope :of,    lambda { |klass| where(post_type_type: klass.to_s.camelcase) }
+  scope :on,    lambda { |date| where("published_at BETWEEN ? AND ?", date.beginning_of_day, date.end_of_day) }
 
   def user
     User.first
@@ -46,6 +58,10 @@ class Post < ActiveRecord::Base
      published_at.day,
      slug
     ].join("/")
+  end
+
+  def to_partial_path
+    "#{post_type_type.downcase.pluralize}/#{post_type_type.downcase}"
   end
 
   def public?
@@ -74,6 +90,10 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def slug_exists?
+    Post.on(published_at).where(post_type_type: post_type_type, slug: slug).exists?
+  end
+
 
   private
 
@@ -89,8 +109,14 @@ class Post < ActiveRecord::Base
   end
 
   def generate_slug
-    self.slug = title.present? ? name : post_type_type if self.slug.blank?
+    n = 0
+    self.slug = name || post_type_type if self.slug.blank?
     clean_slug!(self.slug)
+    while slug_exists?
+      self.slug = name || post_type_type
+      n += 1
+      clean_slug!(self.slug + "-#{n}")
+    end
   end
 
 

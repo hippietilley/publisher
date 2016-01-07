@@ -4,9 +4,9 @@ class SoundsController < ApplicationController
 
   def index
     if signed_in?
-      @posts = Sound.paginate(page: params[:page]).all
+      @posts = Post.of(:sound).paginate(page: params[:page]).all
     else
-      @posts = Sound.visible.paginate(page: params[:page]).all
+      @posts = Post.of(:sound).visible.paginate(page: params[:page]).all
     end
 
     render "/posts/index"
@@ -53,7 +53,7 @@ class SoundsController < ApplicationController
   private
 
   def set_sound
-    @post = Post.where(slug: params[:slug]).first
+    @post = Post.of(:sound).where(slug: params[:slug]).first
     return redirect_to(root_path) if @post.private? && !signed_in?
   end
 

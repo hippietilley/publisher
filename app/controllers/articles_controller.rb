@@ -4,9 +4,9 @@ class ArticlesController < ApplicationController
 
   def index
     if signed_in?
-      @posts = Article.paginate(page: params[:page]).all
+      @posts = Post.of(:article).paginate(page: params[:page]).all
     else
-      @posts = Article.visible.paginate(page: params[:page]).all
+      @posts = Post.of(:article).visible.paginate(page: params[:page]).all
     end
 
     render "/posts/index"
@@ -53,7 +53,7 @@ class ArticlesController < ApplicationController
   private
 
   def set_article
-    @post = Post.find_by(slug: params[:slug])
+    @post = Post.of(:article).find_by(slug: params[:slug])
     return redirect_to(root_path) if @post.private? && !signed_in?
   end
 

@@ -4,9 +4,9 @@ class PhotosController < ApplicationController
 
   def index
     if signed_in?
-      @posts = Photo.paginate(page: params[:page]).all
+      @posts = Post.of(:photo).paginate(page: params[:page]).all
     else
-      @posts = Photo.visible.paginate(page: params[:page]).all
+      @posts = Post.of(:photo).visible.paginate(page: params[:page]).all
     end
 
     render "/posts/index"
@@ -53,7 +53,7 @@ class PhotosController < ApplicationController
   private
 
   def set_photo
-    @post = Post.where(slug: params[:slug]).first
+    @post = Post.of(:photo).where(slug: params[:slug]).first
     return redirect_to(root_path) if @post.private? && !signed_in?
   end
 
