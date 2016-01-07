@@ -3,7 +3,7 @@ module PostsHelper
     if post.is_a?(Page)
       ["pages", post.id, "edit"]
     else
-      [post.slug, "edit"]
+      [post.path, "edit"]
     end.join("/")
   end
 
