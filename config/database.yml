@@ -5,11 +5,11 @@ default: &default
 
 development:
   <<: *default
-  database: homesteading-server-rails_development
+  database: darkmatter-server-rails_development
 
 test:
   <<: *default
-  database: homesteading-server-rails_test
+  database: darkmatter-server-rails_test
 
 production:
   url:  <%= ENV["DATABASE_URL"] %>

@@ -1,4 +1,4 @@
-# Homesteading Server (Rails)
+# Dark Matter Server (Rails)
 
 Rails app to power an #indieweb personal publishing platform.
 
@@ -12,7 +12,7 @@ Click this button to easily deploy to Heroku. You must already have a Heroku acc
 
 ## Code Status
 
-[![Code Climate](https://codeclimate.com/github/homesteading/homesteading-server-rails/badges/gpa.svg)](https://codeclimate.com/github/homesteading/homesteading-server-rails)
+[![Code Climate](https://codeclimate.com/github/darkmatter/publisher-server-rails/badges/gpa.svg)](https://codeclimate.com/github/darkmatter/publisher-server-rails)
 
 ## Authors
 
@@ -49,7 +49,7 @@ Click this button to easily deploy to Heroku. You must already have a Heroku acc
 1. Create new Pull Request
 
 If you find bugs, have feature requests or questions, please
-[file an issue](https://github.com/homesteading/homesteading-server-rails/issues).
+[file an issue](https://github.com/darkmatter/publisher-server-rails/issues).
 
 
 ## License
@@ -59,7 +59,7 @@ If you find bugs, have feature requests or questions, please
 Your heart is as free as the air you breathe. <br>
 The ground you stand on is liberated territory.
 
-In legal text, Homesteading Server (Rails) is dedicated to the public domain
+In legal text, Dark Matter Server (Rails) is dedicated to the public domain
 using Creative Commons -- CC0 1.0 Universal.
 
 [http://creativecommons.org/publicdomain/zero/1.0](http://creativecommons.org/publicdomain/zero/1.0 "Creative Commons &mdash; CC0 1.0 Universal")
