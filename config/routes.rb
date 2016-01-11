@@ -122,6 +122,9 @@ Rails.application.routes.draw do
   get "/videos/page/:page",                to: "videos#index", constraints: {page: /\d+/}
   get "(/videos)(/:year)(/:month)(/:day)", to: "videos#index", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
 
+  # rel-me links
+  resources :links
+
   # Pages CRUD
   get "/pages/new", to: "articles#new", as: "new_page"
   post "/pages", to: "articles#create", as: "pages"
@@ -134,9 +137,6 @@ Rails.application.routes.draw do
   # Settings
   resources :settings, only: [:index, :edit, :update]
   get "key.pub", to: "about#public_key", as: "public_key"
-
-  # rel-me links
-  resources :links
 
   # Tags
   get "tags", to: "tags#index", as: "tags"
