@@ -3,19 +3,13 @@ class ArticlesController < ApplicationController
   before_action :authorize, except: [:show, :index]
 
   def index
-    type = post_type_type.downcase.to_sym
-    
     if signed_in?
       @posts = Post.of(:article).paginate(page: params[:page]).all
     else
       @posts = Post.of(:article).visible.paginate(page: params[:page]).all
     end
 
-    if on_page?
-      render "/pages/index"
-    else
-      render "/posts/index"
-    end
+    render "/posts/index"
   end
 
   def show
@@ -31,10 +25,10 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @post = PostForm.new(Article, @post)
+    @post = PostForm.new(post_class, @post)
     if @post.submit(params.require(:article))
       save_tags(@post, article_params)
-      redirect_to @post.path, notice: "Article was successfully created."
+      redirect_to @post.path, notice: "#{post_class} was successfully created."
     else
       render :new
     end
@@ -44,7 +38,7 @@ class ArticlesController < ApplicationController
     @post = PostForm.new(post_class, @post)
     if @post.update(article_params)
       save_tags(@post, article_params)
-      redirect_to @post.path, notice: "#{post_type_type} was successfully updated."
+      redirect_to @post.path, notice: "#{post_class} was successfully updated."
     else
       render :edit
     end
@@ -53,17 +47,13 @@ class ArticlesController < ApplicationController
   def destroy
     delete_tags(@post)
     @post.destroy
-    redirect_to articles_url, notice: "#{post_type_type} was successfully destroyed."
+    redirect_to articles_url, notice: "#{post_class} was successfully destroyed."
   end
 
   private
 
   def on_page?
-    unless (@post.present? && @post.type == "Article") ||
-       (@posts.present? && @posts.first.type == "Article") ||
-       request.path.split("/")[1] == "articles"
-      true
-    end
+    !(request.path.split("/")[1] == "articles")
   end
   helper_method :on_page?
 
