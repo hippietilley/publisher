@@ -125,6 +125,10 @@ Rails.application.routes.draw do
   # rel-me links
   resources :links
 
+  # Settings
+  resources :settings, only: [:index, :edit, :update]
+  get "key.pub", to: "about#public_key", as: "public_key"
+
   # Pages CRUD
   get "/pages/new", to: "articles#new", as: "new_page"
   post "/pages", to: "articles#create", as: "pages"
@@ -133,10 +137,6 @@ Rails.application.routes.draw do
   get "/:slug/edit", to: "articles#edit", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}, as: "edit_page"
   patch "/:slug", to: "articles#update", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
   delete "/:slug", to: "articles#destroy", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
-
-  # Settings
-  resources :settings, only: [:index, :edit, :update]
-  get "key.pub", to: "about#public_key", as: "public_key"
 
   # Tags
   get "tags", to: "tags#index", as: "tags"
