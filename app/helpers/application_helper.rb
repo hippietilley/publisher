@@ -59,7 +59,7 @@ module ApplicationHelper
   end
 
   def license_name_and_url(format = nil)
-    license = License.find(setting(:license))
+    license = License.find(setting :license)
 
     if license.name == "All Rights Reserved"
       # Default

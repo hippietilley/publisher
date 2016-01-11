@@ -1,7 +1,7 @@
 module UnusedHelper
   # def shorturl_link_tag(post)
   #   if index_action?
-  #     url = "http://#{setting :short_domain}/#{setting(:post_short_code)}"
+  #     url = "http://#{setting :short_domain}/#{setting :post_short_code}"
   #   elsif show_action?
   #     url = short_url(post)
   #   else
@@ -12,7 +12,7 @@ module UnusedHelper
   # end
   #
   # def short_url(post)
-  #   pieces =  [setting(:post_short_code)]
+  #   pieces =  [setting :post_short_code]
   #
   #   pieces << Date.parse("#{post.year}-#{post.month}-#{post.day}").to_sxg
   #   pieces << nth_of_day(post)
@@ -39,7 +39,7 @@ module UnusedHelper
   # end
   #
   # def post_type
-  #   setting(:post_type)
+  #   setting :post_type
   # end
   #
   # def link_to_syndication(post)
