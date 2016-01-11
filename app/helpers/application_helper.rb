@@ -26,7 +26,7 @@ module ApplicationHelper
         true
       end
     else
-      Post.where(post_type_type: page.to_s.singularize.capitalize).where.not(private: true).count > 0
+      Post.of(page.to_s.singularize.capitalize).where.not(private: true).count > 0
     end
   end
 

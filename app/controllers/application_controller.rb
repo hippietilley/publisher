@@ -34,9 +34,9 @@ class ApplicationController < ActionController::Base
 
   def set_page_links
     if signed_in?
-      all_page_links = Post.where(post_type_type: "Page").all
+      all_page_links = Post.of("Page").all
     else
-      all_page_links = Post.where(post_type_type: "Page").where.not(private: true).all
+      all_page_links = Post.of("Page").where.not(private: true).all
     end
 
     @page_links = []
