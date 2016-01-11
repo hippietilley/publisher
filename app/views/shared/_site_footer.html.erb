@@ -13,8 +13,16 @@
         <%= link_to @owner.name, root_url, class: "u-url p-name" %>
       <% end %>
 
+      <% unless @owner.nil? ||  @owner.phone.blank? || hide?(:footer_show_phone_number) %>
+        <%= link_to @owner.phone, "tel://#{@owner.phone.gsub(/\D/, "")}", class: "u-tel" %>
+      <% end %>
+
       <% unless @owner.nil? ||  @owner.email.blank? || hide?(:footer_show_email) %>
-        (<%= mail_to @owner.email, @owner.email, class: "u-email" %>)
+        <%= mail_to @owner.email, @owner.email, class: "u-email" %>
+      <% end %>
+        
+      <% unless @owner.nil? ||  @owner.email.blank? || hide?(:footer_show_email) || hide?(:footer_show_email_vcard_link) %>
+        (<%= link_to "Download vCard", "http://h2vx.com/vcf/#{setting :domain}", class: "u-url" %>)
       <% end %>
     </p>
 
