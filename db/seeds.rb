@@ -119,20 +119,18 @@ puts "...done."
 threads  = []
 
 puts "Trying dev seeds for each post-type..."
-%w(dev.seeds articles bookmarks events photos sounds videos notes pages links).each do |posttype|
-  # threads << Thread.new do
-    filepath = File.expand_path("../seeds/#{posttype}.rb", __FILE__)
+%w(dev.seeds articles bookmarks events notes photos sounds videos pages links).each do |posttype|
+  filepath = File.expand_path("../seeds/#{posttype}.rb", __FILE__)
 
-    puts "  Trying: #{posttype}"
+  puts "  Trying: #{posttype}"
+  puts
+  if File.exist?(filepath)
+    puts "  Found: #{posttype}"
+    eval(File.open(filepath).read)
     puts
-    if File.exist?(filepath)
-      puts "  Found: #{posttype}"
-      eval(File.open(filepath).read)
-      puts
-      puts "...done"
-      puts
-    end
-  # end
+    puts "...done"
+    puts
+  end
 end
 
 # sync up threads before proceeding
