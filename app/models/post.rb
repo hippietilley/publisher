@@ -7,6 +7,7 @@ class SlugValidator < ActiveModel::Validator
 end
 
 class Post < ActiveRecord::Base
+  belongs_to :user
   belongs_to :post_type, polymorphic: true
   default_scope { order("published_at DESC") }
   before_validation :generate_slug, on: :create
@@ -46,10 +47,6 @@ class Post < ActiveRecord::Base
   scope :visible,   -> { where(private: false) }
   scope :of,    lambda { |klass| where(post_type_type: klass.to_s.camelcase) }
   scope :on,    lambda { |date| where("published_at BETWEEN ? AND ?", date.beginning_of_day, date.end_of_day) }
-
-  def user
-    User.first
-  end
 
   def type
     self.post_type_type.downcase
