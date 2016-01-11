@@ -3,6 +3,8 @@ class ArticlesController < ApplicationController
   before_action :authorize, except: [:show, :index]
 
   def index
+    type = post_type_type.downcase.to_sym
+    
     if signed_in?
       @posts = Post.of(:article).paginate(page: params[:page]).all
     else
@@ -57,8 +59,8 @@ class ArticlesController < ApplicationController
   private
 
   def on_page?
-    unless (@post.present? && @post.post_type_type == "Article") ||
-       (@posts.present? && @posts.first.post_type_type == "Article") ||
+    unless (@post.present? && @post.type == "Article") ||
+       (@posts.present? && @posts.first.type == "Article") ||
        request.path.split("/")[1] == "articles"
       true
     end

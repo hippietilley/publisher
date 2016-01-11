@@ -125,7 +125,7 @@ Rails.application.routes.draw do
   # Pages CRUD
   get "/pages/new", to: "articles#new", as: "new_page"
   post "/pages", to: "articles#create", as: "pages"
-  get "/pages", to: "articles#index"
+  get "/pages", to: "pages#index"
   post "/:slug", to: "articles#create", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
   get "/:slug/edit", to: "articles#edit", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}, as: "edit_page"
   patch "/:slug", to: "articles#update", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}

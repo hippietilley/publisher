@@ -1,11 +1,16 @@
 # Dark Matter Server (Rails)
 
-Rails app to power an #indieweb personal publishing platform.
+An #indieweb personal publishing platform built in Ruby on Rails.
+
+
+## Version
+
+0.1.0
 
 
 ## Deploy to Heroku
 
-Click this button to easily deploy to Heroku. You must already have a Heroku account.
+Click this button to easily deploy to Heroku. You must have a Heroku account.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
@@ -13,6 +18,7 @@ Click this button to easily deploy to Heroku. You must already have a Heroku acc
 ## Code Status
 
 [![Code Climate](https://codeclimate.com/github/darkmatter/publisher-server-rails/badges/gpa.svg)](https://codeclimate.com/github/darkmatter/publisher-server-rails)
+
 
 ## Authors
 
