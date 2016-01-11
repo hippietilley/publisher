@@ -71,8 +71,8 @@ class Post < ActiveRecord::Base
       [nil,
        namespace,
        published_at.year,
-       published_at.month,
-       published_at.day,
+       published_at.month.to_s.rjust(2, "0"),
+       published_at.day.to_s.rjust(2, "0"),
        slug
       ]
     end.join("/")
