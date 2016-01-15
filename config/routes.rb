@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   root to: "posts#index"
 
+  # Articles Pagination
+  get "/page/1",                  to: redirect("/"), as: "posts_pagination_redirect_one"
+  get "/page",                    to: redirect("/"), as: "posts_pagination_redirect"
+  get "/page/:page",              to: "posts#index", constraints: {page: /\d+/}
+  get "(/:year)(/:month)(/:day)", to: "posts#index", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
+
   # Users + auth
   resources :users, :sessions
   get "signup", to: "users#new", as: "signup"
