@@ -7,6 +7,8 @@ An #indieweb personal publishing platform built in Ruby on Rails.
 
 0.1.0
 
+![Version 0.1.0](https://img.shields.io/badge/VERSION-0.1.0-green.svg)
+
 
 ## Deploy to Heroku
 
