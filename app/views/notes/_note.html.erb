@@ -4,61 +4,61 @@
   <div class="embedded-media">
     <% unless post.images.blank? %>
       <% post.images.each do |image| %>
-        <%= render "image", image: image %>
+        <%= render "/notes/image", image: image %>
       <% end %>
     <% end %>
 
     <% unless post.videos.blank? %>
       <% post.videos.each do |video| %>
-        <%= render "video", video: video %>
+        <%= render "/notes/video", video: video %>
       <% end %>
     <% end %>
 
     <% unless post.audios.blank? %>
       <% post.audios.each do |audio| %>
-        <%= render "audio", audio: audio %>
+        <%= render "/notes/audio", audio: audio %>
       <% end %>
     <% end %>
 
     <% unless post.youtubes.blank? %>
       <% post.youtubes.each do |youtube| %>
-        <%= render "youtube", youtube: youtube %>
+        <%= render "/notes/youtube", youtube: youtube %>
       <% end %>
     <% end %>
 
     <% unless post.vimeos.blank? %>
       <% post.vimeos.each do |vimeo| %>
-        <%= render "vimeo", vimeo: vimeo %>
+        <%= render "/notes/vimeo", vimeo: vimeo %>
       <% end %>
     <% end %>
 
     <% unless post.vines.blank? %>
       <% post.vines.each do |vine| %>
-        <%= render "vine", vine: vine %>
+        <%= render "/notes/vine", vine: vine %>
       <% end %>
     <% end %>
 
     <% unless post.instagrams.blank? %>
       <% post.instagrams.each do |instagram| %>
-        <%= render "instagram", instagram: instagram %>
+        <%= render "/notes/instagram", instagram: instagram %>
       <% end %>
     <% end %>
 
     <% unless post.flickrs.blank? %>
       <% post.flickrs.each do |flickr| %>
-        <%= render "flickr", flickr: flickr %>
+        <%= render "/notes/flickr", flickr: flickr %>
       <% end %>
     <% end %>
 
     <% unless post.twitters.blank? %>
       <% post.twitters.each do |twitter| %>
-        <%= render "twitter", twitter: twitter %>
+        <%= render "/notes/twitter", twitter: twitter %>
       <% end %>
     <% end %>
 
     <% unless post.thisismyjams.blank? %>
       <% post.thisismyjams.each do |thisismyjam| %>
-        <%= render "thisismyjam", thisismyjam: thisismyjam %>
+        <%= render "/notes/thisismyjam", thisismyjam: thisismyjam %>
       <% end %>
     <% end %>
   </div>
