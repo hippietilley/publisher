@@ -116,10 +116,9 @@ class Post < ActiveRecord::Base
               suppress_no_follow: true,
               link_text_block: Proc.new{ |entity, text|
                 text = text.
-                       gsub(/^.*:\/\//, "").
-                       gsub(/^www\./,   "").
-                       gsub(/\/$/,      "").
-                       gsub(/\//,       "/<wbr>")
+                       gsub(/^.*:\/\//, ""). # removes leading protocol
+                       gsub(/^www\./,   ""). # removes leading www
+                       gsub(/\/$/,      "")  # removes trailing slash
               }
     ).html_safe
   end
