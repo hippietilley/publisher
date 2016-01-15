@@ -17,7 +17,7 @@ Click this button to easily deploy to Heroku. You must have a Heroku account.
 
 ## Code Status
 
-[![Code Climate](https://codeclimate.com/github/darkmatter/publisher-server-rails/badges/gpa.svg)](https://codeclimate.com/github/darkmatter/publisher-server-rails)
+[![Code Climate](https://codeclimate.com/github/darkmatterapp/publisher-server-rails/badges/gpa.svg)](https://codeclimate.com/github/darkmatterapp/publisher-server-rails)
 
 
 ## Authors
@@ -55,7 +55,7 @@ Click this button to easily deploy to Heroku. You must have a Heroku account.
 1. Create new Pull Request
 
 If you find bugs, have feature requests or questions, please
-[file an issue](https://github.com/darkmatter/publisher-server-rails/issues).
+[file an issue](https://github.com/darkmatterapp/publisher-server-rails/issues).
 
 
 ## License
