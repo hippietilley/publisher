@@ -1,0 +1,13 @@
+<div class="embed-thisismyjam">
+  <%= image_tag thisismyjam[:image_url],
+                alt:    thisismyjam[:title] + " by " + thisismyjam[:artist],
+                class: "u-photo" %>
+
+  <p>
+    &ldquo;<%= thisismyjam[:title] %>&rdquo;
+    <%= small_word_tag "by" %>
+    <%= thisismyjam[:artist] %>
+  </p>
+
+  <%= link_to thisismyjam[:embed_url], thisismyjam[:embed_url] %>
+</div>

@@ -123,6 +123,182 @@ class Post < ActiveRecord::Base
     ).html_safe
   end
 
+
+  # media embeds
+  def vines
+    html_doc = Nokogiri::HTML(linked_content)
+    photos = []
+
+    html_doc.css("a").each do |link|
+      if link.attr(:href) =~ /vine.co/
+        photos << { video_id: link.attr(:href).split("/").last }
+      end
+    end
+
+    photos
+  end
+
+  def youtubes
+    html_doc = Nokogiri::HTML(linked_content)
+    videos = []
+
+    html_doc.css("a").each do |link|
+      if link.attr(:href) =~ /youtube.com/
+        videos << { video_id: link.attr(:href).split("v=").last }
+      elsif link.attr(:href) =~ /youtu.be/
+        videos << { video_id: link.attr(:href).split("/").last }
+      end
+    end
+
+    videos
+  end
+
+  def vimeos
+    html_doc = Nokogiri::HTML(linked_content)
+    videos = []
+
+    html_doc.css("a").each do |link|
+      url = link.attr(:href)
+      if url =~ /vimeo.com/
+        videos << { video_id: url.gsub(/player.vimeo.com\/video/, "vimeo.com").split("vimeo.com/").last }
+      end
+    end
+
+    videos
+  end
+
+  def twitters
+    html_doc = Nokogiri::HTML(linked_content)
+    tweets = []
+
+    html_doc.css("a").each do |link|
+      url = link.attr(:href)
+
+      if url =~ /twitter.com\/\w+\/status\/\d+/
+        tweets << { tweet_url: url }
+      end
+    end
+
+    tweets
+  end
+
+  def instagrams
+    html_doc = Nokogiri::HTML(linked_content)
+    photos = []
+
+    html_doc.css("a").each do |link|
+      if link.attr(:href) =~ /instagram.com/
+        photos << { photo_id: link.attr(:href).split("/").last }
+      end
+    end
+
+    photos
+  end
+
+  def thisismyjams
+    html_doc = Nokogiri::HTML(linked_content)
+
+    jams = []
+
+    html_doc.css("a").each do |link|
+      url = link.attr(:href)
+
+      if url =~ /t.thisismyjam.com/
+        jam_id = url.split("t.thisismyjam.com").compact.last.split("/")[2]
+
+        api_url      = "http://api.thisismyjam.com/1/jams/#{jam_id}.json"
+        api_response = JSON.load(open(api_url))
+
+        jams << {
+          title:     api_response["jam"]["title"],
+          artist:    api_response["jam"]["artist"],
+          image_url: api_response["jam"]["jamvatarLarge"],
+          embed_url: api_response["jam"]["viaUrl"]
+        }
+      end
+    end
+
+    jams
+  end
+
+  def images
+    html_doc = Nokogiri::HTML(linked_content)
+    photos = []
+
+    html_doc.css("a").each do |link|
+      extension = link.attr(:href).split(".").last
+
+      if extension.downcase =~ /^[jpg|jpeg|png|gif|bmp]$/
+        photos << { url: link.attr(:href) }
+      end
+    end
+
+    photos
+  end
+
+  def videos
+    html_doc = Nokogiri::HTML(linked_content)
+    videos = []
+
+    html_doc.css("a").each do |link|
+      extension = link.attr(:href).split(".").last
+
+      if extension.downcase =~ /^[mp4|avi|mov|ogv|webm|m4v|3gp|m3u8]$/
+        videos << { url: link.attr(:href) }
+      end
+    end
+
+    videos
+  end
+
+  def audios
+    html_doc = Nokogiri::HTML(linked_content)
+    audios = []
+
+    html_doc.css("a").each do |link|
+      extension = link.attr(:href).split(".").last
+
+      if extension.downcase =~ /^[mp3|aac|wav|ogg|oga|m4a]$/
+        audios << { url: link.attr(:href) }
+      end
+    end
+
+    audios
+  end
+
+  def flickrs
+    html_doc = Nokogiri::HTML(linked_content)
+    photos = []
+
+    html_doc.css("a").each do |link|
+      url = link.attr(:href)
+      next if url =~ /\/sets\//
+
+      if url =~ /flickr.com|flic.kr/
+
+        if url =~ /flickr.com/
+          url = url.sub("flickr.com",               "flickr.com/photos")
+          url = url.sub("flickr.com/photos/photos", "flickr.com/photos")
+        end
+
+        oembed = Nokogiri::XML(open("https://www.flickr.com/services/oembed?url=#{url}"))
+
+        photos << {
+          image_url:         oembed.css("oembed url").text,
+          page_url:          oembed.css("oembed web_page").text,
+          photographer_name: oembed.css("oembed author_name").text,
+          photographer_url:  oembed.css("oembed author_url").text,
+          title:             oembed.css("oembed title").text,
+          width:             oembed.css("oembed width").text,
+          height:            oembed.css("oembed height").text
+        }
+
+      end
+    end
+
+    photos
+  end
+
   private
 
   def clean_slug!(slug)

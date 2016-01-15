@@ -1,0 +1,16 @@
+<div class="embed-flickr">
+  <%= link_to flickr[:page_url],
+              title: "#{flickr[:title]} by #{flickr[:photographer_name]}, on Flickr" do %>
+    <%= image_tag flickr[:image_url], alt: flickr[:title] %>
+  <% end %>
+
+  <br />
+  <%= small_word_tag "By" %>
+
+  <%= link_to flickr[:photographer_name],
+              flickr[:photographer_url],
+              title: "#{flickr[:photographer_name]} on Flickr" %>
+
+  <%= small_word_tag "on" %>
+  <%= link_to "Flickr", "http://flickr.com" %>
+</div>

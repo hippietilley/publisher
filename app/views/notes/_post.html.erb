@@ -1,0 +1,132 @@
+<% if post.public? || logged_in? %>
+  <% if action_name == "index" %><li><% end %>
+
+    <article id="note-<%= post.id %>" class="h-entry as-note">
+      <header>
+
+        <% if is_a_reply?(post) %>
+          <p class="post-meta reply-context">
+            <b>In Reply To</b>
+            <%= link_to in_reply_to_urls(post) %>
+          </p>
+        <% end %>
+
+        <h1 class="p-name">
+          <%= link_to "Edit", edit_post_url(post.params), class: "edit" if logged_in? %>
+        </h1>
+      </header>
+
+      <div class="e-content p-name">
+
+        <%= simple_format post.linked_content %>
+
+        <div class="embedded-media">
+          <% unless post.images.blank? %>
+            <% post.images.each do |image| %>
+              <%= render "image", image: image %>
+            <% end %>
+          <% end %>
+
+          <% unless post.videos.blank? %>
+            <% post.videos.each do |video| %>
+              <%= render "video", video: video %>
+            <% end %>
+          <% end %>
+
+          <% unless post.audios.blank? %>
+            <% post.audios.each do |audio| %>
+              <%= render "audio", audio: audio %>
+            <% end %>
+          <% end %>
+
+          <% unless post.youtubes.blank? %>
+            <% post.youtubes.each do |youtube| %>
+              <%= render "youtube", youtube: youtube %>
+            <% end %>
+          <% end %>
+
+          <% unless post.vimeos.blank? %>
+            <% post.vimeos.each do |vimeo| %>
+              <%= render "vimeo", vimeo: vimeo %>
+            <% end %>
+          <% end %>
+
+          <% unless post.vines.blank? %>
+            <% post.vines.each do |vine| %>
+              <%= render "vine", vine: vine %>
+            <% end %>
+          <% end %>
+
+          <% unless post.instagrams.blank? %>
+            <% post.instagrams.each do |instagram| %>
+              <%= render "instagram", instagram: instagram %>
+            <% end %>
+          <% end %>
+
+          <% unless post.flickrs.blank? %>
+            <% post.flickrs.each do |flickr| %>
+              <%= render "flickr", flickr: flickr %>
+            <% end %>
+          <% end %>
+
+          <% unless post.twitters.blank? %>
+            <% post.twitters.each do |twitter| %>
+              <%= render "twitter", twitter: twitter %>
+            <% end %>
+          <% end %>
+
+          <% unless post.thisismyjams.blank? %>
+            <% post.thisismyjams.each do |thisismyjam| %>
+              <%= render "thisismyjam", thisismyjam: thisismyjam %>
+            <% end %>
+          <% end %>
+        </div>
+
+      </div>
+
+      <footer class="post-meta">
+        <p>
+          <%= link_to "Published", post.path, class: "u-url u-uid p-as-verb" %>
+
+          <span class="screen-reader-only">
+            this
+            <span class="p-as-object"><%= setting :post_type %></span>
+          </span>
+
+          <%= time_tag post.published_at, class: "dt-published" do %>
+            <%= small_word_tag "on" %>
+            <%= human_readable_date post.published_at %>
+
+            <%= small_word_tag "at" %>
+            <%= human_readable_time post.published_at %>
+          <% end %>
+
+          <%= small_word_tag "by" %>
+
+          <span class="p-author p-as-actor h-card">
+            <%= link_to setting(:author_name), setting(:author_url), rel: "me", class: "u-url p-name" %>
+          </span>
+
+          <% unless post.source_name.blank? %>
+            using
+            <%= link_to post.source_name, post.source_url, class: "p-source-name u-source-id" %>
+          <% end %>
+        </p>
+
+        <% unless index_action? %>
+          <p class="short-url">
+            <b>URL</b>
+            <%= link_to short_url(post).gsub(/https?:\/\//, ""), short_url(post), class: "u-shortlink" %>
+          </p>
+        <% end %>
+
+        <% unless post.twitter_url.blank? %>
+          <div class="syndication">
+            <%= link_to_syndication(post).html_safe %>
+          </div> <!-- .syndication -->
+        <% end %>
+      </footer>
+    </article>
+
+  <% if action_name == "index" %></li><% end %>
+<% end %>
