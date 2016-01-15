@@ -5,7 +5,6 @@
       <%= render "/posts/header", post: post %>
       <%= render post, post: post %>
       <%= render "/posts/footer", post: post %>
-      <%= link_to "Edit", edit_post_path(post), class: "edit" if signed_in? %>
 
     <% end %>
   <% end %>

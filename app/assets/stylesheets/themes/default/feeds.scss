@@ -73,20 +73,41 @@
     &:hover,
     &:hover input,
     &:hover a {
-      color: #999;
+      opacity: 1;
     }
 
     &:hover a:hover { color: #666; }
 
+    .edit {
+      font-weight: bold;
+      color: #308014;
+    }
+
+    &:hover a.edit:hover { color: #4DBD33; }
+
     p,
     ul,
     li {
-      display: inline;
       margin: 0;
       padding: 0;
+    }
+
+    ul,
+    li {
+      display: inline;
     }
 
     li { margin-left: .25em; }
   }
   /* ...entry footer */
+}
+
+/* "tablet" */
+@media (min-width: 768px) {
+  .h-event,
+  .h-entry {
+    footer p {
+      display: block;
+    }
+  }
 }

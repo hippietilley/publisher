@@ -1,16 +1,7 @@
 <footer>
-  <% unless post.tags.blank? %>
-    <p class="tags">
-      <b>Tags</b>
-      <%= link_to_tags_for(post) %>
-    </p> <!-- .tags -->
-  <% end %>
-
-  <div class="syndication">
-    <%#= link_to_syndication(post).html_safe %>
-  </div> <!-- .syndication -->
-
   <p class="dm-activity-sentence">
+    <%= link_to "Edit", edit_post_path(post), class: "edit" if signed_in? %>
+
     <b><%= link_to post.post_type_type, "/#{post.namespace}", class: "p-x-post-type" %></b>
 
     <%= small_word_tag "by" %>
@@ -29,4 +20,14 @@
       <% end %>
     <% end %>
   </p>
+  <% unless post.tags.blank? %>
+    <p class="tags">
+      <b>Tags</b>
+      <%= link_to_tags_for(post) %>
+    </p> <!-- .tags -->
+  <% end %>
+
+  <div class="syndication">
+    <%#= link_to_syndication(post).html_safe %>
+  </div> <!-- .syndication -->
 </footer>
