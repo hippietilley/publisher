@@ -7,6 +7,8 @@ class SlugValidator < ActiveModel::Validator
 end
 
 class Post < ActiveRecord::Base
+  include Twitter::Autolink
+
   belongs_to :user
   belongs_to :post_type, polymorphic: true
   default_scope { order("published_at DESC") }
@@ -109,6 +111,18 @@ class Post < ActiveRecord::Base
     Post.on(published_at).where(post_type_type: post_type_type, slug: slug).exists?
   end
 
+  def linked_content
+    auto_link(content,
+              suppress_no_follow: true,
+              link_text_block: Proc.new{ |entity, text|
+                text = text.
+                       gsub(/^.*:\/\//, "").
+                       gsub(/^www\./,   "").
+                       gsub(/\/$/,      "").
+                       gsub(/\//,       "/<wbr>")
+              }
+    ).html_safe
+  end
 
   private
 
