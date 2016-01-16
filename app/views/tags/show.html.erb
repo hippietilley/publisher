@@ -5,5 +5,5 @@
 </h1>
 
 <p>
-  <b>#<%= @tag.slug %></b> elsewhere: <%= link_to_external_tag_pages @tag %>.
+  <b>#<%= @tag.slug.gsub(/-/, "") %></b> elsewhere: <%= link_to_external_tag_pages @tag %>.
 </p>

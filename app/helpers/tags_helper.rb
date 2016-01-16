@@ -28,7 +28,7 @@ module TagsHelper
       Vimeo: "https://vimeo.com/categories/",
       Vine: "https://vine.co/tags/",
     }.each do |site, url|
-      links << link_to(site, url + tag.slug)
+      links << link_to(site, url + tag.slug.gsub(/-/, ""))
     end
 
     links.join(", ").html_safe
