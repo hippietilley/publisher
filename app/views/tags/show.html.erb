@@ -1,4 +1,9 @@
 <h1>
-  <%= link_to_unless_current "Tags", tags_path %> :
+  Posts  
+  <%= link_to_unless_current "tagged", tags_path %>
   <%= link_to_tag(@tag) %>
 </h1>
+
+<p>
+  <b>#<%= @tag.slug %></b> elsewhere: <%= link_to_external_tag_pages @tag %>.
+</p>
