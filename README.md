@@ -22,17 +22,17 @@ Click this button to easily deploy to Heroku. You must have a Heroku account.
 [![Code Climate](https://codeclimate.com/github/darkmatterapp/publisher-server-rails/badges/gpa.svg)](https://codeclimate.com/github/darkmatterapp/publisher-server-rails)
 
 
-## Authors
-
-* Shane Becker / [@veganstraightedge](https://github.com/veganstraightedge)
-* Bookis Smuin / [@bookis](https://github.com/bookis)
-
-
 ## Setup
 
 ```bash
 bin/setup
 ```
+
+
+## Authors
+
+* Shane Becker / [@veganstraightedge](https://github.com/veganstraightedge)
+* Bookis Smuin / [@bookis](https://github.com/bookis)
 
 
 ## Contributing
