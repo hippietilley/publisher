@@ -30,19 +30,9 @@ Click this button to easily deploy to Heroku. You must have a Heroku account.
 
 ## Setup
 
-1. Install all the required gems.
-
-    ```bash
-    bundle
-    ```
-
-2. Set up your database.
-
-    ```bash
-    rake db:create
-    rake db:migrate
-    rake db:seed
-    ```
+```bash
+bin/setup
+```
 
 
 ## Contributing
