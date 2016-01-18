@@ -19,6 +19,9 @@ gem "jquery-rails"
 # auto-linking @usernames and #hashtags
 gem "twitter-text"
 
+# activities units conversion
+gem "ruby-units"
+
 # database
 gem "pg"
 
