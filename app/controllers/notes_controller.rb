@@ -4,9 +4,9 @@ class NotesController < ApplicationController
 
   def index
     if signed_in?
-      @posts = Post.of(:note).page(params[:page]).all
+      @posts = Post.of(:note).page(params[:page]).all.per_page(15)
     else
-      @posts = Post.of(:note).visible.page(params[:page]).all
+      @posts = Post.of(:note).visible.page(params[:page]).all.per_page(15)
     end
 
     render "/posts/index"

@@ -4,9 +4,9 @@ class ArticlesController < ApplicationController
 
   def index
     if signed_in?
-      @posts = Post.of(:article).page(params[:page]).all
+      @posts = Post.of(:article).page(params[:page]).all.per_page(5)
     else
-      @posts = Post.of(:article).visible.page(params[:page]).all
+      @posts = Post.of(:article).visible.page(params[:page]).all.per_page(5)
     end
 
     render "/posts/index"

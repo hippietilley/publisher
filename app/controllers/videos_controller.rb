@@ -4,9 +4,9 @@ class VideosController < ApplicationController
 
   def index
     if signed_in?
-      @posts = Post.of(:video).page(params[:page]).all
+      @posts = Post.of(:video).page(params[:page]).all.per_page(5)
     else
-      @posts = Post.of(:video).visible.page(params[:page]).all
+      @posts = Post.of(:video).visible.page(params[:page]).all.per_page(5)
     end
 
     render "/posts/index"

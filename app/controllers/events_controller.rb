@@ -4,9 +4,9 @@ class EventsController < ApplicationController
 
   def index
     if signed_in?
-      @posts = Post.of(:event).page(params[:page]).all
+      @posts = Post.of(:event).page(params[:page]).all.per_page(5)
     else
-      @posts = Post.of(:event).visible.page(params[:page]).all
+      @posts = Post.of(:event).visible.page(params[:page]).all.per_page(5)
     end
 
     render "/posts/index"
