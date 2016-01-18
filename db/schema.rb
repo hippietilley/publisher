@@ -106,12 +106,12 @@ ActiveRecord::Schema.define(version: 20160118054337) do
     t.text     "content"
     t.text     "slug"
     t.text     "in_reply_to"
-    t.boolean  "private"
+    t.boolean  "private",        default: false
     t.datetime "published_at"
     t.integer  "post_type_id"
     t.string   "post_type_type"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "user_id",        default: 1
   end
 
