@@ -16,7 +16,7 @@ gem "uglifier", ">= 1.3.0"
 gem "coffee-rails", "~> 4.1.0"
 gem "jquery-rails"
 
-# for auto-linking @usernames and #hashtags
+# auto-linking @usernames and #hashtags
 gem "twitter-text"
 
 # database

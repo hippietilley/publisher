@@ -43,6 +43,11 @@ class Post < ActiveRecord::Base
            :enclosure_url,
            :summary,
            :show_in_nav,
+           :activity_type,
+           :amount,
+           :unit,
+           :converted_amount,
+           :converted_unit,
            to: :post_type
 
   scope :invisible, -> { where(private: true)  }
@@ -104,6 +109,8 @@ class Post < ActiveRecord::Base
       title
     elsif content
       content[0,50]
+    elsif post_type.activity_type && post_type.amount && post_type.unit
+      "#{post_type.activity_type} : #{post_type.amount} #{post_type.unit}"
     end
   end
 
@@ -323,6 +330,4 @@ class Post < ActiveRecord::Base
       clean_slug!(self.slug + "-#{n}")
     end
   end
-
-
 end

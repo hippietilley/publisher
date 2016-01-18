@@ -56,6 +56,18 @@
 
   p { margin-bottom: 1em; }
 
+  /* activity posts... */
+  .h-activity {
+    .p-type {
+      text-transform: capitalize;
+    }
+
+    .p-type::after {
+      content: ": ";
+    }
+  }
+  /* ...activity posts */
+
   /* entry header and footer... */
   header .reply-context { margin: 0 0 2rem 0; }
   footer                { margin: 2rem 0 0 0; }

@@ -6,7 +6,7 @@ class CreatePosts < ActiveRecord::Migration
                  :content,
                  :slug,
                  :in_reply_to
-      t.boolean  :private
+      t.boolean  :private, default: false
       t.datetime :published_at
       t.integer  :post_type_id
       t.string   :post_type_type

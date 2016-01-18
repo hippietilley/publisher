@@ -16,12 +16,28 @@ Rails.application.routes.draw do
 
   # RSS/Atom feeds
   get "/feed", to: "posts#index", defaults: {format: "atom"}, as: :feed
+  get "/activities/feed", to: "activities#index", defaults: {format: "atom"}, as: :activities_feed
   get "/articles/feed", to: "articles#index", defaults: {format: "atom"}, as: :articles_feed
   get "/bookmarks/feed", to: "bookmarks#index", defaults: {format: "atom"}, as: :bookmarks_feed
   get "/notes/feed", to: "notes#index", defaults: {format: "atom"}, as: :notes_feed
   get "/photos/feed", to: "photos#index", defaults: {format: "atom"}, as: :photos_feed
   get "/sounds/feed", to: "sounds#index", defaults: {format: "atom"}, as: :sounds_feed
   get "/videos/feed", to: "videos#index", defaults: {format: "atom"}, as: :videos_feed
+
+  # Activities CRUD
+  get "/activities/new", to: "activities#new", as: "new_activity"
+  post "/activities", to: "activities#create", as: "activities"
+  post "/activities/:year/:month/:day", to: "activities#create", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
+  get "/activities/:year/:month/:day/:slug", to: "activities#show", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}, as: "activity"
+  get "/activities/:year/:month/:day/:slug/edit", to: "activities#edit", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}, as: "edit_activity"
+  patch "/activities/:year/:month/:day/:slug", to: "activities#update", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
+  delete "/activities/:year/:month/:day/:slug", to: "activities#destroy", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
+
+  # Activities Pagination
+  get "/activities/page/1",                    to: redirect("/activities")
+  get "/activities/page",                      to: redirect("/activities")
+  get "/activities/page/:page",                to: "activities#index", constraints: {page: /\d+/}
+  get "(/activities)(/:year)(/:month)(/:day)", to: "activities#index", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
 
   # Articles CRUD
   get "/articles/new", to: "articles#new", as: "new_article"

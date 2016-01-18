@@ -13,6 +13,7 @@
         <% if show_nav_to?(:sounds) %><li><%= link_to "Sounds", sounds_path %></li><% end %>
         <% if show_nav_to?(:videos) %><li><%= link_to "Videos", videos_path %></li><% end %>
         <% if show_nav_to?(:pages) %><li><%= link_to "Pages", pages_path %></li><% end %>
+        <% if show_nav_to?(:activities) %><li><%= link_to "Activities", activities_path %></li><% end %>
       <% end %>
 
       <% @page_links.each do |page| %>

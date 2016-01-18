@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
     if signed_in?
       all_page_links = Post.of("Page").all
     else
-      all_page_links = Post.of("Page").where.not(private: true).all
+      all_page_links = Post.of("Page").visible.all
     end
 
     @page_links = []

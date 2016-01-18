@@ -1,0 +1,56 @@
+<% if @post.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@post.errors.count, "error") %> prohibited this note from being saved:</h2>
+
+    <ul>
+    <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="field">
+  <%= f.label :activity_type %><br>
+  <%= f.text_field :activity_type %>
+</div>
+<div class="field">
+  <%= f.label :amount %><br>
+  <%= f.text_field :amount %>
+</div>
+<div class="field">
+  <%= f.label :unit %><br>
+  <%= f.text_field :unit %>
+</div>
+<div class="field">
+  <%= f.label :converted_amount %><br>
+  <%= f.text_field :converted_amount %>
+</div>
+<div class="field">
+  <%= f.label :converted_unit %><br>
+  <%= f.text_field :converted_unit %>
+</div>
+<div class="field">
+  <%= f.label :starts_at %><br>
+  <%= f.datetime_select :starts_at %>
+</div>
+<div class="field">
+  <%= f.label :ends_at %><br>
+  <%= f.datetime_select :ends_at %>
+</div>
+<div class="field">
+  <%= f.label :tags %><br>
+  <%= text_field_tag :tags, @post.tags.map(&:name).join(", ") %>
+</div>
+<div class="field">
+  <%= f.label :published_at %><br>
+  <%= f.datetime_select :published_at %>
+</div>
+<div class="field">
+  <%= f.label :private %>
+  <%= f.check_box :private %>
+</div>
+<div class="actions">
+  <%= link_to "Cancel", notes_url %>
+  <%= f.submit %>
+</div>
