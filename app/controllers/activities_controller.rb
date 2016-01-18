@@ -4,11 +4,11 @@ class ActivitiesController < ApplicationController
 
   def index
     if signed_in?
-      @posts = Post.of(:activity).paginate(page: params[:page]).all
+      @posts = Post.of(:activity).page(params[:page]).all
     else
-      @posts = Post.of(:activity).visible.paginate(page: params[:page]).all
+      @posts = Post.of(:activity).visible.page(params[:page]).all
     end
-
+    
     render "/posts/index"
   end
 

@@ -3,9 +3,9 @@ class PostsController < ApplicationController
     @slug = "home"
 
     if signed_in?
-      @posts = Post.where.not(post_type_type: "Page").all.paginate(page: params[:page])
+      @posts = Post.where.not(post_type_type: "Page").all.page(params[:page])
     else
-      @posts = Post.where.not(post_type_type: "Page").visible.all.paginate(page: params[:page])
+      @posts = Post.where.not(post_type_type: "Page").visible.all.page(params[:page])
     end
   end
 end
