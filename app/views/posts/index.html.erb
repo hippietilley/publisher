@@ -2,4 +2,8 @@
   <%= render partial: "posts/post", collection: @posts %>
 </ol>
 
-<%= will_paginate @posts %>
+<%= will_paginate @posts,
+                  previous_label: "&larr;",
+                  next_label:     "&rarr;",
+                  inner_window:   2,
+                  outer_window:   2 %>
