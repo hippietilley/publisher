@@ -2,7 +2,7 @@
   <p class="dm-activity-sentence">
     <%= link_to "Edit", edit_post_path(post), class: "edit" if signed_in? %>
 
-    <b><%= link_to post.post_type_type, "/#{post.namespace}", class: "p-x-post-type" %></b>
+    <b><%= link_to post.type, "/#{post.namespace}", class: "p-x-post-type" %></b>
 
     <%= small_word_tag "by" %>
 
