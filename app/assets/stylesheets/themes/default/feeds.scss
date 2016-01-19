@@ -61,10 +61,6 @@
     .p-type {
       text-transform: capitalize;
     }
-
-    .p-type::after {
-      content: ": ";
-    }
   }
   /* ...activity posts */
 

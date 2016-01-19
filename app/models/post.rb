@@ -44,6 +44,7 @@ class Post < ActiveRecord::Base
            :summary,
            :show_in_nav,
            :activity_type,
+           :activity_verb,
            :amount,
            :unit,
            :converted_amount,
