@@ -1,6 +1,8 @@
 <div class="p-name e-content">
   <p class="h-activity">
-    <data class="p-type" value="<%= post.activity_type.downcase %>"><%= post.activity_verb.capitalize %></data>
+    <data class="p-type" value="<%= post.activity_type.downcase %>">
+      <%= post.activity_verb.capitalize %>
+    </data>
 
     <data class="p-amount" title="<%= post.amount.gsub(/\D/, "") %>"><%= post.amount %></data>
     <abbr class="p-unit" title=""><%= post.unit %></abbr>
