@@ -5,7 +5,7 @@
     <data class="p-amount" title="<%= post.amount.gsub(/\D/, "") %>"><%= post.amount %></data>
     <abbr class="p-unit" title=""><%= post.unit %></abbr>
 
-    (<data class="p-converted-amount" title="<%= post.converted_amount.gsub(/\D/, "") %>"><%= post.converted_amount %></span>
+    (<data class="p-converted-amount" title="<%= post.converted_amount.gsub(/\D/, "") %>"><%= post.converted_amount %></data>
     <abbr class="p-converted-unit" title=""><%= post.converted_unit %></abbr>)
     
     <% if post.starts_at.present? && post.ends_at.present? %>
