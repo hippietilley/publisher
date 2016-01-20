@@ -1,4 +1,4 @@
-# Dark Matter Server (Rails)
+# Dark Matter Publisher Server (Rails)
 
 An #indieweb personal publishing platform built in Ruby on Rails.
 
