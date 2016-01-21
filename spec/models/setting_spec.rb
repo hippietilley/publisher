@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Setting, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  fixtures :settings
+  let(:setting) { settings(:setting) }
+  describe ".of" do
+    it "finds by the slug" do
+      setting.update(slug: "some_key")
+      expect(Setting.of(:some_key)).to eq setting
+    end
+  end
 end

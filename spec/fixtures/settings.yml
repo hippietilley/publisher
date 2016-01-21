@@ -1,0 +1,4 @@
+setting:
+  name:    "Some Key"
+  slug:    "some_key"
+  content: 1234

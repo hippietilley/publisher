@@ -151,6 +151,10 @@ Rails.application.routes.draw do
   resources :settings, only: [:index, :edit, :update]
   get "key.pub", to: "about#public_key", as: "public_key"
 
+  # Auth
+  get  "/auth/:provider/callback", to: "providers#create"
+  post "/auth/:provider/callback", to: "providers#create"
+
   # Pages CRUD
   get "/pages/new", to: "articles#new", as: "new_page"
   post "/pages", to: "articles#create", as: "pages"

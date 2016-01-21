@@ -8,6 +8,10 @@ class Setting < ActiveRecord::Base
   before_create :set_slug
   before_update :set_slug
 
+  def self.of(slug)
+    find_by(slug: slug)
+  end
+
   private
 
   def set_slug

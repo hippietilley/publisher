@@ -6,6 +6,8 @@ gem "rails", "~> 4.2.4"
 
 # auth
 gem "bcrypt", "~> 3.1.7"
+gem "omniauth"
+gem "omniauth-twitter"
 
 # pagination
 gem "will_paginate"
