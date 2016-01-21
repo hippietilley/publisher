@@ -1,6 +1,6 @@
 class SlugValidator < ActiveModel::Validator
   def validate(record)
-    if record.slug_exists?
+    if record.new_record? && record.slug_exists?
       record.errors[:slug] << 'needs to be unique on the published date'
     end
   end

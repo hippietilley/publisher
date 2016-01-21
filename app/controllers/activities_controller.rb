@@ -54,6 +54,7 @@ class ActivitiesController < ApplicationController
 
   def activity_params
     params.require(:activity).permit(:activity_type,
+      :activity_verb,
       :amount,
       :unit,
       :converted_amount,
