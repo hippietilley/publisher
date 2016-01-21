@@ -3,12 +3,7 @@ class BookmarksController < ApplicationController
   before_action :authorize, except: [:show, :index]
 
   def index
-    if signed_in?
-      @posts = Post.of(:bookmark).page(params[:page]).all
-    else
-      @posts = Post.of(:bookmark).page(params[:page]).all
-    end
-
+    @posts = Post.of(:bookmark).for_user(current_user).page(params[:page]).all
     render "/posts/index"
   end
 

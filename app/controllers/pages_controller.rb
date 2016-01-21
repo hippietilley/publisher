@@ -1,11 +1,7 @@
 # Everything is called @post instead of @page so that other things Just Work
 class PagesController < ApplicationController
   def index
-    if signed_in?
-      @posts = Post.of(:page).all
-    else
-      @posts = Post.of(:page).visible.all
-    end
+    @posts = Post.of(:page).for_user(current_user).all
   end
 
   def show

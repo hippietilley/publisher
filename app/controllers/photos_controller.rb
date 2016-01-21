@@ -3,12 +3,7 @@ class PhotosController < ApplicationController
   before_action :authorize, except: [:show, :index]
 
   def index
-    if signed_in?
-      @posts = Post.of(:photo).page(params[:page]).all.per_page(5)
-    else
-      @posts = Post.of(:photo).visible.page(params[:page]).all.per_page(5)
-    end
-
+    @posts = Post.of(:photo).for_user(current_user).page(params[:page]).all.per_page(5)
     render "/posts/index"
   end
 

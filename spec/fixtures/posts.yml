@@ -1,0 +1,3 @@
+post:
+  slug: "post-123"
+  published_at: <%= Time.now %>

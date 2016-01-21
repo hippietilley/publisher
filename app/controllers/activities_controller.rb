@@ -3,12 +3,7 @@ class ActivitiesController < ApplicationController
   before_action :authorize, except: [:show, :index]
 
   def index
-    if signed_in?
-      @posts = Post.of(:activity).page(params[:page]).all
-    else
-      @posts = Post.of(:activity).visible.page(params[:page]).all
-    end
-    
+    @posts = Post.for_user(current_user).of(:activity).page(params[:page]).all
     render "/posts/index"
   end
 

@@ -52,9 +52,13 @@ class Post < ActiveRecord::Base
            to: :post_type
 
   scope :invisible, -> { where(private: true)  }
-  scope :visible,   -> { where(private: false) }
-  scope :of,    lambda { |klass| where(post_type_type: klass.to_s.camelcase) }
-  scope :on,    lambda { |date| where("published_at BETWEEN ? AND ?", date.beginning_of_day, date.end_of_day) }
+  scope :visible,   -> { where(private: [false, nil]) }
+  scope :of,       lambda { |klass| where(post_type_type: klass.to_s.camelcase) }
+  scope :on,       lambda { |date| where("published_at BETWEEN ? AND ?", date.beginning_of_day, date.end_of_day) }
+
+  def self.for_user(user)
+    user ? all : visible
+  end
 
   def type
     self.post_type_type.downcase

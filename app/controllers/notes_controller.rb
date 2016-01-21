@@ -3,12 +3,7 @@ class NotesController < ApplicationController
   before_action :authorize, except: [:show, :index]
 
   def index
-    if signed_in?
-      @posts = Post.of(:note).page(params[:page]).all.per_page(15)
-    else
-      @posts = Post.of(:note).visible.page(params[:page]).all.per_page(15)
-    end
-
+    @posts = Post.of(:note).for_user(current_user).page(params[:page]).all.per_page(15)
     render "/posts/index"
   end
 
