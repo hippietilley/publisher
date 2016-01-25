@@ -49,6 +49,11 @@ bin/setup
 If you find bugs, have feature requests or questions, please
 [file an issue](https://github.com/darkmatterapp/publisher-server-rails/issues).
 
+## Code of Conduct
+
+Everyone interacting in the Dark Matter project's codebases, issue trackers, chat rooms, and mailing lists is expected to follow the
+[Dark Matter code of conduct](https://github.com/darkmatterapp/publisher-server-rails/blob/master/CODE_OF_CONDUCT.md).
+
 
 ## License
 
