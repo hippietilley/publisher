@@ -27,9 +27,11 @@
     </p> <!-- .tags -->
   <% end %>
 
-  <div class="syndication">
-    <%= button_to "Syndicate to Twitter", syndicators_path(post.namespace, post.id, :twitter) %>
-  </div> <!-- .syndication -->
+  <% if signed_in? %>
+    <div class="syndication">
+      <%= button_to "Syndicate to Twitter", syndicators_path(post.namespace, post.id, :twitter) %>
+    </div> <!-- .syndication -->
+  <% end %>
 
   <% if lookup_context.template_exists?("footer", post.post_type_type.downcase.pluralize, true) %>
     <%= render "/#{post.post_type_type.downcase.pluralize}/footer", post: post.post_type %>
