@@ -31,6 +31,9 @@ gem "pg"
 gem "puma"
 gem "rack-timeout"
 
+# syndication
+gem "twitter"
+
 # testing
 group :development, :test do
   gem "rspec-rails"

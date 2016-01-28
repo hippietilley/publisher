@@ -28,6 +28,11 @@
   <% end %>
 
   <div class="syndication">
-    <%#= link_to_syndication(post).html_safe %>
+    <%= button_to "Syndicate to Twitter", syndicators_path(post.namespace, post.id, :twitter) %>
   </div> <!-- .syndication -->
+
+  <% if lookup_context.template_exists?("footer", post.post_type_type.downcase.pluralize, true) %>
+    <%= render "/#{post.post_type_type.downcase.pluralize}/footer", post: post.post_type %>
+  <% end %>
+
 </footer>

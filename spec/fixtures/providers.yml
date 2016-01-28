@@ -1,0 +1,6 @@
+twitter:
+  token: 1234
+  secret: 5678
+  provider: twitter
+  uid: 8910
+  name: Laura

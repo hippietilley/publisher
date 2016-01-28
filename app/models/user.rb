@@ -5,4 +5,5 @@ class User < ActiveRecord::Base
 
   has_many :post_types
   has_many :links
+  has_many :providers
 end

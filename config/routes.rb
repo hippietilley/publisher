@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   get "signout", to: "sessions#destroy", as: "signout"
   get "profile", to: "users#edit", as: "profile"
 
+  # Syndication
+  post "/syndicators/:post_type/:id/:service", to: "syndicators#create", as: :syndicators
+
   # RSS/Atom feeds
   get "/feed", to: "posts#index", defaults: {format: "atom"}, as: :feed
   get "/activities/feed", to: "activities#index", defaults: {format: "atom"}, as: :activities_feed

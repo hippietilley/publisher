@@ -1,5 +1,7 @@
 class Provider < ActiveRecord::Base
 
+  belongs_to :user
+
   def self.from_omniauth(auth_hash)
     provider = self.find_or_initialize_by(uid: auth_hash[:uid])
     provider.attributes = {
