@@ -18,5 +18,13 @@ RSpec.describe SyndicatorsController, type: :controller do
       expect(twitter_client).to receive(:update).with("I'm content")
       post :create, id: note.id, post_type: "notes", service: :twitter
     end
+
+    context "when not logged in" do
+      it "redirects to the sign in page" do
+        allow(controller).to receive(:current_user) { nil }
+        post :create, id: note.id, post_type: "notes", service: :twitter
+        expect(response).to redirect_to signin_path
+      end
+    end
   end
 end

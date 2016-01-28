@@ -1,4 +1,5 @@
 class SyndicatorsController < ApplicationController
+  before_action :authorize
 
   def create
     @post = Post.of(params[:post_type]).find(params[:id])
