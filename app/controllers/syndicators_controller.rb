@@ -2,9 +2,14 @@ class SyndicatorsController < ApplicationController
   before_action :authorize
 
   def create
-    @post = Post.of(params[:post_type]).find(params[:id])
-    twitter_client.update(@post.content)
-    redirect_to @post.path
+    @syndicator = Syndicator.for(params[:service])
+    if @syndicator.valid?
+      @post = Post.of(params[:post_type]).find(params[:id])
+      twitter_client.update(@post.content)
+      redirect_to @post.path
+    else
+      redirect_to settings_path, notice: "Provide syndication keys for #{params[:service]} to syndicate."
+    end
   end
 
   private

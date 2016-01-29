@@ -2,3 +2,11 @@ setting:
   name:    "Some Key"
   slug:    "some_key"
   content: 1234
+twitter_key:
+  name:    Syndication Twitter Key
+  slug:    syndication_twitter_key
+  content: atwitterkey
+twitter_secret:
+  name:    Syndication Twitter Secret
+  slug:    syndication_twitter_secret
+  content: atwittersecret

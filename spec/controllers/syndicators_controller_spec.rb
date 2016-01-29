@@ -13,6 +13,11 @@ RSpec.describe SyndicatorsController, type: :controller do
     let(:note)           { posts(:note) }
     let(:provider)       { providers(:twitter) }
     let(:twitter_client) { double("Twitter::Rest::Client") }
+    let(:syndicator)     { Syndicator.for(:twitter) }
+
+    before do
+      allow(syndicator).to receive(:valid?) { false }
+    end
 
     it "uses the twitter gem to syndicate to twitter" do
       user.providers << provider
@@ -27,6 +32,15 @@ RSpec.describe SyndicatorsController, type: :controller do
         allow(controller).to receive(:current_user) { nil }
         post :create, id: note.id, post_type: "notes", service: :twitter
         expect(response).to redirect_to signin_path
+      end
+    end
+
+    context "when Setting keys for service are not set" do
+      it "redirects to settings page" do
+        Setting.destroy_all
+        allow(syndicator).to receive(:valid?) { false }
+        post :create, id: note.id, post_type: "notes", service: :twitter
+        expect(response).to redirect_to settings_path
       end
     end
   end
