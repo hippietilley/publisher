@@ -135,4 +135,12 @@ module ApplicationHelper
   def site_url
     setting(:protocol) + setting(:domain)
   end
+  
+  def blank
+    ""
+  end
+
+  def show_action?
+    action_name == "show"
+  end
 end

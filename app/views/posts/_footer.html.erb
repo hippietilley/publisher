@@ -20,6 +20,7 @@
       <% end %>
     <% end %>
   </p>
+  
   <% unless post.tags.blank? %>
     <p class="tags">
       <b>Tags</b>
@@ -29,12 +30,12 @@
 
   <% if signed_in? %>
     <div class="syndication">
-      <%= button_to "Syndicate to Twitter", syndicators_path(post.namespace, post.id, :twitter) %>
+      <%= link_to_syndications(post) %>
+      <%= syndication_buttons_for(post) %>
     </div> <!-- .syndication -->
   <% end %>
 
   <% if lookup_context.template_exists?("footer", post.post_type_type.downcase.pluralize, true) %>
     <%= render "/#{post.post_type_type.downcase.pluralize}/footer", post: post.post_type %>
   <% end %>
-
 </footer>

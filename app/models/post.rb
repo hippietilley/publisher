@@ -1,7 +1,7 @@
 class SlugValidator < ActiveModel::Validator
   def validate(record)
     if record.new_record? && record.slug_exists?
-      record.errors[:slug] << 'needs to be unique on the published date'
+      record.errors[:slug] << "needs to be unique on the published date"
     end
   end
 end
@@ -11,6 +11,8 @@ class Post < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :post_type, polymorphic: true
+  has_many :syndications
+  
   default_scope { order("published_at DESC") }
   before_validation :generate_slug, on: :create
   validates_with SlugValidator
