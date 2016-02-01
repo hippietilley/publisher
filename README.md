@@ -19,6 +19,7 @@ Click this button to easily deploy to Heroku. You must have a Heroku account.
 
 ## Code Status
 
+[![Build Status](https://travis-ci.org/darkmatterapp/publisher-server-rails.svg?branch=master)](https://travis-ci.org/darkmatterapp/publisher-server-rails)
 [![Code Climate](https://codeclimate.com/github/darkmatterapp/publisher-server-rails/badges/gpa.svg)](https://codeclimate.com/github/darkmatterapp/publisher-server-rails)
 
 
