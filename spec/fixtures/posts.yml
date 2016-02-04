@@ -1,6 +1,7 @@
 post:
   slug: "post-123"
   published_at: <%= Time.now %>
+  post_type_type: Note
 note:
   slug: "note-123"
   content: "I'm a note"

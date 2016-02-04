@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe SyndicatorsController, type: :controller do
-  fixtures :users
+  fixtures :users, :settings
   let!(:user) { users(:user) }
 
   before do
@@ -21,13 +21,12 @@ RSpec.describe SyndicatorsController, type: :controller do
       allow(Syndicator).to receive(:for).with("twitter") { syndicator }
       allow(syndicator).to receive(:valid?) { true }
       user.providers << provider
-      note.update(content: "I'm content")
       allow(Twitter::REST::Client).to receive(:new) { twitter_client }
-      allow(twitter_client).to receive(:update).with("I'm content") { tweet }
+      allow(twitter_client).to receive(:update) { tweet }
     end
 
     it "uses the twitter gem to syndicate to twitter" do
-      expect(twitter_client).to receive(:update).with("I'm content") { tweet }
+      expect(twitter_client).to receive(:update) { tweet }
       make_request!
     end
 

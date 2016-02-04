@@ -10,3 +10,11 @@ twitter_secret:
   name:    Syndication Twitter Secret
   slug:    syndication_twitter_secret
   content: atwittersecret
+domain:
+  name: Domain
+  slug: domain
+  content: example.com
+protocol:
+  name: Protocol
+  slug: protocol
+  content: "http://"

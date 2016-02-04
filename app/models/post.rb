@@ -121,6 +121,18 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def syndication_content
+    @syndication_content ||= if post_type.respond_to? :syndication_content
+      [post_type.syndication_content, url].join("\n\n")
+    else
+      [name, url].join("\n\n")
+    end
+  end
+
+  def url
+    Setting.of(:protocol).content + Setting.of(:domain).content + path
+  end
+
   def slug_exists?
     Post.on(published_at).where(post_type_type: post_type_type, slug: slug).exists?
   end
