@@ -17,14 +17,14 @@ module SyndicationsHelper
       html << content_tag(:ul, links.flatten.join.html_safe)
     end
   end
-  
+
   def syndication_buttons_for(post)
     html = content_tag(:p, "Syndicate to")
     links = []
 
     current_user.providers.each do |provider|
       unless post.syndications.map{ |s| s.name.downcase }.include?(provider.provider.capitalize)
-        links << content_tag(:li, button_to(provider, syndicators_path(post.namespace, post.id, :twitter), class: "link"))
+        links << content_tag(:li, button_to(provider.provider, syndicators_path(post.namespace, post.id, :twitter), class: "link"))
       end
     end
 
