@@ -290,22 +290,24 @@ class Post < ActiveRecord::Base
 
       if url =~ /flickr.com|flic.kr/
 
-        if url =~ /flickr.com/
+        if url =~ /tags/
+          next
+        else url =~ /flickr.com/
           url = url.sub("flickr.com",               "flickr.com/photos")
           url = url.sub("flickr.com/photos/photos", "flickr.com/photos")
+
+          oembed = Nokogiri::XML(open("https://www.flickr.com/services/oembed?url=#{url}"))
+
+          photos << {
+            image_url:         oembed.css("oembed url").text,
+            page_url:          oembed.css("oembed web_page").text,
+            photographer_name: oembed.css("oembed author_name").text,
+            photographer_url:  oembed.css("oembed author_url").text,
+            title:             oembed.css("oembed title").text,
+            width:             oembed.css("oembed width").text,
+            height:            oembed.css("oembed height").text
+          }
         end
-
-        oembed = Nokogiri::XML(open("https://www.flickr.com/services/oembed?url=#{url}"))
-
-        photos << {
-          image_url:         oembed.css("oembed url").text,
-          page_url:          oembed.css("oembed web_page").text,
-          photographer_name: oembed.css("oembed author_name").text,
-          photographer_url:  oembed.css("oembed author_url").text,
-          title:             oembed.css("oembed title").text,
-          width:             oembed.css("oembed width").text,
-          height:            oembed.css("oembed height").text
-        }
 
       end
     end
