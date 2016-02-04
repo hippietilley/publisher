@@ -13,18 +13,26 @@ RSpec.describe SyndicatorsController, type: :controller do
     let(:note)           { posts(:note) }
     let(:provider)       { providers(:twitter) }
     let(:twitter_client) { double("Twitter::Rest::Client") }
-    let(:syndicator)     { Syndicator.for(:twitter) }
+    let(:syndicator)     { double("Sydicator") }
+    let(:make_request!)  { post :create, id: note.id, post_type: "notes", service: :twitter }
+    let(:tweet)          { double("Tweet", url: "http://example.com/") }
 
     before do
-      allow(syndicator).to receive(:valid?) { false }
-    end
-
-    it "uses the twitter gem to syndicate to twitter" do
+      allow(Syndicator).to receive(:for).with("twitter") { syndicator }
+      allow(syndicator).to receive(:valid?) { true }
       user.providers << provider
       note.update(content: "I'm content")
       allow(Twitter::REST::Client).to receive(:new) { twitter_client }
-      expect(twitter_client).to receive(:update).with("I'm content")
-      post :create, id: note.id, post_type: "notes", service: :twitter
+      allow(twitter_client).to receive(:update).with("I'm content") { tweet }
+    end
+
+    it "uses the twitter gem to syndicate to twitter" do
+      expect(twitter_client).to receive(:update).with("I'm content") { tweet }
+      make_request!
+    end
+
+    it "creates a Syndication object" do
+      expect { make_request! }.to change { Syndication.count }.by(1)
     end
 
     context "when not logged in" do

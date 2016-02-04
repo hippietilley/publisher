@@ -23,7 +23,7 @@ module SyndicationsHelper
     links = []
 
     current_user.providers.each do |provider|
-      unless post.syndications.map{ |s| s.name.downcase }.include?(provider.provider.capitalize)
+      unless post.syndications.exists?(name: provider.provider)
         links << content_tag(:li, button_to(provider.provider, syndicators_path(post.namespace, post.id, :twitter), class: "link"))
       end
     end
