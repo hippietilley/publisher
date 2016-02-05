@@ -14,6 +14,7 @@ Dir.chdir APP_ROOT do
 
   puts
   puts "== Preparing database =="
+  system "bin/rake db:drop"
   system "bin/rake db:create"
   system "bin/rake db:migrate"
   system "bin/rake db:seed"
