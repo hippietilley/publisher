@@ -8,7 +8,7 @@ module SyndicationsHelper
       rel = "external "
       rel << "syndication" if show_action?
 
-      links << content_tag(:li, link_to(syndication.name, syndication.url), rel: rel, class: "u-syndication")
+      links << content_tag(:li, link_to(syndication.name.capitalize, syndication.url), rel: rel, class: "u-syndication")
     end
 
     if links.blank?
@@ -24,7 +24,7 @@ module SyndicationsHelper
 
     current_user.providers.each do |provider|
       unless post.syndications.exists?(name: provider.provider)
-        links << content_tag(:li, button_to(provider.provider, syndicators_path(post.namespace, post.id, :twitter), class: "link"))
+        links << content_tag(:li, button_to(provider.provider.capitalize, syndicators_path(post.namespace, post.id, :twitter), class: "link"))
       end
     end
 
