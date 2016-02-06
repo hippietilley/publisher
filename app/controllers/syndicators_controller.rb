@@ -6,11 +6,11 @@ class SyndicatorsController < ApplicationController
     if @syndicator.valid?
       @post = Post.of(params[:post_type]).find(params[:id])
 
+      options = {}
       if @post.in_reply_to.present?
-        url                   = @post.in_reply_to.split.first
+        url = @post.in_reply_to.split.first
         in_reply_to_status_id = url.split("/").last
-
-        options = { in_reply_to_status_id: in_reply_to_status_id }
+        options[:in_reply_to_status_id] = in_reply_to_status_id
       end
 
       syndication = twitter_client.update(@post.syndication_content, options)
