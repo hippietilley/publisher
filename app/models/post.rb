@@ -103,7 +103,7 @@ class Post < ActiveRecord::Base
 
   def tags
     output = []
-    Tagging.where(post_type: post_type_type.try(:downcase), post_id: post_type_id).all.find_each do |tagging|
+    Tagging.where(post_id: post_type_id).all.find_each do |tagging|
       output << Tag.find(tagging.tag_id)
     end
     output

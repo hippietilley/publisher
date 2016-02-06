@@ -70,7 +70,7 @@ class ApplicationController < ActionController::Base
   end
 
   def delete_tags(post)
-    Tagging.where(post_id: post.id, post_type: post.class.to_s.downcase).destroy_all
+    Tagging.where(post_id: post.id).destroy_all
   end
 
   def save_tags(post, post_params)
@@ -81,7 +81,7 @@ class ApplicationController < ActionController::Base
       tag = Tag.find_or_initialize_by(name: name)
       tag.save!
 
-      Tagging.create!(post_id: post.post_type_id, post_type: post.post_type_type.downcase, tag_id: tag.id)
+      Tagging.create!(post_id: post.post_type_id, tag_id: tag.id)
     end
   end
 end
