@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user,  only: [:show, :edit, :update, :destroy]
+  before_action :set_user,  only: [:edit, :update, :destroy]
   before_action :authorize, only: [:edit, :update, :destroy]
 
   # /signup
@@ -27,18 +27,6 @@ class UsersController < ApplicationController
     else
       render "new"
     end
-  end
-
-  def index
-    if signed_in?
-      @users = User.all
-    else
-      return redirect_to(root_url)
-    end
-  end
-
-  # TODO: hide id in URL, use @username
-  def show
   end
 
   # /profile

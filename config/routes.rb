@@ -8,11 +8,12 @@ Rails.application.routes.draw do
   get "(/:year)(/:month)(/:day)", to: "posts#index", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
 
   # Users + auth
-  resources :users, :sessions
-  get "signup", to: "users#new", as: "signup"
-  get "signin", to: "sessions#new", as: "signin"
+  resources :users,    only: [:create, :update, :destroy]
+  resources :sessions, only: [:create]
+  get "profile", to: "users#edit",       as: "profile"
+  get "signup",  to: "users#new",        as: "signup"
+  get "signin",  to: "sessions#new",     as: "signin"
   get "signout", to: "sessions#destroy", as: "signout"
-  get "profile", to: "users#edit", as: "profile"
 
   # Syndication
   post "/syndicators/:post_type/:id/:service", to: "syndicators#create", as: :syndicators
