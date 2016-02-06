@@ -2,10 +2,10 @@ source "https://rubygems.org"
 ruby "2.3.0"
 
 # application server
-gem "rails", "~> 4.2.4"
+gem "rails", "~> 4.2"
 
 # auth
-gem "bcrypt", "~> 3.1.7"
+gem "bcrypt", "~> 3.1"
 gem "omniauth"
 gem "omniauth-twitter"
 
