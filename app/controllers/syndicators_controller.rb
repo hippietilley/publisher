@@ -5,7 +5,15 @@ class SyndicatorsController < ApplicationController
     @syndicator = Syndicator.for(params[:service])
     if @syndicator.valid?
       @post = Post.of(params[:post_type]).find(params[:id])
-      syndication = twitter_client.update(@post.syndication_content)
+
+      if @post.in_reply_to.present?
+        url                   = @post.in_reply_to.split.first
+        in_reply_to_status_id = url.split("/").last
+
+        options = { in_reply_to_status_id: in_reply_to_status_id }
+      end
+
+      syndication = twitter_client.update(@post.syndication_content, options)
       @post.syndications.create(url: syndication.url, name: params[:service])
       redirect_to @post.path
     else
