@@ -1,0 +1,2 @@
+module SyndicatorsHelper
+end
