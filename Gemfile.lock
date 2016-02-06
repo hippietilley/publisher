@@ -233,7 +233,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bcrypt (~> 3.1.7)
+  bcrypt (~> 3.1)
   byebug
   codeclimate-test-reporter
   coffee-rails (~> 4.1.0)
