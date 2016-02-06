@@ -5,14 +5,14 @@ An #indieweb personal publishing platform built in Ruby on Rails.
 
 ## Version
 
-0.1.0
+0.2.0
 
-![Version 0.1.0](https://img.shields.io/badge/VERSION-0.1.0-green.svg)
+![Version 0.2.0](https://img.shields.io/badge/VERSION-0.2.0-green.svg)
 
 
 ## Deploy to Heroku
 
-Click this button to easily deploy to Heroku. You must have a Heroku account.
+Click this button to easily deploy to Heroku. (You must have a Heroku account.)
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
@@ -23,9 +23,11 @@ Click this button to easily deploy to Heroku. You must have a Heroku account.
 [![Code Climate](https://codeclimate.com/github/darkmatterapp/publisher-server-rails/badges/gpa.svg)](https://codeclimate.com/github/darkmatterapp/publisher-server-rails)
 
 
-## Setup
+## Dev Setup
 
 ```bash
+git clone git@github.com:darkmatterapp/publisher-server-rails.git
+cd publisher-server-rails
 bin/setup
 ```
 
