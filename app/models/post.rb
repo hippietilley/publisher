@@ -12,7 +12,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :post_type, polymorphic: true
   has_many :syndications
-  
+
   default_scope { order("published_at DESC") }
   before_validation :generate_slug, on: :create
   validates_with SlugValidator
@@ -115,17 +115,32 @@ class Post < ActiveRecord::Base
     elsif title
       title
     elsif content
-      content[0,50]
+      content[0,150]
     elsif post_type.activity_type && post_type.amount && post_type.unit
       "#{post_type.activity_type} : #{post_type.amount} #{post_type.unit}"
     end
   end
 
   def syndication_content
+    pieces = []
+
     @syndication_content ||= if post_type.respond_to? :syndication_content
-      [post_type.syndication_content, url].join("\n\n")
+      body = post_type.syndication_content
     else
-      [name, url].join("\n\n")
+      body = name
+    end
+
+    # DOC : curl https://dev.twitter.com/rest/reference/get/help/configuration | grep url_length
+    # 140 : tweet max length
+    #  23 : t.co URL length
+    #   2 : line breaks between content and URL
+    #   3 : elipsis
+    # 112 : 140 - 23 - 2 - 3
+    # Truncate tweet content if neccesary to make room for permalink
+    if body.length > 140
+      ["#{body[0..111]}...", url].join("\n\n")
+    else
+      body
     end
   end
 
