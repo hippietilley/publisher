@@ -37,7 +37,7 @@
       <title><%= post.name %></title>
 
       <% post.tags.each do |tag| %>
-        <category scheme="<%= tag %>" term="<%= tag %>" />
+        <category scheme="<%= tag.name %>" term="<%= tag.name %>" />
       <% end %>
 
       <content type="html">
