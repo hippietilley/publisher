@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   get "/activities/:year/:month/:day/:slug", to: "activities#show", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}, as: "activity"
   get "/activities/:year/:month/:day/:slug/edit", to: "activities#edit", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}, as: "edit_activity"
   patch "/activities/:year/:month/:day/:slug", to: "activities#update", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
+  put "/activities/:year/:month/:day/:slug", to: "activities#update", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
   delete "/activities/:year/:month/:day/:slug", to: "activities#destroy", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
 
   # Activities Pagination
