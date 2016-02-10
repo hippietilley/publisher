@@ -99,6 +99,7 @@ Rails.application.routes.draw do
   get "/notes/:year/:month/:day/:slug", to: "notes#show", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}, as: "note"
   get "/notes/:year/:month/:day/:slug/edit", to: "notes#edit", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}, as: "edit_note"
   patch "/notes/:year/:month/:day/:slug", to: "notes#update", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
+  put "/notes/:year/:month/:day/:slug", to: "notes#update", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
   delete "/notes/:year/:month/:day/:slug", to: "notes#destroy", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
 
   # Notes Pagination
@@ -114,6 +115,7 @@ Rails.application.routes.draw do
   get "/photos/:year/:month/:day/:slug", to: "photos#show", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}, as: "photo"
   get "/photos/:year/:month/:day/:slug/edit", to: "photos#edit", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}, as: "edit_photo"
   patch "/photos/:year/:month/:day/:slug", to: "photos#update", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
+  put "/photos/:year/:month/:day/:slug", to: "photos#update", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
   delete "/photos/:year/:month/:day/:slug", to: "photos#destroy", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
 
   # Photos Pagination
@@ -129,6 +131,7 @@ Rails.application.routes.draw do
   get "/sounds/:year/:month/:day/:slug", to: "sounds#show", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}, as: "sound"
   get "/sounds/:year/:month/:day/:slug/edit", to: "sounds#edit", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}, as: "edit_sound"
   patch "/sounds/:year/:month/:day/:slug", to: "sounds#update", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
+  put "/sounds/:year/:month/:day/:slug", to: "sounds#update", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
   delete "/sounds/:year/:month/:day/:slug", to: "sounds#destroy", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
 
   # Sounds Pagination
@@ -144,6 +147,7 @@ Rails.application.routes.draw do
   get "/videos/:year/:month/:day/:slug", to: "videos#show", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}, as: "video"
   get "/videos/:year/:month/:day/:slug/edit", to: "videos#edit", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}, as: "edit_video"
   patch "/videos/:year/:month/:day/:slug", to: "videos#update", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
+  put "/videos/:year/:month/:day/:slug", to: "videos#update", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
   delete "/videos/:year/:month/:day/:slug", to: "videos#destroy", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
 
   # Videos Pagination
