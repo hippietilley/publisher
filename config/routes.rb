@@ -51,6 +51,7 @@ Rails.application.routes.draw do
   get "/articles/:year/:month/:day/:slug", to: "articles#show", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}, as: "article"
   get "/articles/:year/:month/:day/:slug/edit", to: "articles#edit", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}, as: "edit_article"
   patch "/articles/:year/:month/:day/:slug", to: "articles#update", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
+  put "/articles/:year/:month/:day/:slug", to: "articles#update", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
   delete "/articles/:year/:month/:day/:slug", to: "articles#destroy", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
 
   # Articles Pagination

@@ -2,12 +2,13 @@ require "rails_helper"
 
 RSpec.describe ActivitiesController, type: :routing do
   describe "routing" do
+
     def activitiy_params
       { year: "2016", month: "02", day: "14", slug: "weight-137-5-lbs" }
     end
 
     def activitiy_path
-      "2016/02/14/weight-137-5-lbs"
+      "/activities/2016/02/14/weight-137-5-lbs"
     end
 
     it "routes to #index" do
@@ -19,11 +20,11 @@ RSpec.describe ActivitiesController, type: :routing do
     end
 
     it "routes to #show" do
-      expect(:get => "/activities/#{activitiy_path}").to route_to("activities#show", activitiy_params)
+      expect(:get => activitiy_path).to route_to("activities#show", activitiy_params)
     end
 
     it "routes to #edit" do
-      expect(:get => "/activities/#{activitiy_path}/edit").to route_to("activities#edit", activitiy_params)
+      expect(:get => "#{activitiy_path}/edit").to route_to("activities#edit", activitiy_params)
     end
 
     it "routes to #create" do
@@ -31,15 +32,15 @@ RSpec.describe ActivitiesController, type: :routing do
     end
 
     it "routes to #update via PUT" do
-      expect(:put => "/activities/#{activitiy_path}").to route_to("activities#update", activitiy_params)
+      expect(:put => activitiy_path).to route_to("activities#update", activitiy_params)
     end
 
     it "routes to #update via PATCH" do
-      expect(:patch => "/activities/#{activitiy_path}").to route_to("activities#update", activitiy_params)
+      expect(:patch => activitiy_path).to route_to("activities#update", activitiy_params)
     end
 
     it "routes to #destroy" do
-      expect(:delete => "/activities/#{activitiy_path}").to route_to("activities#destroy", activitiy_params)
+      expect(:delete => activitiy_path).to route_to("activities#destroy", activitiy_params)
     end
 
   end
