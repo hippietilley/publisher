@@ -23,6 +23,7 @@ RSpec.describe PagesController, type: :routing do
       expect(get: "/resume").to route_to("pages#show", path: "resume")
     end
 
+    # TODO
     # it "routes to #edit" do
     #   expect(get: "/pages/1/edit").to route_to("articles#edit", id: "1")
     # end

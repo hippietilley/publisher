@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe RedirectsController, type: :routing do
   describe "routing" do
-
+    # TODO
     # it "routes to #index" do
     #   expect(get: "/redirects").to route_to("redirects#index")
     # end
