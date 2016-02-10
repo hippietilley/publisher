@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get "/activities/feed", to: "activities#index", defaults: {format: "atom"}, as: :activities_feed
   get "/articles/feed", to: "articles#index", defaults: {format: "atom"}, as: :articles_feed
   get "/bookmarks/feed", to: "bookmarks#index", defaults: {format: "atom"}, as: :bookmarks_feed
+  get "/events/feed", to: "events#index", defaults: {format: "atom"}, as: :events_feed
   get "/notes/feed", to: "notes#index", defaults: {format: "atom"}, as: :notes_feed
   get "/photos/feed", to: "photos#index", defaults: {format: "atom"}, as: :photos_feed
   get "/sounds/feed", to: "sounds#index", defaults: {format: "atom"}, as: :sounds_feed

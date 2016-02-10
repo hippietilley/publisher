@@ -28,7 +28,7 @@ RSpec.describe LinksController, type: :routing do
     end
 
     it "routes to #update via PATCH" do
-      expect(patch: "/links/1").to route_to("links#update", id: "1")
+      expect(patch:  "/links/1").to route_to("links#update", id: "1")
     end
 
     it "routes to #destroy" do
