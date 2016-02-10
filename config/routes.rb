@@ -83,6 +83,7 @@ Rails.application.routes.draw do
   get "/events/:year/:month/:day/:slug", to: "events#show", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}, as: "event"
   get "/events/:year/:month/:day/:slug/edit", to: "events#edit", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}, as: "edit_event"
   patch "/events/:year/:month/:day/:slug", to: "events#update", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
+  put "/events/:year/:month/:day/:slug", to: "events#update", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
   delete "/events/:year/:month/:day/:slug", to: "events#destroy", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
 
   # Events Pagination
