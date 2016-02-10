@@ -67,6 +67,7 @@ Rails.application.routes.draw do
   get "/bookmarks/:year/:month/:day/:slug", to: "bookmarks#show", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}, as: "bookmark"
   get "/bookmarks/:year/:month/:day/:slug/edit", to: "bookmarks#edit", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}, as: "edit_bookmark"
   patch "/bookmarks/:year/:month/:day/:slug", to: "bookmarks#update", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
+  put "/bookmarks/:year/:month/:day/:slug", to: "bookmarks#update", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
   delete "/bookmarks/:year/:month/:day/:slug", to: "bookmarks#destroy", constraints: {year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/}
 
   # Bookmarks Pagination
