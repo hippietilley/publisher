@@ -4,11 +4,11 @@ RSpec.describe SoundsController, type: :routing do
   describe "routing" do
 
     def sound_params
-      { year: "2013", month: "11", day: "02", slug: "farmhouse-conf-5-collapse" }
+      { year: "2014", month: "07", day: "09", slug: "famous-friend-by-joyce-manor" }
     end
 
     def sound_path
-      "/sounds/2013/11/02/farmhouse-conf-5-collapse"
+      "/sounds/2014/07/09/famous-friend-by-joyce-manor"
     end
 
     it "routes to #index" do

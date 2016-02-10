@@ -4,11 +4,11 @@ RSpec.describe VideosController, type: :routing do
   describe "routing" do
 
     def video_params
-      { year: "2013", month: "11", day: "02", slug: "farmhouse-conf-5-collapse" }
+      { year: "2013", month: "05", day: "31", slug: "backyard-squirrel-buddy" }
     end
 
     def video_path
-      "/videos/2013/11/02/farmhouse-conf-5-collapse"
+      "/videos/2013/05/31/backyard-squirrel-buddy"
     end
 
     it "routes to #index" do

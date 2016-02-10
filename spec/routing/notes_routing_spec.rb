@@ -4,11 +4,11 @@ RSpec.describe NotesController, type: :routing do
   describe "routing" do
 
     def note_params
-      { year: "2013", month: "11", day: "02", slug: "farmhouse-conf-5-collapse" }
+      { year: "2016", month: "02", day: "10", slug: "this-is-maggie-aka-teddy-ruxpin" }
     end
 
     def note_path
-      "/notes/2013/11/02/farmhouse-conf-5-collapse"
+      "/notes/2016/02/10/this-is-maggie-aka-teddy-ruxpin"
     end
 
     it "routes to #index" do

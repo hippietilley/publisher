@@ -4,11 +4,11 @@ RSpec.describe PhotosController, type: :routing do
   describe "routing" do
 
     def photo_params
-      { year: "2013", month: "11", day: "02", slug: "farmhouse-conf-5-collapse" }
+      { year: "2003", month: "09", day: "24", slug: "scott-and-carrie" }
     end
 
     def photo_path
-      "/photos/2013/11/02/farmhouse-conf-5-collapse"
+      "/photos/2003/09/24/scott-and-carrie"
     end
 
     it "routes to #index" do
