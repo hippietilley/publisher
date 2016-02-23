@@ -28,10 +28,10 @@
     </p> <!-- .tags -->
   <% end %>
 
-  <% if signed_in? %>
+  <% unless post.syndications.blank? %>
     <div class="syndication">
       <%= link_to_syndications(post) %>
-      <%= syndication_buttons_for(post) %>
+      <%= syndication_buttons_for(post) if signed_in? %>
     </div> <!-- .syndication -->
   <% end %>
 

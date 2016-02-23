@@ -1,20 +1,19 @@
 module SyndicationsHelper
 
   def link_to_syndications(post)
-    html = content_tag(:p, "Also posted to")
     links = []
 
     post.syndications.each do |syndication|
       rel = "external "
       rel << "syndication" if show_action?
 
-      links << content_tag(:li, link_to(syndication.name.capitalize, syndication.url), rel: rel, class: "u-syndication")
+      links << link_to(syndication.name.capitalize, syndication.url, rel: rel, class: "u-syndication")
     end
 
     if links.blank?
       blank
     else
-      html << content_tag(:ul, links.flatten.join.html_safe)
+      content_tag(:p, "Also posted to #{links.flatten.join(', ')}.".html_safe)
     end
   end
 
