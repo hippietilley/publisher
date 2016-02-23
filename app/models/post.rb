@@ -345,6 +345,19 @@ class Post < ActiveRecord::Base
     photos
   end
 
+  def create_syndication_for_instagram
+    unless instagrams.blank?
+      instagrams.each do |instagram|
+        url = "https://instagram.com/p/#{instagram[:photo_id]}"
+        create_syndication_for(name: :instagram, url: url)
+      end
+    end
+  end
+
+  def create_syndication_for(name: name, url: url)
+    self.syndications.find_or_create_by(name: name.to_s.capitalize, url: url)
+  end
+
   private
 
   def clean_slug!(slug)
@@ -368,18 +381,5 @@ class Post < ActiveRecord::Base
       n += 1
       clean_slug!(self.slug + "-#{n}")
     end
-  end
-
-  def create_syndication_for_instagram
-    unless instagrams.blank?
-      instagrams.each do |instagram|
-        url = "https://instagram.com/p/#{instagram[:photo_id]}"
-        create_syndication_for(name: :instagram, url: url)
-      end
-    end
-  end
-
-  def create_syndication_for(name: name, url: url)
-    self.syndications.find_or_create_by(name: name.to_s.capitalize, url: url)
   end
 end
