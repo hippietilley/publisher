@@ -17,6 +17,9 @@ class Post < ActiveRecord::Base
   before_validation :generate_slug, on: :create
   validates_with SlugValidator
 
+  after_create :create_syndication_for_instagram
+  after_update :create_syndication_for_instagram
+
   delegate :name,
            :bookmark_author,
            :bookmark_excerpt,
@@ -365,5 +368,18 @@ class Post < ActiveRecord::Base
       n += 1
       clean_slug!(self.slug + "-#{n}")
     end
+  end
+
+  def create_syndication_for_instagram
+    unless instagrams.blank?
+      instagrams.each do |instagram|
+        url = "https://instagram.com/p/#{instagram[:photo_id]}"
+        create_syndication_for(name: :instagram, url: url)
+      end
+    end
+  end
+
+  def create_syndication_for(name: name, url: url)
+    self.syndications.find_or_create_by(name: name.to_s.capitalize, url: url)
   end
 end
