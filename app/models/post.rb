@@ -267,9 +267,9 @@ class Post < ActiveRecord::Base
     photos = []
 
     html_doc.css("a").each do |link|
-      extension = link.attr(:href).split(".").last
+      extension = URI.parse(link.attr(:href)).path.split(".").last
 
-      if extension.downcase =~ /^[jpg|jpeg|png|gif|bmp]$/
+      if extension.try(:downcase) =~ /^jpg|jpeg|png|gif|bmp$/
         photos << { url: link.attr(:href) }
       end
     end
