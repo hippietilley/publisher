@@ -131,10 +131,6 @@ module ApplicationHelper
 
     output.join("\n").html_safe
   end
-
-  def site_url
-    setting(:protocol) + setting(:domain)
-  end
   
   def blank
     ""
