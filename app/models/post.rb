@@ -354,8 +354,8 @@ class Post < ActiveRecord::Base
     end
   end
 
-  def create_syndication_for(name: name, url: url)
-    self.syndications.find_or_create_by(name: name.to_s.capitalize, url: url)
+  def create_syndication_for(name: syndication_name, url: syndication_url)
+    self.syndications.find_or_create_by(name: syndication_name.to_s.capitalize, url: syndication_url)
   end
 
   private
