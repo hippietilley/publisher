@@ -1,12 +1,28 @@
 class ApplicationController < ActionController::Base
+  # TODO https://github.com/darkmatterapp/publisher-server-rails/issues/155
+  SecureHeaders::Configuration.default do |config|
+    config.csp = {
+      default_src: %w['self'],
+      img_src:     %w[* data:],
+      media_src:   %w[*],
+      script_src:  %w['self' http://platform.instagram.com],
+      style_src:   %w['self' 'unsafe-inline'],
+      frame_src:   %w[*],
+      child_src:   %w[*]
+    }
+  end
+
   protect_from_forgery with: :exception
   before_action :ensure_domain
+
+  before_action :append_to_content_security_policy_header
 
   before_action :set_slug
   before_action :set_owner
   before_action :set_page_links
 
-
+  private
+  
   def ensure_domain
     unless request.env["HTTP_HOST"] == setting(:domain) || Rails.env.development?
       redirect_to site_url, status: 301
@@ -18,7 +34,13 @@ class ApplicationController < ActionController::Base
   end
   helper_method :site_url
   
-  private
+  def append_to_content_security_policy_header
+    append_content_security_policy_directives(
+      default_src: [setting(:protocol).sub("//", "")],
+      script_src:  [setting(:asset_host)],
+      style_src:   [setting(:asset_host)],
+    )
+  end
   
   def setting(key)
     Setting.where(slug: key).first.try(:content)
