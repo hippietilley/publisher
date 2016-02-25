@@ -31,8 +31,13 @@
   <% unless post.syndications.blank? %>
     <div class="syndication">
       <%= link_to_syndications(post) %>
-      <%= syndication_buttons_for(post) if signed_in? %>
     </div> <!-- .syndication -->
+  <% end %>
+  
+  <% if signed_in? %>
+    <div class="syndicate-to">
+      <%= syndication_buttons_for(post) %>
+    </div>
   <% end %>
 
   <% if lookup_context.template_exists?("footer", post.post_type_type.downcase.pluralize, true) %>
