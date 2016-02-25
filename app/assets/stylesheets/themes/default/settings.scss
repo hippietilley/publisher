@@ -9,5 +9,5 @@
   dt       { font-weight: bold; }
   dt label { font-weight: normal; }
   dd       { margin: 0 0 1em 0; }
-  input    { border-bottom: 1px dotted #999; text-transform: uppercase;}
+  input    { padding: .5rem; margin-top: .5rem; box-sizing: border-box; }
 }
