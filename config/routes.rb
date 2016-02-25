@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root to: "posts#index"
 
+  # Micropub
+  get "micropub", to: "about#micropub", as: "micropub"
+
   # Articles Pagination
   get "/page/1",                  to: redirect("/"), as: "posts_pagination_redirect_one"
   get "/page",                    to: redirect("/"), as: "posts_pagination_redirect"

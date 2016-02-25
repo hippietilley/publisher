@@ -7,7 +7,6 @@ puts "Creating default settings..."
   ["Domain",                       "",                                          true],
   ["Short Domain",                 "",                                          true],
   ["Protocol",                     "http://",                                   true],
-  ["Micropub Endpoint",            "/micropub",                                 false],
   ["Rel Authorization Endpoint",   "https://indieauth.com/auth",                true],
   ["Rel Token Endpoint",           "https://tokens.indieauth.com/token",        true],
   ["Rel Me",                       "",                                          true],
