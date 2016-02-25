@@ -15,7 +15,7 @@ RSpec.describe SyndicatorsController, type: :controller do
     let(:twitter_client) { double("Twitter::Rest::Client") }
     let(:syndicator)     { double("Sydicator") }
     let(:make_request!)  { post :create, id: note.id, post_type: "notes", service: :twitter }
-    let(:tweet)          { double("Tweet", url: "http://example.com/") }
+    let(:tweet)          { double("Tweet", url: "http://test.host/") }
 
     before do
       allow(Syndicator).to receive(:for).with("twitter") { syndicator }
@@ -44,7 +44,9 @@ RSpec.describe SyndicatorsController, type: :controller do
 
     context "when Setting keys for service are not set" do
       it "redirects to settings page" do
-        Setting.destroy_all
+        Setting.find_by(slug: :syndication_twitter_key).destroy
+        Setting.find_by(slug: :syndication_twitter_secret).destroy
+
         allow(syndicator).to receive(:valid?) { false }
         post :create, id: note.id, post_type: "notes", service: :twitter
         expect(response).to redirect_to settings_path

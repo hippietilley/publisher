@@ -13,7 +13,7 @@ twitter_secret:
 domain:
   name: Domain
   slug: domain
-  content: example.com
+  content: test.host
 protocol:
   name: Protocol
   slug: protocol

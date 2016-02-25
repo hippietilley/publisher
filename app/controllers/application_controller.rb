@@ -20,8 +20,6 @@ class ApplicationController < ActionController::Base
   before_action :set_slug
   before_action :set_owner
   before_action :set_page_links
-
-  private
   
   def ensure_domain
     unless request.env["HTTP_HOST"] == setting(:domain) || Rails.env.development?
@@ -42,24 +40,10 @@ class ApplicationController < ActionController::Base
     )
   end
   
-  def setting(key)
-    Setting.where(slug: key).first.try(:content)
+  def setting(slug)
+    Setting.find_by(slug: slug).try(:content)
   end
   helper_method :setting
-
-  def split_tags(tags)
-    output = []
-    tags = tags.gsub(/"|'/, ",")
-    separator = tags.match(/,/) ? "," : " "
-
-    tags.split(separator).each do |tag|
-      t = tag.strip.gsub(/"|'/, "")
-      output << t unless t.blank?
-    end
-
-    output.uniq
-  end
-  helper_method :split_tags
 
   def set_owner
     @owner = User.first
@@ -91,20 +75,6 @@ class ApplicationController < ActionController::Base
   end
   helper_method :allow_signup?
 
-  def signed_in?
-    current_user
-  end
-  helper_method :signed_in?
-
-  def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  end
-  helper_method :current_user
-
-  def authorize
-    redirect_to signin_url, alert: "Not authorized" unless signed_in?
-  end
-
   def add_private_tag(post_params, tag_params)
     tag_params += ", .private, " unless post_params["private"].to_i.zero?
     tag_params
@@ -124,5 +94,35 @@ class ApplicationController < ActionController::Base
 
       Tagging.create!(post_id: post.post_type_id, tag_id: tag.id)
     end
+  end
+
+  def split_tags(tags)
+    output = []
+    tags = tags.gsub(/"|'/, ",")
+    separator = tags.match(/,/) ? "," : " "
+
+    tags.split(separator).each do |tag|
+      t = tag.strip.gsub(/"|'/, "")
+      output << t unless t.blank?
+    end
+
+    output.uniq
+  end
+  helper_method :split_tags
+
+  private
+
+  def signed_in?
+    current_user
+  end
+  helper_method :signed_in?
+
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+  helper_method :current_user
+
+  def authorize
+    redirect_to signin_url, alert: "Not authorized" unless signed_in?
   end
 end

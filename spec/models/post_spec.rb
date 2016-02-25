@@ -6,7 +6,7 @@ RSpec.describe Post, type: :model do
 
   describe ".url" do
     it "adds Setting protocol, domain, and post path" do
-      expect(post.url).to eq "http://example.com#{post.path}"
+      expect(post.url).to eq "http://test.host#{post.path}"
     end
   end
 
@@ -20,13 +20,13 @@ RSpec.describe Post, type: :model do
     it "adds the url to a long name" do
       long_name = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam, quis nostrud."
       allow(post).to receive(:name) { long_name }
-      allow(post).to receive(:url)  { "http://example.com" }
-      expect(post.syndication_content).to eq "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore m...\n\nhttp://example.com"
+      allow(post).to receive(:url)  { "http://test.host" }
+      expect(post.syndication_content).to eq "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore m...\n\nhttp://test.host"
     end
 
     it "doesn't add the url to a short name" do
       allow(post).to receive(:name) { "I'm a name" }
-      allow(post).to receive(:url)  { "http://example.com" }
+      allow(post).to receive(:url)  { "http://test.host" }
       expect(post.syndication_content).to eq "I'm a name"
     end
   end
