@@ -7,8 +7,10 @@
 <meta name="description"         content="<%= page_description %>" />
 <meta name="generator"           content="Dark Matter Publisher 0.2.0 (darkmatterapp.com)" />
 
-<!-- Google Site Verification for WebMaster tools -->
-<meta name="google-site-verification" content="<%= setting :google_site_verification %>" />
+<% if setting(:google_site_verification).present? %>
+  <!-- Google Site Verification for WebMaster tools -->
+  <meta name="google-site-verification" content="<%= setting :google_site_verification %>" />
+<% end %>
 
 <!-- Micropub -->
 <!--
