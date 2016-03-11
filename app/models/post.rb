@@ -17,8 +17,8 @@ class Post < ActiveRecord::Base
   before_validation :generate_slug, on: :create
   validates_with SlugValidator
 
-  after_create :create_syndication_for_instagram
-  after_update :create_syndication_for_instagram
+  # after_create :create_syndication_for_instagram
+  # after_update :create_syndication_for_instagram
 
   delegate :name,
            :bookmark_author,
