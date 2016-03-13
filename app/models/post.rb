@@ -13,6 +13,9 @@ class Post < ActiveRecord::Base
   belongs_to :post_type, polymorphic: true
   has_many :syndications
 
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings, dependent: :destroy
+
   default_scope { order("published_at DESC") }
   before_validation :generate_slug, on: :create
   validates_with SlugValidator
@@ -104,13 +107,13 @@ class Post < ActiveRecord::Base
     {year: published_at.year, month: published_at.month, day: published_at.day, slug: slug}
   end
 
-  def tags
-    output = []
-    Tagging.where(post_id: post_type_id).all.find_each do |tagging|
-      output << Tag.find(tagging.tag_id)
-    end
-    output
-  end
+  # def tags
+  #   output = []
+  #   Tagging.where(post_id: post_type_id).all.find_each do |tagging|
+  #     output << Tag.find(tagging.tag_id)
+  #   end
+  #   output
+  # end
 
   def name
     if title && subtitle

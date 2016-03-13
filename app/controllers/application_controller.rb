@@ -80,19 +80,12 @@ class ApplicationController < ActionController::Base
     tag_params
   end
 
-  def delete_tags(post)
-    Tagging.where(post_id: post.id).destroy_all
-  end
-
   def save_tags(post, post_params)
-    delete_tags(post)
+    post.post.tags.destroy_all
     add_private_tag(params[:tags], post_params)
 
     split_tags(params[:tags]).each do |name|
-      tag = Tag.find_or_initialize_by(name: name)
-      tag.save!
-
-      Tagging.create!(post_id: post.post_type_id, tag_id: tag.id)
+      post.post.tags << Tag.find_or_create_by(name: name)
     end
   end
 

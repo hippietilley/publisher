@@ -1,5 +1,6 @@
 class Tag < ActiveRecord::Base
   has_many :taggings
+  has_many :posts, through: :taggings
 
   before_create :set_slug
   before_update :set_slug
@@ -15,7 +16,7 @@ class Tag < ActiveRecord::Base
   private
 
   # TODO: DRY refactor this method copied from PostType into a lib?
-  def clean_slug!
+  def clean_slug!(slug)
     blank     = ""
     separator = "-"
     self.slug = slug.downcase
@@ -24,11 +25,11 @@ class Tag < ActiveRecord::Base
       .gsub(/\W|_|\s|-+/,    separator)
       .gsub(/^-+/,           blank)
       .gsub(/-+$/,           blank)
-      .gsub(/--*/,           separator)
+      .gsub(/-+/,            separator)
   end
 
   def set_slug
     self.slug = name if slug.blank?
-    clean_slug!
+    clean_slug!(self.slug)
   end
 end
