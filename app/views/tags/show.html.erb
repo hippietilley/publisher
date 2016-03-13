@@ -7,3 +7,11 @@
 <p>
   <b>#<%= @tag.slug.gsub(/-/, "") %></b> elsewhere: <%= link_to_external_tag_pages @tag %>.
 </p>
+
+<ol>
+  <% @tag.posts.each do |post| %>
+    <li>
+      <h1><%= link_to post.name, post.path %></h1>
+    </li>
+  <% end %>
+</ol>
