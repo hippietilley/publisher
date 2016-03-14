@@ -35,8 +35,8 @@ puts "Creating default settings..."
   ["Header Show Avatar",           "true",                                      true],
   ["Header Show Site Search",      "true",                                      true],
   ["Header Show Site Description", "true",                                      true],
-  ["Header Show Site Title",       "true",                                      true]
-  ["Asset Host",                   "",                                          true]
+  ["Header Show Site Title",       "true",                                      true],
+  ["Asset Host",                   "",                                          true],
 ].each do |setting|
   s          = Setting.new
   s.name     = setting[0]
