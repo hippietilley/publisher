@@ -84,6 +84,9 @@ Rails.application.routes.draw do
   # Micropub
   get "micropub", to: "about#micropub", as: "micropub"
 
+  # Site photo / avatar
+  get "photo(.format)", to: "about#site_photo"
+
   # Redirection and Page lookup as a fallback to all routes
   get ":path", to: "pages#show", as: "page"
 end
