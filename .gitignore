@@ -14,3 +14,4 @@
 .DS_Store
 db/seeds
 production.seeds.rb
+.byebug_history
