@@ -118,4 +118,22 @@ class ApplicationController < ActionController::Base
   def authorize
     redirect_to signin_url, alert: "Not authorized" unless signed_in?
   end
+
+  # TODO: seems like this should be in AboutController
+  # but it errors: undefined method 'site_photo_path'
+  def site_photo_path
+    uri = URI.parse(@owner.avatar)
+    unless @owner.nil? || @owner.avatar.nil?
+      ["/photo", site_photo_format(uri)].join(".")
+    end
+  end
+  helper_method :site_photo_path
+
+  # TODO: seems like this should be in AboutController
+  # but it errors: undefined method 'site_photo_path'
+  def site_photo_format(uri)
+    unless @owner.nil? || @owner.avatar.nil?
+      uri.path.split(".").last.try(:downcase)
+    end
+  end
 end

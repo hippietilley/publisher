@@ -12,19 +12,17 @@ class AboutController < ApplicationController
   end
   
   def site_photo
-    if @owner.nil? || @owner.avatar.nil? 
+    if @owner.nil? || @owner.avatar.nil?
       render plain: "404 Not Found", status: 404
     else
-      uri    = URI.parse(@owner.avatar)
-      format = uri.path.split(".").last.try(:downcase)
-      path   = ["/photo", format].join(".")
+      uri = URI.parse(@owner.avatar)
 
-      if format == params[:format]
+      if site_photo_format(uri) == params[:format]
         response = Net::HTTP.get_response(URI(@owner.avatar))
         return send_data(response.body, type: response.content_type, disposition: "inline")
       end
 
-      redirect_to path, status: 302
+      redirect_to site_photo_path, status: 302
     end
   end
 end
