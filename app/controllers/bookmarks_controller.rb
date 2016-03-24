@@ -41,7 +41,6 @@ class BookmarksController < ApplicationController
   end
 
   def destroy
-    delete_tags(@post)
     @post.destroy
     redirect_to bookmarks_url, notice: "Bookmark was successfully destroyed."
   end

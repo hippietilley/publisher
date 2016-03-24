@@ -40,7 +40,6 @@ class NotesController < ApplicationController
   end
 
   def destroy
-    delete_tags(@post)
     @post.destroy
     redirect_to notes_url, notice: "Note was successfully destroyed."
   end

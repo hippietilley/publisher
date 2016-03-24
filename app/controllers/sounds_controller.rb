@@ -40,7 +40,6 @@ class SoundsController < ApplicationController
   end
 
   def destroy
-    delete_tags(@post)
     @post.destroy
     redirect_to sounds_url, notice: "Sound was successfully destroyed."
   end

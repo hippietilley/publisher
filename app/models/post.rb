@@ -14,7 +14,7 @@ class Post < ActiveRecord::Base
   has_many :syndications
 
   has_many :taggings, dependent: :destroy
-  has_many :tags, through: :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
 
   default_scope { order("published_at DESC") }
   before_validation :generate_slug, on: :create

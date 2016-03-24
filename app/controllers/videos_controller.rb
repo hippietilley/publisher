@@ -40,7 +40,6 @@ class VideosController < ApplicationController
   end
 
   def destroy
-    delete_tags(@post)
     @post.destroy
     redirect_to videos_url, notice: "Video was successfully destroyed."
   end

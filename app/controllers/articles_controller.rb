@@ -40,7 +40,6 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    delete_tags(@post)
     @post.destroy
     redirect_to articles_url, notice: "#{post_class} was successfully destroyed."
   end

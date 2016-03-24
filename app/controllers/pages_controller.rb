@@ -47,7 +47,6 @@ class PagesController < ApplicationController
   end
 
   def destroy
-    delete_tags(@post)
     @post.destroy
     redirect_to pages_url, notice: "Page was successfully destroyed."
   end

@@ -40,7 +40,6 @@ class PhotosController < ApplicationController
   end
 
   def destroy
-    delete_tags(@post)
     @post.destroy
     redirect_to photos_url, notice: "Photo was successfully destroyed."
   end

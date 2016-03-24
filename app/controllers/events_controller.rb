@@ -41,7 +41,6 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    delete_tags(@post)
     @post.destroy
     redirect_to events_url, notice: 'Event was successfully destroyed.'
   end

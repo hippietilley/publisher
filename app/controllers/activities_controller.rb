@@ -40,7 +40,6 @@ class ActivitiesController < ApplicationController
   end
 
   def destroy
-    # delete_tags(@post)
     @post.destroy
     redirect_to activities_url, notice: "Activity was successfully destroyed."
   end
