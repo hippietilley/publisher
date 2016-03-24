@@ -17,7 +17,7 @@ class Post < ActiveRecord::Base
   has_many :tags, through: :taggings
 
   default_scope { order("published_at DESC") }
-  before_validation :generate_slug, on: :create
+  before_validation :generate_slug, on: [:create, :update]
   validates_with SlugValidator
 
   # after_create :create_syndication_for_instagram
@@ -376,13 +376,16 @@ class Post < ActiveRecord::Base
   end
 
   def generate_slug
-    n = 0
-    self.slug = name || post_type_type if self.slug.blank?
-    clean_slug!(self.slug)
-    while slug_exists?
-      self.slug = name || post_type_type
-      n += 1
-      clean_slug!(self.slug + "-#{n}")
+    if self.new_record? || self.slug_changed?
+      n = 0
+      self.slug = name || post_type_type if self.slug.blank?
+      clean_slug!(self.slug)
+      while slug_exists?
+        self.slug = name || post_type_type
+        n += 1
+        clean_slug!(self.slug + "-#{n}")
+      end
     end
   end
+
 end
