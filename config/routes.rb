@@ -55,6 +55,7 @@ Rails.application.routes.draw do
   post "syndicators/:post_type/:id/:service", to: "syndicators#create", as: :syndicators
 
   # Syndication Auth
+  get  "auth/:provider/setup",    to: "providers#setup"
   get  "auth/:provider/callback", to: "providers#create"
   post "auth/:provider/callback", to: "providers#create"
 
