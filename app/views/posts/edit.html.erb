@@ -1,4 +1,7 @@
-<h1>Editing <%= @post.post_type_type %></h1>
+<h1>
+  Editing
+  <%= link_to @post.post_type_type, @post.path %>
+</h1>
 
 <%= form_for @post, url: @post.path do |f| %>
   <%= render "#{@post.post.namespace}/form", f: f %>
