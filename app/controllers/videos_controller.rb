@@ -17,6 +17,7 @@ class VideosController < ApplicationController
 
   def edit
     @post = PostForm.new(Video, @post)
+    render "posts/edit"
   end
 
   def create

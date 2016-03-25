@@ -23,6 +23,7 @@ class PagesController < ApplicationController
   end
 
   def edit
+    render "posts/edit"
   end
 
   def create

@@ -17,6 +17,7 @@ class ArticlesController < ApplicationController
 
   def edit
     @post = PostForm.new(post_class, @post)
+    render "posts/edit"
   end
 
   def create

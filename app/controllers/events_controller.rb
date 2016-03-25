@@ -17,6 +17,7 @@ class EventsController < ApplicationController
 
   def edit
     @post = PostForm.new(Event, @post)
+    render "posts/edit"
   end
 
   def create

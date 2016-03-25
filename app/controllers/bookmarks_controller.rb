@@ -17,6 +17,7 @@ class BookmarksController < ApplicationController
 
   def edit
     @post = PostForm.new(Bookmark, @post)
+    render "posts/edit"
   end
 
   def create

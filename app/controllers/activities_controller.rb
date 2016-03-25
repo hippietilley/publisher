@@ -17,6 +17,7 @@ class ActivitiesController < ApplicationController
 
   def edit
     @post = PostForm.new(Activity, @post)
+    render "posts/edit"
   end
 
   def create

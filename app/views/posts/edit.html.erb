@@ -1,0 +1,10 @@
+<h1>Editing <%= @post.post_type_type %></h1>
+
+<%= form_for @post, url: @post.path do |f| %>
+  <%= render "#{@post.post.namespace}/form", f: f %>
+<% end %>
+
+<%= link_to "Delete",
+      @post.path,
+      method: :delete,
+      data: { confirm: "Are you sure you're sure? There is NO UNDO." } if signed_in? %>

@@ -17,6 +17,7 @@ class NotesController < ApplicationController
 
   def edit
     @post = PostForm.new(Note, @post)
+    render "posts/edit"
   end
 
   def create

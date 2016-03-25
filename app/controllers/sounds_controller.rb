@@ -17,6 +17,7 @@ class SoundsController < ApplicationController
 
   def edit
     @post = PostForm.new(Sound, @post)
+    render "posts/edit"
   end
 
   def create

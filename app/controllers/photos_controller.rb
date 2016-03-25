@@ -17,6 +17,7 @@ class PhotosController < ApplicationController
 
   def edit
     @post = PostForm.new(Photo, @post)
+    render "posts/edit"
   end
 
   def create
