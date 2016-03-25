@@ -10,7 +10,7 @@ module PostsHelper
   def post_id_and_classes(post, html_class: post.microformat)
     {
       id: "#{post.type}-#{post.id}",
-      class: html_class
+      class: ["post-type-#{post.type.downcase}", html_class].join(" ")
     }
   end
 

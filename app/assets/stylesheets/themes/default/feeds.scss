@@ -56,14 +56,6 @@
 
   p { margin-bottom: 1em; }
 
-  /* activity posts... */
-  .h-activity {
-    .p-type {
-      text-transform: capitalize;
-    }
-  }
-  /* ...activity posts */
-
   /* entry header and footer... */
   header .reply-context { margin: 0 0 2rem 0; }
   footer                { margin: 2rem 0 0 0; }
@@ -114,6 +106,15 @@
     .p-x-post-type { text-transform: capitalize; }
   }
   /* ...entry footer */
+
+  /* specific post types... */
+  /* activities */
+  .h-activity { .p-type { text-transform: capitalize; } }
+  
+  /* bookmarks */
+  .h-entry.post-type-bookmark .p-dm-title:before { content: "⇜ " }
+  /* ...specific post types */
+  
 }
 
 /* "tablet" */
