@@ -14,7 +14,7 @@ module TagsHelper
   end
 
   def link_to_tag(tag)
-    link_to_unless_current(tag.name, tag_path(tag.slug), class: "p-category", rel: "tag")
+    link_to_unless_current(tag.display(:name), tag_path(tag.display(:slug)), class: "p-category", rel: "tag")
   end
 
   def link_to_external_tag_pages(tag)
@@ -28,7 +28,7 @@ module TagsHelper
       Vimeo: "https://vimeo.com/categories/",
       Vine: "https://vine.co/tags/",
     }.each do |site, url|
-      links << link_to(site, url + tag.slug.gsub(/-/, ""))
+      links << link_to(site, url + tag.display(:slug))
     end
 
     links.join(", ").html_safe

@@ -14,7 +14,14 @@ class TagsController < ApplicationController
   end
 
   def show
-    @tag = Tag.where(slug: params[:slug]).first
+    if params[:slug] =~ /:/
+      namespace, remainder = params[:slug].split(":")
+      predicate, slug = remainder.split("=")
+      @tag = Tag.find_by(namespace: namespace, predicate: predicate, slug: slug)
+    else
+      @tag = Tag.find_by(slug: params[:slug])
+    end
+    
     return redirect_to(root_path) if @tag.private_tag? && !signed_in?
   end
 end
