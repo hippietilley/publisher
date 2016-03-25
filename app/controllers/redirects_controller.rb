@@ -12,6 +12,7 @@ class RedirectsController < ApplicationController
   end
 
   def new
+    @page_title = "New Redirect"
     @redirect = Redirect.new
   end
 

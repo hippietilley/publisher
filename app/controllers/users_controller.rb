@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   # /signup
   def new
+    @page_title = "Sign Up"
     @slug = "signup"
     unless allow_signup?
       flash.alert = "Contact the owner of this website to request an account."
@@ -31,6 +32,7 @@ class UsersController < ApplicationController
 
   # /profile
   def edit
+    @page_title = "Profile Settings"
     @slug = "profile"
   end
 

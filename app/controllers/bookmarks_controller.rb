@@ -3,20 +3,24 @@ class BookmarksController < ApplicationController
   before_action :authorize, except: [:show, :index]
 
   def index
+    @page_title = "Bookmarks"
     @posts = Post.of(:bookmark).for_user(current_user).page(params[:page]).all
     render "/posts/index"
   end
 
   def show
+    @page_title = @post.name
     render "/posts/show"
   end
 
   def new
-    @post = PostForm.new(Bookmark)
+    @page_title = "New #{post_class.to_s}"
+    @post = PostForm.new(post_class)
   end
 
   def edit
-    @post = PostForm.new(Bookmark, @post)
+    @page_title = "Editing #{post_class.to_s}: #{@post.name}"
+    @post = PostForm.new(post_class, @post)
     render "posts/edit"
   end
 
@@ -47,6 +51,10 @@ class BookmarksController < ApplicationController
   end
 
   private
+  
+  def post_class
+    Bookmark
+  end
 
   def set_bookmark
     @post = Post.where(slug: params[:slug]).first

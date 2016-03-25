@@ -4,8 +4,8 @@ class SettingsController < ApplicationController
   before_action :all_settings
 
   def index
-    @slug = "settings"
     @page_title = "Settings"
+    @slug = "settings"
   end
 
   def show

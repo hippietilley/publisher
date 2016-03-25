@@ -3,20 +3,24 @@ class PhotosController < ApplicationController
   before_action :authorize, except: [:show, :index]
 
   def index
+    @page_title = "Photos"
     @posts = Post.of(:photo).for_user(current_user).page(params[:page]).all.per_page(5)
     render "/posts/index"
   end
 
   def show
+    @page_title = @post.name
     render "/posts/show"
   end
 
   def new
-    @post = PostForm.new(Photo)
+    @page_title = "New #{post_class.to_s}"
+    @post = PostForm.new(post_class)
   end
 
   def edit
-    @post = PostForm.new(Photo, @post)
+    @page_title = "Editing #{post_class.to_s}: #{@post.name}"
+    @post = PostForm.new(post_class, @post)
     render "posts/edit"
   end
 
@@ -46,6 +50,10 @@ class PhotosController < ApplicationController
   end
 
   private
+  
+  def post_class
+    Photo
+  end
 
   def set_photo
     @post = Post.of(:photo).where(slug: params[:slug]).first

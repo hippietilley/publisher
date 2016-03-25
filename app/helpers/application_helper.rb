@@ -92,17 +92,9 @@ module ApplicationHelper
 
   def site_title
     title = ""
-
-    # TODO
-    # if setting(:site_title).blank?
-    #   title << post_type.capitalize.pluralize
-    # else
     title << setting(:site_title)
-    # end
-
     title << " - #{@page_title}" if @page_title
-
-    title.html_safe
+    title
   end
 
   def page_description

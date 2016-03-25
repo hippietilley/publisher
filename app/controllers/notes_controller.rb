@@ -3,20 +3,24 @@ class NotesController < ApplicationController
   before_action :authorize, except: [:show, :index]
 
   def index
+    @page_title = "Notes"
     @posts = Post.of(:note).for_user(current_user).page(params[:page]).all.per_page(15)
     render "/posts/index"
   end
 
   def show
+    @page_title = @post.name
     render "/posts/show"
   end
 
   def new
-    @post = PostForm.new(Note)
+    @page_title = "New #{post_class.to_s}"
+    @post = PostForm.new(post_class)
   end
 
   def edit
-    @post = PostForm.new(Note, @post)
+    @page_title = "Editing #{post_class.to_s}: #{@post.name}"
+    @post = PostForm.new(post_class, @post)
     render "posts/edit"
   end
 
@@ -46,6 +50,10 @@ class NotesController < ApplicationController
   end
 
   private
+  
+  def post_class
+    Note
+  end
 
   def set_note
     @post = Post.of(:note).where(slug: params[:slug]).first

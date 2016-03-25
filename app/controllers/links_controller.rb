@@ -4,6 +4,7 @@ class LinksController < ApplicationController
   before_action :all_links
 
   def index
+    @page_title = "Links"
     @slug = "links"
     @links = Link.all
   end
@@ -13,12 +14,13 @@ class LinksController < ApplicationController
   end
 
   def new
+    @page_title = "New Link"
     @link = Link.new
   end
 
   def edit
-    @slug = "links"
     @page_title = "Editing Link : #{@link.name}"
+    @slug = "links"
   end
 
   def create

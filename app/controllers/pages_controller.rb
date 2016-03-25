@@ -1,6 +1,7 @@
 # Everything is called @post instead of @page so that other things Just Work
 class PagesController < ApplicationController
   def index
+    @page_title = "Pages"
     @posts = Post.of(:page).for_user(current_user).all
   end
 
@@ -14,15 +15,18 @@ class PagesController < ApplicationController
     if @post.nil?
       return redirect_to root_path
     else
+      @page_title = @post.name
       return render "/posts/show"
     end
   end
 
   def new
-    @post = PostForm.new(Page)
+    @page_title = "New #{post_class.to_s}"
+    @post = PostForm.new(post_class)
   end
 
   def edit
+    @page_title = "Editing #{post_class.to_s}: #{@post.name}"
     render "posts/edit"
   end
 
@@ -53,6 +57,10 @@ class PagesController < ApplicationController
   end
 
   private
+  
+  def post_class
+    Page
+  end
 
   def set_page
     @post = Post.of(:page).find(params[:id])

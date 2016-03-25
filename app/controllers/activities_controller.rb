@@ -3,38 +3,42 @@ class ActivitiesController < ApplicationController
   before_action :authorize, except: [:show, :index]
 
   def index
+    @page_title = "Activities"
     @posts = Post.for_user(current_user).of(:activity).page(params[:page]).all
     render "/posts/index"
   end
 
   def show
+    @page_title = @post.name
     render "/posts/show"
   end
 
   def new
-    @post = PostForm.new(Activity)
+    @page_title = "New #{post_class.to_s}"
+    @post = PostForm.new(post_class)
   end
 
   def edit
-    @post = PostForm.new(Activity, @post)
+    @page_title = "Editing #{post_class.to_s}: #{@post.name}"
+    @post = PostForm.new(post_class, @post)
     render "posts/edit"
   end
 
   def create
-    @post = PostForm.new(Activity)
+    @post = PostForm.new(post_class)
     if @post.submit(params[:activity])
       # save_tags(@post, activity_params)
-      redirect_to @post.path, notice: "Activity was successfully created."
+      redirect_to @post.path, notice: "#{post_class.to_s} was successfully created."
     else
       render :new
     end
   end
 
   def update
-    @post = PostForm.new(Activity, @post)
+    @post = PostForm.new(post_class, @post)
     if @post.update(activity_params)
       # save_tags(@post, activity_params)
-      redirect_to @post.path, notice: "Activity was successfully updated."
+      redirect_to @post.path, notice: "#{post_class.to_s} was successfully updated."
     else
       render :edit
     end
@@ -42,10 +46,14 @@ class ActivitiesController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to activities_url, notice: "Activity was successfully destroyed."
+    redirect_to activities_url, notice: "#{post_class.to_s} was successfully destroyed."
   end
 
   private
+  
+  def post_class
+    Activity
+  end
 
   def set_activity
     @post = Post.of(:activity).where(slug: params[:slug]).first
