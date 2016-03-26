@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   
   def ensure_domain
     unless request.env["HTTP_HOST"] == setting(:domain) || Rails.env.development?
-      unless site_url.blank?
+      unless setting(:domain).blank?
         redirect_to site_url, status: 301
       end
     end
