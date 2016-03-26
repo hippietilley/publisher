@@ -20,21 +20,20 @@ class ApplicationController < ActionController::Base
   before_action :set_slug
   before_action :set_owner
   before_action :set_page_links
-  
+
   def ensure_domain
     unless request.env["HTTP_HOST"] == setting(:domain) ||
       Rails.env.development? ||
       setting(:domain).blank?
-        redirect_to site_url, status: 301
-      end
+      redirect_to site_url, status: 301
     end
   end
-  
+
   def site_url
     setting(:protocol) + setting(:domain)
   end
   helper_method :site_url
-  
+
   def append_to_content_security_policy_header
     append_content_security_policy_directives(
       default_src: [setting(:protocol).sub("//", "")],
@@ -42,7 +41,7 @@ class ApplicationController < ActionController::Base
       style_src:   [setting(:asset_host)],
     )
   end
-  
+
   def setting(slug)
     Setting.find_by(slug: slug).try(:content)
   end
