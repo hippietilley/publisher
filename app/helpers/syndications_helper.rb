@@ -28,7 +28,7 @@ module SyndicationsHelper
     end
 
     if links.blank?
-      blank
+      html << link_to("Add Syndication Twitter Key and Syndication Twitter Secret settings to syndicate to Twitter", settings_path)
     else
       html << content_tag(:ul, links.flatten.join.html_safe)
     end
