@@ -18,7 +18,7 @@ module SyndicationsHelper
   end
 
   def syndication_buttons_for(post)
-    html = content_tag(:p, "Syndicate to")
+    label = "Syndicate to"
     links = []
 
     current_user.providers.each do |provider|
@@ -27,10 +27,12 @@ module SyndicationsHelper
       end
     end
 
-    if links.blank?
-      html << link_to("Add Syndication Twitter Key and Syndication Twitter Secret settings to syndicate to Twitter", settings_path)
+    if current_user.providers.blank?
+      content_tag(:p, link_to("Add Syndication Twitter Key and Syndication Twitter Secret settings to syndicate to Twitter", settings_path))
     else
-      html << content_tag(:ul, links.flatten.join.html_safe)
+      unless links.blank?
+        [label, content_tag(:ul, links.flatten.join.html_safe)].join.html_safe
+      end
     end
   end
 
