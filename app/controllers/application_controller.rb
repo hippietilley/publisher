@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
   before_action :ensure_domain
-
+  before_action :set_on_admin_page, only: [:new, :edit]
   before_action :append_to_content_security_policy_header
 
   before_action :set_slug
@@ -106,6 +106,10 @@ class ApplicationController < ActionController::Base
   helper_method :split_tags
 
   private
+
+  def set_on_admin_page
+    @on_admin_page = true
+  end
 
   def signed_in?
     current_user
