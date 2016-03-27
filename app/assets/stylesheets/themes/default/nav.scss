@@ -1,5 +1,5 @@
 nav[role="navigation"] {
-  margin-top: 2em;
+  margin: 1rem;
   border-bottom: 1px solid #eee;
   padding-bottom: .5em;
 
@@ -9,3 +9,28 @@ nav[role="navigation"] {
   a        { text-decoration: none; }
   a:hover  { border-bottom: 1px solid black; }
 }
+
+#admin-nav {
+  li {
+    display: inline-block;
+    padding-top: .5rem;
+  }
+
+  li:last-child {
+    float: right;
+    padding: 0;
+  }
+
+  [role=search] {
+    text-align: right;
+    float: right;
+
+    input[name=q],
+    input[type=search] {
+      max-width: 50% !important;
+      width:     50% !important;
+      margin-bottom: 0;
+    }
+  }
+}
+

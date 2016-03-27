@@ -15,12 +15,15 @@ Rails.application.routes.draw do
   
   root to: "posts#index"
 
+  # New Post
+  get "new", to: "posts#new", as: "new_post"
+
   # Posts (Composite Feed) Pagination and RSS/Atom feed
-  get "page/1",                  to: redirect("/"), as: "posts_pagination_redirect_one"
-  get "page",                    to: redirect("/"), as: "posts_pagination_redirect"
-  get "page/:page",              to: "posts#index", constraints: PAGINATION_CONSTRAINTS
+  get "page/1",                   to: redirect("/"), as: "posts_pagination_redirect_one"
+  get "page",                     to: redirect("/"), as: "posts_pagination_redirect"
+  get "page/:page",               to: "posts#index", constraints: PAGINATION_CONSTRAINTS
   get "(/:year)(/:month)(/:day)", to: "posts#index", constraints: YEAR_MONTH_DAY_CONSTRAINTS
-  get "feed",                    to: "posts#index", defaults: { format: "atom" }, as: :feed
+  get "feed",                     to: "posts#index", defaults: { format: "atom" }, as: :feed
 
   # Users + Auth
   resources :users,    only: [:create, :update, :destroy]

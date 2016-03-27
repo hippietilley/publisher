@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def on_admin_page?
+    @on_admin_page
+  end
+  
   def hide?(name)
     !show?(name)
   end
