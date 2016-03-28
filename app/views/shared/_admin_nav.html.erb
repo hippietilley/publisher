@@ -1,23 +1,40 @@
-<nav class="navbar navbar-default" role="navigation">
-  <div class="container">
+<% if signed_in? %>
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
 
-    <div class="navbar-header">
-      <%= link_to "NEW POST",  new_post_path, class: "btn btn-success" %>
+      <div class="navbar-header">
+        <%= link_to "NEW POST",  new_post_path, class: "btn btn-success" %>
 
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-all" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="caret"></span>
-      </button>
+        <form class="form form-inline hidden-sm hidden-md hidden-lg" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search site">
+          </div>
+          <button type="submit" class="btn btn-default sr-only">Submit</button>
+        </form>
 
-      <%= link_to root_path, rel: "home", class: "navbar-brand" do %>
-        <%= image_tag setting(:touch_icon_url_57x57), alt: "Site avatar" %>
-      <% end %>
-    </div>
+        <%= link_to root_path, rel: "home", class: "navbar-brand" do %>
+          <%= image_tag setting(:touch_icon_url_57x57), alt: "Site avatar" %>
+        <% end %>
+      </div>
 
-    <div class="collapse navbar-collapse" id="navbar-collapse-all">
-      <ul class="nav navbar-nav navbar-right">
+      <p class="hidden-sm hidden-md hidden-lg" id="me-links-xs">
+        <%= link_to "Profile",  profile_path  , class: "btn btn-default" %>
+        <%= link_to "Settings", settings_path , class: "btn btn-default" %>
+        <%= link_to "Sign Out", signout_path  , class: "btn btn-default pull-right", data: { confirm: "Are you sure you want to sign out?" } %>
+      </p>
+
+      <form class="navbar-form navbar-right hidden-xs" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search site">
+        </div>
+        <button type="submit" class="btn btn-default sr-only">Submit</button>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right hidden-xs" id="me-links">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Me <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            Me <span class="caret"></span>
+          </a>
           <ul class="dropdown-menu">
             <li><%= link_to "Profile",  profile_path %></li>
             <li><%= link_to "Settings", settings_path %></li>
@@ -27,13 +44,6 @@
         </li>
       </ul>
 
-      <form class="navbar-form navbar-right" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search site">
-        </div>
-        <button type="submit" class="btn btn-default sr-only">Submit</button>
-      </form>
-    </div>
-
-  </div><!-- /.container -->
-</nav>
+    </div><!-- /.container -->
+  </nav>
+<% end %>
