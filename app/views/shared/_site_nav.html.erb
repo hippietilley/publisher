@@ -1,7 +1,7 @@
 <nav role="navigation">
   <% if allow_signup? %>
     <%= link_to "Sign Up", signup_path %>
-  <% elsif !on_admin_page? %>
+  <% else %>
     <ul>
       <% if show_nav_to?(:home) %><li><%= link_to "Home", root_path, rel: "home" %></li><% end %>
       <% if show_site_nav? %>
@@ -23,6 +23,4 @@
   <% end %>
 </nav>
 
-<% unless on_admin_page? %>
-  <%= render "/shared/google_site_search" if show?(:header_show_site_search) %>
-<% end %>
+<%= render "/shared/google_site_search" if show?(:header_show_site_search) %>

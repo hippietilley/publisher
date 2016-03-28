@@ -6,5 +6,6 @@ class PostsController < ApplicationController
   
   def new
     @on_admin_page = true
+    render layout: "admin"
   end
 end

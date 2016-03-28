@@ -1,31 +1,10 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- General meta tags -->
 <meta name="application-name"    content="<%= site_title %>" />
 <meta name="description"         content="<%= page_description %>" />
-<meta name="generator"           content="Dark Matter Publisher 0.2.0 (darkmatterapp.com)" />
-
-<% if setting(:google_site_verification).present? %>
-  <!-- Google Site Verification for WebMaster tools -->
-  <meta name="google-site-verification" content="<%= setting :google_site_verification %>" />
-<% end %>
-
-<% if false %>
-  <!-- Micropub -->
-  <link rel="me"                     href="<%= setting :rel_me %>" />
-  <link rel="authorization_endpoint" href="<%= setting :rel_authorization_endpoint %>" />
-  <link rel="token_endpoint"         href="<%= setting :rel_token_endpoint %>" />
-  <link rel="micropub"               href="/micropub %>" />
-<% end %>
-
-<!-- Backward compatibility: Facebook (Open Graph) -->
-<meta property="og:type"         content="blog" />
-<meta property="og:url"          content="<%= canonical_url @post %>" />
-<meta property="og:image"        content="<%#= "TODO" %>" />
-<meta property="og:title"        content="<%= site_title %>" />
-<meta property="og:description"  content="<%= page_description %>" />
-<meta property="fb:app_id"       content="<%#= "TODO" %>" />
+<meta name="generator"           content="Dark Matter Publisher 0.3.0 (darkmatterapp.com)" />
 
 <%= csrf_meta_tags %>

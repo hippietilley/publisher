@@ -1,13 +1,13 @@
 nav[role="navigation"] {
   margin: 1rem;
-  border-bottom: 1px solid #eee;
+//  border-bottom: 1px solid #eee;
   padding-bottom: .5em;
 
   ul       { margin: 0; padding: 0; }
   li       { display: inline; margin-right: .25em; }
 
   a        { text-decoration: none; }
-  a:hover  { border-bottom: 1px solid black; }
+//  a:hover  { border-bottom: 1px solid black; }
 }
 
 #admin-nav {

@@ -1,46 +1,44 @@
-<% unless on_admin_page? %>
-  <footer role="contentinfo">
-    <%= render "/shared/google_site_search" if show?(:footer_show_site_search) %>
+<footer role="contentinfo">
+  <%= render "/shared/google_site_search" if show?(:footer_show_site_search) %>
 
-    <div class="h-card">
-      <%= render "/shared/site_owner_photo" if show?(:footer_show_avatar) %>
+  <div class="h-card">
+    <%= render "/shared/site_owner_photo" if show?(:footer_show_avatar) %>
 
-      <% unless @owner.nil?  %>
+    <% unless @owner.nil?  %>
+      <p>
+        <% unless @owner.try(:name) && show?(:footer_show_name) && show?(:footer_show_email) %>
+          <strong>Contact:</strong>
+        <% end %>
+
+        <% unless @owner.name.blank? || hide?(:footer_show_name) %>
+          <%= link_to @owner.name, root_url, class: "u-url p-name", rel: "home" %>
+        <% end %>
+
+        <% unless @owner.phone.blank? || hide?(:footer_show_phone_number) %>
+          <%= link_to @owner.phone, "tel://#{@owner.phone.gsub(/\D/, "")}", class: "u-tel" %>
+        <% end %>
+
+        <% unless @owner.email.blank? || hide?(:footer_show_email) %>
+          <%= mail_to @owner.email, @owner.email, class: "u-email" %>
+        <% end %>
+      
+        <% unless @owner.email.blank? || hide?(:footer_show_email) || hide?(:footer_show_email_vcard_link) %>
+          (<%= link_to "Download vCard", "http://h2vx.com/vcf/#{setting :domain}", class: "u-url" %>)
+        <% end %>
+      </p>
+
+      <% unless @owner.links.blank? || hide?(:footer_show_links) %>
         <p>
-          <% unless @owner.try(:name) && show?(:footer_show_name) && show?(:footer_show_email) %>
-            <strong>Contact:</strong>
-          <% end %>
-
-          <% unless @owner.name.blank? || hide?(:footer_show_name) %>
-            <%= link_to @owner.name, root_url, class: "u-url p-name", rel: "home" %>
-          <% end %>
-
-          <% unless @owner.phone.blank? || hide?(:footer_show_phone_number) %>
-            <%= link_to @owner.phone, "tel://#{@owner.phone.gsub(/\D/, "")}", class: "u-tel" %>
-          <% end %>
-
-          <% unless @owner.email.blank? || hide?(:footer_show_email) %>
-            <%= mail_to @owner.email, @owner.email, class: "u-email" %>
-          <% end %>
-        
-          <% unless @owner.email.blank? || hide?(:footer_show_email) || hide?(:footer_show_email_vcard_link) %>
-            (<%= link_to "Download vCard", "http://h2vx.com/vcf/#{setting :domain}", class: "u-url" %>)
+          <strong>Links:</strong>
+          <% @owner.links.each do |link| %>
+            <%= link_to link.name, link.url, rel: "me", class: "u-url" %>
           <% end %>
         </p>
-
-        <% unless @owner.links.blank? || hide?(:footer_show_links) %>
-          <p>
-            <strong>Links:</strong>
-            <% @owner.links.each do |link| %>
-              <%= link_to link.name, link.url, rel: "me", class: "u-url" %>
-            <% end %>
-          </p>
-        <% end %>
       <% end %>
-    </div>
-
-    <% if show?(:footer_show_license) %>
-      <p><%= license :html %>.</p>
     <% end %>
-  </footer>
-<% end %>
+  </div>
+
+  <% if show?(:footer_show_license) %>
+    <p><%= license :html %>.</p>
+  <% end %>
+</footer>

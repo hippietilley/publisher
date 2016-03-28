@@ -110,6 +110,10 @@ class ApplicationController < ActionController::Base
   def set_on_admin_page
     @on_admin_page = true
   end
+  
+  def use_admin_layout
+    render layout: "admin"
+  end
 
   def signed_in?
     current_user

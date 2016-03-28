@@ -5,11 +5,8 @@
       id="<%= @slug %>">
 
 <head>
-  <%= render "/shared/license" %>
-  <title><%= site_title %></title>
+  <title>Admin: <%= site_title %></title>
   <%= render "/shared/meta_tags" %>
-  <%= render "/shared/backward_compatibility_meta_tags" %>
-  <%= render "/shared/link_tags" %>
   <%= render "/shared/fav_and_touch_icons" %>
   <%= render "/shared/html5_shiv" %>
   <%= render "/shared/stylesheets" %>
@@ -17,14 +14,13 @@
 </head>
 
 <body>
-  <%= render "/shared/site_header" %>
-  <%= render "/shared/site_nav" %>
+  <%= render "/shared/admin_nav" %>
   <%= render "/shared/site_notifications" %>
 
   <main role="main">
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </main>
-
-  <%= render "/shared/site_footer" %>
 </body>
 </html>
