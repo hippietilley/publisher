@@ -23,3 +23,47 @@
     margin-right: 15px;
   }
 }
+
+fieldset legend {
+  color: #999 !important;
+}
+
+.post-privacy {
+  input[type=checkbox] {
+    display: none;
+  }
+
+  input + label {
+    .private-post { display: none }
+    .public-post  { display: inherit }
+    
+    & + .help-block {
+      .private-post { display: none }
+      .public-post  { display: inherit }
+    }
+  }
+
+  input:checked + label {
+    .private-post { display: inherit }
+    .public-post  { display: none }
+
+    & + .help-block {
+      .private-post { display: inherit }
+      .public-post  { display: none }
+    }
+  }
+}
+
+.actions {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  text-align: right;
+
+  .cancel {
+    opacity: .5;
+  }
+
+  .btn {
+    margin-left: 1rem;
+  }
+}
