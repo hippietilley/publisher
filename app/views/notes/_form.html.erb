@@ -59,7 +59,8 @@
 
   <div class="form-group">
     <%= f.label :published_at %>
-    <%= f.datetime_select :published_at, class: "form-control" %>
+    <%= render "shared/date_select_row", object: @post, post_type: "note", attr: :published_at %>
+    <%= render "shared/time_select_row", object: @post, post_type: "note", attr: :published_at %>
   </div>
 </fieldset>
 

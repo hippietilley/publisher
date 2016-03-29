@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-6">
+    <%= select_hour object.send(attr).try(:hour),
+          { prompt: true },
+          name:  "#{post_type}[#{attr}(4i)]",
+          id:    "#{post_type}_#{attr}_4i",
+          class: "form-control datetime-select" %>
+  </div>
+  <div class="col-xs-12 col-sm-6">
+    <%= select_minute object.send(attr).try(:min),
+          { prompt: true },
+          name:  "#{post_type}[#{attr}(5i)]",
+          id:    "#{post_type}_#{attr}_5i",
+          class: "form-control datetime-select" %>
+  </div>
+</div>
