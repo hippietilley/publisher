@@ -11,16 +11,31 @@
     max-height: 24px;
   }
 
-  .navbar-header form,
-  .btn {
-    margin-top: 10px;
+  .navbar-header {
+    form,
+    .btn {
+      margin-top: 10px;
+    }
+    
+    form {
+      width: 50%;
+      display: inline-block;
+      float: right;
+      margin-right: 15px;
+    }
   }
   
-  .navbar-header form {
-    width: 50%;
-    display: inline-block;
-    float: right;
+  .navbar-form {
+    padding-left: 2px;
+  }
+  
+  .new-post-xs {
     margin-right: 15px;
+  }
+  
+  .new-post-sm {
+    margin-left: 10px;
+    margin-top:   7px;
   }
 }
 
