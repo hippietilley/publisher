@@ -1,13 +1,13 @@
 <div class="row">
-  <div class="col-xs-12 col-sm-6">
-    <%= select_hour object.send(attr).try(:hour),
+  <div class="col-xs-6 published-at-hour">
+    <%= select_hour object.send(attr).try(:hour) || Time.now.hour,
           { prompt: true },
           name:  "#{post_type}[#{attr}(4i)]",
           id:    "#{post_type}_#{attr}_4i",
           class: "form-control datetime-select" %>
   </div>
-  <div class="col-xs-12 col-sm-6">
-    <%= select_minute object.send(attr).try(:min),
+  <div class="col-xs-6">
+    <%= select_minute object.send(attr).try(:min) || Time.now.min,
           { prompt: true },
           name:  "#{post_type}[#{attr}(5i)]",
           id:    "#{post_type}_#{attr}_5i",
