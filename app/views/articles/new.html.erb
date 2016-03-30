@@ -1,4 +1,4 @@
-<h1>New <%= on_page? ? "Page" : "Article" %></h1>
+<h1 class="h4">New <%= on_page? ? "Page" : "Article" %></h1>
 
 <%= form_for @post, as: :article do |f| %>
   <%= render "form", f: f %>

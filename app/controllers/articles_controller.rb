@@ -52,11 +52,6 @@ class ArticlesController < ApplicationController
 
   private
 
-  def on_page?
-    !(request.path.split("/")[1] == "articles")
-  end
-  helper_method :on_page?
-
   def post_type_type
     on_page? ? "Page" : "Article"
   end
@@ -64,6 +59,7 @@ class ArticlesController < ApplicationController
   def post_class
     on_page? ? Page : Article
   end
+  helper_method :post_class
 
   def set_article
     @post = Post.of(:article).find_by(slug: params[:slug])

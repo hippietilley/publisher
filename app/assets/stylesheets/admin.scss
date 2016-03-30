@@ -47,28 +47,26 @@ select {
   margin-bottom: 1rem;
 }
 
-.post-privacy {
-  input[type=checkbox] {
-    display: none;
-  }
+.toggle-group {
+  input[type=checkbox] { display: none; }
 
   input + label {
-    .private-post { display: none }
-    .public-post  { display: inherit }
+    .toggle-unchecked { display: inherit }
+    .toggle-checked   { display: none }
     
     & + .help-block {
-      .private-post { display: none }
-      .public-post  { display: inherit }
+      .toggle-unchecked { display: inherit }
+      .toggle-checked   { display: none }
     }
   }
 
   input:checked + label {
-    .private-post { display: inherit }
-    .public-post  { display: none }
+    .toggle-checked   { display: inherit }
+    .toggle-unchecked { display: none }
 
     & + .help-block {
-      .private-post { display: inherit }
-      .public-post  { display: none }
+      .toggle-checked   { display: inherit }
+      .toggle-unchecked { display: none }
     }
   }
 }

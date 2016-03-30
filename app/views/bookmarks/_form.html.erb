@@ -1,14 +1,4 @@
-<% if @post.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@errors.count, "error") %> prohibited this bookmark from being saved:</h2>
-
-    <ul>
-    <% @post.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= render "/shared/form_errors", object: @post %>
 
 <div class="field">
   <%= f.label :title %><br>

@@ -1,14 +1,4 @@
-<% if @post.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@post.errors.count, "error") %> prohibited this note from being saved:</h2>
-
-    <ul>
-    <% @post.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= render "/shared/form_errors", object: @post %>
 
 <div class="form-group">
   <%= f.label :content, "Content", class: "sr-only" %>
@@ -17,23 +7,23 @@
 
 <div class="actions">
   <%= link_to "Cancel", notes_url, class: "cancel" %>
-  <%= f.submit "Publish Note", class: "btn btn-success btn-lg" %>
+  <%= f.submit "Publish", class: "btn btn-success btn-lg" %>
 </div>
 
 <fieldset>
   <legend class="h6">Optional Meta</legend>
 
-  <div class="form-group post-privacy">
+  <div class="form-group toggle-group">
     <%= f.check_box :private, class: "form-control" %>
 
     <%= f.label :private do %>
-      <span class="btn btn-default private-post">Private Post</span>
-      <span class="btn btn-default  public-post">Public Post</span>
+      <span class="btn btn-default toggle-unchecked">Public Post</span>
+      <span class="btn btn-default   toggle-checked">Private Post</span>
     <% end %>
 
     <p class="help-block">
-      <span class="private-post"><b>Private Posts</b> are only visible to you.</span>
-      <span class="public-post"><b>Public Posts</b> are visible to anyone.</span>
+      <span class="toggle-unchecked"><b>Public Posts</b> are visible to anyone.</span>
+      <span class="toggle-checked  "><b>Private Posts</b> are only visible to you.</span>
     </p>
   </div>
 
@@ -66,5 +56,5 @@
 
 <div class="actions">
   <%= link_to "Cancel", notes_url, class: "cancel" %>
-  <%= f.submit "Publish Note", class: "btn btn-success btn-lg" %>
+  <%= f.submit "Publish", class: "btn btn-success btn-lg" %>
 </div>

@@ -21,6 +21,11 @@ class ApplicationController < ActionController::Base
   before_action :set_owner
   before_action :set_page_links
 
+  def on_page?
+    !(request.path.split("/")[1] == "articles")
+  end
+  helper_method :on_page?
+
   def ensure_domain
     unless request.env["HTTP_HOST"] == setting(:domain) ||
       Rails.env.development? ||

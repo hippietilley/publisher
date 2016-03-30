@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def post_or_page(post)
+    on_page? ? "Page" : "Post"
+  end
+  
   def on_admin_page?
     @on_admin_page
   end

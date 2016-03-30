@@ -1,14 +1,5 @@
-<% if @post.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@post.errors.count, "error") %> prohibited this photo from being saved:</h2>
+<%= render "/shared/form_errors", object: @post %>
 
-    <ul>
-    <% @post.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
 <div class="field">
   <%= f.label :title %><br>
   <%= f.text_field :title %>
