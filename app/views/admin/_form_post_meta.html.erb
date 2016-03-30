@@ -1,0 +1,53 @@
+<fieldset id="meta">
+  <legend class="h6">Optional Meta</legend>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <%= render "admin/toggle_group", 
+                 f:                    f,
+                 attr:                 :private,
+                 unchecked_label:      "Public #{post_or_page(post)}",
+                 checked_label:        "Private #{post_or_page(post)}",
+                 unchecked_help_block: "<b>Public  #{post_or_page(post).pluralize}</b> are visible to anyone",
+                 checked_help_block:   "<b>Private #{post_or_page(post).pluralize}</b> are only visible to you" %>
+    </div>
+
+    <% if on_page? %>
+      <div class="col-xs-6">
+        <%= render "admin/toggle_group", 
+                   f:                    f,
+                   attr:                 :show_in_nav,
+                   unchecked_label:      "Don&rsquo;t show in site navigation",
+                   checked_label:        "Show in site  navigation",
+                   unchecked_help_block: nil,
+                   checked_help_block:   "<b>Private Pages</b> are only in site navigation for you." %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :in_reply_to, "In Reply To" %>
+    <%= f.text_field :in_reply_to, class: "form-control", placeholder: "http://example.com http://example.net" %>
+    <p class="help-block">Space separated URLs</p>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <%= f.label :slug, "URL Slug" %>
+      <%= f.text_field :slug, class: "form-control" %>
+      <p class="help-block">Auto-generated if left blank</p>
+    </div>
+
+    <div class="form-group col-sm-6">
+      <%= f.label :tags %>
+      <%= text_field_tag :tags, post.tags.map{|t| t.display(:name)}.join(", "), class: "form-control", placeholder: "cats, dogs, bunny rabbits" %>
+      <p class="help-block">Comma separated</p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :published_at %>
+    <%= render "admin/date_select_row", object: post, post_type: @post.post_type.class.to_s.downcase, attr: :published_at %>
+    <%= render "admin/time_select_row", object: post, post_type: @post.post_type.class.to_s.downcase, attr: :published_at %>
+  </div>
+</fieldset>

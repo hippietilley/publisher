@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   before_action :set_page_links
 
   def on_page?
-    !(request.path.split("/")[1] == "articles")
+    request.path.split("/")[1] == "pages"
   end
   helper_method :on_page?
 

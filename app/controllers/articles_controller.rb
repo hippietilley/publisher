@@ -55,6 +55,7 @@ class ArticlesController < ApplicationController
   def post_type_type
     on_page? ? "Page" : "Article"
   end
+  helper_method :post_type_type
 
   def post_class
     on_page? ? Page : Article

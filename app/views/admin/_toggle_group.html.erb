@@ -1,0 +1,13 @@
+<div class="form-group toggle-group">
+  <%= f.check_box attr, class: "form-control" %>
+
+  <%= f.label attr do %>
+    <span class="btn btn-default toggle-unchecked"><%= raw unchecked_label %></span>
+    <span class="btn btn-default   toggle-checked"><%= raw checked_label   %></span>
+  <% end %>
+
+  <p class="help-block">
+    <span class="toggle-unchecked"><%= raw unchecked_help_block %></span>
+    <span class="toggle-checked  "><%= raw   checked_help_block %></span>
+  </p>
+</div>
