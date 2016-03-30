@@ -1,4 +1,4 @@
-<%= render "/shared/form_errors", object: @post %>
+<%= render "admin/form_errors", object: @post %>
 
 <div class="form-group">
   <%= f.label :title, class: "sr-only" %>
@@ -80,8 +80,8 @@
 
   <div class="form-group">
     <%= f.label :published_at %>
-    <%= render "shared/date_select_row", object: @post, post_type: "note", attr: :published_at %>
-    <%= render "shared/time_select_row", object: @post, post_type: "note", attr: :published_at %>
+    <%= render "admin/date_select_row", object: @post, post_type: "note", attr: :published_at %>
+    <%= render "admin/time_select_row", object: @post, post_type: "note", attr: :published_at %>
   </div>
 </fieldset>
 

@@ -1,8 +1,8 @@
 <footer role="contentinfo">
-  <%= render "/shared/google_site_search" if show?(:footer_show_site_search) %>
+  <%= render "shared/google_site_search" if show?(:footer_show_site_search) %>
 
   <div class="h-card">
-    <%= render "/shared/site_owner_photo" if show?(:footer_show_avatar) %>
+    <%= render "shared/site_owner_photo" if show?(:footer_show_avatar) %>
 
     <% unless @owner.nil?  %>
       <p>
