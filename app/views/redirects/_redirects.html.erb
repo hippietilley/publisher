@@ -1,0 +1,14 @@
+<% unless @redirects.blank? %>
+  <table class="table">
+    <caption>All Redirects</caption>
+    <% @redirects.each do |redirect| %>
+      <tr>
+        <th><%= link_to "/#{redirect.source_path}", edit_redirect_path(redirect) %></th>
+        <td><%= link_to "/#{redirect.target_path}", "/#{redirect.target_path}", rel: "external" %></td>
+        <td>
+          <%= link_to "Delete", redirect, method: :delete, data: { confirm: "Are you sure you're sure? There is NO UNDO." }, class: "btn btn-danger btn-xs" %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
