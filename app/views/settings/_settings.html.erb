@@ -1,13 +1,21 @@
-<dl>
-  <% @settings.each do |setting| %>
-    <dt><%= link_to setting.name, edit_setting_path(setting) %></dt>
+<% unless @settings.blank? %>
+  <div class="table-responsive">
 
-    <dd>
-      <% if setting.slug == "license" %>
-        <%= License.find(setting.content).short_code.html_safe %>
-      <% else %>
-        <%= setting.content %>
+    <table class="table">
+      <caption>All Settings</caption>
+      <% @settings.each do |setting| %>
+        <tr>
+          <th><%= link_to setting.name.gsub(" ", "&nbsp;").html_safe, edit_setting_path(setting) %></th>
+          <td>
+            <% if setting.slug == "license" %>
+              <%= License.find(setting.content).short_code.html_safe %>
+            <% else %>
+              <%= setting.content %>
+            <% end %>
+          </td>
+        </tr>
       <% end %>
-    </dd>
-  <% end %>
-</dl>
+    </table>
+
+  </div>
+<% end %>
