@@ -1,0 +1,5 @@
+<div class="form-group">
+  <%= f.label attr %>
+  <%= render "admin/date_select_row", object: object, post_type: object.post_type.class.to_s.downcase, attr: attr %>
+  <%= render "admin/time_select_row", object: object, post_type: object.post_type.class.to_s.downcase, attr: attr %>
+</div>

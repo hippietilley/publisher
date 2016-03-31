@@ -1,5 +1,5 @@
 <fieldset id="meta">
-  <legend class="h6">Optional Meta</legend>
+  <legend class="h5">Optional Meta</legend>
 
   <div class="row">
     <div class="col-xs-6">
@@ -45,9 +45,5 @@
     </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :published_at %>
-    <%= render "admin/date_select_row", object: post, post_type: @post.post_type.class.to_s.downcase, attr: :published_at %>
-    <%= render "admin/time_select_row", object: post, post_type: @post.post_type.class.to_s.downcase, attr: :published_at %>
-  </div>
+  <%= render "admin/datetime_group", f: f, attr: :published_at, object: post %>
 </fieldset>
