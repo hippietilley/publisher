@@ -16,8 +16,10 @@ class Tag < ActiveRecord::Base
     val = self.send(attribute)
 
     # wrap in quotes if there spaces in the name, slugs don't need quotes
-    if val =~ / /
-      val = "'#{val}'"
+    if attribute == :name && !namespace.blank? && !predicate.blank?
+      if val =~ / /
+        val = "'#{val}'"
+      end
     end
 
     machine_tag? ? machine_tag_prefix + val : val
