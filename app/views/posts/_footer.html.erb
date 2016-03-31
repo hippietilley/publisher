@@ -41,6 +41,6 @@
   <% end %>
 
   <% if lookup_context.template_exists?("footer", post.post_type_type.downcase.pluralize, true) %>
-    <%= render "/#{post.post_type_type.downcase.pluralize}/footer", post: post.post_type %>
+    <%= render "#{post.post_type_type.downcase.pluralize}/footer", post: post.post_type %>
   <% end %>
 </footer>

@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   
   root to: "posts#index"
 
-  # New Post
-  get "new", to: "posts#new", as: "new_post"
+  # Dashboard
+  get "new", to: "dashboard#new", as: "dashboard_new"
 
   # Posts (Composite Feed) Pagination and RSS/Atom feed
   get "page/1",                   to: redirect("/"), as: "posts_pagination_redirect_one"

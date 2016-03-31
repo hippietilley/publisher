@@ -1,8 +1,6 @@
-<% unless on_admin_page? %>
-  <header role="banner">
-    <%= render "/shared/site_owner_photo" if show?(:header_show_avatar) %>
+<header role="banner">
+  <%= render "shared/site_owner_photo" if show?(:header_show_avatar) %>
 
-    <h1 class="dm-site-title"><%= link_to setting(:site_title), root_url, rel: "home" if show?(:header_show_site_title) %></h1>
-    <h2 class="dm-site-description"><%= simple_format setting(:site_description) if show?(:header_show_site_description) %></h2>
-  </header>
-<% end %>
+  <h1 class="dm-site-title"><%= link_to setting(:site_title), root_url, rel: "home" if show?(:header_show_site_title) %></h1>
+  <h2 class="dm-site-description"><%= simple_format setting(:site_description) if show?(:header_show_site_description) %></h2>
+</header>

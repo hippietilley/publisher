@@ -2,11 +2,13 @@ class LinksController < ApplicationController
   before_action :set_link, only: [:edit, :update, :destroy]
   before_action :authorize
   before_action :all_links
+  before_action :set_on_admin_page
 
   def index
     @page_title = "Links"
     @slug = "links"
     @links = Link.all
+    render layout: "admin"
   end
 
   def show
@@ -16,11 +18,13 @@ class LinksController < ApplicationController
   def new
     @page_title = "New Link"
     @link = Link.new
+    render layout: "admin"
   end
 
   def edit
     @page_title = "Editing Link : #{@link.name}"
     @slug = "links"
+    render layout: "admin"
   end
 
   def create

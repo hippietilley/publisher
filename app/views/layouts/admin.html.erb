@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html dir="<%= setting(:text_direction).downcase %>"
+      lang="en-US"
+      prefix="og: http://ogp.me/ns#"
+      id="<%= @slug %>">
+
+<head>
+  <title>Admin: <%= site_title %></title>
+  <%= render "shared/meta_tags" %>
+  <%= render "shared/fav_and_touch_icons" %>
+  <%= render "shared/html5_shiv" %>
+  <%= render "shared/stylesheets" %>
+  <%= render "shared/javascripts" %>
+</head>
+
+<body>
+  <%= render "admin/nav" %>
+  <%= render "admin/notifications" %>
+
+  <main role="main">
+    <div class="container">
+      <%= yield %>
+    </div>
+  </main>
+</body>
+</html>

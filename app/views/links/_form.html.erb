@@ -1,20 +1,16 @@
-<%= form_for(@link) do |f| %>
-  <% if @link.errors.any? %>
-    <% @link.errors.full_messages.each do |msg| %>
-      <div><%= msg %></div>
-    <% end %>
-  <% end %>
+<%= form_for @link do |f| %>
+  <%= render "admin/form_errors", object: @link %>
 
-  <div class="field">
-    <%= f.label :name, "Display Text" %><br>
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :name, "Display Text" %>
+    <%= f.text_field :name, class: "form-control input-lg", placeholder: "Display Text" %>
+    <p class="help-block">Twitter, @username, Portfolio, etc</p>
   </div>
-  <div class="field">
-    <%= f.label :url, "URL" %><br>
-    <%= f.text_field :url %>
+
+  <div class="form-group">
+    <%= f.label :url, "URL" %>
+    <%= f.text_field :url, class: "form-control input-lg", placeholder: "https://example.org" %>
   </div>
-  <div class="actions">
-    <%= link_to "Cancel", links_url %>
-    <%= f.submit %>
-  </div>
+
+  <%= render "admin/form_actions", f: f, cancel_url: links_url %>
 <% end %>

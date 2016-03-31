@@ -34,6 +34,8 @@ class UsersController < ApplicationController
   def edit
     @page_title = "Profile Settings"
     @slug = "profile"
+    @on_admin_page = true
+    render layout: "admin"
   end
 
   # /profile

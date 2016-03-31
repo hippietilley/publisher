@@ -1,6 +1,9 @@
 class RedirectsController < ApplicationController
   before_action :set_redirect, only: [:edit, :update, :destroy]
   before_action :authorize
+  before_action :all_redirects
+  before_action :set_on_admin_page
+  layout "admin"
 
   def index
     @redirects = Redirect.all
@@ -52,5 +55,10 @@ class RedirectsController < ApplicationController
 
   def redirect_params
     params.require(:redirect).permit(:source_path, :target_path)
+  end
+
+  def all_redirects
+      @redirects = Redirect.all
+      #.where(user_id: current_user.id)
   end
 end

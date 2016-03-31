@@ -1,0 +1,86 @@
+/*
+*= require vendor/bootstrap
+*/
+
+#notifications {
+  margin-top: 1rem;
+}
+
+.navbar {
+  .navbar-brand img {
+    max-height: 24px;
+  }
+
+  .navbar-header {
+    form,
+    .btn {
+      margin-top: 10px;
+    }
+    
+    form {
+      width: 50%;
+      display: inline-block;
+      float: right;
+      margin-right: 15px;
+    }
+  }
+  
+  .navbar-form {
+    padding-left: 2px;
+  }
+  
+  .new-post-xs {
+    margin-right: 15px;
+  }
+  
+  .new-post-sm {
+    margin-left: 10px;
+    margin-top:   7px;
+  }
+}
+
+fieldset legend {
+  color: #999 !important;
+}
+
+select {
+  margin-bottom: 1rem;
+}
+
+.toggle-group {
+  input[type=checkbox] { display: none; }
+
+  input + label {
+    .toggle-unchecked { display: inherit }
+    .toggle-checked   { display: none }
+    
+    & + .help-block {
+      .toggle-unchecked { display: inherit }
+      .toggle-checked   { display: none }
+    }
+  }
+
+  input:checked + label {
+    .toggle-checked   { display: inherit }
+    .toggle-unchecked { display: none }
+
+    & + .help-block {
+      .toggle-checked   { display: inherit }
+      .toggle-unchecked { display: none }
+    }
+  }
+}
+
+.actions {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  text-align: right;
+
+  .cancel {
+    opacity: .5;
+  }
+
+  .btn {
+    margin-left: 1rem;
+  }
+}

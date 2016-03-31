@@ -1,12 +1,14 @@
-<dl>
-  <% @links.each do |link| %>
-    <dt><%= link_to link.name, edit_link_path(link) %></dt>
-
-    <dd>
-      <%= link.url %>
-    </dd>
-    <dd>
-      <%= link_to "Delete", link, method: :delete, data: { confirm: "Are you sure you're sure? There is NO UNDO." } %>
-    </dd>
-  <% end %>
-</dl>
+<% unless @links.blank? %>
+  <table class="table">
+    <caption>All Links</caption>
+    <% @links.each do |link| %>
+      <tr>
+        <th><%= link_to link.name, edit_link_path(link) %></th>
+        <td><%= link_to link.url, link.url, rel: "external" %></td>
+        <td>
+          <%= link_to "Delete", link, method: :delete, data: { confirm: "Are you sure you're sure? There is NO UNDO." }, class: "btn btn-danger btn-xs" %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

@@ -16,6 +16,6 @@
   <% end %>
 
   <% if lookup_context.template_exists?("header", post.post_type_type.downcase.pluralize, true) %>
-    <%= render "/#{post.post_type_type.downcase.pluralize}/header", post: post.post_type %>
+    <%= render "#{post.post_type_type.downcase.pluralize}/header", post: post.post_type %>
   <% end %>
 </header>

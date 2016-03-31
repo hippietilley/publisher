@@ -1,63 +1,14 @@
-<% if @post.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@post.errors.count, "error") %> prohibited this photo from being saved:</h2>
+<%= render "admin/form_errors", object: @post %>
 
-    <ul>
-    <% @post.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-<div class="field">
-  <%= f.label :title %><br>
-  <%= f.text_field :title %>
-</div>
-<div class="field">
-  <%= f.label :subtitle %><br>
-  <%= f.text_field :subtitle %>
-</div>
-<div class="field">
-  <%= f.label :content %><br>
-  <%= f.text_area :content %>
-</div>
-<div class="field">
-  <%= f.label :slug %><br>
-  <%= f.text_field :slug %>
-</div>
-<div class="field">
-  <%= f.label :in_reply_to %><br>
-  <%= f.text_field :in_reply_to %>
-</div>
-<div class="field">
-  <%= f.label :tags %><br>
-  <%= text_field_tag :tags, @post.tags.map(&:name).join(", ") %>
-</div>
-<div class="field">
-  <%= f.label :published_at %><br>
-  <%= f.datetime_select :published_at %>
-</div>
-<div class="field">
-  <%= f.label :private %>
-  <%= f.check_box :private %>
-</div>
-<div class="field">
-  <%= f.label :image_url, "Image URL" %><br>
-  <%= f.url_field :image_url %>
-</div>
-<div class="field">
-  <%= f.label :width %><br>
-  <%= f.number_field :width %>
-</div>
-<div class="field">
-  <%= f.label :height %><br>
-  <%= f.number_field :height %>
-</div>
-<div class="field">
-  <%= f.label :captured_at %><br>
-  <%= f.datetime_select :captured_at, include_blank: true %>
-</div>
-<div class="actions">
-  <%= link_to "Cancel", photos_url %>
-  <%= f.submit %>
-</div>
+<%= render "admin/form_title_subtitle", f: f %>
+<%= render "admin/form_content", f: f %>
+<%= render "admin/form_image_url", f: f %>
+
+<fieldset>
+  <legend class="h5">Photo Meta</legend>
+  <%= render "admin/datetime_group", f: f, attr: :captured_at, object: @post, include_blank: true %>
+</fieldset>
+
+<%= render "admin/form_actions",   f: f, cancel_url: photos_url %>
+<%= render "admin/form_post_meta", f: f, post: @post %>
+<%= render "admin/form_actions",   f: f, cancel_url: photos_url %>

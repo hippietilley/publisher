@@ -23,11 +23,12 @@ class PagesController < ApplicationController
   def new
     @page_title = "New #{post_class.to_s}"
     @post = PostForm.new(post_class)
+    render layout: "admin"
   end
 
   def edit
     @page_title = "Editing #{post_class.to_s}: #{@post.name}"
-    render "posts/edit"
+    render "posts/edit", layout: "admin"
   end
 
   def create

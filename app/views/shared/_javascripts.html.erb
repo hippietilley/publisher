@@ -1,2 +1,6 @@
 <!-- JS -->
 <%= javascript_include_tag "application" %>
+
+<% if on_admin_page? %>
+  <%= javascript_include_tag "admin" %>
+<% end %>

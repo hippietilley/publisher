@@ -1,27 +1,18 @@
-<h1><%= link_to "Settings", settings_path %></h1>
+<h1>Editing Setting: <%= @setting.name %></h1>
 
-<%= form_for(@setting) do |f| %>
-  <% if @setting.errors.any? %>
-    <% @setting.errors.full_messages.each do |msg| %>
-      <div><%= msg %></div>
+<%= form_for @setting do |f| %>
+  <%= render "admin/form_errors", object: @setting %>
+
+  <div class="form-group">
+    <%= f.label :content, @setting.name, class: "sr-only" %>
+
+    <% if @setting.slug == "license" %>
+      <%= f.select :content, License.options_for_select.map{|l| [l.first.html_safe, l.last]}, {}, class: "form-control input-lg" %>
+    <% else %>
+      <%= f.text_field :content, class: "form-control input-lg", autofocus: true %>
     <% end %>
-  <% end %>
 
-  <dl>
-    <dt>Editing <%= f.label :content, @setting.name %></dt>
-    <dd>
-      <% if @setting.slug == "license" %>
-        <%= f.select :content, License.options_for_select.map{|l| [l.first.html_safe, l.last]} %>
-      <% else %>
-        <%= f.text_field :content, autofocus: true %>
-      <% end %>
-    </dd>
-  </dl>
-
-  <div class="actions">
-    <%= link_to "Cancel", settings_url %>
-    <%= f.submit %>
-  </div>
+  <%= render "admin/form_actions", f: f, cancel_url: settings_url, button_text: "Save" %>
 <% end %>
 
 <%= render "settings" %>

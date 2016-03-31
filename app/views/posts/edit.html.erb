@@ -1,4 +1,4 @@
-<h1>
+<h1 class="h4">
   Editing
   <%= link_to @post.post_type_type, @post.path %>
 </h1>
@@ -7,4 +7,4 @@
   <%= render "#{@post.post.namespace}/form", f: f %>
 <% end %>
 
-<%= render "posts/danger_zone", post: @post.post, label: @post.post.type if signed_in? %>
+<%= render "admin/danger_zone", post: @post.post, label: @post.post.type if signed_in? %>

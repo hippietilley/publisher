@@ -16,12 +16,13 @@ class ArticlesController < ApplicationController
   def new
     @page_title = "New #{post_class.to_s}"
     @post = PostForm.new(post_class)
+    render "posts/new", layout: "admin"
   end
 
   def edit
     @page_title = "Editing #{post_class.to_s}: #{@post.name}"
     @post = PostForm.new(post_class, @post)
-    render "posts/edit"
+    render "posts/edit", layout: "admin"
   end
 
   def create
@@ -51,18 +52,15 @@ class ArticlesController < ApplicationController
 
   private
 
-  def on_page?
-    !(request.path.split("/")[1] == "articles")
-  end
-  helper_method :on_page?
-
   def post_type_type
     on_page? ? "Page" : "Article"
   end
+  helper_method :post_type_type
 
   def post_class
     on_page? ? Page : Article
   end
+  helper_method :post_class
 
   def set_article
     @post = Post.of(:article).find_by(slug: params[:slug])

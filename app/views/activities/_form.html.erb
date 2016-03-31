@@ -1,60 +1,67 @@
-<% if @post.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@post.errors.count, "error") %> prohibited this note from being saved:</h2>
+<%= render "admin/form_errors", object: @post %>
 
-    <ul>
-    <% @post.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
+<div class="row">
+  <div class="col-xs-12 col-sm-6">
+    <div class="form-group">
+      <%= f.label :activity_type, "Type" %>
+      <%= f.text_field :activity_type, class: "form-control" %>
+      <p class="help-block">Meal, run, walk, weight, etc</p>
+    </div>
   </div>
-<% end %>
 
-<div class="field">
-  <%= f.label :activity_type %><br>
-  <%= f.text_field :activity_type %>
+  <div class="col-xs-12 col-sm-6">
+    <div class="form-group">
+      <%= f.label :activity_verb, "Verb" %>
+      <%= f.text_field :activity_verb, class: "form-control" %>
+      <p class="help-block">Past tense: ate, ran, walked, weighed, etc</p>
+    </div>
+  </div>
 </div>
-<div class="field">
-  <%= f.label :activity_verb, "Activity Verb (ate, ran, walked, weighed, etc)" %><br>
-  <%= f.text_field :activity_verb %>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-6">
+    <div class="form-group">
+      <%= f.label :amount %>
+      <%= f.text_field :amount, class: "form-control" %>
+      <p class="help-block">E.g. 1 (as in miles)</p>
+    </div>
+  </div>
+
+  <div class="col-xs-12 col-sm-6">
+    <div class="form-group">
+      <%= f.label :unit %>
+      <%= f.text_field :unit, class: "form-control" %>
+      <p class="help-block">Calories, miles, lbs, etc</p>
+    </div>
+  </div>
 </div>
-<div class="field">
-  <%= f.label :amount %><br>
-  <%= f.text_field :amount %>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-6">
+    <div class="form-group">
+      <%= f.label :converted_amount %>
+      <%= f.text_field :converted_amount, class: "form-control" %>
+      <p class="help-block">E.g. 1.61 (as in kilometers)</p>
+    </div>
+  </div>
+
+  <div class="col-xs-12 col-sm-6">
+    <div class="form-group">
+      <%= f.label :converted_unit %>
+      <%= f.text_field :converted_unit, class: "form-control" %>
+      <p class="help-block">Calories, kilometers, kgs, etc</p>
+    </div>
+  </div>
 </div>
-<div class="field">
-  <%= f.label :unit %><br>
-  <%= f.text_field :unit %>
-</div>
-<div class="field">
-  <%= f.label :converted_amount %><br>
-  <%= f.text_field :converted_amount %>
-</div>
-<div class="field">
-  <%= f.label :converted_unit %><br>
-  <%= f.text_field :converted_unit %>
-</div>
-<div class="field">
-  <%= f.label :starts_at %><br>
-  <%= f.datetime_select :starts_at %>
-</div>
-<div class="field">
-  <%= f.label :ends_at %><br>
-  <%= f.datetime_select :ends_at %>
-</div>
-<div class="field">
-  <%= f.label :tags %><br>
-  <%= text_field_tag :tags, @post.tags.map(&:name).join(", ") %>
-</div>
-<div class="field">
-  <%= f.label :published_at %><br>
-  <%= f.datetime_select :published_at %>
-</div>
-<div class="field">
-  <%= f.label :private %>
-  <%= f.check_box :private %>
-</div>
-<div class="actions">
-  <%= link_to "Cancel", notes_url %>
-  <%= f.submit %>
-</div>
+
+<%= render "admin/form_actions",   f: f, cancel_url: activities_url %>
+
+<fieldset>
+  <legend class="h5">Dates and Times</legend>
+  <%= render "admin/datetime_group", f: f, attr: :starts_at, object: @post %>
+  <%= render "admin/datetime_group", f: f, attr: :ends_at,   object: @post %>
+</fieldset>
+
+<%= render "admin/form_actions",   f: f, cancel_url: activities_url %>
+<%= render "admin/form_post_meta", f: f, post: @post %>
+<%= render "admin/form_actions",   f: f, cancel_url: activities_url %>
