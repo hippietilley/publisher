@@ -1,4 +1,4 @@
-<h1 class="h4">New Note</h1>
+<h1 class="h4">New <%= @post.klass.to_s %></h1>
 
 <%= form_for @post do |f| %>
   <%= render "form", f: f %>

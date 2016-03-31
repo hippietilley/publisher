@@ -16,7 +16,7 @@ class BookmarksController < ApplicationController
   def new
     @page_title = "New #{post_class.to_s}"
     @post = PostForm.new(post_class)
-    render layout: "admin"
+    render "posts/new", layout: "admin"
   end
 
   def edit
