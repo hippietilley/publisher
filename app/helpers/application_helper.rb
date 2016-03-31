@@ -138,8 +138,8 @@ module ApplicationHelper
     action_name == "show"
   end
 
-  def datetime_select_value(object, attr, unit_of_time, include_blank)
-    datetime = object.send(attr).try(unit_of_time)
+  def datetime_select_value(thing, attr, unit_of_time, include_blank)
+    datetime = thing.send(attr).try(unit_of_time)
     
     if datetime.blank? && include_blank.present?
       nil

@@ -1,7 +1,7 @@
 <h1>Profile</h1>
 
 <%= form_for @user do |f| %>
-  <%= render "admin/form_errors", object: @user %>
+  <%= render "admin/form_errors", thing: @user %>
 
   <div class="form-group">
     <%= f.label :name, "Name" %>

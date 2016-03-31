@@ -1,7 +1,7 @@
 <h1>Editing Setting: <%= @setting.name %></h1>
 
 <%= form_for @setting do |f| %>
-  <%= render "admin/form_errors", object: @setting %>
+  <%= render "admin/form_errors", thing: @setting %>
 
   <div class="form-group">
     <%= f.label :content, @setting.name, class: "sr-only" %>

@@ -1,13 +1,13 @@
 <div class="row">
   <div class="col-xs-6 published-at-hour">
-    <%= select_hour datetime_select_value(object, attr, :hour, include_blank),
+    <%= select_hour datetime_select_value(thing, attr, :hour, include_blank),
           { prompt: true },
           name:  "#{post_type}[#{attr}(4i)]",
           id:    "#{post_type}_#{attr}_4i",
           class: "form-control datetime-select" %>
   </div>
   <div class="col-xs-6">
-    <%= select_minute datetime_select_value(object, attr, :min, include_blank),
+    <%= select_minute datetime_select_value(thing, attr, :min, include_blank),
           { prompt: true },
           name:  "#{post_type}[#{attr}(5i)]",
           id:    "#{post_type}_#{attr}_5i",
