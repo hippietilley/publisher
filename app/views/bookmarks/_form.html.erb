@@ -1,50 +1,34 @@
-<%= render "shared/form_errors", object: @post %>
+<%= render "admin/form_errors", object: @post %>
 
-<div class="field">
-  <%= f.label :title %><br>
-  <%= f.text_field :title %>
-</div>
-<div class="field">
-  <%= f.label :subtitle %><br>
-  <%= f.text_field :subtitle %>
-</div>
-<div class="field">
-  <%= f.label :content %><br>
-  <%= f.text_area :content %>
-</div>
-<div class="field">
-  <%= f.label :bookmark_author %><br>
-  <%= f.text_field :bookmark_author %>
-</div>
-<div class="field">
-  <%= f.label :bookmark_excerpt %><br>
-  <%= f.text_area :bookmark_excerpt %>
-</div>
-<div class="field">
-  <%= f.label :bookmark_url %><br>
-  <%= f.url_field :bookmark_url %>
-</div>
-<div class="field">
-  <%= f.label :slug %><br>
-  <%= f.text_field :slug %>
-</div>
-<div class="field">
-  <%= f.label :in_reply_to %><br>
-  <%= f.text_field :in_reply_to %>
-</div>
-<div class="field">
-  <%= f.label :tags %><br>
-  <%= text_field_tag :tags, @post.tags.map(&:name).join(", ") %>
-</div>
-<div class="field">
-  <%= f.label :published_at %><br>
-  <%= f.datetime_select :published_at %>
-</div>
-<div class="field">
-  <%= f.label :private %>
-  <%= f.check_box :private %>
-</div>
-<div class="actions">
-  <%= link_to "Cancel", bookmarks_url %>
-  <%= f.submit %>
-</div>
+<%= render "admin/form_title_subtitle", f: f %>
+<%= render "admin/form_content", f: f %>
+
+<fieldset>
+  <legend class="h6">About the Bookmark</legend>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <div class="form-group">
+        <%= f.label :bookmark_url, "URL" %>
+        <%= f.url_field :bookmark_url, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6">
+      <div class="form-group">
+        <%= f.label :bookmark_author, "Author" %>
+        <%= f.text_field :bookmark_author, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :bookmark_excerpt, "Excerpt" %>
+    <%= f.text_area :bookmark_excerpt, class: "form-control", rows: 6 %>
+  </div>
+</fieldset>
+
+<%= render "admin/form_actions",   f: f, cancel_url: bookmarks_url %>
+<%= render "admin/form_post_meta", f: f, post: @post %>
+<%= render "admin/form_actions",   f: f, cancel_url: bookmarks_url %>
+
