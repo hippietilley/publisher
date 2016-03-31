@@ -1,5 +1,8 @@
+<%# TODO WHY doesn't this get passed through from the caller in photos/_form %>
+<% include_blank = false %>
+
 <div class="form-group">
   <%= f.label attr %>
-  <%= render "admin/date_select_row", object: object, post_type: object.post_type.class.to_s.downcase, attr: attr %>
-  <%= render "admin/time_select_row", object: object, post_type: object.post_type.class.to_s.downcase, attr: attr %>
+  <%= render "admin/date_select_row", object: object, post_type: object.post_type.class.to_s.downcase, attr: attr, include_blank: include_blank %>
+  <%= render "admin/time_select_row", object: object, post_type: object.post_type.class.to_s.downcase, attr: attr, include_blank: include_blank %>
 </div>

@@ -1,20 +1,20 @@
 <div class="row">
   <div class="col-xs-12 col-sm-4">
-    <%= select_year object.send(attr).try(:year) || Date.today.year,
-          { prompt: true, start_year: Date.today.year + 5 , end_year: Date.today.year - 5 },
+    <%= select_year datetime_select_value(object, attr, :year, include_blank),
+          { prompt: true },
           name:  "#{post_type}[#{attr}(1i)]",
           id:    "#{post_type}_#{attr}_1i",
           class: "form-control datetime-select" %>
   </div>
   <div class="col-xs-12 col-sm-4">
-    <%= select_month object.send(attr).try(:month) || Date.today.month,
+    <%= select_month datetime_select_value(object, attr, :month, include_blank),
           { prompt: true },
           name:  "#{post_type}[#{attr}(2i)]",
           id:    "#{post_type}_#{attr}_2i",
           class: "form-control datetime-select" %>
   </div>
   <div class="col-xs-12 col-sm-4">
-    <%= select_day object.send(attr).try(:day) || Date.today.day,
+    <%= select_day datetime_select_value(object, attr, :day, include_blank),
           { prompt: true },
           name:  "#{post_type}[#{attr}(3i)]",
           id:    "#{post_type}_#{attr}_3i",
