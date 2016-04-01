@@ -36,12 +36,12 @@ class Tag < ActiveRecord::Base
 
     machine_tag? ? machine_tag_prefix + val : val
   end
-
-  private
   
   def machine_tag?
     namespace.present? && predicate.present?
   end
+
+  private
   
   def machine_tag_prefix
     "#{namespace}:#{predicate}="

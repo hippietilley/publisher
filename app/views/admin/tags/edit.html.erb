@@ -1,0 +1,45 @@
+<h1>
+  <%= link_to "Admin: Tags", admin_tags_path %>
+  —
+  Editing
+  <%= link_to @tag.name, [:admin, @tag] %>  
+</h1>
+
+<%= form_for [:admin, @tag] do |f| %>
+  <%= render "admin/form_errors", thing: @tag %>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control input-lg", autofocus: true %>
+  </div>
+
+  <%= render "admin/form_actions", f: f, cancel_url: admin_tags_path, button_text: "Save" %>
+
+  <fieldset>
+    <legend class="h5">Machine Tags</legend>
+    <p class="help-block">
+      <a href="https://www.flickr.com/groups/api/discuss/72157594497877875/">Machine Tags</a>
+      are typically added by software, not humans.
+      If you don"t know anything about them, you can just ignore this part.
+      If you do need to edit a Machine Tag, you can do that in the field below.
+    </p>
+
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="form-group">
+          <%= f.label :namespace %>
+          <%= f.text_field :namespace, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="col-xs-6">
+        <div class="form-group">
+          <%= f.label :predicate %>
+          <%= f.text_field :predicate, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <%= render "admin/form_actions", f: f, cancel_url: admin_tags_path, button_text: "Save" %>
+<% end %>

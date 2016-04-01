@@ -4,6 +4,10 @@
   <%= link_to_tag(@tag) %>
 </h1>
 
+<% if signed_in? %>
+  <p><%= link_to "EDIT", [:edit, :admin, @tag], class: "button" %></p>
+<% end %>
+
 <p>
   <b>#<%= @tag.display(:name) %></b> elsewhere: <%= link_to_external_tag_pages @tag %>.
 </p>

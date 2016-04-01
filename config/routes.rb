@@ -15,7 +15,12 @@ Rails.application.routes.draw do
   
   root to: "posts#index"
 
-  # Dashboard
+  # Admin Dashboard
+  namespace :admin do
+    resources :tags
+  end
+
+  # NEW Post Launchpad
   get "new", to: "dashboard#new", as: "dashboard_new"
 
   # Posts (Composite Feed) Pagination and RSS/Atom feed
