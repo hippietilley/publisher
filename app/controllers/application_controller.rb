@@ -89,7 +89,7 @@ class ApplicationController < ActionController::Base
 
   def save_tags(post, post_params)
     post.post.tags.destroy_all
-    add_private_tag(params[:tags], post_params)
+    add_private_tag(params[:tags].gsub(/^,/, ""), post_params)
 
     split_tags(params[:tags]).each do |name|
       post.post.tags << Tag.find_or_create_by(name: name)

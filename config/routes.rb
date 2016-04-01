@@ -79,8 +79,7 @@ Rails.application.routes.draw do
   delete ":slug",   to: "articles#destroy",                 constraints: YEAR_MONTH_DAY_CONSTRAINTS
 
   # Tags
-  get "tags",       to: "tags#index", as: "tags"
-  get "tags/:slug", to: "tags#show",  as: "tag"
+  resources :tags
 
   # Redirects Manager
   resources :redirects, except: :show

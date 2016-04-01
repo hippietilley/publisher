@@ -1,0 +1,9 @@
+<%= form_for @tag do |f| %>
+  <%= render "admin/form_errors", thing: @tag %>
+
+  <div class="form-group">
+    <%= f.label :name, @tag.name %>
+    <%= f.text_field :name, class: "form-control input-lg", autofocus: true %>
+
+  <%= render "admin/form_actions", f: f, cancel_url: tags_url, button_text: "Save" %>
+<% end %>

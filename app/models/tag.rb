@@ -7,6 +7,18 @@ class Tag < ActiveRecord::Base
 
   validates :slug, uniqueness: true
   validates :name, presence: true, uniqueness: true
+  
+  def to_param
+    slug
+  end
+
+  def path
+    "/tags/#{slug}"
+  end
+
+  def public_tag?
+    !private_tag?
+  end
 
   def private_tag?
     name.match(/^\./)
@@ -49,7 +61,6 @@ class Tag < ActiveRecord::Base
   end
 
   def set_slug
-    self.slug = name if slug.blank?
-    clean_slug!(self.slug)
+    clean_slug!(name)
   end
 end
