@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user,  only: [:edit, :update, :destroy]
   before_action :authorize, only: [:edit, :update, :destroy]
+  layout "admin"
 
   # /signup
   def new
@@ -35,7 +36,6 @@ class UsersController < ApplicationController
     @page_title = "Profile Settings"
     @slug = "profile"
     @on_admin_page = true
-    render layout: "admin"
   end
 
   # /profile

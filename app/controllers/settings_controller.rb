@@ -3,11 +3,11 @@ class SettingsController < ApplicationController
   before_action :set_on_admin_page
   before_action :set_setting, only: [:edit, :update]
   before_action :all_settings
+  layout "admin"
 
   def index
     @page_title = "Settings"
     @slug = "settings"
-    render layout: "admin"
   end
 
   def show
@@ -18,7 +18,6 @@ class SettingsController < ApplicationController
     @slug = "settings"
     @setting    = Setting.find(params[:id])
     @page_title = "Editing Setting : #{@setting.name}"
-    render layout: "admin"
   end
 
   def update

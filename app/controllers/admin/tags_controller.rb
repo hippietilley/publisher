@@ -2,14 +2,13 @@ class Admin::TagsController < ApplicationController
   before_action :authorize
   before_action :set_on_admin_page
   before_action :set_tag, only: [:show, :edit, :update, :destroy]
+  layout "admin"
 
   def index
     @tags = Tag.order("slug ASC").all
-    render layout: "admin"
   end
 
   def show
-    render layout: "admin"
   end
 
   def new
@@ -17,7 +16,6 @@ class Admin::TagsController < ApplicationController
   end
 
   def edit
-    render layout: "admin"
   end
 
   def create
