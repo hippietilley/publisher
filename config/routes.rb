@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   end
 
   # NEW Post Launchpad
+  get "dashboard", to: "dashboard#index", as: "dashboard"
   get "new", to: "dashboard#new", as: "dashboard_new"
 
   # Posts (Composite Feed) Pagination and RSS/Atom feed

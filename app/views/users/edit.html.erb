@@ -1,4 +1,6 @@
-<h1>Profile</h1>
+<div class="page-header">
+  <h1>Profile</h1>
+</div>
 
 <%= form_for @user do |f| %>
   <%= render "admin/form_errors", thing: @user %>
@@ -52,5 +54,5 @@
     </div>
   </fieldset>
 
-  <%= render "admin/form_actions", f: f, cancel_url: root_url, button_text: "Save" %>
+  <%= render "admin/form_actions", f: f, cancel_url: dashboard_url, button_text: "Save" %>
 <% end %>
