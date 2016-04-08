@@ -49,6 +49,10 @@ class Tag < ActiveRecord::Base
 
   # TODO: DRY refactor this method copied from PostType into a lib?
   def clean_slug!(slug)
+    if machine_tag?
+      slug = machine_tag_prefix + slug
+    end
+
     blank     = ""
     separator = "-"
     self.slug = slug.downcase
