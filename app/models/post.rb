@@ -107,14 +107,6 @@ class Post < ActiveRecord::Base
     {year: published_at.year, month: published_at.month, day: published_at.day, slug: slug}
   end
 
-  # def tags
-  #   output = []
-  #   Tagging.where(post_id: post_type_id).all.find_each do |tagging|
-  #     output << Tag.find(tagging.tag_id)
-  #   end
-  #   output
-  # end
-
   def name
     if title && subtitle
       "#{title} : #{subtitle}"
