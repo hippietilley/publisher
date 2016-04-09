@@ -44,13 +44,7 @@ class Admin::TagsController < ApplicationController
   private
 
   def set_tag
-    if params[:id] =~ /:/
-      namespace, remainder = params[:id].split(":")
-      predicate, slug = remainder.split("=")
-      @tag = Tag.find_by(namespace: namespace, predicate: predicate, slug: slug)
-    else
-      @tag = Tag.find_by(slug: params[:id])
-    end
+    @tag = Tag.find_by(slug: params[:id])
   end
 
   def tag_params

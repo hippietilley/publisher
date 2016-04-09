@@ -24,18 +24,34 @@ class Tag < ActiveRecord::Base
     name.match(/^\./)
   end
 
-  def display(attribute)
-    val = self.send(attribute)
-
-    # wrap in quotes if there spaces in the name, slugs don't need quotes
-    if attribute == :name && !namespace.blank? && !predicate.blank?
-      if val =~ / /
-        val = "'#{val}'"
-      end
+  def display_name
+    if machine_tag? 
+      if name =~ / /
+      machine_tag_prefix + "'#{name}'"
+    else
+      machine_tag_prefix + name
     end
-
-    machine_tag? ? machine_tag_prefix + val : val
+    else
+      self.name
+    end
   end
+
+  def display_slug
+    slug
+  end
+
+  # def display(attribute)
+  #   val = self.send(attribute)
+  #
+  #   # wrap in quotes if there spaces in the name, slugs don't need quotes
+  #   if attribute == :name && !namespace.blank? && !predicate.blank?
+  #     if val =~ / /
+  #       val = "'#{val}'"
+  #     end
+  #   end
+  #
+  #   machine_tag? ? machine_tag_prefix + val : val
+  # end
   
   def machine_tag?
     namespace.present? && predicate.present?
@@ -49,19 +65,21 @@ class Tag < ActiveRecord::Base
 
   # TODO: DRY refactor this method copied from PostType into a lib?
   def clean_slug!(slug)
-    if machine_tag?
-      slug = machine_tag_prefix + slug
-    end
-
     blank     = ""
     separator = "-"
-    self.slug = slug.downcase
+    cleaned_slug = slug.downcase
       .gsub(/\(|\)|\[|\]\./, blank)
       .gsub(/&amp;/,         blank)
       .gsub(/\W|_|\s|-+/,    separator)
       .gsub(/^-+/,           blank)
       .gsub(/-+$/,           blank)
       .gsub(/-+/,            separator)
+
+    if machine_tag?
+      self.slug = machine_tag_prefix + cleaned_slug
+    else
+      self.slug = cleaned_slug
+    end
   end
 
   def set_slug

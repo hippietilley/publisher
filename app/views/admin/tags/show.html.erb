@@ -4,7 +4,7 @@
 </h1>
 
 <h2>
-  Posts tagged: <%= @tag.name %>
+  Posts tagged: <%= @tag.display_name %>
   <%= link_to "EDIT", [:edit, :admin, @tag], class: "btn btn-primary btn-xs" %>
 </h2>
 </div>
@@ -15,7 +15,7 @@
       <h1 class="h4"><%= link_to post.name, post.path, class: "p-name u-url" %></h1>
       <p>
         <% post.tags.each do |tag| %>
-          <%= link_to tag.display(:name), [:admin, tag] %>
+          <%= link_to tag.display_name, [:admin, tag] %>
         <% end %>
     </li>
   <% end %>

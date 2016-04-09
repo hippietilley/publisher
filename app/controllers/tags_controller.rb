@@ -14,14 +14,7 @@ class TagsController < ApplicationController
   end
 
   def show
-    if params[:id] =~ /:/
-      namespace, remainder = params[:id].split(":")
-      predicate, slug = remainder.split("=")
-      @tag = Tag.find_by(namespace: namespace, predicate: predicate, slug: slug)
-    else
-      @tag = Tag.find_by(slug: params[:id])
-    end
-    
+    @tag = Tag.find_by(slug: params[:id])
     return redirect_to(tags_path) unless @tag.public_tag? || signed_in?
   end
 end
