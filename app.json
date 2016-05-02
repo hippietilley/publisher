@@ -11,7 +11,7 @@
   "website": "http://darkmatterapp.com",
   "repository": "https://github.com/darkmatter/publisher-server-rails",
   "logo": "http://darkmatterapp.com/logo.png",
-  
+
   "success_url": "/signup",
   "scripts": {
     "postdeploy": "bundle exec rake db:migrate && bundle exec rake db:seed"
@@ -27,7 +27,6 @@
   },
   "addons": [
     "heroku-postgresql:hobby-dev",
-    "papertrail"
   ],
   "image": "heroku/cedar"
 }
