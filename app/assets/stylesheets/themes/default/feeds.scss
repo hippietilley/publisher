@@ -104,17 +104,19 @@
     }
 
     .p-x-post-type { text-transform: capitalize; }
+
+    .h-card .u-photo { max-width: 16px; }
   }
   /* ...entry footer */
 
   /* specific post types... */
   /* activities */
   .h-activity { .p-type { text-transform: capitalize; } }
-  
+
   /* bookmarks */
   .h-entry.post-type-bookmark .p-dm-title:before { content: "⇜ " }
   /* ...specific post types */
-  
+
 }
 
 /* "tablet" */

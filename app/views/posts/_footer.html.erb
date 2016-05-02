@@ -7,6 +7,7 @@
     <%= small_word_tag "by" %>
 
     <span class="p-author h-card">
+      <%= render "shared/site_owner_photo" %>
       <%= link_to post.user.name, root_url, rel: "me", class: "u-url p-name" %>
     </span>
 
@@ -20,7 +21,7 @@
       <% end %>
     <% end %>
   </p>
-  
+
   <% unless post.tags.blank? %>
     <p class="tags">
       <b>Tags</b>
@@ -33,7 +34,7 @@
       <%= link_to_syndications(post) %>
     </div> <!-- .syndication -->
   <% end %>
-  
+
   <% if signed_in? %>
     <div class="syndicate-to">
       <%= syndication_buttons_for(post) %>
