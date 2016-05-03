@@ -6,19 +6,20 @@ class AboutController < ApplicationController
     @public_key = Setting.where(name: "Public Key").first
     render layout: false
   end
-  
+
   def micropub
     render text: "Planned Micropub endpoint"
   end
-  
+
   def site_photo
     if @owner.nil? || @owner.avatar.nil?
       render plain: "404 Not Found", status: 404
     else
-      uri = URI.parse(@owner.avatar)
+      uri       = URI.parse(@owner.avatar)
+      response  = Net::HTTP.get_response(URI(@owner.avatar))
+      extension = site_photo_format(response)
 
-      if site_photo_format(uri) == params[:format]
-        response = Net::HTTP.get_response(URI(@owner.avatar))
+      if extension == params[:format]
         return send_data(response.body, type: response.content_type, disposition: "inline")
       end
 

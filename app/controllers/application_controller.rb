@@ -115,7 +115,7 @@ class ApplicationController < ActionController::Base
   def set_on_admin_page
     @on_admin_page = true
   end
-  
+
   def use_admin_layout
     render layout: "admin"
   end
@@ -135,16 +135,29 @@ class ApplicationController < ActionController::Base
   end
 
   def site_photo_path
-    uri = URI.parse(@owner.avatar)
     unless @owner.nil? || @owner.avatar.nil?
-      ["/photo", site_photo_format(uri)].join(".")
+      uri      = URI.parse(@owner.avatar)
+      response = Net::HTTP.get_response(URI(@owner.avatar))
+
+      ["/photo", site_photo_format(response)].compact.join(".")
     end
   end
   helper_method :site_photo_path
 
-  def site_photo_format(uri)
-    unless @owner.nil? || @owner.avatar.nil?
-      uri.path.split(".").last.try(:downcase)
+  def site_photo_format(response)
+    # response: Net::HTTP.get_response(URI(...))
+    case response.content_type
+    when "image/png"
+      "png"
+    when "image/jpeg"
+      "jpg"
+    when "image/gif"
+      "gif"
+    when "image/svg+xml"
+      "svg"
+    else
+      nil
     end
   end
+
 end
