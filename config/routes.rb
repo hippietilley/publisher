@@ -84,6 +84,9 @@ Rails.application.routes.draw do
   patch ":slug",    to: "articles#update",                  constraints: YEAR_MONTH_DAY_CONSTRAINTS
   delete ":slug",   to: "articles#destroy",                 constraints: YEAR_MONTH_DAY_CONSTRAINTS
 
+  # Site Search
+  get "search", to: "search#index", as: "search"
+
   # Tags
   resources :tags
 
