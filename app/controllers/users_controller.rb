@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user,  only: [:edit, :update, :destroy]
   before_action :authorize, only: [:edit, :update, :destroy]
+  before_action :set_on_admin_page
   layout "admin"
 
   # /signup
@@ -33,8 +34,8 @@ class UsersController < ApplicationController
 
   # /profile
   def edit
-    @page_title = "Profile Settings"
-    @slug = "profile"
+    @page_title    = "Profile Settings"
+    @slug          = "profile"
     @on_admin_page = true
   end
 
