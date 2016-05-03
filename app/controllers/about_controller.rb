@@ -12,7 +12,7 @@ class AboutController < ApplicationController
   end
 
   def site_photo
-    if @owner.nil? || @owner.avatar.nil?
+    if @owner.nil? || @owner.avatar.blank?
       render plain: "404 Not Found", status: 404
     else
       uri       = URI.parse(@owner.avatar)

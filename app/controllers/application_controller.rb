@@ -135,7 +135,7 @@ class ApplicationController < ActionController::Base
   end
 
   def site_photo_path
-    unless @owner.nil? || @owner.avatar.nil?
+    unless @owner.nil? || @owner.avatar.blank?
       uri      = URI.parse(@owner.avatar)
       response = Net::HTTP.get_response(URI(@owner.avatar))
 
