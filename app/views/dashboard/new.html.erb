@@ -1,66 +1,29 @@
-<h1>Dashboard</h1>
+<h1>NEW Post</h1>
 
-<table class="table">
-  <tr>
-    <td>
-      <%= link_to "NEW", new_note_path, class: "btn btn-primary btn-sm" %>
-      <%= link_to "Notes", notes_path %>
-    </td>
-  </tr>
+<nav role="navigation">
+  <%= link_to "Activity", "#activity", class: "btn btn-default" %>
+  <%= link_to "Article",  "#article",  class: "btn btn-default" %>
+  <%= link_to "Bookmark", "#bookmark", class: "btn btn-default" %>
+  <%= link_to "Event",    "#event",    class: "btn btn-default" %>
+  <%= link_to "Note",     "#note",     class: "btn btn-default" %>
+  <%= link_to "Page",     "#page",     class: "btn btn-default" %>
+  <%= link_to "Photo",    "#photo",    class: "btn btn-default" %>
+  <%= link_to "Sound",    "#sound",    class: "btn btn-default" %>
+  <%= link_to "Video",    "#video",    class: "btn btn-default" %>
+</nav>
 
-  <tr>
-    <td>
-      <%= link_to "NEW", new_article_path, class: "btn btn-primary btn-sm" %>
-      <%= link_to "Articles", articles_path %>
-    </td>
-  </tr>
+<% [@activity, @article, @bookmark, @event, @note, @page, @photo, @sound, @video].each do |post| %>
+  <%# TODO clean this up %>
+  <% post_type = post.post_type.class.to_s.downcase %>
 
-  <tr>
-    <td>
-      <%= link_to "NEW", new_bookmark_path, class: "btn btn-primary btn-sm" %>
-      <%= link_to "Bookmarks", bookmarks_path %>
-    </td>
-  </tr>
-
-  <tr>
-    <td>
-      <%= link_to "NEW", new_event_path, class: "btn btn-primary btn-sm" %>
-      <%= link_to "Events", events_path %>
-    </td>
-  </tr>
-
-  <tr>
-    <td>
-      <%= link_to "NEW", new_photo_path, class: "btn btn-primary btn-sm" %>
-      <%= link_to "Photos", photos_path %>
-    </td>
-  </tr>
-
-  <tr>
-    <td>
-      <%= link_to "NEW", new_sound_path, class: "btn btn-primary btn-sm" %>
-      <%= link_to "Sounds", sounds_path %>
-    </td>
-  </tr>
-
-  <tr>
-    <td>
-      <%= link_to "NEW", new_video_path, class: "btn btn-primary btn-sm" %>
-      <%= link_to "Videos", videos_path %>
-    </td>
-  </tr>
-
-  <tr>
-    <td>
-      <%= link_to "NEW", new_activity_path, class: "btn btn-primary btn-sm" %>
-      <%= link_to "Activities", activities_path %>
-    </td>
-  </tr>
-
-  <tr>
-    <td>
-      <%= link_to "NEW", new_page_path, class: "btn btn-primary btn-sm" %>
-      <%= link_to "Pages", pages_path %>
-    </td>
-  </tr>
-</table>
+  <div id="<%= post_type %>" role="tabpanel">
+    <%= form_for post do |f| %>
+      <h2><%= post_type.capitalize %></h2>
+      
+      <% path = post_type.pluralize %>
+      <% path = "articles" if path == "pages" %>
+      
+      <%= render "#{path}/form", f: f, post: post %>
+    <% end %>
+  </div>
+<% end %>

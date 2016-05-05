@@ -63,6 +63,16 @@ select {
   }
 }
 
+// /new form switcher
+#new {
+  [role=tabpanel] {
+    display: none;
+  }
+  [role=tabpanel]:target {
+    display: block;
+  }
+}
+
 footer[role=complimentary] {
   margin-top: 10rem;
 }
