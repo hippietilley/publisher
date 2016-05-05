@@ -15,3 +15,4 @@
 db/seeds
 production.seeds.rb
 .byebug_history
+issues.md
