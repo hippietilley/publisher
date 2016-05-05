@@ -1,3 +1,11 @@
+#admin-button a {
+  display: block;
+  padding: 1em;
+  background: black;
+  color: white;
+  text-align: center;
+}
+
 header[role=banner] {
   .dm-site-title {
     a { text-decoration: none; }
