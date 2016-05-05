@@ -4,7 +4,7 @@
 </h1>
 
 <%= form_for @post, url: @post.path do |f| %>
-  <%= render "#{@post.post.namespace}/form", f: f %>
+  <%= render "#{@post.post.namespace}/form", f: f, post: @post %>
 <% end %>
 
 <%= render "admin/danger_zone", post: @post.post, label: @post.post.type if signed_in? %>
