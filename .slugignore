@@ -1,2 +1,12 @@
+.byebug_history
+.codeclimate
+.gitignore
+.rspec
+.rubocop.yml
+.travis.yml
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+issues.md
+LICENSE.md
 README.md
 spec/*
