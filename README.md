@@ -40,14 +40,7 @@ bin/setup
 
 ## Contributing
 
-1. Fork it
-1. Get it running
-1. Create your feature branch (`git checkout -b my-new-feature`)
-1. Write your code and **specs**
-1. Run Rubocop (`bundle exec rubocop`), fix any warnings
-1. Commit your changes (`git commit -am 'Add some feature'`)
-1. Push to the branch (`git push origin my-new-feature`)
-1. Create new Pull Request
+See [CONTRIBUTING.md](https://github.com/darkmatterapp/publisher-server-rails/blob/master/CONTRIBUTING.md).
 
 If you find bugs, have feature requests or questions, please
 [file an issue](https://github.com/darkmatterapp/publisher-server-rails/issues).
