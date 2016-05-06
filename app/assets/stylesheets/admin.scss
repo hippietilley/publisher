@@ -31,7 +31,7 @@ select {
   input + label {
     .toggle-unchecked { display: inherit }
     .toggle-checked   { display: none }
-    
+
     & + .help-block {
       .toggle-unchecked { display: inherit }
       .toggle-checked   { display: none }
@@ -63,6 +63,10 @@ select {
   }
 }
 
+footer[role=complimentary] {
+  margin-top: 10rem;
+}
+
 // /new form switcher
 #new {
   [role=tabpanel] {
@@ -71,8 +75,10 @@ select {
   [role=tabpanel]:target {
     display: block;
   }
-}
-
-footer[role=complimentary] {
-  margin-top: 10rem;
+  main {
+    [role=navigation] .btn {
+      display: inline-block;
+      margin-bottom: .5em;
+    }
+  }
 }

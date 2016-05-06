@@ -5,14 +5,16 @@
       <%= link_to root_path, rel: "home", class: "navbar-brand pull-left" do %>
         <%= image_tag setting(:touch_icon_url_57x57), alt: "Site avatar" %>
       <% end %>
-    
-      <form action="/search" method="get" class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="search" name="q" class="form-control" placeholder="Search site">
-        </div>
-        <button type="submit" class="btn btn-default sr-only">Submit</button>
-      </form>
-      
+
+      <div class="hidden-xs">
+        <form action="/search" method="get" class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="search" name="q" class="form-control" placeholder="Search site">
+          </div>
+          <button type="submit" class="btn btn-default sr-only">Submit</button>
+        </form>
+      </div>
+
       <div class="navbar-right pull-right">
         <%= link_to "Dashboard", dashboard_path, class: "btn btn-default navbar-btn" %>
         <%= link_to "&#43;".html_safe, dashboard_new_path, class: "btn btn-primary navbar-btn" %>
@@ -20,4 +22,15 @@
 
     </div><!-- /.container -->
   </nav>
+
+  <div class="visible-xs-block">
+    <div class="container">
+      <form action="/search" method="get" role="search">
+        <div class="form-group">
+          <input type="search" name="q" class="form-control" placeholder="Search site">
+        </div>
+        <button type="submit" class="btn btn-default sr-only">Submit</button>
+      </form>
+    </div>
+  </div>
 <% end %>
