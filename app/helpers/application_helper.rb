@@ -2,11 +2,11 @@ module ApplicationHelper
   def post_or_page(post)
     on_page? ? "Page" : "Post"
   end
-  
+
   def on_admin_page?
     @on_admin_page
   end
-  
+
   def hide?(name)
     !show?(name)
   end
@@ -129,7 +129,7 @@ module ApplicationHelper
 
     output.join("\n").html_safe
   end
-  
+
   def blank
     ""
   end
@@ -140,7 +140,7 @@ module ApplicationHelper
 
   def datetime_select_value(thing, attr, unit_of_time, include_blank)
     datetime = thing.send(attr).try(unit_of_time)
-    
+
     if datetime.blank? && include_blank.present?
       nil
     else
@@ -150,5 +150,9 @@ module ApplicationHelper
 
   def lorem_ipsum
     "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  end
+
+  def public_key?
+    !Setting.where(name: "Public Key").first.blank?
   end
 end
