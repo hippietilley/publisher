@@ -100,8 +100,11 @@ module ApplicationHelper
 
   def site_title
     title = ""
-    title << (on_admin_page? ? "Admin: " : "#{setting(:site_title)} - ")
-    title << @page_title if @page_title
+    title << (on_admin_page? ? "Admin" : setting(:site_title))
+    if @page_title
+      title << " - "
+      title << @page_title
+    end
     title
   end
 

@@ -110,11 +110,11 @@ class Post < ActiveRecord::Base
   end
 
   def name
-    if title && subtitle
+    if !title.blank? && !subtitle.blank?
       "#{title} : #{subtitle}"
-    elsif title
+    elsif !title.blank?
       title
-    elsif content
+    elsif !content.blank?
       content[0,150]
     elsif post_type.activity_type && post_type.amount && post_type.unit
       "#{post_type.activity_type} : #{post_type.amount} #{post_type.unit}"
