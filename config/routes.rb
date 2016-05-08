@@ -76,13 +76,13 @@ Rails.application.routes.draw do
   get "key.pub", to: "about#public_key", as: "public_key"
 
   # Pages CRUD (Articles acting as Pages)
-  get "pages/new",  to: "articles#new",    as: "new_page"
-  post "pages",     to: "articles#create", as: "pages"
+  get "pages/new",  to: "pages#new",    as: "new_page"
+  post "pages",     to: "pages#create", as: "pages"
   get "pages",      to: "pages#index"
-  post ":slug",     to: "articles#create",                  constraints: YEAR_MONTH_DAY_CONSTRAINTS
-  get ":slug/edit", to: "articles#edit",   as: "edit_page", constraints: YEAR_MONTH_DAY_CONSTRAINTS
-  patch ":slug",    to: "articles#update",                  constraints: YEAR_MONTH_DAY_CONSTRAINTS
-  delete ":slug",   to: "articles#destroy",                 constraints: YEAR_MONTH_DAY_CONSTRAINTS
+  post ":slug",     to: "pages#create",                  constraints: YEAR_MONTH_DAY_CONSTRAINTS
+  get ":slug/edit", to: "pages#edit",   as: "edit_page", constraints: YEAR_MONTH_DAY_CONSTRAINTS
+  patch ":slug",    to: "pages#update",                  constraints: YEAR_MONTH_DAY_CONSTRAINTS
+  delete ":slug",   to: "pages#destroy",                 constraints: YEAR_MONTH_DAY_CONSTRAINTS
 
   # Site Search
   get "search", to: "search#index", as: "search"
@@ -100,5 +100,5 @@ Rails.application.routes.draw do
   get "photo(.format)", to: "about#site_photo"
 
   # Redirection and Page lookup as a fallback to all routes
-  get ":path", to: "pages#show", as: "page"
+  get ":slug", to: "pages#show", as: "page"
 end
