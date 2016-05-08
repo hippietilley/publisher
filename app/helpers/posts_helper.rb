@@ -73,4 +73,10 @@ module PostsHelper
   def rel_canonical_link_tag(post = nil)
     tag(:link, id: "canonical", rel: "canonical", type: "text/html", href: canonical_url(post))
   end
+
+  def render_post_type_partial(partial, post)
+    if lookup_context.template_exists?(partial, post.post_type_type.downcase.pluralize, true)
+      render [post.post_type_type.downcase.pluralize, partial].join("/"), post: post.post_type
+    end
+  end
 end
