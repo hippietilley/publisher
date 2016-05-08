@@ -6,7 +6,7 @@
 
 <fieldset>
   <legend class="h5">Photo Meta</legend>
-  <%= render "admin/datetime_group", f: f, attr: :captured_at, thing: post, include_blank: true %>
+  <%= render "admin/datetime_group", f: f, attr: :captured_at, thing: post %>
 </fieldset>
 
 <%= render "admin/form_actions",   f: f, cancel_url: photos_url %>

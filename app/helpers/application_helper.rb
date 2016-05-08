@@ -138,13 +138,14 @@ module ApplicationHelper
     action_name == "show"
   end
 
-  def datetime_select_value(thing, attr, unit_of_time, include_blank)
+  def datetime_select_value(thing, attr, unit_of_time)
     datetime = thing.send(attr).try(unit_of_time)
 
-    if datetime.blank? && include_blank.present?
-      nil
+    if datetime.blank?
+      now = Time.current + Setting.of("timezone_gmt_offset").try(:content).to_i.hours
+      now.send(unit_of_time)
     else
-      Time.now.send(unit_of_time)
+      datetime
     end
   end
 

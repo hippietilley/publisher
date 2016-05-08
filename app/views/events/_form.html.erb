@@ -13,8 +13,8 @@
 
 <fieldset>
   <legend class="h5">Dates and Times</legend>
-  <%= render "admin/datetime_group", f: f, attr: :starts_at, thing: post, include_blank: false %>
-  <%= render "admin/datetime_group", f: f, attr: :ends_at,   thing: post, include_blank: true  %>
+  <%= render "admin/datetime_group", f: f, attr: :starts_at, thing: post %>
+  <%= render "admin/datetime_group", f: f, attr: :ends_at,   thing: post %>
 </fieldset>
 
 <%= render "admin/form_actions",   f: f, cancel_url: events_url %>
@@ -55,8 +55,8 @@
       </div>
     </div>
   </div>
-  
-  
+
+
   <div class="row">
     <div class="col-xs-6">
       <div class="form-group">
@@ -71,7 +71,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-xs-6">
       <div class="form-group">

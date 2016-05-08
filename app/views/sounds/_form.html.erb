@@ -13,7 +13,7 @@
 <fieldset>
   <legend class="h5">Sound Meta</legend>
   <%= render "admin/form_image_url", f: f %>
-  <%= render "admin/datetime_group", f: f, attr: :captured_at, thing: post, include_blank: true %>
+  <%= render "admin/datetime_group", f: f, attr: :captured_at, thing: post %>
 </fieldset>
 
 <%= render "admin/form_actions",   f: f, cancel_url: sounds_url %>

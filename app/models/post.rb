@@ -17,7 +17,9 @@ class Post < ActiveRecord::Base
   has_many :tags, through: :taggings
 
   default_scope { order("published_at DESC") }
+  before_validation :generate_published_at, on: [:create, :update]
   before_validation :generate_slug, on: [:create, :update]
+
   validates_with SlugValidator
 
   # after_create :create_syndication_for_instagram
@@ -377,6 +379,12 @@ class Post < ActiveRecord::Base
         n += 1
         clean_slug!(self.slug + "-#{n}")
       end
+    end
+  end
+
+  def generate_published_at
+    if self.published_at.blank?
+      self.published_at = Time.current + Setting.of("timezone_gmt_offset").try(:content).to_i.hours
     end
   end
 
