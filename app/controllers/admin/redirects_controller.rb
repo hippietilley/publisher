@@ -1,17 +1,18 @@
-class RedirectsController < ApplicationController
-  before_action :set_redirect, only: [:edit, :update, :destroy]
+class Admin::RedirectsController < ApplicationController
   before_action :authorize
+  before_action :set_redirect, only: [:edit, :update, :destroy]
   before_action :all_redirects
   before_action :set_on_admin_page
   layout "admin"
 
   def index
-    @redirects = Redirect.all
-    @slug = "redirects"
     @page_title = "Redirects Manager"
+    @slug = "redirects"
+    @redirects = Redirect.all
   end
 
   def show
+    redirect_to admin_redirects_path
   end
 
   def new
@@ -20,15 +21,15 @@ class RedirectsController < ApplicationController
   end
 
   def edit
-    @slug = "redirects"
     @page_title = "Editing Redirect"
+    @slug = "redirects"
   end
 
   def create
     @redirect = Redirect.new(redirect_params)
 
     if @redirect.save
-      redirect_to redirects_path, notice: "Redirect was successfully created."
+      redirect_to admin_redirects_path, notice: "Redirect was successfully created."
     else
       render :new
     end
@@ -36,7 +37,7 @@ class RedirectsController < ApplicationController
 
   def update
     if @redirect.update(redirect_params)
-      redirect_to redirects_path, notice: "Redirect was successfully updated."
+      redirect_to admin_redirects_path, notice: "Redirect was successfully updated."
     else
       render :edit
     end
@@ -44,7 +45,7 @@ class RedirectsController < ApplicationController
 
   def destroy
     @redirect.destroy
-    redirect_to redirects_path, notice: "Redirect was successfully destroyed."
+    redirect_to admin_redirects_path, notice: "Redirect was successfully destroyed."
   end
 
   private
@@ -59,6 +60,6 @@ class RedirectsController < ApplicationController
 
   def all_redirects
       @redirects = Redirect.all
-      #.where(user_id: current_user.id)
+      # TODO .where(user_id: current_user.id)
   end
 end

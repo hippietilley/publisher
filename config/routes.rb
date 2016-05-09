@@ -17,8 +17,9 @@ Rails.application.routes.draw do
 
   # Admin Dashboard
   namespace :admin do
-    resources :tags
     resources :links # rel-me links
+    resources :redirects, except: :show # Redirects Manager
+    resources :tags
   end
 
   # NEW Post Launchpad
@@ -87,9 +88,6 @@ Rails.application.routes.draw do
 
   # Tags
   resources :tags
-
-  # Redirects Manager
-  resources :redirects, except: :show
 
   # Micropub
   get "micropub", to: "about#micropub", as: "micropub"

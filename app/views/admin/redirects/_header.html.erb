@@ -1,0 +1,6 @@
+<div class="page-header">
+  <h1>
+    <%= link_to_unless_current "Redirects", admin_redirects_path %>
+    <%= link_to_unless_current "NEW", new_admin_redirect_path, class: "btn btn-primary btn-sm" do nil end %>
+  </h1>
+</div>

@@ -3,10 +3,10 @@
     <caption>All Redirects</caption>
     <% @redirects.each do |redirect| %>
       <tr>
-        <th><%= link_to "/#{redirect.source_path}", edit_redirect_path(redirect) %></th>
+        <th><%= link_to "/#{redirect.source_path}", [:edit, :admin, redirect] %></th>
         <td><%= link_to "/#{redirect.target_path}", "/#{redirect.target_path}", rel: "external" %></td>
         <td>
-          <%= link_to "Delete", redirect, method: :delete, data: { confirm: "Are you sure you're sure? There is NO UNDO." }, class: "btn btn-danger btn-xs" %>
+          <%= link_to "Delete", [:admin, redirect], method: :delete, data: { confirm: "Are you sure you're sure? There is NO UNDO." }, class: "btn btn-danger btn-xs" %>
         </td>
       </tr>
     <% end %>
