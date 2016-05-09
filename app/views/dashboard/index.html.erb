@@ -5,7 +5,7 @@
 <nav role="navigation">
   <p>
   <%= link_to "Profile", profile_path, class: "btn btn-default" %>
-  <%= link_to "Settings", settings_path, class: "btn btn-default" %>
+  <%= link_to "Settings", [:admin, :settings], class: "btn btn-default" %>
   <%= link_to "Links", [:admin, :links], class: "btn btn-default" %>
   
   </p>
@@ -14,7 +14,7 @@
 <nav role="navigation">
   <p>
   <%= link_to "Tags", [:admin, :tags], class: "btn btn-default" %>
-  <%= link_to "Redirects", redirects_path, class: "btn btn-default" %>
+  <%= link_to "Redirects", [:admin, :redirects], class: "btn btn-default" %>
   </p>
 </nav>
 

@@ -5,7 +5,7 @@
       <caption>All Settings</caption>
       <% @settings.each do |setting| %>
         <tr>
-          <th><%= link_to setting.name.gsub(" ", "&nbsp;").html_safe, edit_setting_path(setting) %></th>
+          <th><%= link_to setting.name.gsub(" ", "&nbsp;").html_safe, [:edit, :admin, setting] %></th>
           <td>
             <% if setting.slug == "license" %>
               <%= License.find(setting.content).short_code.html_safe %>

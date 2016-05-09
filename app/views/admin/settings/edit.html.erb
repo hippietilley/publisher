@@ -1,6 +1,9 @@
-<h1>Editing Setting: <%= @setting.name %></h1>
+<h1>
+  <%= link_to "Settings", [:admin, :settings] %>:
+  <%= @setting.name %>
+</h1>
 
-<%= form_for @setting do |f| %>
+<%= form_for [:admin, @setting] do |f| %>
   <%= render "admin/form_errors", thing: @setting %>
 
   <div class="form-group">
@@ -12,7 +15,7 @@
       <%= f.text_field :content, class: "form-control input-lg", autofocus: true %>
     <% end %>
 
-  <%= render "admin/form_actions", f: f, cancel_url: settings_url, button_text: "Save" %>
+  <%= render "admin/form_actions", f: f, cancel_url: [:admin, :settings], button_text: "Save" %>
 <% end %>
 
 <%= render "settings" %>

@@ -1,4 +1,4 @@
-class SettingsController < ApplicationController
+class Admin::SettingsController < ApplicationController
   before_action :authorize
   before_action :set_setting, only: [:edit, :update]
   before_action :all_settings
@@ -11,7 +11,7 @@ class SettingsController < ApplicationController
   end
 
   def show
-    redirect_to settings_path
+    redirect_to [:admin, :settings]
   end
 
   def edit
@@ -24,7 +24,7 @@ class SettingsController < ApplicationController
     @setting = Setting.find(params[:id])
 
     if @setting.update(setting_params)
-      redirect_to settings_path, notice: "Setting was successfully updated."
+      redirect_to [:admin, :settings], notice: "Setting was successfully updated."
     else
       render action: "edit"
     end

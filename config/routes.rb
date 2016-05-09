@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :links # rel-me links
     resources :redirects, except: :show # Redirects Manager
+    resources :settings, only: [:index, :edit, :update] # Settings
     resources :tags
   end
 
@@ -70,10 +71,6 @@ Rails.application.routes.draw do
   get  "auth/:provider/callback", to: "providers#create"
   post "auth/:provider/callback", to: "providers#create"
 
-  # Settings
-  resources :settings, only: [:index, :edit, :update]
-  get "key.pub", to: "about#public_key", as: "public_key"
-
   # Pages CRUD (Articles acting as Pages)
   get "pages/new",  to: "pages#new",    as: "new_page"
   post "pages",     to: "pages#create", as: "pages"
@@ -94,6 +91,9 @@ Rails.application.routes.draw do
 
   # Site photo / avatar
   get "photo(.format)", to: "about#site_photo"
+
+  # PGP/GPG public key
+  get "key.pub", to: "about#public_key", as: "public_key"
 
   # Redirection and Page lookup as a fallback to all routes
   get ":slug", to: "pages#show", as: "page"
