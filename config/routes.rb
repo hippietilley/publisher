@@ -7,17 +7,18 @@ Rails.application.routes.draw do
     note:     "notes",
     photo:    "photos",
     sound:    "sounds",
-    video:    "videos",    
+    video:    "videos",
   }
   YEAR_MONTH_DAY_CONSTRAINTS = { year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/ }
   PAGINATION_CONSTRAINTS     = { page: /\d+/ }
   YEAR_MONTH_DAY_PATH        = "/:year/:month/:day"
-  
+
   root to: "posts#index"
 
   # Admin Dashboard
   namespace :admin do
     resources :tags
+    resources :links # rel-me links
   end
 
   # NEW Post Launchpad
@@ -42,7 +43,7 @@ Rails.application.routes.draw do
   POST_TYPES.each do |singular, plural|
     # RSS/Atom feeds
     get "#{plural}/feed", to: "#{plural}#index", defaults: { format: "atom" }, as: "#{plural}_feed"
-    
+
     # Post CRUD
     get    "#{plural}/new",                              to: "#{plural}#new",    as: "new_#{singular}"
     post   "#{plural}",                                  to: "#{plural}#create", as: "#{plural}"
@@ -67,9 +68,6 @@ Rails.application.routes.draw do
   get  "auth/:provider/setup",    to: "providers#setup"
   get  "auth/:provider/callback", to: "providers#create"
   post "auth/:provider/callback", to: "providers#create"
-
-  # rel-me links
-  resources :links
 
   # Settings
   resources :settings, only: [:index, :edit, :update]

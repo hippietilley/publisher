@@ -1,6 +1,6 @@
-class LinksController < ApplicationController
-  before_action :set_link, only: [:edit, :update, :destroy]
+class Admin::LinksController < ApplicationController
   before_action :authorize
+  before_action :set_link, only: [:edit, :update, :destroy]
   before_action :all_links
   before_action :set_on_admin_page
   layout "admin"
@@ -12,7 +12,7 @@ class LinksController < ApplicationController
   end
 
   def show
-    redirect_to links_path
+    redirect_to admin_links_path
   end
 
   def new
@@ -30,7 +30,7 @@ class LinksController < ApplicationController
     @link.user_id = current_user.id
 
     if @link.save
-      redirect_to links_url, notice: "Link was successfully created."
+      redirect_to admin_links_path, notice: "Link was successfully created."
     else
       render :new
     end
@@ -38,7 +38,7 @@ class LinksController < ApplicationController
 
   def update
     if @link.update(link_params)
-      redirect_to links_url, notice: "Link was successfully updated."
+      redirect_to admin_links_path, notice: "Link was successfully updated."
     else
       render :edit
     end
@@ -46,7 +46,7 @@ class LinksController < ApplicationController
 
   def destroy
     @link.destroy
-    redirect_to links_url, notice: "Link was successfully destroyed."
+    redirect_to admin_links_path, notice: "Link was successfully destroyed."
   end
 
   private
