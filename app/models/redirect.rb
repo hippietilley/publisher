@@ -5,6 +5,8 @@ class Redirect < ActiveRecord::Base
   before_create :clean_paths!
   before_update :clean_paths!
 
+  belongs_to :user
+
   private
 
   def clean_paths!
