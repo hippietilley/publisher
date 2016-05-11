@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe RedirectsController, type: :routing do
+RSpec.describe Admin::RedirectsController, type: :routing do
   describe "routing" do
     # TODO
     # it "routes to #index" do

@@ -16,7 +16,7 @@ RSpec.describe PagesController, type: :routing do
     end
 
     it "routes to #new" do
-      expect(get: "/pages/new").to route_to("articles#new")
+      expect(get: "/pages/new").to route_to("pages#new")
     end
 
     it "routes to #show" do
