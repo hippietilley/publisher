@@ -62,6 +62,6 @@ class Admin::LinksController < ApplicationController
   end
 
   def all_links
-    @links = Link.where(user_id: current_user.id).all
+    @links = current_user.links
   end
 end
