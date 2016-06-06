@@ -28,7 +28,7 @@ module SyndicationsHelper
     end
 
     if current_user.providers.blank?
-      content_tag(:p, link_to("Add Syndication Twitter Key and Syndication Twitter Secret settings to syndicate to Twitter", settings_path))
+      content_tag(:p, link_to("Add Syndication Twitter Key and Syndication Twitter Secret settings to syndicate to Twitter", admin_settings_path))
     else
       unless links.blank?
         [label, content_tag(:ul, links.flatten.join.html_safe)].join.html_safe
