@@ -1,3 +1,5 @@
+require "open-uri"
+
 class SlugValidator < ActiveModel::Validator
   def validate(record)
     if record.new_record? && record.slug_exists?
