@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :ensure_domain
   before_action :set_on_admin_page, only: [:new, :edit]
-  before_action :append_to_content_security_policy_header
+  before_action :append_to_content_security_policy_header if Rails.env.production?
 
   before_action :set_slug
   before_action :set_owner
