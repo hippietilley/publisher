@@ -68,7 +68,7 @@ class Tag < ActiveRecord::Base
     blank     = ""
     separator = "-"
     cleaned_slug = slug.downcase
-      .gsub(/\(|\)|\[|\]\./, blank)
+      .gsub(/\(|\)|\[|\]\.|'|"/, blank)
       .gsub(/&amp;/,         blank)
       .gsub(/\W|_|\s|-+/,    separator)
       .gsub(/^-+/,           blank)
