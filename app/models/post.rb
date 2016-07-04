@@ -363,7 +363,7 @@ class Post < ActiveRecord::Base
     blank     = ""
     separator = "-"
     self.slug = slug.downcase
-      .gsub(/\(|\)|\[|\]\.|'|"/, blank)
+      .gsub(/\(|\)|\[|\]\.|'|"|“|”|‘|’/, blank)
       .gsub(/&amp;/,         blank)
       .gsub(/\W|_|\s|-+/,    separator)
       .gsub(/^-+/,           blank)
