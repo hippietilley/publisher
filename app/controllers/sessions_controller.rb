@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_action :set_on_admin_page
   layout "admin"
 
   # /signin
