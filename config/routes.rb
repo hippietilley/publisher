@@ -44,7 +44,7 @@ Rails.application.routes.draw do
 
   POST_TYPES.each do |singular, plural|
     # RSS/Atom feeds
-    get "#{plural}/feed", to: "#{plural}#index", defaults: { format: "atom" }, as: "#{plural}_feed"
+    get "/#{plural}/feed", to: "#{plural}#index", defaults: { format: "atom" }, as: "#{plural}_feed"
 
     # Post CRUD
     get    "#{plural}/new",                              to: "#{plural}#new",    as: "new_#{singular}"

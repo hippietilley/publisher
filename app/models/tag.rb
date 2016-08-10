@@ -7,7 +7,7 @@ class Tag < ActiveRecord::Base
 
   validates :slug, uniqueness: true
   validates :name, presence: true, uniqueness: true
-  
+
   def to_param
     slug
   end
@@ -25,12 +25,12 @@ class Tag < ActiveRecord::Base
   end
 
   def display_name
-    if machine_tag? 
+    if machine_tag?
       if name =~ / /
-      machine_tag_prefix + "'#{name}'"
-    else
-      machine_tag_prefix + name
-    end
+        machine_tag_prefix + "'#{name}'"
+      else
+        machine_tag_prefix + name
+      end
     else
       self.name
     end
@@ -52,13 +52,13 @@ class Tag < ActiveRecord::Base
   #
   #   machine_tag? ? machine_tag_prefix + val : val
   # end
-  
+
   def machine_tag?
     namespace.present? && predicate.present?
   end
 
   private
-  
+
   def machine_tag_prefix
     "#{namespace}:#{predicate}="
   end

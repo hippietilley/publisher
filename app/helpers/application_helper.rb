@@ -159,4 +159,19 @@ module ApplicationHelper
   def public_key?
     !Setting.where(name: "Public Key").first.blank?
   end
+
+  def largest_touch_icon_url
+    [
+      setting(:touch_icon_url_57x57),
+      setting(:touch_icon_url_60x60),
+      setting(:touch_icon_url_72x72),
+      setting(:touch_icon_url_76x76),
+      setting(:touch_icon_url_114x114),
+      setting(:touch_icon_url_120x120),
+      setting(:touch_icon_url_144x144),
+      setting(:touch_icon_url_152x152),
+      setting(:touch_icon_url_180x180),
+      setting(:touch_icon_url_192x192)
+    ].compact.last
+  end
 end
