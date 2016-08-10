@@ -45,7 +45,11 @@
         <% end %>
 
         <content type="html">
+          <%# TEMP limited to just content attribute %>
           <%= post.content %>
+
+          <%# TODO figure out how to render an html format partial from an atom view  %>
+          <%#= render partial: "#{post.namespace}/#{post.type}.html.erb", locals: { post: post } %>
         </content>
 
         <author>
