@@ -137,9 +137,12 @@ class ApplicationController < ActionController::Base
   def site_photo_path
     unless @owner.nil? || @owner.avatar.blank?
       uri      = URI.parse(@owner.avatar)
-      response = Net::HTTP.get_response(URI(@owner.avatar))
+      begin
+        response = Net::HTTP.get_response(URI(@owner.avatar))
 
-      ["/photo", site_photo_format(response)].compact.join(".")
+        ["/photo", site_photo_format(response)].compact.join(".")
+      rescue
+      end
     end
   end
   helper_method :site_photo_path
