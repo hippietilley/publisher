@@ -1,16 +1,16 @@
 class ApplicationController < ActionController::Base
-  # TODO https://github.com/darkmatterapp/publisher-server-rails/issues/155
-  SecureHeaders::Configuration.default do |config|
-    config.csp = {
-      default_src: %w['self'],
-      img_src:     %w[* data:],
-      media_src:   %w[*],
-      script_src:  %w['self' http://platform.instagram.com],
-      style_src:   %w['self' 'unsafe-inline'],
-      frame_src:   %w[*],
-      child_src:   %w[*]
-    }
-  end
+  # # TODO https://github.com/darkmatterapp/publisher-server-rails/issues/155
+  # SecureHeaders::Configuration.default do |config|
+  #   config.csp = {
+  #     default_src: %w['self'],
+  #     img_src:     %w[* data:],
+  #     media_src:   %w[*],
+  #     script_src:  %w['self' http://platform.instagram.com],
+  #     style_src:   %w['self' 'unsafe-inline'],
+  #     frame_src:   %w[*],
+  #     child_src:   %w[*]
+  #   }
+  # end
 
   protect_from_forgery with: :exception
   before_action :ensure_domain

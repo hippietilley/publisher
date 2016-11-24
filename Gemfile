@@ -28,7 +28,7 @@ gem "ruby-units"
 gem "pg"
 
 # web server
-gem "secure_headers"
+# gem "secure_headers"
 gem "puma"
 gem "rack-timeout"
 
