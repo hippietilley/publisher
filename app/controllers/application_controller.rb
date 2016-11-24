@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :ensure_domain
   before_action :set_on_admin_page, only: [:new, :edit]
-  before_action :append_to_content_security_policy_header if Rails.env.production?
+  # before_action :append_to_content_security_policy_header if Rails.env.production?
 
   before_action :set_slug
   before_action :set_owner
@@ -39,13 +39,13 @@ class ApplicationController < ActionController::Base
   end
   helper_method :site_url
 
-  def append_to_content_security_policy_header
-    append_content_security_policy_directives(
-      default_src: [setting(:protocol).sub("//", "")],
-      script_src:  [setting(:asset_host)],
-      style_src:   [setting(:asset_host)],
-    )
-  end
+  # def append_to_content_security_policy_header
+  #   append_content_security_policy_directives(
+  #     default_src: [setting(:protocol).sub("//", "")],
+  #     script_src:  [setting(:asset_host)],
+  #     style_src:   [setting(:asset_host)],
+  #   )
+  # end
 
   def setting(slug)
     Setting.find_by(slug: slug).try(:content)
