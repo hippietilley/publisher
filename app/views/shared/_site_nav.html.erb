@@ -5,6 +5,10 @@
     <ul>
       <% if show_nav_to?(:home) %><li><%= link_to "Home", root_path, rel: "home" %></li><% end %>
       <% if show_site_nav? %>
+        <% if Setting.of("home_page").content.present? %>
+          <li><%= link_to "Posts", posts_path %></li>
+        <% end %>
+
         <% if show_nav_to?(:articles) %><li><%= link_to "Articles", articles_path %></li><% end %>
         <% if show_nav_to?(:bookmarks) %><li><%= link_to "Bookmarks", bookmarks_path %></li><% end %>
         <% if show_nav_to?(:events) %><li><%= link_to "Events", events_path %></li><% end %>

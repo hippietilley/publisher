@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   PAGINATION_CONSTRAINTS     = { page: /\d+/ }
   YEAR_MONTH_DAY_PATH        = "/:year/:month/:day"
 
-  root to: "posts#index"
+  root to: "root#index"
 
   # Admin Dashboard
   namespace :admin do
@@ -25,9 +25,10 @@ Rails.application.routes.draw do
 
   # NEW Post Launchpad
   get "dashboard", to: "dashboard#index", as: "dashboard"
-  get "new", to: "dashboard#new", as: "dashboard_new"
+  get "new",       to: "dashboard#new",   as: "dashboard_new"
 
   # Posts (Composite Feed) Pagination and RSS/Atom feed
+  get "posts",                    to: "posts#index", as: "posts"
   get "page/1",                   to: redirect("/"), as: "posts_pagination_redirect_one"
   get "page",                     to: redirect("/"), as: "posts_pagination_redirect"
   get "page/:page",               to: "posts#index", constraints: PAGINATION_CONSTRAINTS
