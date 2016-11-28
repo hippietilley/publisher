@@ -1,8 +1,8 @@
 class RootController < ApplicationController
   def index
-    if Setting.of("home_page").content.present?
+    if setting("home_page").present?
 
-      @post = Post.of(:page).find_by(slug: Setting.of("home_page").content)
+      @post = Post.of(:page).find_by(slug: setting("home_page"))
 
       # no layout
       if @post.post_type.hide_layout?
