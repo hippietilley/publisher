@@ -1,7 +1,7 @@
 class RootController < ApplicationController
   def index
     if Setting.of("home_page").content.present?
-      @page = Post.of(:page).find_by(slug: Setting.of("home_page").content)
+      @post = Post.of(:page).find_by(slug: Setting.of("home_page").content)
     else
       # TODO DRY refactor, duplicated from RootController#index
       @slug = "home"
