@@ -12,7 +12,7 @@ module ApplicationHelper
   end
 
   def show_site_nav?
-    # hide site if there are no user or no posts
+    # hide site nav if there are no user or no posts
     !(User.count.zero? || Post.count.zero?)
   end
 

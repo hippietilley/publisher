@@ -18,7 +18,6 @@ class PagesController < ApplicationController
     end
   end
 
-
   def new
     @page_title = "New #{post_class.to_s}"
     @post = PostForm.new(post_class)
