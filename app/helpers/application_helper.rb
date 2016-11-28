@@ -47,7 +47,7 @@ module ApplicationHelper
   end
 
   def in_a_list?
-    action_name == "index"
+    action_name == "index" && controller_name != "root"
   end
 
   def on_permalink?

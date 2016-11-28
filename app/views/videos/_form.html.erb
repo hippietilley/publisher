@@ -11,7 +11,7 @@
 <%= render "admin/form_actions",   f: f, cancel_url: videos_url %>
 
 <fieldset>
-  <legend class="h5">Video Meta</legend>
+  <legend>Video Meta</legend>
   <%= render "admin/form_image_url", f: f %>
   <%= render "admin/datetime_group", f: f, attr: :captured_at, thing: post %>
 </fieldset>

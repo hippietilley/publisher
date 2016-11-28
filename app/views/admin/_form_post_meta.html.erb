@@ -1,9 +1,9 @@
 <fieldset id="meta">
-  <legend class="h5">Optional Meta</legend>
+  <legend>Optional Meta</legend>
 
   <div class="row">
     <div class="col-xs-6">
-      <%= render "admin/toggle_group", 
+      <%= render "admin/toggle_group",
                  f:                    f,
                  attr:                 :private,
                  unchecked_label:      "Public #{post_or_page(post)}",
@@ -14,7 +14,7 @@
 
     <% if on_page? %>
       <div class="col-xs-6">
-        <%= render "admin/toggle_group", 
+        <%= render "admin/toggle_group",
                    f:                    f,
                    attr:                 :show_in_nav,
                    unchecked_label:      "Don&rsquo;t show in site navigation",

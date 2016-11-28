@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161128054233) do
+ActiveRecord::Schema.define(version: 20161128061850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,8 +88,11 @@ ActiveRecord::Schema.define(version: 20161128054233) do
 
   create_table "pages", force: :cascade do |t|
     t.boolean  "show_in_nav"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "hide_header", default: false
+    t.boolean  "hide_footer", default: false
+    t.boolean  "hide_layout", default: false
   end
 
   create_table "photos", force: :cascade do |t|

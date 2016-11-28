@@ -1,0 +1,45 @@
+
+<% if on_page? %>
+  <fieldset id="appearance">
+    <legend>Appearance</legend>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-4">
+        <div class="form-group">
+          <%= f.check_box :hide_header %>
+          <%= f.label :hide_header, "Hide the Site Header?" %>
+          <p class="help-block">
+            This will remove the site header/<wbr>nav/<wbr>search/<wbr>etc from this <i>Page</i> only.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-4">
+        <div class="form-group">
+          <%= f.check_box :hide_footer %>
+          <%= f.label :hide_footer, "Hide the Site Footer?" %>
+          <p class="help-block">
+            This will remove the site footer from this <i>Page</i> only.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-4">
+        <div class="form-group">
+          <%= f.check_box :hide_layout %>
+          <%= f.label :hide_layout, "Hide the Site Layout?" %>
+          <p class="help-block">
+            <b class="text-danger">Danger Zone&trade; &mdash; exercise caution with this option.</b>
+            The will remove all of the wrapper layout.
+            This <i>Page</i> will be responsible for <i>all</i> of its HTML,
+            including <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>,
+            <code>&lt;title&gt;</code>, <code>&lt;body&gt;</code> tags etc.
+            Any <code>CSS</code> will have to be included in the
+            <code>Content</code>, not the <code>Page Specific CSS</code>.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </fieldset>
+<% end %>

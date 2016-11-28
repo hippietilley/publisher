@@ -9,9 +9,15 @@ class PagesController < ApplicationController
   end
 
   def show
-    @page_title = @post.name
-    render "/posts/show"
+    # no layout
+    if @post.post_type.hide_layout?
+      render text: @post.content, layout: false
+    else
+      @page_title = @post.name
+      render "/posts/show"
+    end
   end
+
 
   def new
     @page_title = "New #{post_class.to_s}"
@@ -70,6 +76,9 @@ class PagesController < ApplicationController
       :in_reply_to,
       :tags,
       :published_at,
-      :private)
+      :private,
+      :hide_header,
+      :hide_footer,
+      :hide_layout)
   end
 end
