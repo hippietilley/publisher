@@ -127,8 +127,9 @@ ActiveRecord::Schema.define(version: 20170213213821) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
-    t.index ["provider", "user_id"], name: "index_providers_on_provider_and_user_id", using: :btree
   end
+
+  add_index "providers", ["provider", "user_id"], name: "index_providers_on_provider_and_user_id", using: :btree
 
   create_table "redirects", force: :cascade do |t|
     t.text     "source_path"
