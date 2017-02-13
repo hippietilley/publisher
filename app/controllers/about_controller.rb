@@ -4,7 +4,7 @@ class AboutController < ApplicationController
 
   def keybase_proof
     @keybase_proof = Setting.where(name: "Keybase Proof").first
-    render layout: false
+    render "about/keybase_proof.text.erb", layout: false
   end
 
   def public_key
