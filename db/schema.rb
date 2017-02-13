@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161128061850) do
+ActiveRecord::Schema.define(version: 20170213213821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,9 +127,8 @@ ActiveRecord::Schema.define(version: 20161128061850) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
+    t.index ["provider", "user_id"], name: "index_providers_on_provider_and_user_id", using: :btree
   end
-
-  add_index "providers", ["provider", "user_id"], name: "index_providers_on_provider_and_user_id", using: :btree
 
   create_table "redirects", force: :cascade do |t|
     t.text     "source_path"

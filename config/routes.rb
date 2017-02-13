@@ -96,6 +96,9 @@ Rails.application.routes.draw do
   # PGP/GPG public key
   get "key.pub", to: "about#public_key", as: "public_key"
 
+  # Keybase.io identity proof
+  get "keybase.txt", to: "about#keybase_proof", as: "keybase_proof"
+
   # Redirection and Page lookup as a fallback to all routes
   get ":slug", to: "pages#show", as: "page"
 end

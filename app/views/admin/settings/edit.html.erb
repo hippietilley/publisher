@@ -12,7 +12,7 @@
     <% if @setting.slug == "license" %>
       <%= f.select :content, License.options_for_select.map{|l| [l.first.html_safe, l.last]}, {}, class: "form-control input-lg" %>
     <% else %>
-      <%= f.text_field :content, class: "form-control input-lg", autofocus: true %>
+      <%= f.text_area :content, class: "form-control input-lg", autofocus: true %>
     <% end %>
 
   <%= render "admin/form_actions", f: f, cancel_url: [:admin, :settings], button_text: "Save" %>

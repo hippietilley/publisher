@@ -2,6 +2,11 @@ class AboutController < ApplicationController
   def index
   end
 
+  def keybase_proof
+    @keybase_proof = Setting.where(name: "Keybase Proof").first
+    render layout: false
+  end
+
   def public_key
     @public_key = Setting.where(name: "Public Key").first
     render layout: false
