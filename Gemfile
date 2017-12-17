@@ -1,8 +1,8 @@
 source "https://rubygems.org"
-ruby "2.3.1"
+ruby "2.4.2"
 
 # application server
-gem "rails", "~> 4.2"
+gem "rails", "~> 4.2.10"
 
 # auth
 gem "bcrypt", "~> 3.1"
