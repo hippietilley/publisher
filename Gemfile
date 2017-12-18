@@ -14,7 +14,7 @@ gem "will_paginate"
 
 # assets: css / js
 gem "sass-rails", "~> 5.0"
-gem "uglifier", ">= 1.3.0"
+gem "uglifier"
 gem "coffee-rails", "~> 4.1.0"
 gem "jquery-rails"
 
