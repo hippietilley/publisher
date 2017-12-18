@@ -44,7 +44,7 @@ end
 # development only
 group :development do
   gem "byebug"
-  gem "web-console", "~> 2.0"
+  gem "web-console", "~> 3.3"
   gem "rubocop", require: false
   gem "grailbird_updater"
 end
