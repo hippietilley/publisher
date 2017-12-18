@@ -244,7 +244,7 @@ DEPENDENCIES
   bcrypt (~> 3.1)
   byebug
   codeclimate-test-reporter
-  coffee-rails (~> 4.2.2)
+  coffee-rails
   grailbird_updater
   jquery-rails
   omniauth
@@ -257,11 +257,11 @@ DEPENDENCIES
   rspec-rails
   rubocop
   ruby-units
-  sass-rails (~> 5.0)
+  sass-rails
   twitter
   twitter-text
   uglifier
-  web-console (~> 3.3)
+  web-console
   will_paginate
 
 RUBY VERSION
