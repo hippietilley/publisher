@@ -13,9 +13,9 @@ gem "omniauth-twitter"
 gem "will_paginate"
 
 # assets: css / js
-gem "sass-rails", "~> 5.0"
+gem "sass-rails"
 gem "uglifier"
-gem "coffee-rails", "~> 4.1.0"
+gem "coffee-rails"
 gem "jquery-rails"
 
 # auto-linking @usernames and #hashtags
@@ -44,7 +44,7 @@ end
 # development only
 group :development do
   gem "byebug"
-  gem "web-console", "~> 2.0"
+  gem "web-console"
   gem "rubocop", require: false
   gem "grailbird_updater"
 end
