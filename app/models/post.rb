@@ -136,13 +136,13 @@ class Post < ActiveRecord::Base
     end
 
     # DOC : curl https://dev.twitter.com/rest/reference/get/help/configuration | grep url_length
-    # 140 : tweet max length
+    # 280 : tweet max length
     #  23 : t.co URL length
     #   2 : line breaks between content and URL
     #   3 : elipsis
-    # 112 : 140 - 23 - 2 - 3
+    # 252 : 280 - 23 - 2 - 3
     # Truncate tweet content if neccesary to make room for permalink
-    if body.length > 140
+    if body.length > 280
       ["#{body[0..111]}...", url].join("\n\n")
     else
       body
