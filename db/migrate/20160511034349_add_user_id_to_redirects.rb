@@ -1,4 +1,4 @@
-class AddUserIdToRedirects < ActiveRecord::Migration
+class AddUserIdToRedirects < ActiveRecord::Migration[4.2]
   def up
     add_column :redirects, :user_id, :integer
 

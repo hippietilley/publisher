@@ -1,4 +1,4 @@
-class AddKeybaseProofSetting < ActiveRecord::Migration
+class AddKeybaseProofSetting < ActiveRecord::Migration[4.2]
   def up
     s = Setting.new(name: "Keybase Proof", content: "", editable: true)
     s.save(validate: false)

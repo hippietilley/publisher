@@ -1,4 +1,4 @@
-class AddGoogleSiteVerificationSetting < ActiveRecord::Migration
+class AddGoogleSiteVerificationSetting < ActiveRecord::Migration[4.2]
   def up
     [
       ["Google Site Verification", "", true],

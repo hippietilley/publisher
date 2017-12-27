@@ -1,4 +1,4 @@
-class AddAuthSettingRecords < ActiveRecord::Migration
+class AddAuthSettingRecords < ActiveRecord::Migration[4.2]
   def up
     [
       ["Syndication Twitter Key", "", true],

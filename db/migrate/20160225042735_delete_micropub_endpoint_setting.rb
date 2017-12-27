@@ -1,4 +1,4 @@
-class DeleteMicropubEndpointSetting < ActiveRecord::Migration
+class DeleteMicropubEndpointSetting < ActiveRecord::Migration[4.2]
   def up
     Setting.of("micropub_endpoint")&.destroy
   end

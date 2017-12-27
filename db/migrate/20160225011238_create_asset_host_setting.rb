@@ -1,4 +1,4 @@
-class CreateAssetHostSetting < ActiveRecord::Migration
+class CreateAssetHostSetting < ActiveRecord::Migration[4.2]
   def up
     s          = Setting.new
     s.name     = "Asset Host"

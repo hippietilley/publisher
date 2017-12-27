@@ -1,4 +1,4 @@
-class CreateSounds < ActiveRecord::Migration
+class CreateSounds < ActiveRecord::Migration[4.2]
   def change
     create_table :sounds do |t|
       t.text :image_url

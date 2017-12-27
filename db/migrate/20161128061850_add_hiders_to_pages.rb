@@ -1,4 +1,4 @@
-class AddHidersToPages < ActiveRecord::Migration
+class AddHidersToPages < ActiveRecord::Migration[4.2]
   def up
     add_column :pages, :hide_header, :boolean, default: false
     add_column :pages, :hide_footer, :boolean, default: false

@@ -1,4 +1,4 @@
-class AddTimezoneSettingRecords < ActiveRecord::Migration
+class AddTimezoneSettingRecords < ActiveRecord::Migration[4.2]
   def up
     s = Setting.new(
       name: "Timezone (GMT Offset)",

@@ -1,4 +1,4 @@
-class CreateRedirects < ActiveRecord::Migration
+class CreateRedirects < ActiveRecord::Migration[4.2]
   def change
     create_table :redirects do |t|
       t.text :source_path
