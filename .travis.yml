@@ -1,16 +1,13 @@
-os: osx
+dist: trusty
 sudo: false
 language: ruby
 rvm:
 - 2.5.0
 
-before_install:
-- brew install libidn
-
-before_script:
-- brew services start postgresql
-
 addons:
+  apt:
+    packages:
+      - libidn
   postgresql: '9.6'
   code_climate:
     secure: guQBIrZA43bbX6AE+RY86vHLgQNCCPuxNnMReKuN4oyhMa0iiCMNb8yXp9rSA4JgraBjTuyUWwVdmCo1hSZFjpb+100AvdFTwFpTyjqcBw+VudliBJN10mxmacoaWztKf2qln9vdM30WzrD5n7nSSKnvAYhMLIF9j5DJUHEOCQL+ZWjOGH1GlbOH4BFGLtIEX8aekVgVp4elcwwPuGfQzDbjpS3Q6Cq3b7cFZHZlA/rMOCH2zEqFPxcDMlZ1DyU6eYTnrNiq0hPkkbnqmzDBA3d7m6nDG1OO1jxZ06Y8AdU98Ti6cZOq9Zyrn5LArHl79NY0oNwbcKYl/73bwi7wen4aMhGZfwU+UqNdLEGrdCYFoQQ61nQb9WHvCB6Ji74X3jvFo7jvgqZG/uhA0qjAtPnfpIoQ4McIbDeriPye5xP1Tt9HSjvVh3jNeSiG4llq+H14KmqW05ysnaopvNC7psVT1UtRtKjzZodCyYZqAVEh4lFz270zkN+QkwTBgqT+EuakNpdhWItqL0cZCJMqvLvCqL+AiJ155MsZn464LpIS5ceG82G3pFZOoOIHePInx8C/eP1c/579clkJPzciRLqukpHhZT/eLXHYCMPAv3ZYoLQoVB/LRry4Eb0l0Jo5omqi6GKa6m8LcDqpc/G9/6RkuDplCeWQQQG4h7w56ns=
