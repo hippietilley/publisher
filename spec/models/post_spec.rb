@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  fixtures :posts, :settings
+  fixtures :posts, :settings, :users
+  let(:user) { users(:user) }
   let(:post) { posts(:post) }
 
   describe ".url" do
@@ -61,7 +62,7 @@ RSpec.describe Post, type: :model do
 
   describe ".slug" do
     it "generates valid slug on create" do
-      new_post = Post.create!(content: "no slug given", published_at: Time.now)
+      new_post = Post.create!(content: "no slug given", published_at: Time.now, user: user, post_type_type: Note)
       expect(new_post.slug).to eq "no-slug-given"
     end
 
@@ -69,18 +70,18 @@ RSpec.describe Post, type: :model do
       post.update(slug: "something in valid")
       expect(post.slug).to eq "something-in-valid"
     end
-    
+
     it "re-creates a slug from content's value when re-saved with a blank slug" do
       post.update(slug: nil)
       expect(post.slug).to eq "lorem-ipsum-dolor-sit-amet-consectetur-adipisicing-elit-sed-do-eiusmod-tempor-incididunt-ut-labore-et-dolore-magna-aliqua-ut-enim-ad-minim-veniam"
     end
-    
+
     it "increments a duplicate generated slug" do
       post.update(slug: "lorem-ipsum")
-      new_post = Post.create!(content: "Lorem Ipsum!", published_at: Time.now, post_type_type: Note)
+      new_post = Post.create!(content: "Lorem Ipsum!", published_at: Time.now, user: user, post_type_type: Note)
       expect(new_post.slug).to eq "lorem-ipsum-1"
     end
-    
+
     # it "increments a duplicated human entered slug" do
     #   post.update(slug: "lorem-ipsum")
     #   new_post = Post.create!(content: "Whatevers clever", slug: "lorem-ipsum", published_at: Time.now, post_type_type: Note)
