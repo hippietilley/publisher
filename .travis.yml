@@ -4,6 +4,9 @@ language: ruby
 rvm:
 - 2.5.0
 
+before_script:
+- psql -c 'create database darkmatter-publisher-server-rails_test;' -U postgres
+
 before_install:
 - gem update --system 2.7.4
 - gem --version
