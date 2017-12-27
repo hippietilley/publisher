@@ -1,14 +1,9 @@
 dist: trusty
 sudo: false
 language: ruby
-rvm: 2.5.0
-os: osx
 
 before_install:
-  - brew install libidn
-
-before_script:
-  - psql -c 'create database "darkmatter-publisher-server-rails_test";' -U postgres
+- if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get install libidn; else brew install libidn; fi
 
 addons:
   postgresql: '9.6'
