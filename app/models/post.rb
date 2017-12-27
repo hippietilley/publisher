@@ -9,7 +9,7 @@ class SlugValidator < ActiveModel::Validator
 end
 
 class Post < ActiveRecord::Base
-  include Twitter::Autolink
+  include Twitter::TwitterText::Autolink
 
   belongs_to :user
   belongs_to :post_type, polymorphic: true
