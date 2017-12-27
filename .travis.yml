@@ -4,6 +4,10 @@ language: ruby
 rvm:
 - 2.5.0
 
+before_install:
+- gem update --system 2.7.4
+- gem --version
+
 addons:
   postgresql: '9.6'
   code_climate:
