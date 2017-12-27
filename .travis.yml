@@ -1,9 +1,10 @@
 dist: trusty
 sudo: false
 language: ruby
+rvm: 2.5.0
 
 before_install:
-- if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get install libidn; else brew install libidn; fi
+- brew install libidn
 
 addons:
   postgresql: '9.6'
