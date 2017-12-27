@@ -1,7 +1,8 @@
 os: osx
 sudo: false
 language: ruby
-rvm: 2.5.0
+rvm:
+- 2.5.0
 
 before_install:
 - brew install libidn
