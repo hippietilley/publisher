@@ -1,4 +1,4 @@
-dist: trusty
+os: osx
 sudo: false
 language: ruby
 rvm: 2.5.0
