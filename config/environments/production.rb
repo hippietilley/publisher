@@ -1,5 +1,5 @@
 Rails.application.configure do
-  config.middleware.use Rack::Timeout, service_timeout: 20
+  # config.middleware.use Rack::Timeout, service_timeout: 20
 
   # Settings specified here will take precedence over those in config/application.rb.
 

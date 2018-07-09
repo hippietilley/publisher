@@ -9,7 +9,7 @@ gem 'pg'
 
 # web server
 gem 'puma'
-gem 'rack-timeout'
+# gem 'rack-timeout'
 
 # assets: css / js
 gem 'autoprefixer-rails'
