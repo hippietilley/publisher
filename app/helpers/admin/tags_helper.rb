@@ -1,2 +1,4 @@
-module Admin::TagsHelper
+module Admin
+  module TagsHelper
+  end
 end

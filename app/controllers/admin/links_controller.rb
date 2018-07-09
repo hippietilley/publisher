@@ -1,66 +1,68 @@
-class Admin::LinksController < ApplicationController
-  before_action :authorize
-  before_action :set_link, only: [:edit, :update, :destroy]
-  before_action :all_links
-  before_action :set_on_admin_page
-  layout 'admin'
+module Admin
+  class LinksController < ApplicationController
+    before_action :authorize
+    before_action :set_link, only: [:edit, :update, :destroy]
+    before_action :all_links
+    before_action :set_on_admin_page
+    layout 'admin'
 
-  def index
-    @page_title = 'Links'
-    @slug = 'links'
-    @links = Link.all
-  end
-
-  def show
-    redirect_to admin_links_path
-  end
-
-  def new
-    @page_title = 'New Link'
-    @link = Link.new
-  end
-
-  def edit
-    @page_title = "Editing Link : #{@link.name}"
-    @slug = 'links'
-  end
-
-  def create
-    @link = current_user.links.build(link_params)
-
-    if @link.save
-      redirect_to admin_links_path, notice: 'Link was successfully created.'
-    else
-      render :new
+    def index
+      @page_title = 'Links'
+      @slug = 'links'
+      @links = Link.all
     end
-  end
 
-  def update
-    if @link.update(link_params)
-      redirect_to admin_links_path, notice: 'Link was successfully updated.'
-    else
-      render :edit
+    def show
+      redirect_to admin_links_path
     end
-  end
 
-  def destroy
-    @link.destroy
-    redirect_to admin_links_path, notice: 'Link was successfully destroyed.'
-  end
+    def new
+      @page_title = 'New Link'
+      @link = Link.new
+    end
 
-  private
+    def edit
+      @page_title = "Editing Link : #{@link.name}"
+      @slug = 'links'
+    end
 
-  def set_link
-    @link = Link.find(params[:id])
-  end
+    def create
+      @link = current_user.links.build(link_params)
 
-  def link_params
-    params.require(:link).permit(:url,
-                                 :name,
-                                 :user_id)
-  end
+      if @link.save
+        redirect_to admin_links_path, notice: 'Link was successfully created.'
+      else
+        render :new
+      end
+    end
 
-  def all_links
-    @links = current_user.links
+    def update
+      if @link.update(link_params)
+        redirect_to admin_links_path, notice: 'Link was successfully updated.'
+      else
+        render :edit
+      end
+    end
+
+    def destroy
+      @link.destroy
+      redirect_to admin_links_path, notice: 'Link was successfully destroyed.'
+    end
+
+    private
+
+    def set_link
+      @link = Link.find(params[:id])
+    end
+
+    def link_params
+      params.require(:link).permit(:url,
+                                   :name,
+                                   :user_id)
+    end
+
+    def all_links
+      @links = current_user.links
+    end
   end
 end
