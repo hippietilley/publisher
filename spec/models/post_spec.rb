@@ -61,7 +61,7 @@ RSpec.describe Post, type: :model do
 
   describe '.slug' do
     it 'generates valid slug on create' do
-      new_post = Post.create!(content: 'no slug given', published_at: Time.now, user: user, post_type_type: Note)
+      new_post = Post.create!(content: 'no slug given', published_at: Time.zone.now, user: user, post_type_type: Note)
       expect(new_post.slug).to eq 'no-slug-given'
     end
 
@@ -77,7 +77,7 @@ RSpec.describe Post, type: :model do
 
     it 'increments a duplicate generated slug' do
       post.update(slug: 'lorem-ipsum')
-      new_post = Post.create!(content: 'Lorem Ipsum!', published_at: Time.now, user: user, post_type_type: Note)
+      new_post = Post.create!(content: 'Lorem Ipsum!', published_at: Time.zone.now, user: user, post_type_type: Note)
       expect(new_post.slug).to eq 'lorem-ipsum-1'
     end
 
