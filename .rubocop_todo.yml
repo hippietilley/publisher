@@ -6,6 +6,10 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
+
+# TODO delete empty helper files
+
+
 # Offense count: 1
 # Configuration parameters: Include.
 # Include: app/controllers/**/*.rb
@@ -23,11 +27,4 @@ Lint/BooleanSymbol:
 # Configuration parameters: AllowUnusedKeywordArguments, IgnoreEmptyMethods.
 Lint/UnusedMethodArgument:
   Exclude:
-    - 'app/models/post.rb'
-
-# Offense count: 4
-Lint/UselessAssignment:
-  Exclude:
-    - 'app/controllers/about_controller.rb'
-    - 'app/controllers/application_controller.rb'
     - 'app/models/post.rb'

@@ -19,7 +19,8 @@ class AboutController < ApplicationController
     if @owner.nil? || @owner.avatar.blank?
       render plain: '404 Not Found', status: 404
     else
-      uri       = URI.parse(@owner.avatar)
+      URI.parse(@owner.avatar)
+
       response  = Net::HTTP.get_response(URI(@owner.avatar))
       extension = site_photo_format(response)
 

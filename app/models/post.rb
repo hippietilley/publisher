@@ -124,8 +124,6 @@ class Post < ApplicationRecord
   end
 
   def syndication_content
-    pieces = []
-
     body =
       if post_type.respond_to? :syndication_content
         post_type.syndication_content
@@ -158,14 +156,16 @@ class Post < ApplicationRecord
   end
 
   def linked_content
-    auto_link(content,
-              suppress_no_follow: true,
-              link_text_block: proc do |_entity, text|
-                text = text
-                       .gsub(%r{^.*://}, '') # removes leading protocol
-                       .gsub(/www\./,    '') # removes leading www
-                       .gsub(%r{/$},     '') # removes trailing slash
-              end).html_safe
+    auto_link(
+      content,
+      suppress_no_follow: true,
+      link_text_block: proc do |_entity, text|
+        text
+          .gsub(%r{^.*://}, '') # removes leading protocol
+          .gsub(/www\./,    '') # removes leading www
+          .gsub(%r{/$},     '') # removes trailing slash
+      end
+    ).html_safe
   end
 
   # media embeds

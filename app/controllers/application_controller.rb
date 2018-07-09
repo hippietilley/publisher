@@ -133,7 +133,7 @@ class ApplicationController < ActionController::Base
   def site_photo_path
     return if @owner.nil? || @owner.avatar.blank?
 
-    uri = URI.parse(@owner.avatar)
+    URI.parse(@owner.avatar)
     begin
       response = Net::HTTP.get_response(URI(@owner.avatar))
 
