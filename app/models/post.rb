@@ -11,7 +11,7 @@ class Post < ApplicationRecord
 
   belongs_to :user
   belongs_to :post_type, polymorphic: true
-  has_many :syndications
+  has_many :syndications, dependent: :destroy
 
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings

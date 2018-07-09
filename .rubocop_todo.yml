@@ -44,12 +44,3 @@ Rails/FilePath:
   Exclude:
     - 'config/application.rb'
     - 'config/environments/development.rb'
-
-# Offense count: 6
-# Configuration parameters: Include.
-# Include: app/models/**/*.rb
-Rails/HasManyOrHasOneDependent:
-  Exclude:
-    - 'app/models/post.rb'
-    - 'app/models/post_type.rb'
-    - 'app/models/user.rb'
