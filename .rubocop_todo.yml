@@ -45,17 +45,6 @@ Lint/UselessAssignment:
 
 # Offense count: 1
 # Configuration parameters: CountComments.
-Metrics/ClassLength:
-  Max: 281
-
-# Offense count: 3
-# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
-# URISchemes: http, https
-Metrics/LineLength:
-  Max: 466
-
-# Offense count: 1
-# Configuration parameters: CountComments.
 Metrics/ModuleLength:
   Max: 130
 

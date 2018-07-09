@@ -35,13 +35,15 @@ Metrics/PerceivedComplexity:
   Max: 15
 
 Metrics/ClassLength:
-  Max: 210
+  Max: 282
 
 Metrics/ParameterLists:
   Max: 6
 
 Metrics/LineLength:
-  Max: 200
+  Max: 466
+  Exclude:
+    - 'app/models/dark_matter.rb'
 
 Metrics/MethodLength:
   Max: 40
