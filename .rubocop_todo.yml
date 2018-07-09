@@ -12,11 +12,6 @@ Lint/BooleanSymbol:
     - 'app/models/user.rb'
 
 # Offense count: 1
-Lint/ElseLayout:
-  Exclude:
-    - 'app/models/post.rb'
-
-# Offense count: 1
 Lint/HandleExceptions:
   Exclude:
     - 'app/controllers/application_controller.rb'
