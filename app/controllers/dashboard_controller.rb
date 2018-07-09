@@ -1,11 +1,11 @@
 class DashboardController < ApplicationController
   before_action :authorize
   before_action :set_on_admin_page
-  layout "admin"
+  layout 'admin'
 
   def new
-    @page_title = "NEW Post"
-    @slug       = "new"
+    @page_title = 'NEW Post'
+    @slug       = 'new'
 
     @activity = PostForm.new(Activity)
     @article  = PostForm.new(Article)
@@ -19,7 +19,7 @@ class DashboardController < ApplicationController
   end
 
   def index
-    @page_title = "Dashboard"
-    @slug       = "dashboard"
+    @page_title = 'Dashboard'
+    @slug       = 'dashboard'
   end
 end

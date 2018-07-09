@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Bookmarks", type: :request do
+RSpec.describe 'Bookmarks', type: :request do
   # describe "GET /bookmarks" do
   #   it "works! (now write some real specs)" do
   #     get bookmarks_path

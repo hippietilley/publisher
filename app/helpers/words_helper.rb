@@ -4,6 +4,6 @@ module WordsHelper
   end
 
   def space
-    " "
+    ' '
   end
 end

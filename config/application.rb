@@ -15,6 +15,6 @@ module DarkMatterServerRails
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    config.autoload_paths += %W(#{Rails.root}/app/models/post_type/)
+    config.autoload_paths += %W[#{Rails.root}/app/models/post_type/]
   end
 end

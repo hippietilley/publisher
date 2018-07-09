@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Links", type: :request do
+RSpec.describe 'Links', type: :request do
   # describe "GET /links" do
   #   it "works! (now write some real specs)" do
   #     get links_path

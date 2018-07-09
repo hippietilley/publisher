@@ -1,6 +1,6 @@
 module ApplicationHelper
-  def post_or_page(post)
-    on_page? ? "Page" : "Post"
+  def post_or_page(_post)
+    on_page? ? 'Page' : 'Post'
   end
 
   def on_admin_page?
@@ -41,15 +41,15 @@ module ApplicationHelper
   end
 
   def editing?
-    action_name == "edit"
+    action_name == 'edit'
   end
 
   def in_a_list?
-    action_name == "index" && controller_name != "root"
+    action_name == 'index' && controller_name != 'root'
   end
 
   def on_permalink?
-    action_name == "show"
+    action_name == 'show'
   end
 
   def a_reply?(post)
@@ -61,18 +61,18 @@ module ApplicationHelper
     output << license_name_and_url(format)
     output << license_years_range
     output << authors_name_and_url(format)
-    output.flatten.join(format == :html ? " " : "\n\t").html_safe
+    output.flatten.join(format == :html ? ' ' : "\n\t").html_safe
   end
 
   def license_name_and_url(format = nil)
     license = License.find(setting :license)
 
-    if license.name == "All Rights Reserved"
+    if license.name == 'All Rights Reserved'
       # Default
       "#{license.name} #{license.short_code}"
     elsif format == :html
       # Creative Commons and Public Domain (CC0) as HTML
-      link_to("#{license.name} (#{license.short_code})", license.url, rel: "license")
+      link_to("#{license.name} (#{license.short_code})", license.url, rel: 'license')
     else
       # Creative Commons and Public Domain (CC0) as plain text
       ["#{license.name} (#{license.short_code})", license.url]
@@ -97,10 +97,10 @@ module ApplicationHelper
   end
 
   def site_title
-    title = ""
-    title << (on_admin_page? ? "Admin" : setting(:site_title))
+    title = ''
+    title << (on_admin_page? ? 'Admin' : setting(:site_title))
     if @page_title
-      title << " - "
+      title << ' - '
       title << @page_title
     end
     title
@@ -125,25 +125,25 @@ module ApplicationHelper
     sizes.each do |size|
       dimensions = "#{size}x#{size}"
       href = setting("touch_icon_url_#{dimensions}")
-      output << tag(:link, rel: "apple-touch-icon", sizes: dimensions, href: href)
+      output << tag(:link, rel: 'apple-touch-icon', sizes: dimensions, href: href)
     end
 
     output.join("\n").html_safe
   end
 
   def blank
-    ""
+    ''
   end
 
   def show_action?
-    action_name == "show"
+    action_name == 'show'
   end
 
   def datetime_select_value(thing, attr, unit_of_time)
     datetime = thing.send(attr).try(unit_of_time)
 
     if datetime.blank?
-      now = Time.current + Setting.of("timezone_gmt_offset").try(:content).to_i.hours
+      now = Time.current + Setting.of('timezone_gmt_offset').try(:content).to_i.hours
       now.send(unit_of_time)
     else
       datetime
@@ -151,11 +151,11 @@ module ApplicationHelper
   end
 
   def lorem_ipsum
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
   end
 
   def public_key?
-    !Setting.where(name: "Public Key").first.blank?
+    Setting.where(name: 'Public Key').first.present?
   end
 
   def largest_touch_icon_url

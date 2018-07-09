@@ -7,7 +7,7 @@ class PostForm
                   :in_reply_to,
                   :private,
                   :published_at,
-                  :tags]
+                  :tags].freeze
   attr_accessor :klass,
                 :post,
                 :post_type
@@ -26,15 +26,14 @@ class PostForm
                 to: :post,
                 allow_nil: true
 
-
-  def initialize(klass, post=nil)
+  def initialize(klass, post = nil)
     @klass     = klass
     @columns   = klass.columns.map(&:name)
     @post      = post || Post.new
     @post_type = self.post.post_type || klass.new
     define_attr_accessor(@columns)
     @columns.each do |col|
-      self.send("#{col}=", @post_type.send(col))
+      send("#{col}=", @post_type.send(col))
     end
   end
 
@@ -56,9 +55,7 @@ class PostForm
   def update(params)
     post.attributes           = params.permit(self.class::POST_COLUMNS)
     post.post_type.attributes = params.permit(@columns)
-    if post.valid? && post.post_type.valid?
-      post.save! && post.post_type.save!
-    end
+    post.save! && post.post_type.save! if post.valid? && post.post_type.valid?
   end
 
   private
@@ -70,5 +67,4 @@ class PostForm
       end
     end
   end
-
 end

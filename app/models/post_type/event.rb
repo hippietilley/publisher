@@ -7,6 +7,6 @@ class Event < PostType
       location_region,
       location_country,
       location_postal_code
-    ].compact.join(", ")
+    ].compact.join(', ')
   end
 end

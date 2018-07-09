@@ -1,4 +1,4 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe ApplicationHelper, type: :helper do
   # pending "#apple_touch_icon_link_tags"

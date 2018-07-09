@@ -37,7 +37,7 @@ module UnusedHelper
   # def autofocus_value
   #   !editing?
   # end
-  # 
+  #
   # def tag_url(tag)
   #   site_url + "/tags/" + tag.gsub(/ /, "+")
   # end

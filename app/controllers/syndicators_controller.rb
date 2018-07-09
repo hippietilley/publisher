@@ -9,7 +9,7 @@ class SyndicatorsController < ApplicationController
       options = {}
       if @post.in_reply_to.present?
         url = @post.in_reply_to.split.first
-        in_reply_to_status_id = url.split("/").last
+        in_reply_to_status_id = url.split('/').last
         options[:in_reply_to_status_id] = in_reply_to_status_id
       end
 

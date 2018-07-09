@@ -1,4 +1,4 @@
-class Tag < ActiveRecord::Base
+class Tag < ApplicationRecord
   has_many :taggings, dependent: :destroy
   has_many :posts, through: :taggings
 
@@ -26,13 +26,13 @@ class Tag < ActiveRecord::Base
 
   def display_name
     if machine_tag?
-      if name =~ / /
+      if / /.match?(name)
         machine_tag_prefix + "'#{name}'"
       else
         machine_tag_prefix + name
       end
     else
-      self.name
+      name
     end
   end
 
@@ -65,21 +65,21 @@ class Tag < ActiveRecord::Base
 
   # TODO: DRY refactor this method copied from PostType into a lib?
   def clean_slug!(slug)
-    blank     = ""
-    separator = "-"
+    blank     = ''
+    separator = '-'
     cleaned_slug = slug.downcase
-      .gsub(/\(|\)|\[|\]\.|'|"/, blank)
-      .gsub(/&amp;/,         blank)
-      .gsub(/\W|_|\s|-+/,    separator)
-      .gsub(/^-+/,           blank)
-      .gsub(/-+$/,           blank)
-      .gsub(/-+/,            separator)
+                       .gsub(/\(|\)|\[|\]\.|'|"/, blank)
+                       .gsub(/&amp;/,         blank)
+                       .gsub(/\W|_|\s|-+/,    separator)
+                       .gsub(/^-+/,           blank)
+                       .gsub(/-+$/,           blank)
+                       .gsub(/-+/,            separator)
 
-    if machine_tag?
-      self.slug = machine_tag_prefix + cleaned_slug
-    else
-      self.slug = cleaned_slug
-    end
+    self.slug = if machine_tag?
+      machine_tag_prefix + cleaned_slug
+                else
+      cleaned_slug
+                end
   end
 
   def set_slug

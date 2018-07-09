@@ -22,14 +22,14 @@ class ApplicationController < ActionController::Base
   before_action :set_page_links
 
   def on_page?
-    @post.present? && @post.post_type_type == "Page"
+    @post.present? && @post.post_type_type == 'Page'
   end
   helper_method :on_page?
 
   def ensure_domain
-    unless request.env["HTTP_HOST"] == setting(:domain) ||
-      Rails.env.development? ||
-      setting(:domain).blank?
+    unless request.env['HTTP_HOST'] == setting(:domain) ||
+           Rails.env.development? ||
+           setting(:domain).blank?
       redirect_to site_url, status: 301
     end
   end
@@ -57,19 +57,15 @@ class ApplicationController < ActionController::Base
   end
 
   def set_slug
-    if @slug.blank?
-      @slug = controller_name
-    else
-      @slug
-    end
+    @slug.presence || @slug = controller_name
   end
 
   def set_page_links
-    if signed_in?
-      all_page_links = Post.of("Page").all
-    else
-      all_page_links = Post.of("Page").visible.all
-    end
+    all_page_links = if signed_in?
+      Post.of('Page').all
+                     else
+      Post.of('Page').visible.all
+                     end
 
     @page_links = []
     all_page_links.each do |page|
@@ -83,13 +79,13 @@ class ApplicationController < ActionController::Base
   helper_method :allow_signup?
 
   def add_private_tag(post_params, tag_params)
-    tag_params += ", .private, " unless post_params["private"].to_i.zero?
+    tag_params += ', .private, ' unless post_params['private'].to_i.zero?
     tag_params
   end
 
   def save_tags(post, post_params)
     post.post.tags.destroy_all
-    add_private_tag(params[:tags].gsub(/^,/, ""), post_params)
+    add_private_tag(params[:tags].gsub(/^,/, ''), post_params)
 
     split_tags(params[:tags]).each do |name|
       post.post.tags << Tag.find_or_create_by(name: name)
@@ -98,12 +94,12 @@ class ApplicationController < ActionController::Base
 
   def split_tags(tags)
     output = []
-    tags = tags.gsub(/"|'/, ",")
-    separator = tags.match(/,/) ? "," : " "
+    tags = tags.gsub(/"|'/, ',')
+    separator = /,/.match?(tags) ? ',' : ' '
 
     tags.split(separator).each do |tag|
-      t = tag.strip.gsub(/"|'/, "")
-      output << t unless t.blank?
+      t = tag.strip.gsub(/"|'/, '')
+      output << t if t.present?
     end
 
     output.uniq
@@ -117,7 +113,7 @@ class ApplicationController < ActionController::Base
   end
 
   def use_admin_layout
-    render layout: "admin"
+    render layout: 'admin'
   end
 
   def signed_in?
@@ -131,17 +127,17 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def authorize
-    redirect_to signin_url, alert: "You need to sign in to view that page." unless signed_in?
+    redirect_to signin_url, alert: 'You need to sign in to view that page.' unless signed_in?
   end
 
   def site_photo_path
     unless @owner.nil? || @owner.avatar.blank?
-      uri      = URI.parse(@owner.avatar)
+      uri = URI.parse(@owner.avatar)
       begin
         response = Net::HTTP.get_response(URI(@owner.avatar))
 
-        ["/photo", site_photo_format(response)].compact.join(".")
-      rescue
+        ['/photo', site_photo_format(response)].compact.join('.')
+      rescue StandardError
       end
     end
   end
@@ -150,17 +146,14 @@ class ApplicationController < ActionController::Base
   def site_photo_format(response)
     # response: Net::HTTP.get_response(URI(...))
     case response.content_type
-    when "image/png"
-      "png"
-    when "image/jpeg"
-      "jpg"
-    when "image/gif"
-      "gif"
-    when "image/svg+xml"
-      "svg"
-    else
-      nil
+    when 'image/png'
+      'png'
+    when 'image/jpeg'
+      'jpg'
+    when 'image/gif'
+      'gif'
+    when 'image/svg+xml'
+      'svg'
     end
   end
-
 end

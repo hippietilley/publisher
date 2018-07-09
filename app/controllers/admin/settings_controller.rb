@@ -3,11 +3,11 @@ class Admin::SettingsController < ApplicationController
   before_action :set_setting, only: [:edit, :update]
   before_action :all_settings
   before_action :set_on_admin_page
-  layout "admin"
+  layout 'admin'
 
   def index
-    @page_title = "Settings"
-    @slug = "settings"
+    @page_title = 'Settings'
+    @slug = 'settings'
   end
 
   def show
@@ -15,7 +15,7 @@ class Admin::SettingsController < ApplicationController
   end
 
   def edit
-    @slug = "settings"
+    @slug = 'settings'
     @setting    = Setting.find(params[:id])
     @page_title = "Editing Setting : #{@setting.name}"
   end
@@ -24,9 +24,9 @@ class Admin::SettingsController < ApplicationController
     @setting = Setting.find(params[:id])
 
     if @setting.update(setting_params)
-      redirect_to [:admin, :settings], notice: "Setting was successfully updated."
+      redirect_to [:admin, :settings], notice: 'Setting was successfully updated.'
     else
-      render action: "edit"
+      render action: 'edit'
     end
   end
 
@@ -40,7 +40,8 @@ class Admin::SettingsController < ApplicationController
     params.require(:setting).permit(
       :name,
       :key,
-      :content)
+      :content
+    )
   end
 
   def all_settings

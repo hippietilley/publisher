@@ -1,7 +1,7 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe Admin::RedirectsController, type: :routing do
-  describe "routing" do
+  describe 'routing' do
     # TODO
     # it "routes to #index" do
     #   expect(get: "/redirects").to route_to("redirects#index")
@@ -34,6 +34,5 @@ RSpec.describe Admin::RedirectsController, type: :routing do
     # it "routes to #destroy" do
     #   expect(delete: "/redirects/1").to route_to("redirects#destroy", id: "1")
     # end
-
   end
 end

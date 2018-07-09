@@ -16,8 +16,6 @@ class TagsController < ApplicationController
   def show
     @tag = Tag.find_by(slug: params[:id])
 
-    if @tag.blank? || (@tag.private_tag? && !signed_in?)
-      return redirect_to(tags_path)
-    end
+    return redirect_to(tags_path) if @tag.blank? || (@tag.private_tag? && !signed_in?)
   end
 end

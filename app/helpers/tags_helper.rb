@@ -10,27 +10,27 @@ module TagsHelper
       end
     end
 
-    html.join(", ").html_safe
+    html.join(', ').html_safe
   end
 
   def link_to_tag(tag)
-    link_to_unless_current(tag.display_name, tag_path(tag.display_slug), class: "p-category", rel: "tag")
+    link_to_unless_current(tag.display_name, tag_path(tag.display_slug), class: 'p-category', rel: 'tag')
   end
 
   def link_to_external_tag_pages(tag)
     links = []
 
     {
-      Facebook: "https://www.facebook.com/hashtag/",
-      Flickr: "https://www.flickr.com/photos/tags/",
-      Instagram: "https://www.instagram.com/explore/tags/",
-      Twitter: "https://twitter.com/hashtag/",
-      Vimeo: "https://vimeo.com/categories/",
-      Vine: "https://vine.co/tags/",
+      Facebook: 'https://www.facebook.com/hashtag/',
+      Flickr: 'https://www.flickr.com/photos/tags/',
+      Instagram: 'https://www.instagram.com/explore/tags/',
+      Twitter: 'https://twitter.com/hashtag/',
+      Vimeo: 'https://vimeo.com/categories/',
+      Vine: 'https://vine.co/tags/'
     }.each do |site, url|
       links << link_to(site, url + tag.display_slug)
     end
 
-    links.join(", ").html_safe
+    links.join(', ').html_safe
   end
 end

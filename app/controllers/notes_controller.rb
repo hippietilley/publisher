@@ -3,33 +3,33 @@ class NotesController < ApplicationController
   before_action :authorize, except: [:show, :index]
 
   def index
-    @page_title = "Notes"
+    @page_title = 'Notes'
     @posts = Post.of(:note).for_user(current_user).page(params[:page]).all.per_page(15)
-    render "/posts/index"
+    render '/posts/index'
   end
 
   def show
     @page_title = @post.name
-    render "/posts/show"
+    render '/posts/show'
   end
 
   def new
-    @page_title = "New #{post_class.to_s}"
+    @page_title = "New #{post_class}"
     @post = PostForm.new(post_class)
-    render "posts/new", layout: "admin"
+    render 'posts/new', layout: 'admin'
   end
 
   def edit
-    @page_title = "Editing #{post_class.to_s}: #{@post.name}"
+    @page_title = "Editing #{post_class}: #{@post.name}"
     @post = PostForm.new(post_class, @post)
-    render "posts/edit", layout: "admin"
+    render 'posts/edit', layout: 'admin'
   end
 
   def create
     @post = PostForm.new(Note)
     if @post.submit(params[:note])
       save_tags(@post, note_params)
-      redirect_to @post.path, notice: "Note was successfully created."
+      redirect_to @post.path, notice: 'Note was successfully created.'
     else
       render :new
     end
@@ -39,7 +39,7 @@ class NotesController < ApplicationController
     @post = PostForm.new(Note, @post)
     if @post.update(note_params)
       save_tags(@post, note_params)
-      redirect_to @post.path, notice: "Note was successfully updated."
+      redirect_to @post.path, notice: 'Note was successfully updated.'
     else
       render :edit
     end
@@ -47,11 +47,11 @@ class NotesController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to notes_url, notice: "Note was successfully destroyed."
+    redirect_to notes_url, notice: 'Note was successfully destroyed.'
   end
 
   private
-  
+
   def post_class
     Note
   end
@@ -63,10 +63,10 @@ class NotesController < ApplicationController
 
   def note_params
     params.require(:note).permit(:content,
-      :slug,
-      :in_reply_to,
-      :tags,
-      :published_at,
-      :private)
+                                 :slug,
+                                 :in_reply_to,
+                                 :tags,
+                                 :published_at,
+                                 :private)
   end
 end

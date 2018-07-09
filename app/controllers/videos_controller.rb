@@ -3,33 +3,33 @@ class VideosController < ApplicationController
   before_action :authorize, except: [:show, :index]
 
   def index
-    @page_title = "Videos"
+    @page_title = 'Videos'
     @posts = Post.of(:video).for_user(current_user).page(params[:page]).all.per_page(5)
-    render "/posts/index"
+    render '/posts/index'
   end
 
   def show
     @page_title = @post.name
-    render "/posts/show"
+    render '/posts/show'
   end
 
   def new
-    @page_title = "New #{post_class.to_s}"
+    @page_title = "New #{post_class}"
     @post = PostForm.new(post_class)
-    render "posts/new", layout: "admin"
+    render 'posts/new', layout: 'admin'
   end
 
   def edit
-    @page_title = "Editing #{post_class.to_s}: #{@post.name}"
+    @page_title = "Editing #{post_class}: #{@post.name}"
     @post = PostForm.new(post_class, @post)
-    render "posts/edit", layout: "admin"
+    render 'posts/edit', layout: 'admin'
   end
 
   def create
     @post = PostForm.new(Video)
     if @post.submit(params[:video])
       save_tags(@post, video_params)
-      redirect_to @post.path, notice: "Video was successfully created."
+      redirect_to @post.path, notice: 'Video was successfully created.'
     else
       render :new
     end
@@ -39,7 +39,7 @@ class VideosController < ApplicationController
     @post = PostForm.new(Video, @post)
     if @post.update(video_params)
       save_tags(@post, video_params)
-      redirect_to @post.path, notice: "Video was successfully updated."
+      redirect_to @post.path, notice: 'Video was successfully updated.'
     else
       render :edit
     end
@@ -47,11 +47,11 @@ class VideosController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to videos_url, notice: "Video was successfully destroyed."
+    redirect_to videos_url, notice: 'Video was successfully destroyed.'
   end
 
   private
-  
+
   def post_class
     Video
   end
@@ -63,7 +63,7 @@ class VideosController < ApplicationController
 
   def video_params
     params.require(:video).permit(:captured_at, :content, :duration, :enclosure_url,
-      :height, :image_url, :in_reply_to, :private, :published_at, :slug, :subtitle,
-      :tags, :title, :width)
+                                  :height, :image_url, :in_reply_to, :private, :published_at, :slug, :subtitle,
+                                  :tags, :title, :width)
   end
 end

@@ -3,11 +3,11 @@ class Admin::LinksController < ApplicationController
   before_action :set_link, only: [:edit, :update, :destroy]
   before_action :all_links
   before_action :set_on_admin_page
-  layout "admin"
+  layout 'admin'
 
   def index
-    @page_title = "Links"
-    @slug = "links"
+    @page_title = 'Links'
+    @slug = 'links'
     @links = Link.all
   end
 
@@ -16,20 +16,20 @@ class Admin::LinksController < ApplicationController
   end
 
   def new
-    @page_title = "New Link"
+    @page_title = 'New Link'
     @link = Link.new
   end
 
   def edit
     @page_title = "Editing Link : #{@link.name}"
-    @slug = "links"
+    @slug = 'links'
   end
 
   def create
     @link = current_user.links.build(link_params)
 
     if @link.save
-      redirect_to admin_links_path, notice: "Link was successfully created."
+      redirect_to admin_links_path, notice: 'Link was successfully created.'
     else
       render :new
     end
@@ -37,7 +37,7 @@ class Admin::LinksController < ApplicationController
 
   def update
     if @link.update(link_params)
-      redirect_to admin_links_path, notice: "Link was successfully updated."
+      redirect_to admin_links_path, notice: 'Link was successfully updated.'
     else
       render :edit
     end
@@ -45,7 +45,7 @@ class Admin::LinksController < ApplicationController
 
   def destroy
     @link.destroy
-    redirect_to admin_links_path, notice: "Link was successfully destroyed."
+    redirect_to admin_links_path, notice: 'Link was successfully destroyed.'
   end
 
   private
@@ -56,8 +56,8 @@ class Admin::LinksController < ApplicationController
 
   def link_params
     params.require(:link).permit(:url,
-      :name,
-      :user_id)
+                                 :name,
+                                 :user_id)
   end
 
   def all_links

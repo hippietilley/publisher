@@ -3,26 +3,26 @@ class ArticlesController < ApplicationController
   before_action :authorize, except: [:show, :index]
 
   def index
-    @page_title = "Articles"
+    @page_title = 'Articles'
     @posts = Post.of(:article).for_user(current_user).page(params[:page]).all.per_page(5)
-    render "/posts/index"
+    render '/posts/index'
   end
 
   def show
     @page_title = @post.name
-    render "/posts/show"
+    render '/posts/show'
   end
 
   def new
-    @page_title = "New #{post_class.to_s}"
+    @page_title = "New #{post_class}"
     @post = PostForm.new(post_class)
-    render "posts/new", layout: "admin"
+    render 'posts/new', layout: 'admin'
   end
 
   def edit
-    @page_title = "Editing #{post_class.to_s}: #{@post.name}"
+    @page_title = "Editing #{post_class}: #{@post.name}"
     @post = PostForm.new(post_class, @post)
-    render "posts/edit", layout: "admin"
+    render 'posts/edit', layout: 'admin'
   end
 
   def create
@@ -63,13 +63,13 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:title,
-      :subtitle,
-      :content,
-      :slug,
-      :show_in_nav,
-      :in_reply_to,
-      :tags,
-      :published_at,
-      :private)
+                                    :subtitle,
+                                    :content,
+                                    :slug,
+                                    :show_in_nav,
+                                    :in_reply_to,
+                                    :tags,
+                                    :published_at,
+                                    :private)
   end
 end

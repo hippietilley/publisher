@@ -1,4 +1,4 @@
-class Setting < ActiveRecord::Base
+class Setting < ApplicationRecord
   validates :name, presence: true
   validate :special_settings
 
@@ -15,7 +15,7 @@ class Setting < ActiveRecord::Base
   private
 
   def set_slug
-    self.slug = name.downcase.gsub(/\W/, "_").gsub(/__/, "_").gsub(/(^_|_$)/, "")
+    self.slug = name.downcase.gsub(/\W/, '_').gsub(/__/, '_').gsub(/(^_|_$)/, '')
   end
 
   def special_settings
@@ -23,15 +23,13 @@ class Setting < ActiveRecord::Base
     # TODO: this is a mess
     blankable_settings = /Custom CSS|Footer Show|Header Show|Rel Me|Site Title|Site Description|Public Key|Keybase Proof|Syndication|Google Site Verification|Home Page/
 
-    if name =~ blankable_settings
+    if name&.match?(blankable_settings)
       return true
     # only one of three values
-    elsif name == "Text Direction"
-      unless content =~ /ltr|rtl|auto/i
-        errors.add(:content, "must be 'ltr' (left to right) or 'rtl' (right to left) or 'auto'")
-      end
+    elsif name == 'Text Direction'
+      errors.add(:content, "must be 'ltr' (left to right) or 'rtl' (right to left) or 'auto'") unless /ltr|rtl|auto/i.match?(content)
     elsif content.blank?
-      errors.add(:content, "can not be blank")
+      errors.add(:content, 'can not be blank')
     end
   end
 end

@@ -1,4 +1,4 @@
-class Link < ActiveRecord::Base
+class Link < ApplicationRecord
   validates :name, presence: true
   validates :url,  presence: true
   default_scope { order(:name) }

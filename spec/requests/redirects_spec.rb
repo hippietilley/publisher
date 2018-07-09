@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Redirects", type: :request do
+RSpec.describe 'Redirects', type: :request do
   # describe "GET /redirects" do
   #   it "works! (now write some real specs)" do
   #     get redirects_path

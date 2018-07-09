@@ -1,4 +1,4 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe SyndicationsHelper, type: :helper do
   # pending "#link_to_syndications"

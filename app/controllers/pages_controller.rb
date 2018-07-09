@@ -3,9 +3,9 @@ class PagesController < ApplicationController
   before_action :authorize, except: [:show, :index]
 
   def index
-    @page_title = "Pages"
+    @page_title = 'Pages'
     @posts = Post.of(:page).for_user(current_user).page(params[:page]).all.per_page(5)
-    render "/posts/index"
+    render '/posts/index'
   end
 
   def show
@@ -14,20 +14,20 @@ class PagesController < ApplicationController
       render text: @post.content, layout: false
     else
       @page_title = @post.name
-      render "/posts/show"
+      render '/posts/show'
     end
   end
 
   def new
-    @page_title = "New #{post_class.to_s}"
+    @page_title = "New #{post_class}"
     @post = PostForm.new(post_class)
-    render "posts/new", layout: "admin"
+    render 'posts/new', layout: 'admin'
   end
 
   def edit
-    @page_title = "Editing #{post_class.to_s}: #{@post.name}"
+    @page_title = "Editing #{post_class}: #{@post.name}"
     @post = PostForm.new(post_class, @post)
-    render "posts/edit", layout: "admin"
+    render 'posts/edit', layout: 'admin'
   end
 
   def create
@@ -68,16 +68,16 @@ class PagesController < ApplicationController
 
   def page_params
     params.require(:page).permit(:title,
-      :subtitle,
-      :content,
-      :slug,
-      :show_in_nav,
-      :in_reply_to,
-      :tags,
-      :published_at,
-      :private,
-      :hide_header,
-      :hide_footer,
-      :hide_layout)
+                                 :subtitle,
+                                 :content,
+                                 :slug,
+                                 :show_in_nav,
+                                 :in_reply_to,
+                                 :tags,
+                                 :published_at,
+                                 :private,
+                                 :hide_header,
+                                 :hide_footer,
+                                 :hide_layout)
   end
 end

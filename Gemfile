@@ -12,11 +12,11 @@ gem 'puma'
 gem 'rack-timeout'
 
 # assets: css / js
-gem 'sass-rails'
 gem 'autoprefixer-rails'
-gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
+gem 'sass-rails'
+gem 'uglifier'
 
 # auth
 gem 'bcrypt', '~> 3.1'
@@ -37,9 +37,9 @@ gem 'twitter'
 
 # testing
 group :development, :test do
-  gem 'rspec-rails'
   gem 'codeclimate-test-reporter', require: false
   gem 'listen'
+  gem 'rspec-rails'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
@@ -50,17 +50,17 @@ group :development, :test do
   gem 'memory_profiler'
 
   # For call-stack profiling flamegraphs
+  gem 'fast_stack'
   gem 'flamegraph'
   gem 'stackprof'
-  gem 'fast_stack'
 end
 
 # development only
 group :development do
   gem 'byebug'
-  gem 'web-console'
-  gem 'rubocop', require: false
   gem 'grailbird_updater'
+  gem 'rubocop', require: false
+  gem 'web-console'
 end
 
 # windows dev
