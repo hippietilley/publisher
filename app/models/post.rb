@@ -298,41 +298,36 @@ class Post < ApplicationRecord
 
     html_doc.css('a').each do |link|
       url = link.attr(:href)
-      next if url =~ %r{/sets/}
 
-      if /flickr.com|flic.kr/.match?(url)
+      next unless /flickr.com|flic.kr/.match?(url)
+      next if url =~ %r{/tags|sets/}
 
-        if /tags/.match?(url)
-          next
-        else url =~ /flickr.com/
-             url = url.sub('flickr.com',               'flickr.com/photos')
-             url = url.sub('flickr.com/photos/photos', 'flickr.com/photos')
+      url =~ /flickr.com/
+      url = url.sub('flickr.com',               'flickr.com/photos')
+      url = url.sub('flickr.com/photos/photos', 'flickr.com/photos')
 
-             oembed = Nokogiri::XML(open("https://www.flickr.com/services/oembed?url=#{url}"))
+      oembed = Nokogiri::XML(open("https://www.flickr.com/services/oembed?url=#{url}"))
 
-             photos << {
-               image_url:         oembed.css('oembed url').text,
-               page_url:          oembed.css('oembed web_page').text,
-               photographer_name: oembed.css('oembed author_name').text,
-               photographer_url:  oembed.css('oembed author_url').text,
-               title:             oembed.css('oembed title').text,
-               width:             oembed.css('oembed width').text,
-               height:            oembed.css('oembed height').text
-             }
-        end
-
-      end
+      photos << {
+        image_url:         oembed.css('oembed url').text,
+        page_url:          oembed.css('oembed web_page').text,
+        photographer_name: oembed.css('oembed author_name').text,
+        photographer_url:  oembed.css('oembed author_url').text,
+        title:             oembed.css('oembed title').text,
+        width:             oembed.css('oembed width').text,
+        height:            oembed.css('oembed height').text
+      }
     end
 
     photos
   end
 
   def create_syndication_for_instagram
-    if instagrams.present?
-      instagrams.each do |instagram|
-        url = "https://instagram.com/p/#{instagram[:photo_id]}"
-        create_syndication_for(name: :instagram, url: url)
-      end
+    return if instagrams.blank?
+
+    instagrams.each do |instagram|
+      url = "https://instagram.com/p/#{instagram[:photo_id]}"
+      create_syndication_for(name: :instagram, url: url)
     end
   end
 
@@ -355,15 +350,16 @@ class Post < ApplicationRecord
   end
 
   def generate_slug
-    if new_record? || slug_changed?
-      n = 0
-      self.slug = name || post_type_type if slug.blank?
-      clean_slug!(slug)
-      while slug_exists?
-        self.slug = name || post_type_type
-        n += 1
-        clean_slug!(slug + "-#{n}")
-      end
+    return unless new_record? || slug_changed?
+
+    n = 0
+    self.slug = name || post_type_type if slug.blank?
+    clean_slug!(slug)
+
+    while slug_exists?
+      self.slug = name || post_type_type
+      n += 1
+      clean_slug!(slug + "-#{n}")
     end
   end
 

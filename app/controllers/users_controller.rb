@@ -6,18 +6,17 @@ class UsersController < ApplicationController
 
   # /signup
   def new
+    return redirect_to root_url if signed_in?
+
     @page_title = 'Sign Up'
-    @slug = 'signup'
+    @slug       = 'signup'
+
     unless allow_signup?
       flash.alert = 'Contact the owner of this website to request an account.'
       return redirect_to root_url
     end
 
-    if signed_in?
-      return redirect_to root_url
-    else
-      @user = User.new
-    end
+    @user = User.new
   end
 
   # /signup

@@ -23,10 +23,10 @@ class Setting < ApplicationRecord
     # TODO: this is a mess
     blankable_settings = /Custom CSS|Footer Show|Header Show|Rel Me|Site Title|Site Description|Public Key|Keybase Proof|Syndication|Google Site Verification|Home Page/
 
-    if name&.match?(blankable_settings)
-      return true
+    return true if name&.match?(blankable_settings)
+
     # only one of three values
-    elsif name == 'Text Direction'
+    if name == 'Text Direction'
       errors.add(:content, "must be 'ltr' (left to right) or 'rtl' (right to left) or 'auto'") unless /ltr|rtl|auto/i.match?(content)
     elsif content.blank?
       errors.add(:content, 'can not be blank')
