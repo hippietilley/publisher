@@ -111,8 +111,3 @@ Style/GuardClause:
     - 'app/controllers/users_controller.rb'
     - 'app/models/post.rb'
     - 'app/models/setting.rb'
-
-# Offense count: 1
-Style/IfInsideElse:
-  Exclude:
-    - 'app/helpers/syndications_helper.rb'
