@@ -120,3 +120,14 @@ Lint/HandleExceptions:
   Exclude:
     - 'app/controllers/application_controller.rb'
 
+
+# TODO delete empty helper files
+
+
+# TODO: is there a better way to call a before_action/only on all controllers
+# Offense count: 1
+# Configuration parameters: Include.
+# Include: app/controllers/**/*.rb
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - 'app/controllers/application_controller.rb'
