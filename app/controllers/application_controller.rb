@@ -131,7 +131,7 @@ class ApplicationController < ActionController::Base
   end
 
   def site_photo_path
-    return unless @owner.nil? || @owner.avatar.blank?
+    return if @owner.nil? || @owner.avatar.blank?
 
     uri = URI.parse(@owner.avatar)
     begin
