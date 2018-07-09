@@ -36,11 +36,3 @@ Lint/UselessAssignment:
 # Configuration parameters: CustomIncludeMethods.
 RSpec/EmptyExampleGroup:
   Enabled: false
-
-# Offense count: 2
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: slashes, arguments
-Rails/FilePath:
-  Exclude:
-    - 'config/application.rb'
-    - 'config/environments/development.rb'
