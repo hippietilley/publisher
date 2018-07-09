@@ -3,8 +3,8 @@ class User < ApplicationRecord
   validates :password, presence: :true, on: :create
   validates :email,    presence: :true, uniqueness: true, on: [:create, :update]
 
-  has_many :links,      dependent: :destory
-  has_many :post_types, dependent: :destory
-  has_many :providers,  dependent: :destory
-  has_many :redirects,  dependent: :destory
+  has_many :links,      dependent: :destroy
+  has_many :post_types, dependent: :destroy
+  has_many :providers,  dependent: :destroy
+  has_many :redirects,  dependent: :destroy
 end
