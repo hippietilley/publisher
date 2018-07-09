@@ -84,13 +84,6 @@ Rails/TimeZone:
   Exclude:
     - 'spec/models/post_spec.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: AutoCorrect.
-Security/JSONLoad:
-  Exclude:
-    - 'app/models/post.rb'
-
 # Offense count: 5
 # Cop supports --auto-correct.
 # Configuration parameters: AutoCorrect, EnforcedStyle.

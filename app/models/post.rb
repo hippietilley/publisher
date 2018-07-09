@@ -240,7 +240,7 @@ class Post < ApplicationRecord
       jam_id = url.split('t.thisismyjam.com').compact.last.split('/')[2]
 
       api_url      = "http://api.thisismyjam.com/1/jams/#{jam_id}.json"
-      api_response = JSON.load(open(api_url))
+      api_response = JSON.parse(open(api_url))
 
       jams << {
         title:     api_response['jam']['title'],
