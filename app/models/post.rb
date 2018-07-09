@@ -126,11 +126,14 @@ class Post < ApplicationRecord
   def syndication_content
     pieces = []
 
-    @syndication_content ||= body = if post_type.respond_to? :syndication_content
-      post_type.syndication_content
-                                    else
-      name
-           end
+    body =
+      if post_type.respond_to? :syndication_content
+        post_type.syndication_content
+      else
+        name
+      end
+
+    @syndication_content ||= body
 
     # DOC : curl https://dev.twitter.com/rest/reference/get/help/configuration | grep url_length
     # 280 : tweet max length
