@@ -1,3 +1,3 @@
-brew 'postgresql@9.6'
+brew 'postgresql'
 brew 'libidn'
 brew 'heroku'

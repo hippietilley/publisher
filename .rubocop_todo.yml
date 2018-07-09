@@ -31,8 +31,3 @@ Lint/UselessAssignment:
     - 'app/controllers/about_controller.rb'
     - 'app/controllers/application_controller.rb'
     - 'app/models/post.rb'
-
-# Offense count: 38
-# Configuration parameters: CustomIncludeMethods.
-RSpec/EmptyExampleGroup:
-  Enabled: false
