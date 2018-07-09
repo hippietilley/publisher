@@ -32,7 +32,7 @@ module ApplicationHelper
         true
       end
     else
-      Post.of(page.to_s.singularize.capitalize).visible.count > 0
+      Post.of(page.to_s.singularize.capitalize).visible.count.positive?
     end
   end
 

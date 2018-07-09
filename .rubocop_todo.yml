@@ -116,12 +116,3 @@ Style/GuardClause:
 Style/IfInsideElse:
   Exclude:
     - 'app/helpers/syndications_helper.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: AutoCorrect, EnforcedStyle.
-# SupportedStyles: predicate, comparison
-Style/NumericPredicate:
-  Exclude:
-    - 'spec/**/*'
-    - 'app/helpers/application_helper.rb'
