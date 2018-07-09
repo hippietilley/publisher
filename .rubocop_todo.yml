@@ -11,11 +11,6 @@ Lint/BooleanSymbol:
   Exclude:
     - 'app/models/user.rb'
 
-# Offense count: 1
-Lint/HandleExceptions:
-  Exclude:
-    - 'app/controllers/application_controller.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: AllowUnusedKeywordArguments, IgnoreEmptyMethods.
