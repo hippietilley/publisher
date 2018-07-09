@@ -39,6 +39,7 @@ gem 'twitter'
 group :development, :test do
   gem 'codeclimate-test-reporter', require: false
   gem 'listen'
+  gem 'overcommit'
   gem 'rspec-rails'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
