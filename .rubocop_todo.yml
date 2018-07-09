@@ -125,12 +125,3 @@ Style/NumericPredicate:
   Exclude:
     - 'spec/**/*'
     - 'app/helpers/application_helper.rb'
-
-# Offense count: 6
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, AllowInnerSlashes.
-# SupportedStyles: slashes, percent_r, mixed
-Style/RegexpLiteral:
-  Exclude:
-    - 'app/controllers/posts_controller.rb'
-    - 'app/models/post.rb'

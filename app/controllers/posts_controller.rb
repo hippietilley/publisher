@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :authorize, only: :new
 
   def index
-    redirect_to root_path if Setting.of('home_page').content.blank? && request.path =~ /^\/posts/
+    redirect_to root_path if Setting.of('home_page').content.blank? && request.path =~ %r{^/posts}
 
     # TODO: DRY refactor, duplicated in RootController#index
     @slug = 'home'

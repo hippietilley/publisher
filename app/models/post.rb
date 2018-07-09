@@ -159,9 +159,9 @@ class Post < ApplicationRecord
               suppress_no_follow: true,
               link_text_block: proc do |_entity, text|
                 text = text
-                       .gsub(/^.*:\/\//, '') # removes leading protocol
-                       .gsub(/^www\./,   '') # removes leading www
-                       .gsub(/\/$/,      '') # removes trailing slash
+                       .gsub(%r{^.*://}, '') # removes leading protocol
+                       .gsub(/www\./,    '') # removes leading www
+                       .gsub(%r{/$},     '') # removes trailing slash
               end).html_safe
   end
 
@@ -198,7 +198,7 @@ class Post < ApplicationRecord
 
     html_doc.css('a').each do |link|
       url = link.attr(:href)
-      videos << { video_id: url.gsub(/player.vimeo.com\/video/, 'vimeo.com').split('vimeo.com/').last } if /vimeo.com/.match?(url)
+      videos << { video_id: url.gsub(%r{player.vimeo.com/video}, 'vimeo.com').split('vimeo.com/').last } if /vimeo.com/.match?(url)
     end
 
     videos
@@ -211,7 +211,7 @@ class Post < ApplicationRecord
     html_doc.css('a').each do |link|
       url = link.attr(:href)
 
-      tweets << { tweet_url: url } if /twitter.com\/\w+\/status\/\d+/.match?(url)
+      tweets << { tweet_url: url } if %r{twitter.com/\w+/status/\d+}.match?(url)
     end
 
     tweets
@@ -298,7 +298,7 @@ class Post < ApplicationRecord
 
     html_doc.css('a').each do |link|
       url = link.attr(:href)
-      next if url =~ /\/sets\//
+      next if url =~ %r{/sets/}
 
       if /flickr.com|flic.kr/.match?(url)
 
