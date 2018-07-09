@@ -21,10 +21,3 @@ Rails/LexicallyScopedActionFilter:
 Lint/BooleanSymbol:
   Exclude:
     - 'app/models/user.rb'
-
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: AllowUnusedKeywordArguments, IgnoreEmptyMethods.
-Lint/UnusedMethodArgument:
-  Exclude:
-    - 'app/models/post.rb'

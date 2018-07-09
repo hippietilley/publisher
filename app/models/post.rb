@@ -334,8 +334,8 @@ class Post < ApplicationRecord
     end
   end
 
-  def create_syndication_for(name: syndication_name, url: syndication_url)
-    syndications.find_or_create_by(name: syndication_name.to_s.capitalize, url: syndication_url)
+  def create_syndication_for name: syndication_name, url: syndication_url
+    syndications.find_or_create_by name: name.to_s.capitalize, url: url
   end
 
   private
