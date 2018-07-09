@@ -50,9 +50,11 @@ Metrics/MethodLength:
 
 Metrics/BlockLength:
   Max: 140
-
   Exclude:
     - 'spec/**/*'
+
+Metrics/ModuleLength:
+  Max: 130
 
 Metrics/AbcSize:
   Max: 65
@@ -111,7 +113,6 @@ RSpec/MessageSpies:
 RSpec/DescribeClass:
   Exclude:
     - 'spec/system/*'
-
 
 
 # TODO: Is there a better way to rescue this error?
