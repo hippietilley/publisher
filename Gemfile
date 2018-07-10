@@ -38,6 +38,10 @@ gem 'ruby-units'
 # syndication
 gem 'twitter'
 
+# code style guide and linting
+gem 'rubocop', require: false
+gem 'rubocop-rspec'
+
 # testing
 group :development, :test do
   gem 'capybara'
@@ -69,7 +73,6 @@ end
 group :development do
   gem 'byebug'
   gem 'grailbird_updater'
-  gem 'rubocop', require: false
   gem 'web-console'
 end
 
