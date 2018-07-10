@@ -20,8 +20,9 @@
 /tmp
 /tmp/*
 /vendor/gems
-db/seeds
+TAGS
+
 ISSUES.md
 issues.md
+db/seeds
 production.seeds.rb
-TAGS
