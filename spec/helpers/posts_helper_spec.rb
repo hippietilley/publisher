@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe PostsHelper, type: :helper do
-  pending '#authors_name_and_url'
-  pending '#canonical_url'
-  pending '#edit_post_path'
-  pending '#human_readable_date'
-  pending '#human_readable_time'
-  pending '#link_to_in_reply_to_urls'
-  pending '#post_id_and_classes'
-  pending '#rel_canonical_link_tag'
-  pending '#rel_in_reply_to'
+  skip '#authors_name_and_url'
+  skip '#canonical_url'
+  skip '#edit_post_path'
+  skip '#human_readable_date'
+  skip '#human_readable_time'
+  skip '#link_to_in_reply_to_urls'
+  skip '#post_id_and_classes'
+  skip '#rel_canonical_link_tag'
+  skip '#rel_in_reply_to'
 end

@@ -3,27 +3,39 @@ if ENV['CODECLIMATE_REPO_TOKEN']
   CodeClimate::TestReporter.start
 end
 
+require 'simplecov'
+
+SimpleCov.start do
+  add_filter 'config/application.rb'
+  add_filter 'config/initializers/rack-attack.rb'
+  add_filter '/app/channels/'
+  add_filter '/spec/'
+
+  track_files 'app/**/*.rb'
+end
+
 RSpec.configure do |config|
-  # rspec-expectations config goes here. You can use an alternate
-  # assertion/expectation library such as wrong or the stdlib/minitest
-  # assertions if you prefer.
+  config.before(:each, type: :system) do
+    driven_by :chrome
+  end
+
   config.expect_with :rspec do |expectations|
-    # This option will default to `true` in RSpec 4. It makes the `description`
-    # and `failure_message` of custom matchers include text for helper methods
-    # defined using `chain`, e.g.:
-    #     be_bigger_than(2).and_smaller_than(4).description
-    #     # => "be bigger than 2 and smaller than 4"
-    # ...rather than:
-    #     # => "be bigger than 2"
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
 
-  # rspec-mocks config goes here. You can use an alternate test double
-  # library (such as bogus or mocha) by changing the `mock_with` option here.
   config.mock_with :rspec do |mocks|
-    # Prevents you from mocking or stubbing a method that does not exist on
-    # a real object. This is generally recommended, and will default to
-    # `true` in RSpec 4.
     mocks.verify_partial_doubles = true
   end
+
+  config.shared_context_metadata_behavior = :apply_to_host_groups
+end
+
+def login_user(_user)
+  visit '/signin'
+  within('main') do
+    fill_in 'username', with: 'user1'
+    fill_in 'password', with: 'c' * 31
+  end
+  click_button 'Sign In'
+  expect(page).to have_content 'Logged in!'
 end

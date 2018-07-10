@@ -40,11 +40,17 @@ gem 'twitter'
 
 # testing
 group :development, :test do
+  gem 'capybara'
+  gem 'chromedriver-helper'
   gem 'codeclimate-test-reporter', require: false
+  gem 'factory_bot_rails'
   gem 'listen'
   gem 'overcommit'
   gem 'rspec-rails'
+  gem 'selenium-webdriver'
+  gem 'simplecov', require: false
   gem 'spring'
+  gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   # For measuring page/code performance

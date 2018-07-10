@@ -8,11 +8,20 @@
 /.bundle
 
 # Ignore all logfiles and tempfiles.
-/log/*
 !/log/.keep
-/tmp
-.DS_Store
-db/seeds
-production.seeds.rb
+!/tmp/.keep
 .byebug_history
+.DS_Store
+.env
+.idea/
+/.bundle
+/coverage
+/log/*
+/tmp
+/tmp/*
+/vendor/gems
+db/seeds
+ISSUES.md
 issues.md
+production.seeds.rb
+TAGS
