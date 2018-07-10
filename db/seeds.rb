@@ -108,7 +108,7 @@ puts "Populating licenses table..."
 end
 puts "...done."
 
-puts "Settting copyright (All Rights Reserved) as default license..."
+puts "Setting copyright (All Rights Reserved) as default license..."
 license          = Setting.new
 license.name     = "License"
 license.content  = License.find_by(name: "All Rights Reserved").id
