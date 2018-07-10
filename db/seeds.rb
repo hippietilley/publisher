@@ -37,7 +37,9 @@ puts "Creating default settings..."
   ["Header Show Site Description", "true",                                      true],
   ["Header Show Site Title",       "true",                                      true],
 ].each do |setting|
-  s          = Setting.new
+  existing_setting = Setting.find_by(name: setting[0])
+  s = existing_setting.blank? ? Setting.new : existing_setting
+
   s.name     = setting[0]
   s.content  = setting[1]
   s.editable = setting[2]
@@ -99,21 +101,25 @@ puts "Populating licenses table..."
     "http://en.wikipedia.org/wiki/Copyright"
   ]
 ].each do |license|
-  l             = License.new
-  l.name        = license.first
+  existing_license = License.find_by(name: license[0])
+  l = existing_license.blank? ? License.new : existing_license
+
+  l.name        = license[0]
   l.short_code  = license[1]
   l.description = license[2]
-  l.url         = license.last
-  l.save!
+  l.url         = license[3]
+  l.save
 end
 puts "...done."
 
 puts "Setting copyright (All Rights Reserved) as default license..."
-license          = Setting.new
-license.name     = "License"
-license.content  = License.find_by(name: "All Rights Reserved").id
-license.editable = true
-license.save(validate: false)
+existing_setting = Setting.find_by(name: "License")
+s = existing_setting.blank? ? Setting.new : existing_setting
+
+s.name     = "License"
+s.content  = License.find_by(name: "All Rights Reserved").id
+s.editable = true
+s.save(validate: false)
 puts "...done."
 
 
