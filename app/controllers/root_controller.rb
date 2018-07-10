@@ -15,7 +15,7 @@ class RootController < ApplicationController
     else
 
       @slug = 'home'
-      @posts = Post.where.not(post_type_type: 'Page').for_user(current_user).page(params[:page])
+      @posts = Post.where.not(post_type_type: 'Page').for_user(current_user).page(params[:page]).per_page(5)
       render 'posts/index'
 
     end
