@@ -49,13 +49,21 @@ group :development, :test do
   gem 'codeclimate-test-reporter', require: false
   gem 'factory_bot_rails'
   gem 'listen'
-  gem 'overcommit'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'simplecov', require: false
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+# development only
+group :development do
+  gem 'byebug'
+  gem 'grailbird_updater'
+  gem 'overcommit'
+  gem 'pry'
+  gem 'web-console'
 
   # For measuring page/code performance
   gem 'rack-mini-profiler'
@@ -67,13 +75,6 @@ group :development, :test do
   gem 'fast_stack'
   gem 'flamegraph'
   gem 'stackprof'
-end
-
-# development only
-group :development do
-  gem 'byebug'
-  gem 'grailbird_updater'
-  gem 'web-console'
 end
 
 # windows dev
