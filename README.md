@@ -1,4 +1,4 @@
-# Dark Matter Publisher (Server)
+# Dark Matter : Publisher
 
 An #indieweb personal publishing platform built in Ruby on Rails.
 
@@ -11,16 +11,16 @@ An #indieweb personal publishing platform built in Ruby on Rails.
 
 ## Development
 
-[![Build Status](https://travis-ci.org/darkmatterapp/publisher-server-rails.svg?branch=master)](https://travis-ci.org/darkmatterapp/publisher-server-rails)
-[![Code Climate](https://codeclimate.com/github/darkmatterapp/publisher-server-rails/badges/gpa.svg)](https://codeclimate.com/github/darkmatterapp/publisher-server-rails)
+[![Build Status](https://travis-ci.org/darkmatterapp/publisher.svg?branch=master)](https://travis-ci.org/darkmatterapp/publisher)
+[![Code Climate](https://codeclimate.com/github/darkmatterapp/publisher/badges/gpa.svg)](https://codeclimate.com/github/darkmatterapp/publisher)
 
 ### tl;dr
 
 [Strap your computer](https://macos-strap.herokuapp.com), first.
 
 ```
-git clone https://github.com/darkmatterapp/publisher-server-rails.git
-cd publisher-server-rails
+git clone https://github.com/darkmatterapp/publisher.git
+cd publisher
 ./script/setup
 ./script/server
 ```
@@ -35,7 +35,7 @@ Click this button to easily deploy to Heroku. (You must have a Heroku account.)
 
 ## Scripts to Rule Them All
 
-Dark Matter Publisher uses the [Scripts to Rule Them All](https://githubengineering.com/scripts-to-rule-them-all) pattern.
+Dark Matter : Publisher uses the [Scripts to Rule Them All](https://githubengineering.com/scripts-to-rule-them-all) pattern.
 See also: https://github.com/github/scripts-to-rule-them-all
 
 `/script` is a collection of scripts for development on an OS X / macOS computer.
@@ -59,7 +59,7 @@ It will install the proper Ruby and PostgreSQL database versions.
 Clone this repo.
 
 ```
-git clone https://github.com/darkmatterapp/publisher-server-rails.git
+git clone https://github.com/darkmatterapp/publisher.git
 cd website
 ```
 
@@ -69,7 +69,7 @@ Then run the `bootstrap` script.
 ./script/bootstrap
 ```
 
-If that fails for you, [file an issue](https://github.com/darkmatterapp/publisher-server-rails/issues)
+If that fails for you, [file an issue](https://github.com/darkmatterapp/publisher/issues)
 with as much detail about your setup and any errors you got from the script.
 
 ### Setup script
@@ -153,15 +153,15 @@ Drop the database, rebuild it, and fill it with seed data.
 
 ## Contributing
 
-See [CONTRIBUTING.md](https://github.com/darkmatterapp/publisher-server-rails/blob/master/CONTRIBUTING.md).
+See [CONTRIBUTING.md](https://github.com/darkmatterapp/publisher/blob/master/CONTRIBUTING.md).
 
 If you find bugs, have feature requests or questions, please
-[file an issue](https://github.com/darkmatterapp/publisher-server-rails/issues).
+[file an issue](https://github.com/darkmatterapp/publisher/issues).
 
 ## Code of Conduct
 
 Everyone interacting in the Dark Matter project’s codebases, issue trackers, chat rooms, and mailing lists is expected to follow the
-[Dark Matter code of conduct](https://github.com/darkmatterapp/publisher-server-rails/blob/master/CODE_OF_CONDUCT.md).
+[Dark Matter code of conduct](https://github.com/darkmatterapp/publisher/blob/master/CODE_OF_CONDUCT.md).
 
 
 ## License
@@ -171,7 +171,7 @@ Everyone interacting in the Dark Matter project’s codebases, issue trackers, c
 Your heart is as free as the air you breathe. <br>
 The ground you stand on is liberated territory.
 
-In legal text, Dark Matter Publisher Server (Rails) is dedicated to the public domain
+In legal text, Dark Matter : Publisher Server (Rails) is dedicated to the public domain
 using Creative Commons -- CC0 1.0 Universal.
 
 [http://creativecommons.org/publicdomain/zero/1.0](http://creativecommons.org/publicdomain/zero/1.0 "Creative Commons &mdash; CC0 1.0 Universal")
