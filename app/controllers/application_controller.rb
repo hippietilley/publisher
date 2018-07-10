@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  # TODO: https://github.com/darkmatterapp/publisher-server-rails/issues/155
+  # TODO: https://github.com/darkmatterapp/publisher/issues/155
   # SecureHeaders::Configuration.default do |config|
   #   config.csp = {
   #     default_src: %w['self'],

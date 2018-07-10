@@ -1,5 +1,5 @@
 {
-  "name": "Dark Matter Publisher",
+  "name": "Dark Matter : Publisher",
   "description": "Rails app to power an #indieweb personal publishing platform.",
   "keywords": [
     "indieweb",
@@ -9,7 +9,7 @@
     "rails"
   ],
   "website": "http://darkmatterapp.com",
-  "repository": "https://github.com/darkmatter/publisher-server-rails",
+  "repository": "https://github.com/darkmatter/publisher",
   "logo": "http://darkmatterapp.com/logo.png",
 
   "success_url": "/signup",

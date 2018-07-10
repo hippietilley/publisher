@@ -25,7 +25,7 @@ Bug reports? Feature requests? File an issue. (See next section.)
 Find a bug? Want a feature? Questions, concerns? You can file an issue
 on GitHub Issues.
 
-https://github.com/darkmatterapp/publisher-server-rails/issues
+https://github.com/darkmatterapp/publisher/issues
 
 Don't worry too much about the format of your issue or how to tag/assign it.
 We'll reformat it if it needs it. But what's most important is that you tell

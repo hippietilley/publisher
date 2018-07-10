@@ -5,11 +5,11 @@ default: &default
 
 development:
   <<: *default
-  database: darkmatter_publisher_server_rails_development
+  database: darkmatter_publisher_development
 
 test:
   <<: *default
-  database: darkmatter_publisher_server_rails_test
+  database: darkmatter_publisher_test
 
 production:
   url:  <%= ENV["DATABASE_URL"] %>
