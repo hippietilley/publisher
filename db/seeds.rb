@@ -117,6 +117,7 @@ license.save(validate: false)
 puts "...done."
 
 
+Rails.application.eager_load!
 threads  = []
 
 puts "Trying dev seeds for each post-type..."
