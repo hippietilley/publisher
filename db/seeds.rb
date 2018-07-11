@@ -101,7 +101,7 @@ puts "Populating licenses table..."
     "http://en.wikipedia.org/wiki/Copyright"
   ]
 ].each do |license|
-  existing_license = License.find_by(name: license[0])
+  existing_license = License.find_by(short_code: license[1])
   l = existing_license.blank? ? License.new : existing_license
 
   l.name        = license[0]
