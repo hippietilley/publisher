@@ -137,7 +137,7 @@ GEM
       mimemagic (~> 0.3.2)
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
-    memory_profiler (0.9.11)
+    memory_profiler (0.9.12)
     method_source (0.9.0)
     mimemagic (0.3.2)
     mini_mime (1.0.1)
